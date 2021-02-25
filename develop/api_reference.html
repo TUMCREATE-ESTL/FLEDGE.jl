@@ -933,6 +933,21 @@ reactive loss by DER reactive power vector.</p></li>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="fledge.thermal_grid_models.LinearThermalGridModel.define_optimization_constraints">
+<code class="sig-name descname"><span class="pre">define_optimization_constraints</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pandas.Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_head_vector_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_flow_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.thermal_grid_models.LinearThermalGridModel.define_optimization_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define constraints to express the linear thermal grid model equations for given <cite>optimization_problem</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><strong>optimization_problem</strong> (<a class="reference internal" href="#fledge.utils.OptimizationProblem" title="fledge.utils.OptimizationProblem"><em>fledge.utils.OptimizationProblem</em></a>) – </li>
+<li><strong>node_head_vector_minimum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
+<li><strong>branch_flow_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1556,13 +1571,13 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../feature/general_improvements/api_reference.html">feature/general_improvements</a></dd>
             <dd><a href="api_reference.html">develop</a></dd>
             <dd><a href="../feature/biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../feature/dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></dd>
             <dd><a href="../feature/docs/index.html">feature/docs</a></dd>
             <dd><a href="../feature/electric_grid_extensions/api_reference.html">feature/electric_grid_extensions</a></dd>
             <dd><a href="../feature/extended_line_type_definitions/index.html">feature/extended_line_type_definitions</a></dd>
+            <dd><a href="../feature/general_improvements/api_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../feature/grid_synthesis/index.html">feature/grid_synthesis</a></dd>
             <dd><a href="../feature/market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
             <dd><a href="../feature/project_sitem_extensions/index.html">feature/project_sitem_extensions</a></dd>
