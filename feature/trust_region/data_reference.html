@@ -121,6 +121,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#der-timeseries"><code class="docutils literal notranslate"><span class="pre">der_timeseries</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#der-schedules"><code class="docutils literal notranslate"><span class="pre">der_schedules</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#der-cooling-plants"><code class="docutils literal notranslate"><span class="pre">der_cooling_plants</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#der-ev-chargers"><code class="docutils literal notranslate"><span class="pre">der_ev_chargers</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -273,8 +274,24 @@
 <td align="center"></td>
 <td>Time interval in format <code>HH:MM:SS</code></td>
 </tr>
+<tr>
+<td><code>base_apparent_power</code></td>
+<td align="center">W</td>
+<td>Normalization / scaling factor¹ for apparent / active / reactive power variables. Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
+</tr>
+<tr>
+<td><code>base_voltage</code></td>
+<td align="center">W</td>
+<td>Normalization / scaling factor¹ for voltage variables. Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
+</tr>
+<tr>
+<td><code>base_thermal_power</code></td>
+<td align="center">W</td>
+<td>Normalization / scaling factor¹ for voltage variables. Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
+</tr>
 </tbody>
-</table></div>
+</table><p>¹ Normalization / scaling factors are used internally to reduce the order of magnitude of variable values. Appropriate scaling significantly improves numerical performance, especially in numerical optimization problems. Note that this only applies internally to variables and models, but inputs and outputs are reported unscaled in SI units.</p>
+</div>
 <div class="section" id="parameters">
 <h3><code class="docutils literal notranslate"><span class="pre">parameters</span></code><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
 <p>In all tables, a <code class="docutils literal notranslate"><span class="pre">parameter_name</span></code> string can be used to define numerical parameters in place of numerical values (identifiers or string values cannot be replaced with parameters). During model setup, those strings will be parsed from the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> table to obtain the corresponding numerical values.</p>
@@ -1177,7 +1194,7 @@
 </tbody>
 </table><p>The selection of DER types will be extended in the future. Note that the DER type <code class="docutils literal notranslate"><span class="pre">flexible_buildings</span></code> is not defined here, instead the model definition is obtained from the Control-oriented Building Model (CoBMo) submodule.</p>
 <p>Not all DER types can be connected to all grid types, e.g. <code class="docutils literal notranslate"><span class="pre">fixed_ev_charger</span></code> is only available in the electric grid. Refer to <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> / <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code> to check which DER types can be connected respectively.</p>
-<p>¹ For DER types which require the definition of timeseries values, these can be defined either directly as a timeseries or as a schedule, where the latter describes recurring schedules based on weekday / time of day (see <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code>).</p>
+<p>¹ For DER types which require the definition of timeseries values, these can be defined either directly as a timeseries in <code class="docutils literal notranslate"><span class="pre">der_timeseries</span></code> or as a schedule in <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code>, where the latter describes recurring schedules based on weekday / time of day (see <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code>).</p>
 <p>² Active / reactive / thermal power values can be defined as absolute values or in per unit values. Per unit values are assumed to be in per unit of the nominal active / reactive power as defined <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> / <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>. Note that the sign of the active / reactive / thermal power values in the timeseries / schedule definition are ignored and superseded by the sign of the nominal active / reactive / thermal power value as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> / <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>, where positive values are interpreted as generation and negative values as consumption. Additionally, note that <code class="docutils literal notranslate"><span class="pre">der_timeseries</span></code> / <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code> only define a single power value for each timestep. Thus, for electric DERs the active power is derived directly based on the value in <code class="docutils literal notranslate"><span class="pre">der_timeseries</span></code> / <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code> and the reactive power is calculated from the active power assuming a fixed power factor according to the nominal active / reactive power in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code>.</p>
 </div>
 <div class="section" id="der-timeseries">
@@ -1193,9 +1210,9 @@
 </thead>
 <tbody>
 <tr>
-<td><code>der_model_name</code></td>
+<td><code>definition_name</code></td>
 <td align="center"></td>
-<td>DER model identifier.</td>
+<td>Unique definition identifier. Corresponds to <code>definition_name</code> in <code>der_models</code>.</td>
 </tr>
 <tr>
 <td><code>time</code></td>
@@ -1222,9 +1239,9 @@
 </thead>
 <tbody>
 <tr>
-<td><code>der_model_name</code></td>
+<td><code>definition_name</code></td>
 <td align="center"></td>
-<td>DER model identifier.</td>
+<td>Unique definition identifier. Corresponds to <code>definition_name</code> in <code>der_models</code>.</td>
 </tr>
 <tr>
 <td><code>time_period</code></td>
@@ -1251,9 +1268,9 @@
 </thead>
 <tbody>
 <tr>
-<td><code>der_model_name</code></td>
+<td><code>definition_name</code></td>
 <td align="center"></td>
-<td>DER model identifier (corresponding to <code>electric_grid_ders</code> / <code>thermal_grid_ders</code>).</td>
+<td>Unique definition identifier. Corresponds to <code>definition_name</code> in <code>der_models</code>.</td>
 </tr>
 <tr>
 <td><code>cooling_efficiency</code></td>
@@ -1327,6 +1344,72 @@
 </tr>
 </tbody>
 </table></div>
+<div class="section" id="der-ev-chargers">
+<h3><code class="docutils literal notranslate"><span class="pre">der_ev_chargers</span></code><a class="headerlink" href="#der-ev-chargers" title="Permalink to this headline">¶</a></h3>
+<p>Supplementary flexible EV charger definition. Flexible EV chargers require additional time series / schedule definitions¹ as follows:</p>
+<ol class="simple">
+<li>Maximum charging power time series: Maximum permitted charging power at the charging station. This should be determined based on the rated power of available chargers and the number of vehicles connected to chargers at each time step.</li>
+<li>Maximum discharging power time series: Maximum permitted discharging power at the charging station. This should be determined based on the rated power of available chargers and the number of vehicles connected to chargers at each time step.</li>
+<li>Maximum energy time series: Maximum value of aggregated charged energy across all vehicles. This should be determined based on the battery size or energy demand of all vehicles connected to chargers at each time step.</li>
+<li>Departing energy time series: Aggregated energy demand of all departing vehicles. This should be determined based on the required energy of all vehicles which are departing from the charging station at each time step.</li>
+</ol>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>definition_name</code></td>
+<td align="center"></td>
+<td>Unique definition identifier. Corresponds to <code>definition_name</code> in <code>der_models</code>.</td>
+</tr>
+<tr>
+<td><code>maximum_charging_definition_type</code></td>
+<td align="center"></td>
+<td>Definition type selector for maximum charging power time series. Choices¹: <code>timeseries</code>, <code>schedule</code>.</td>
+</tr>
+<tr>
+<td><code>maximum_charging_definition_name</code></td>
+<td align="center"></td>
+<td>Definition identifier for maximum charging power time series, which corresponds to <code>definition_name</code> in either <code>der_timeseries</code>, <code>der_schedules</code>.</td>
+</tr>
+<tr>
+<td><code>maximum_discharging_definition_type</code></td>
+<td align="center"></td>
+<td>Definition type selector for maximum discharging power time series. Choices¹: <code>timeseries</code>, <code>schedule</code>.</td>
+</tr>
+<tr>
+<td><code>maximum_discharging_definition_name</code></td>
+<td align="center"></td>
+<td>Definition identifier for maximum discharging power time series, which corresponds to <code>definition_name</code> in either <code>der_timeseries</code>, <code>der_schedules</code>.</td>
+</tr>
+<tr>
+<td><code>maximum_energy_definition_type</code></td>
+<td align="center"></td>
+<td>Definition type selector for maximum energy time series. Choices¹: <code>timeseries</code>, <code>schedule</code>.</td>
+</tr>
+<tr>
+<td><code>maximum_energy_definition_name</code></td>
+<td align="center"></td>
+<td>Definition identifier for maximum energy time series, which corresponds to <code>definition_name</code> in either <code>der_timeseries</code>, <code>der_schedules</code>.</td>
+</tr>
+<tr>
+<td><code>departing_energy_definition_type</code></td>
+<td align="center"></td>
+<td>Definition type selector for departing energy time series. Choices¹: <code>timeseries</code>, <code>schedule</code>.</td>
+</tr>
+<tr>
+<td><code>departing_energy_definition_name</code></td>
+<td align="center"></td>
+<td>Definition identifier for departing energy time series, which corresponds to <code>definition_name</code> in either <code>der_timeseries</code>, <code>der_schedules</code>.</td>
+</tr>
+</tbody>
+</table><p>¹ Time series values can be defined either directly as a time series in <code class="docutils literal notranslate"><span class="pre">der_timeseries</span></code> or as a schedule in <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code>, where the latter describes recurring schedules based on weekday / time of day.</p>
+</div>
 </div>
 </div>
 
@@ -1378,11 +1461,12 @@
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../electric_grid_extensions/data_reference.html">feature/electric_grid_extensions</a></dd>
+            <dd><a href="data_reference.html">feature/trust_region</a></dd>
             <dd><a href="../../develop/data_reference.html">develop</a></dd>
             <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../dlmp_analysis/data_reference.html">feature/dlmp_analysis</a></dd>
             <dd><a href="../docs/index.html">feature/docs</a></dd>
+            <dd><a href="../electric_grid_extensions/data_reference.html">feature/electric_grid_extensions</a></dd>
             <dd><a href="../extended_line_type_definitions/index.html">feature/extended_line_type_definitions</a></dd>
             <dd><a href="../general_improvements/data_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../grid_synthesis/index.html">feature/grid_synthesis</a></dd>
@@ -1390,7 +1474,6 @@
             <dd><a href="../project_sitem_extensions/index.html">feature/project_sitem_extensions</a></dd>
             <dd><a href="../test_cases/index.html">feature/test_cases</a></dd>
             <dd><a href="../thermal_grid_extensions/index.html">feature/thermal_grid_extensions</a></dd>
-            <dd><a href="data_reference.html">feature/trust_region</a></dd>
             <dd><a href="../updated_plots/data_reference.html">feature/updated_plots</a></dd>
             <dd><a href="../validity_checks/data_reference.html">feature/validity_checks</a></dd>
             <dd><a href="../../master/index.html">master</a></dd>
