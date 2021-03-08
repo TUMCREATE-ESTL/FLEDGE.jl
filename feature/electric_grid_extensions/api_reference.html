@@ -277,6 +277,8 @@ but does not implement any functionality.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>timesteps</strong> (<em>pd.Index</em>) – Index set of time steps of the current scenario. This is needed for optimization problem
+definitions within linear electric grid models (see <code class="docutils literal notranslate"><span class="pre">LinearElectricGridModel</span></code>).</p></li>
 <li><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</li>
 <li><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</li>
 <li><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</li>
@@ -731,7 +733,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dl>
 <dl class="py method">
 <dt id="fledge.electric_grid_models.LinearElectricGridModel.define_optimization_variables">
-<code class="sig-name descname"><span class="pre">define_optimization_variables</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pandas.Index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_variables" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">define_optimization_variables</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define decision variables for given <cite>optimization_problem</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -742,7 +744,7 @@ reactive loss by DER reactive power vector.</p></li>
 
 <dl class="py method">
 <dt id="fledge.electric_grid_models.LinearElectricGridModel.define_optimization_constraints">
-<code class="sig-name descname"><span class="pre">define_optimization_constraints</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pandas.Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_power_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_constraints" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">define_optimization_constraints</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">slice(None,</span> <span class="pre">None,</span> <span class="pre">None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_power_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_constraints" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define constraints to express the linear electric grid model equations for given <cite>optimization_problem</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1700,13 +1702,13 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../general_improvements/api_reference.html">feature/general_improvements</a></dd>
+            <dd><a href="api_reference.html">feature/electric_grid_extensions</a></dd>
             <dd><a href="../../develop/api_reference.html">develop</a></dd>
             <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></dd>
             <dd><a href="../docs/index.html">feature/docs</a></dd>
-            <dd><a href="api_reference.html">feature/electric_grid_extensions</a></dd>
             <dd><a href="../extended_line_type_definitions/index.html">feature/extended_line_type_definitions</a></dd>
+            <dd><a href="../general_improvements/api_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../grid_synthesis/index.html">feature/grid_synthesis</a></dd>
             <dd><a href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
             <dd><a href="../project_sitem_extensions/index.html">feature/project_sitem_extensions</a></dd>
