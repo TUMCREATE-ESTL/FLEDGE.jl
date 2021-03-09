@@ -428,6 +428,24 @@ possible reinitialization of the OpenDSS model.</p></li>
 </dd></dl>
 
 <dl class="py class">
+<dt id="fledge.electric_grid_models.ElectricGridDEROperationResults">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></code><code class="sig-name descname"><span class="pre">ElectricGridDEROperationResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridDEROperationResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="fledge.electric_grid_models.ElectricGridOperationResults">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></code><code class="sig-name descname"><span class="pre">ElectricGridOperationResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridOperationResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.electric_grid_models.ElectricGridDEROperationResults" title="fledge.electric_grid_models.ElectricGridDEROperationResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.electric_grid_models.ElectricGridDEROperationResults</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="fledge.electric_grid_models.ElectricGridDLMPResults">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></code><code class="sig-name descname"><span class="pre">ElectricGridDLMPResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridDLMPResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
 <dt id="fledge.electric_grid_models.PowerFlowSolution">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></code><code class="sig-name descname"><span class="pre">PowerFlowSolution</span></code><a class="headerlink" href="#fledge.electric_grid_models.PowerFlowSolution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -601,18 +619,6 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 </ul>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py class">
-<dt id="fledge.electric_grid_models.ElectricGridOperationResults">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></code><code class="sig-name descname"><span class="pre">ElectricGridOperationResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridOperationResults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
-</dd></dl>
-
-<dl class="py class">
-<dt id="fledge.electric_grid_models.ElectricGridDLMPResults">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></code><code class="sig-name descname"><span class="pre">ElectricGridDLMPResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridDLMPResults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
@@ -1178,7 +1184,7 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="py class">
 <dt id="fledge.der_models.DERModelSetOperationResults">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">DERModelSetOperationResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.DERModelSetOperationResults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#fledge.electric_grid_models.ElectricGridDEROperationResults" title="fledge.electric_grid_models.ElectricGridDEROperationResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.electric_grid_models.ElectricGridDEROperationResults</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
