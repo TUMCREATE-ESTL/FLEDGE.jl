@@ -2,6 +2,22 @@
 
 ## Installation
 
+### Recommended installation
+
+The following installation procedure requires additional steps, but can improve performance and includes optional dependencies. For example, the numpy, pandas and cvxpy packages are installed through Anaconda, which ensures the use of more performant math libraries. Additionally, the contextily package is installed, which is required for some geographical plots.
+
+1. Check requirements:
+   - [Anaconda Python Distribution](https://www.anaconda.com/distribution/)
+   - [Gurobi Optimizer](http://www.gurobi.com/) or [CPLEX Optimizer](https://www.ibm.com/analytics/cplex-optimizer)
+2. Clone or download repository. Ensure that the `cobmo` submodule directory is loaded as well.
+3. In Anaconda Prompt, run:
+   1. `conda create -n fledge -c conda-forge python=3.7 contextily cvxpy numpy pandas`
+   2. `conda activate fledge`
+   3. `pip install -v -e path_to_repository`
+4. If you want to use CPLEX:
+   1. Install CPLEX Python interface (see latest CPLEX documentation).
+   2. Create or modify `config.yml` (see below in "Configuration with `config.yml`").
+
 ### Quick installation
 
 1. Check requirements:
@@ -12,23 +28,6 @@
    1. `pip install -v -e path_to_repository`
 
 Note that the `fledge.plots` module optionally allows adding contextual basemaps to grid plots for orientation. This requires installation of `contextily`, which is an optional dependency, because it needs to be installed through `conda` on Windows. If you need it, please follow the reccomended installation procedure below.
-
-### Recommended installation
-
-The following installation procedure requires additional steps, but can improve performance and includes optional dependencies. For example, the numpy, pandas and cvxpy packages are installed through Anaconda, which ensures the use of more performant math libraries. Additionally, the contextily package is installed, which is required for some geographical plots.
-
-1. Check requirements:
-   - [Anaconda Python Distribution](https://www.anaconda.com/distribution/)
-   - [Gurobi Optimizer](http://www.gurobi.com/) or [CPLEX Optimizer](https://www.ibm.com/analytics/cplex-optimizer)
-2. Clone or download repository. Ensure that the `cobmo` submodule directory is loaded as well.
-3. In Anaconda Prompt, run:
-   1. `conda create -n fledge python=3.7`
-   2. `conda activate fledge`
-   3. `conda install -c conda-forge contextily cvxpy numpy pandas`
-   4. `pip install -v -e path_to_repository`
-4. If you want to use CPLEX:
-   1. Install CPLEX Python interface (see latest CPLEX documentation).
-   2. Create or modify `config.yml` (see below in "Configuration with `config.yml`").
 
 ### Alternative installation
 
