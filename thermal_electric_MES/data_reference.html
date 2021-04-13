@@ -1210,22 +1210,15 @@
 </thead>
 <tbody>
 <tr>
-<td><code>definition_name</code></td>
-<td align="center"></td>
-<td>Unique definition identifier. Corresponds to <code>definition_name</code> in <code>der_models</code>.</td>
-</tr>
-<tr>
-<td><code>time</code></td>
-<td align="center"></td>
-<td>Timestep in format <code>yyyy-mm-ddTHH:MM:SS</code> (according to ISO 8601).</td>
-</tr>
-<tr>
-<td><code>value</code></td>
-<td align="center">-</td>
-<td>Power value (absolute or per unit according to <code>der_models</code>).</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
-</table></div>
+</table><p>| <code class="docutils literal notranslate"><span class="pre">definition_name</span></code> | | Unique definition identifier. Corresponds to <code class="docutils literal notranslate"><span class="pre">definition_name</span></code> in <code class="docutils literal notranslate"><span class="pre">der_models</span></code>. |
+| <code class="docutils literal notranslate"><span class="pre">time</span></code> | | Timestep in format <code class="docutils literal notranslate"><span class="pre">yyyy-mm-ddTHH:MM:SS</span></code> (according to ISO 8601). |
+| <code class="docutils literal notranslate"><span class="pre">value</span></code> | - | Power value (absolute or per unit according to <code class="docutils literal notranslate"><span class="pre">der_models</span></code>). |</p>
+</div>
 <div class="section" id="der-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">der_schedules</span></code><a class="headerlink" href="#der-schedules" title="Permalink to this headline">¶</a></h3>
 <p>DER schedules definition. The timeseries is constructed by obtaining the appropriate values based on the <code class="docutils literal notranslate"><span class="pre">time_period</span></code> in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. Each value is kept constant at the given value for any daytime greater than or equal to <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> and any weekday greater than or equal to <code class="docutils literal notranslate"><span class="pre">dd</span></code> until the next defined <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code>. Note that the daily schedule is repeated for any weekday greater than or equal to <code class="docutils literal notranslate"><span class="pre">dd</span></code> until the next defined <code class="docutils literal notranslate"><span class="pre">dd</span></code>. The initial value for each schedule must start at <code class="docutils literal notranslate"><span class="pre">time_period</span> <span class="pre">=</span> <span class="pre">01T00:00</span></code>.</p>
@@ -1239,22 +1232,15 @@
 </thead>
 <tbody>
 <tr>
-<td><code>definition_name</code></td>
-<td align="center"></td>
-<td>Unique definition identifier. Corresponds to <code>definition_name</code> in <code>der_models</code>.</td>
-</tr>
-<tr>
-<td><code>time_period</code></td>
-<td align="center"></td>
-<td>Time period in <code>ddTHH:MM</code> format. <code>dd</code> is the weekday (<code>01</code> - Monday ... <code>07</code> - Sunday). <code>T</code> is the divider for date and time information according to ISO 8601. <code>HH:MM</code> is the daytime.</td>
-</tr>
-<tr>
-<td><code>value</code></td>
-<td align="center">-</td>
-<td>Power value (absolute or per unit according to <code>der_models</code>).</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
-</table></div>
+</table><p>| <code class="docutils literal notranslate"><span class="pre">definition_name</span></code> | | Unique definition identifier. Corresponds to <code class="docutils literal notranslate"><span class="pre">definition_name</span></code> in <code class="docutils literal notranslate"><span class="pre">der_models</span></code>. |
+| <code class="docutils literal notranslate"><span class="pre">time_period</span></code> | | Time period in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. <code class="docutils literal notranslate"><span class="pre">dd</span></code> is the weekday (<code class="docutils literal notranslate"><span class="pre">01</span></code> - Monday … <code class="docutils literal notranslate"><span class="pre">07</span></code> - Sunday). <code class="docutils literal notranslate"><span class="pre">T</span></code> is the divider for date and time information according to ISO 8601. <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> is the daytime. |
+| <code class="docutils literal notranslate"><span class="pre">value</span></code> | - | Power value (absolute or per unit according to <code class="docutils literal notranslate"><span class="pre">der_models</span></code>). |</p>
+</div>
 <div class="section" id="der-cooling-plants">
 <h3><code class="docutils literal notranslate"><span class="pre">der_cooling_plants</span></code><a class="headerlink" href="#der-cooling-plants" title="Permalink to this headline">¶</a></h3>
 <p>Supplementary cooling plant model parameter definition. The cooling plant model can represent district cooling plants as well as distributed cooling plants. Cooling plants must be connected to both electric and thermal grid, therefore must be defined both in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> and <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>.</p>
@@ -1268,82 +1254,27 @@
 </thead>
 <tbody>
 <tr>
-<td><code>definition_name</code></td>
-<td align="center"></td>
-<td>Unique definition identifier. Corresponds to <code>definition_name</code> in <code>der_models</code>.</td>
-</tr>
-<tr>
-<td><code>cooling_efficiency</code></td>
-<td align="center"></td>
-<td>Coefficient of performance (COP).</td>
-</tr>
-<tr>
-<td><code>plant_pump_efficiency</code></td>
-<td align="center">-</td>
-<td>Pump efficiency (pump power / electric power) of the primary side pumps, i.e. the pumps within the district cooling plant.</td>
-</tr>
-<tr>
-<td><code>condenser_pump_head</code></td>
-<td align="center">m</td>
-<td>Pump pressure head across the condenser.</td>
-</tr>
-<tr>
-<td><code>evaporator_pump_head</code></td>
-<td align="center">m</td>
-<td>Pump pressure head across the evaporator.</td>
-</tr>
-<tr>
-<td><code>chiller_set_beta</code></td>
-<td align="center">-</td>
-<td>Chiller set model beta factor, used to model the chiller efficiency.</td>
-</tr>
-<tr>
-<td><code>chiller_set_condenser_minimum_temperature_difference</code></td>
-<td align="center">K</td>
-<td>Chiller set minimum temperature difference at the condenser, i.e. between the condenser water cycle and chiller refrigerant cycle.</td>
-</tr>
-<tr>
-<td><code>chiller_set_evaporation_temperature</code></td>
-<td align="center">K</td>
-<td>Chiller set evaporation temperature.</td>
-</tr>
-<tr>
-<td><code>chiller_set_cooling_capacity</code></td>
-<td align="center">W</td>
-<td>Chiller nominal maximum cooling capacity.</td>
-</tr>
-<tr>
-<td><code>condenser_water_temperature_difference</code></td>
-<td align="center">K</td>
-<td>Condenser water temperature difference.</td>
-</tr>
-<tr>
-<td><code>condenser_water_enthalpy_difference</code></td>
-<td align="center">J/kg</td>
-<td>Condenser water enthalpy difference.</td>
-</tr>
-<tr>
-<td><code>cooling_tower_set_reference_temperature_condenser_water</code></td>
-<td align="center">°C</td>
-<td>Cooling tower set reference temperature for the condenser water, i.e. the temperature at which condenser water leaves the cooling tower.</td>
-</tr>
-<tr>
-<td><code>cooling_tower_set_reference_temperature_wet_bulb</code></td>
-<td align="center">°C</td>
-<td>Cooling tower set reference temperature for the wet bulb ambient air temperature.</td>
-</tr>
-<tr>
-<td><code>cooling_tower_set_reference_temperature_slope</code></td>
-<td align="center">°C</td>
-<td>Cooling tower reference temperature slope, used to model the cooling tower efficiency.</td>
-</tr>
-<tr>
-<td><code>cooling_tower_set_ventilation_factor</code></td>
-<td align="center">-</td>
-<td>Cooling tower set ventilation factor, used to model the ventilation requirements depending on the condenser water flow.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
-</table></div>
+</table><p>| <code class="docutils literal notranslate"><span class="pre">definition_name</span></code> | | Unique definition identifier. Corresponds to <code class="docutils literal notranslate"><span class="pre">definition_name</span></code> in <code class="docutils literal notranslate"><span class="pre">der_models</span></code>. |
+| <code class="docutils literal notranslate"><span class="pre">cooling_efficiency</span></code> | | Coefficient of performance (COP). |
+| <code class="docutils literal notranslate"><span class="pre">plant_pump_efficiency</span></code> | - | Pump efficiency (pump power / electric power) of the primary side pumps, i.e. the pumps within the district cooling plant. |
+| <code class="docutils literal notranslate"><span class="pre">condenser_pump_head</span></code> | m | Pump pressure head across the condenser. |
+| <code class="docutils literal notranslate"><span class="pre">evaporator_pump_head</span></code> | m | Pump pressure head across the evaporator. |
+| <code class="docutils literal notranslate"><span class="pre">chiller_set_beta</span></code> | - | Chiller set model beta factor, used to model the chiller efficiency. |
+| <code class="docutils literal notranslate"><span class="pre">chiller_set_condenser_minimum_temperature_difference</span></code> | K | Chiller set minimum temperature difference at the condenser, i.e. between the condenser water cycle and chiller refrigerant cycle. |
+| <code class="docutils literal notranslate"><span class="pre">chiller_set_evaporation_temperature</span></code> | K | Chiller set evaporation temperature. |
+| <code class="docutils literal notranslate"><span class="pre">chiller_set_cooling_capacity</span></code> | W | Chiller nominal maximum cooling capacity. |
+| <code class="docutils literal notranslate"><span class="pre">condenser_water_temperature_difference</span></code> | K | Condenser water temperature difference. |
+| <code class="docutils literal notranslate"><span class="pre">condenser_water_enthalpy_difference</span></code> | J/kg | Condenser water enthalpy difference. |
+| <code class="docutils literal notranslate"><span class="pre">cooling_tower_set_reference_temperature_condenser_water</span></code> | °C | Cooling tower set reference temperature for the condenser water, i.e. the temperature at which condenser water leaves the cooling tower. |
+| <code class="docutils literal notranslate"><span class="pre">cooling_tower_set_reference_temperature_wet_bulb</span></code> | °C | Cooling tower set reference temperature for the wet bulb ambient air temperature. |
+| <code class="docutils literal notranslate"><span class="pre">cooling_tower_set_reference_temperature_slope</span></code> | °C | Cooling tower reference temperature slope, used to model the cooling tower efficiency. |
+| <code class="docutils literal notranslate"><span class="pre">cooling_tower_set_ventilation_factor</span></code> | - | Cooling tower set ventilation factor, used to model the ventilation requirements depending on the condenser water flow. |</p>
+</div>
 <div class="section" id="der-ev-chargers">
 <h3><code class="docutils literal notranslate"><span class="pre">der_ev_chargers</span></code><a class="headerlink" href="#der-ev-chargers" title="Permalink to this headline">¶</a></h3>
 <p>Supplementary flexible EV charger definition. Flexible EV chargers require additional time series / schedule definitions¹ as follows:</p>
@@ -1451,35 +1382,35 @@
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Other Versions</span>
-    v: feature/thermal_electric_MES
+    v: thermal_electric_MES
     <span class="fa fa-caret-down"></span>
   </span>
     <div class="rst-other-versions">
         <dl>
             <dt>Tags</dt>
-            <dd><a href="../../v0.3.0/index.html">v0.3.0</a></dd>
+            <dd><a href="../v0.3.0/index.html">v0.3.0</a></dd>
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../trust_region/data_reference.html">feature/trust_region</a></dd>
-            <dd><a href="../../develop/data_reference.html">develop</a></dd>
-            <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
-            <dd><a href="../dlmp_analysis/data_reference.html">feature/dlmp_analysis</a></dd>
-            <dd><a href="../docs/index.html">feature/docs</a></dd>
-            <dd><a href="../dro/data_reference.html">feature/dro</a></dd>
-            <dd><a href="../electric_grid_extensions/data_reference.html">feature/electric_grid_extensions</a></dd>
-            <dd><a href="../extended_line_type_definitions/index.html">feature/extended_line_type_definitions</a></dd>
-            <dd><a href="../general_improvements/data_reference.html">feature/general_improvements</a></dd>
-            <dd><a href="../grid_synthesis/index.html">feature/grid_synthesis</a></dd>
-            <dd><a href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
-            <dd><a href="../project_sitem_extensions/index.html">feature/project_sitem_extensions</a></dd>
-            <dd><a href="../sitem/data_reference.html">feature/sitem</a></dd>
-            <dd><a href="../test_cases/index.html">feature/test_cases</a></dd>
-            <dd><a href="data_reference.html">feature/thermal_electric_MES</a></dd>
-            <dd><a href="../thermal_grid_extensions/index.html">feature/thermal_grid_extensions</a></dd>
-            <dd><a href="../updated_plots/data_reference.html">feature/updated_plots</a></dd>
-            <dd><a href="../validity_checks/data_reference.html">feature/validity_checks</a></dd>
-            <dd><a href="../../master/index.html">master</a></dd>
+            <dd><a href="data_reference.html">thermal_electric_MES</a></dd>
+            <dd><a href="../develop/data_reference.html">develop</a></dd>
+            <dd><a href="../feature/biogas_model/index.html">feature/biogas_model</a></dd>
+            <dd><a href="../feature/dlmp_analysis/data_reference.html">feature/dlmp_analysis</a></dd>
+            <dd><a href="../feature/docs/index.html">feature/docs</a></dd>
+            <dd><a href="../feature/dro/data_reference.html">feature/dro</a></dd>
+            <dd><a href="../feature/electric_grid_extensions/data_reference.html">feature/electric_grid_extensions</a></dd>
+            <dd><a href="../feature/extended_line_type_definitions/index.html">feature/extended_line_type_definitions</a></dd>
+            <dd><a href="../feature/general_improvements/data_reference.html">feature/general_improvements</a></dd>
+            <dd><a href="../feature/grid_synthesis/index.html">feature/grid_synthesis</a></dd>
+            <dd><a href="../feature/market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
+            <dd><a href="../feature/project_sitem_extensions/index.html">feature/project_sitem_extensions</a></dd>
+            <dd><a href="../feature/sitem/data_reference.html">feature/sitem</a></dd>
+            <dd><a href="../feature/test_cases/index.html">feature/test_cases</a></dd>
+            <dd><a href="../feature/thermal_grid_extensions/index.html">feature/thermal_grid_extensions</a></dd>
+            <dd><a href="../feature/trust_region/data_reference.html">feature/trust_region</a></dd>
+            <dd><a href="../feature/updated_plots/data_reference.html">feature/updated_plots</a></dd>
+            <dd><a href="../feature/validity_checks/data_reference.html">feature/validity_checks</a></dd>
+            <dd><a href="../master/index.html">master</a></dd>
         </dl>
     </div>
 </div>
