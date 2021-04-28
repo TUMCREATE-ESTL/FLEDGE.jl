@@ -11,8 +11,8 @@ If you are keen to contribute to this project, please follow these guidelines:
 
 Based on the [GitFlow principle](https://nvie.com/posts/a-successful-git-branching-model/) there are the following branches:
 
-1. `master` - Contains stable release versions of the repository. Only admins should send pull requests / commits to `master` when 1) fixing a bug or 2) publishing a new release.
-2. `development` - This branch is intended as the main branch for development or improvement of features. Anyone can send pull requests to `develop`.
+1. `master` - Contains stable release versions of the repository. Only admins should send pull requests / commits to `master` when 1) fixing a critical bug or 2) publishing a new release.
+2. `develop` - This branch is intended as the main branch for development or improvement of features. Anyone can send pull requests to `develop`.
 3. `feature/xxx` - This branch is dedicated to developing feature `xxx`. The idea is to keep development or improvement works separate from the main `develop` branch. Once the work is finished, a pull request is created for feature `xxx` to be merged back into the `develop` branch.
 
 ## Release versioning
@@ -49,6 +49,15 @@ Every time the `master` branch changes, a new version number is defined accordin
     - Use single quotes `'...'` for parameters, indexes, pathes and use double quotes `"..."` for content, messages and docstrings.
 - Results / output files:
     - Store results / output files only in the `results` directory.
-    - The results path should be taken from `fledge.config` as `fledge.config.config['paths']['results']`.
-    - When saving results with timestamp, use `fledge.config.get_timestamp()`.
+    - The results path should be obtained with `fledge.utils.get_results_path()`
     - The content of the `results` directory should remain local, i.e., it should be ignored by Git and should not appear in any commits to the repository.
+
+## Updating `environment.yml`
+
+The `environment.yml` file in the repository base directory provides a snapshot of an Anaconda environment with specific package versions which has been tested and is confirmed to work. The `environment.yml` file should be updated before releases, i.e. commits to the `master` branch. To update `environment.yml`, follow these steps:
+
+1. Uninstall FLEDGE / delete the existing `fledge` Anaconda environment: `conda env remove -n fledge`
+2. Reinstall FLEDGE / recreate the `fledge` Anaconda environment based on the recommended installation steps in [Getting started](getting_started.md).
+3. Run **all test** and **all examples scripts** and fix any incompatibilities / bugs.
+4. Update `environment.yml`: `conda env export -n fledge > path_to_repository/environment.yml`
+5. Remove `prefix: ...` line from `environment.yml`.

@@ -19,11 +19,17 @@ Scenario definition.
 | `thermal_grid_name` | | Thermal grid identifier as defined `thermal grids` |
 | `parameter_set` | | Parameter set identifier as defined in `parameters` |
 | `price_type` | | Type identifier as defined in `price_timeseries` |
+| `price_sensitivity_coefficient` | $/kWh² | Price sensitivity coefficient for the quadratic cost terms of DERs / grids. Optional column, which defaults to `0` if not explicitly defined. |
 | `electric_grid_operation_limit_type` | | Operation limit type as defined in `electric_grid_operation_limit_types` |
 | `thermal_grid_operation_limit_type` | | Type identifier as defined in `thermal_grid_operation_limit_types` |
 | `timestep_start` | | Start timestep in format `yyyy-mm-ddTHH:MM:SS` (according to ISO 8601). |
 | `timestep_end` | | End timestep in format `yyyy-mm-ddTHH:MM:SS` (according to ISO 8601). |
 | `timestep_interval` | | Time interval in format `HH:MM:SS` |
+| `base_apparent_power` | W | Normalization / scaling factor¹ for apparent / active / reactive power variables. Optional column, which defaults to `1` if not explicitly defined. |
+| `base_voltage` | W | Normalization / scaling factor¹ for voltage variables. Optional column, which defaults to `1` if not explicitly defined. |
+| `base_thermal_power` | W | Normalization / scaling factor¹ for voltage variables. Optional column, which defaults to `1` if not explicitly defined. |
+
+¹ Normalization / scaling factors are used internally to reduce the order of magnitude of variable values. Appropriate scaling significantly improves numerical performance, especially in numerical optimization problems. Note that this only applies internally to variables and models, but inputs and outputs are reported unscaled in SI units.
 
 ### `parameters`
 
@@ -292,7 +298,7 @@ The selection of DER types will be extended in the future. Note that the DER typ
 
 Not all DER types can be connected to all grid types, e.g. `fixed_ev_charger` is only available in the electric grid. Refer to `electric_grid_ders` / `thermal_grid_ders` to check which DER types can be connected respectively.
 
-¹ For DER types which require the definition of timeseries values, these can be defined either directly as a timeseries or as a schedule, where the latter describes recurring schedules based on weekday / time of day (see `der_schedules`).
+¹ For DER types which require the definition of timeseries values, these can be defined either directly as a timeseries in `der_timeseries` or as a schedule in `der_schedules`, where the latter describes recurring schedules based on weekday / time of day (see `der_schedules`).
 
 ² Active / reactive / thermal power values can be defined as absolute values or in per unit values. Per unit values are assumed to be in per unit of the nominal active / reactive power as defined `electric_grid_ders` / `thermal_grid_ders`. Note that the sign of the active / reactive / thermal power values in the timeseries / schedule definition are ignored and superseded by the sign of the nominal active / reactive / thermal power value as defined in `electric_grid_ders` / `thermal_grid_ders`, where positive values are interpreted as generation and negative values as consumption. Additionally, note that `der_timeseries` / `der_schedules` only define a single power value for each timestep. Thus, for electric DERs the active power is derived directly based on the value in `der_timeseries` / `der_schedules` and the reactive power is calculated from the active power assuming a fixed power factor according to the nominal active / reactive power in `electric_grid_ders`.
 
@@ -302,7 +308,7 @@ DER timeseries definition.
 
 | Column | Unit | Description |
 | --- |:---:| --- |
-| `der_model_name` | | DER model identifier. |
+| `definition_name` | | Unique definition identifier. Corresponds to `definition_name` in `der_models`. |
 | `time` | | Timestep in format `yyyy-mm-ddTHH:MM:SS` (according to ISO 8601). |
 | `value` | - | Power value (absolute or per unit according to `der_models`). |
 
@@ -312,7 +318,7 @@ DER schedules definition. The timeseries is constructed by obtaining the appropr
 
 | Column | Unit | Description |
 | --- |:---:| --- |
-| `der_model_name` | | DER model identifier. |
+| `definition_name` | | Unique definition identifier. Corresponds to `definition_name` in `der_models`. |
 | `time_period` | | Time period in `ddTHH:MM` format. `dd` is the weekday (`01` - Monday ... `07` - Sunday). `T` is the divider for date and time information according to ISO 8601. `HH:MM` is the daytime. |
 | `value` | - | Power value (absolute or per unit according to `der_models`). |
 
@@ -322,7 +328,7 @@ Supplementary cooling plant model parameter definition. The cooling plant model 
 
 | Column | Unit | Description |
 | --- |:---:| --- |
-| `der_model_name` | | DER model identifier (corresponding to `electric_grid_ders` / `thermal_grid_ders`). |
+| `definition_name` | | Unique definition identifier. Corresponds to `definition_name` in `der_models`. |
 | `cooling_efficiency` | | Coefficient of performance (COP). |
 | `plant_pump_efficiency` | - | Pump efficiency (pump power / electric power) of the primary side pumps, i.e. the pumps within the district cooling plant. |
 | `condenser_pump_head` | m | Pump pressure head across the condenser. |
@@ -337,3 +343,26 @@ Supplementary cooling plant model parameter definition. The cooling plant model 
 | `cooling_tower_set_reference_temperature_wet_bulb` | °C | Cooling tower set reference temperature for the wet bulb ambient air temperature. |
 | `cooling_tower_set_reference_temperature_slope` | °C | Cooling tower reference temperature slope, used to model the cooling tower efficiency. |
 | `cooling_tower_set_ventilation_factor` | - | Cooling tower set ventilation factor, used to model the ventilation requirements depending on the condenser water flow. |
+
+### `der_ev_chargers`
+
+Supplementary flexible EV charger definition. Flexible EV chargers require additional time series / schedule definitions¹ as follows:
+
+1. Maximum charging power time series: Maximum permitted charging power at the charging station. This should be determined based on the rated power of available chargers and the number of vehicles connected to chargers at each time step.
+2. Maximum discharging power time series: Maximum permitted discharging power at the charging station. This should be determined based on the rated power of available chargers and the number of vehicles connected to chargers at each time step.
+3. Maximum energy time series: Maximum value of aggregated charged energy across all vehicles. This should be determined based on the battery size or energy demand of all vehicles connected to chargers at each time step.
+4. Departing energy time series: Aggregated energy demand of all departing vehicles. This should be determined based on the required energy of all vehicles which are departing from the charging station at each time step.
+
+| Column | Unit | Description |
+| --- |:---:| --- |
+| `definition_name` | | Unique definition identifier. Corresponds to `definition_name` in `der_models`. |
+| `maximum_charging_definition_type` | | Definition type selector for maximum charging power time series. Choices¹: `timeseries`, `schedule`. |
+| `maximum_charging_definition_name` | | Definition identifier for maximum charging power time series, which corresponds to `definition_name` in either `der_timeseries`, `der_schedules`. |
+| `maximum_discharging_definition_type` | | Definition type selector for maximum discharging power time series. Choices¹: `timeseries`, `schedule`. |
+| `maximum_discharging_definition_name` | | Definition identifier for maximum discharging power time series, which corresponds to `definition_name` in either `der_timeseries`, `der_schedules`. |
+| `maximum_energy_definition_type` | | Definition type selector for maximum energy time series. Choices¹: `timeseries`, `schedule`. |
+| `maximum_energy_definition_name` | | Definition identifier for maximum energy time series, which corresponds to `definition_name` in either `der_timeseries`, `der_schedules`. |
+| `departing_energy_definition_type` | | Definition type selector for departing energy time series. Choices¹: `timeseries`, `schedule`. |
+| `departing_energy_definition_name` | | Definition identifier for departing energy time series, which corresponds to `definition_name` in either `der_timeseries`, `der_schedules`. |
+
+¹ Time series values can be defined either directly as a time series in `der_timeseries` or as a schedule in `der_schedules`, where the latter describes recurring schedules based on weekday / time of day.

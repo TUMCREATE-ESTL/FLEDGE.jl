@@ -40,8 +40,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data reference" href="data.html" />
-    <link rel="prev" title="Software architecture" href="architecture.html" /> 
+    <link rel="next" title="Software architecture" href="software_architecture.html" />
+    <link rel="prev" title="Data reference" href="data_reference.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,8 +87,8 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Software architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_reference.html">Data reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-fledge.api"><code class="docutils literal notranslate"><span class="pre">fledge.api</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-fledge.problems"><code class="docutils literal notranslate"><span class="pre">fledge.problems</span></code></a></li>
@@ -100,8 +100,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-fledge.config"><code class="docutils literal notranslate"><span class="pre">fledge.config</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="data.html">Data reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software_architecture.html">Software architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html">Change log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
 </ul>
 
             
@@ -156,7 +158,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/api.md.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/api_reference.md.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -193,7 +195,7 @@
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#fledge.data_interface.ResultsDict" title="fledge.data_interface.ResultsDict">fledge.data_interface.ResultsDict</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#fledge.problems.Results" title="fledge.problems.Results">fledge.problems.Results</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -213,7 +215,7 @@
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#fledge.data_interface.ResultsDict" title="fledge.data_interface.ResultsDict">fledge.data_interface.ResultsDict</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#fledge.problems.Results" title="fledge.problems.Results">fledge.problems.Results</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -222,6 +224,12 @@
 <div class="section" id="module-fledge.problems">
 <span id="fledge-problems"></span><h2><code class="docutils literal notranslate"><span class="pre">fledge.problems</span></code><a class="headerlink" href="#module-fledge.problems" title="Permalink to this headline">¶</a></h2>
 <p>Problems module for mathematical optimization and simulation problem type definitions.</p>
+<dl class="py class">
+<dt id="fledge.problems.Results">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.problems.</span></code><code class="sig-name descname"><span class="pre">Results</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.problems.Results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.electric_grid_models.ElectricGridOperationResults" title="fledge.electric_grid_models.ElectricGridOperationResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.electric_grid_models.ElectricGridOperationResults</span></code></a>, <a class="reference internal" href="#fledge.thermal_grid_models.ThermalGridOperationResults" title="fledge.thermal_grid_models.ThermalGridOperationResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.thermal_grid_models.ThermalGridOperationResults</span></code></a>, <a class="reference internal" href="#fledge.der_models.DERModelSetOperationResults" title="fledge.der_models.DERModelSetOperationResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.DERModelSetOperationResults</span></code></a>, <a class="reference internal" href="#fledge.electric_grid_models.ElectricGridDLMPResults" title="fledge.electric_grid_models.ElectricGridDLMPResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.electric_grid_models.ElectricGridDLMPResults</span></code></a>, <a class="reference internal" href="#fledge.thermal_grid_models.ThermalGridDLMPResults" title="fledge.thermal_grid_models.ThermalGridDLMPResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.thermal_grid_models.ThermalGridDLMPResults</span></code></a></p>
+</dd></dl>
+
 <dl class="py class">
 <dt id="fledge.problems.NominalOperationProblem">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.problems.</span></code><code class="sig-name descname"><span class="pre">NominalOperationProblem</span></code><a class="headerlink" href="#fledge.problems.NominalOperationProblem" title="Permalink to this definition">¶</a></dt>
@@ -594,6 +602,18 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 </dd></dl>
 
 <dl class="py class">
+<dt id="fledge.electric_grid_models.ElectricGridOperationResults">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></code><code class="sig-name descname"><span class="pre">ElectricGridOperationResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridOperationResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="fledge.electric_grid_models.ElectricGridDLMPResults">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></code><code class="sig-name descname"><span class="pre">ElectricGridDLMPResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridDLMPResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
 <dt id="fledge.electric_grid_models.LinearElectricGridModel">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></code><code class="sig-name descname"><span class="pre">LinearElectricGridModel</span></code><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -715,22 +735,22 @@ reactive loss by DER reactive power vector.</p></li>
 <dd><p>Define decision variables for given <cite>optimization_problem</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>optimization_problem</strong> (<em>pyomo.environ.ConcreteModel</em>) – </p>
+<dd class="field-odd"><p><strong>optimization_problem</strong> (<a class="reference internal" href="#fledge.utils.OptimizationProblem" title="fledge.utils.OptimizationProblem"><em>fledge.utils.OptimizationProblem</em></a>) – </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="fledge.electric_grid_models.LinearElectricGridModel.define_optimization_constraints">
-<code class="sig-name descname"><span class="pre">define_optimization_constraints</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pandas.Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage_magnitude_vector_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_power_vector_squared_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_constraints" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">define_optimization_constraints</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pandas.Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_power_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_constraints" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define constraints to express the linear electric grid model equations for given <cite>optimization_problem</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>optimization_problem</strong> (<em>pyomo.environ.ConcreteModel</em>) – </li>
-<li><strong>voltage_magnitude_vector_minimum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
-<li><strong>voltage_magnitude_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
-<li><strong>branch_power_vector_squared_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
+<li><strong>optimization_problem</strong> (<a class="reference internal" href="#fledge.utils.OptimizationProblem" title="fledge.utils.OptimizationProblem"><em>fledge.utils.OptimizationProblem</em></a>) – </li>
+<li><strong>node_voltage_magnitude_vector_minimum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
+<li><strong>node_voltage_magnitude_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
+<li><strong>branch_power_magnitude_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
 </ul>
 </dd>
 </dl>
@@ -886,6 +906,18 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 
 <dl class="py class">
+<dt id="fledge.thermal_grid_models.ThermalGridOperationResults">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.thermal_grid_models.</span></code><code class="sig-name descname"><span class="pre">ThermalGridOperationResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.thermal_grid_models.ThermalGridOperationResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="fledge.thermal_grid_models.ThermalGridDLMPResults">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.thermal_grid_models.</span></code><code class="sig-name descname"><span class="pre">ThermalGridDLMPResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.thermal_grid_models.ThermalGridDLMPResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
 <dt id="fledge.thermal_grid_models.LinearThermalGridModel">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.thermal_grid_models.</span></code><code class="sig-name descname"><span class="pre">LinearThermalGridModel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thermal_grid_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermal_power_flow_solution</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.thermal_grid_models.LinearThermalGridModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -896,7 +928,22 @@ reactive loss by DER reactive power vector.</p></li>
 <dd><p>Define decision variables for given <cite>optimization_problem</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>optimization_problem</strong> (<em>pyomo.environ.ConcreteModel</em>) – </p>
+<dd class="field-odd"><p><strong>optimization_problem</strong> (<a class="reference internal" href="#fledge.utils.OptimizationProblem" title="fledge.utils.OptimizationProblem"><em>fledge.utils.OptimizationProblem</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="fledge.thermal_grid_models.LinearThermalGridModel.define_optimization_constraints">
+<code class="sig-name descname"><span class="pre">define_optimization_constraints</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pandas.Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_head_vector_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_flow_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.thermal_grid_models.LinearThermalGridModel.define_optimization_constraints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define constraints to express the linear thermal grid model equations for given <cite>optimization_problem</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><strong>optimization_problem</strong> (<a class="reference internal" href="#fledge.utils.OptimizationProblem" title="fledge.utils.OptimizationProblem"><em>fledge.utils.OptimizationProblem</em></a>) – </li>
+<li><strong>node_head_vector_minimum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
+<li><strong>branch_flow_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -909,14 +956,20 @@ reactive loss by DER reactive power vector.</p></li>
 <p>Distributed energy resource (DER) models.</p>
 <dl class="py class">
 <dt id="fledge.der_models.DERModel">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">DERModel</span></code><a class="headerlink" href="#fledge.der_models.DERModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">DERModel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.DERModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>DER model object.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt id="fledge.der_models.DERModelOperationResults">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">DERModelOperationResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.DERModelOperationResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
 <dt id="fledge.der_models.FixedDERModel">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">FixedDERModel</span></code><a class="headerlink" href="#fledge.der_models.FixedDERModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">FixedDERModel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FixedDERModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.DERModel" title="fledge.der_models.DERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.DERModel</span></code></a></p>
 <p>Fixed DER model object.</p>
 </dd></dl>
@@ -944,7 +997,7 @@ reactive loss by DER reactive power vector.</p></li>
 
 <dl class="py class">
 <dt id="fledge.der_models.FlexibleDERModel">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">FlexibleDERModel</span></code><a class="headerlink" href="#fledge.der_models.FlexibleDERModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">FlexibleDERModel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleDERModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.DERModel" title="fledge.der_models.DERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.DERModel</span></code></a></p>
 <p>Flexible DER model, e.g., flexible load, object.</p>
 </dd></dl>
@@ -954,6 +1007,13 @@ reactive loss by DER reactive power vector.</p></li>
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">FlexibleLoadModel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleLoadModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
 <p>Flexible load model object.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="fledge.der_models.FlexibleEVChargerModel">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">FlexibleEVChargerModel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleEVChargerModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
+<p>Flexible EV charger model object.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -985,10 +1045,33 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 
 <dl class="py class">
+<dt id="fledge.der_models.DERModelSetOperationResults">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">DERModelSetOperationResults</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.DERModelSetOperationResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
 <dt id="fledge.der_models.DERModelSet">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">DERModelSet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.DERModelSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">DERModelSet</span></code><a class="headerlink" href="#fledge.der_models.DERModelSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.DERModelSetBase</span></code></p>
 <p>DER model set object.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fledge.der_models.make_der_model">
+<code class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></code><code class="sig-name descname"><span class="pre">make_der_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.make_der_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method for DER models, makes appropriate DER model type for given <cite>der_name</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
+<li><strong>der_name</strong> (<em>str</em>) – </li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#fledge.der_models.DERModel" title="fledge.der_models.DERModel">fledge.der_models.DERModel</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -1022,17 +1105,19 @@ reactive loss by DER reactive power vector.</p></li>
 
 <dl class="py class">
 <dt id="fledge.data_interface.ScenarioData">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></code><code class="sig-name descname"><span class="pre">ScenarioData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">scenario_name</span></em>, <em class="sig-param"><span class="pre">database_connection=&lt;sqlite3.Connection</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ScenarioData" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></code><code class="sig-name descname"><span class="pre">ScenarioData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_connection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ScenarioData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Scenario data object.</p>
 <dl class="py method">
 <dt id="fledge.data_interface.ScenarioData.parse_parameters_column">
 <code class="sig-name descname"><span class="pre">parse_parameters_column</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ScenarioData.parse_parameters_column" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parse parameters into one column of a dataframe.
-- Replace strings that match <cite>parameter_name</cite> with <cite>parameter_value</cite>.
-- Other strings are are directly parsed into numbers.
-- If a string doesn’t match any match <cite>parameter_name</cite> and cannot be parsed, it is replaced with NaN.
-- Expects <cite>column</cite> to be passed as <cite>np.ndarray</cite> rather than directly as <cite>pd.Series</cite> (for performance reasons).</p>
+<dd><p>Parse parameters into one column of a dataframe.</p>
+<ul class="simple">
+<li>Replace strings that match <cite>parameter_name</cite> with <cite>parameter_value</cite>.</li>
+<li>Other strings are are directly parsed into numbers.</li>
+<li>If a string doesn’t match any match <cite>parameter_name</cite> and cannot be parsed, it is replaced with NaN.</li>
+<li>Expects <cite>column</cite> to be passed as <cite>np.ndarray</cite> rather than directly as <cite>pd.Series</cite> (for performance reasons).</li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>column</strong> (<em>numpy.ndarray</em>) – </p>
@@ -1043,9 +1128,11 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="py method">
 <dt id="fledge.data_interface.ScenarioData.parse_parameters_dataframe">
 <code class="sig-name descname"><span class="pre">parse_parameters_dataframe</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluded_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ScenarioData.parse_parameters_dataframe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parse parameters into a dataframe.
-- Applies <cite>parse_parameters_column</cite> for all string columns.
-- Columns in <cite>excluded_columns</cite> are not parsed. By default this includes <cite>_name</cite>, <cite>_type</cite>, <cite>connection</cite> columns.</p>
+<dd><p>Parse parameters into a dataframe.</p>
+<ul class="simple">
+<li>Applies <cite>parse_parameters_column</cite> for all string columns.</li>
+<li>Columns in <cite>excluded_columns</cite> are not parsed. By default this includes <cite>_name</cite>, <cite>_type</cite>, <cite>connection</cite> columns.</li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1060,14 +1147,14 @@ reactive loss by DER reactive power vector.</p></li>
 
 <dl class="py class">
 <dt id="fledge.data_interface.ElectricGridData">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></code><code class="sig-name descname"><span class="pre">ElectricGridData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">scenario_name</span></em>, <em class="sig-param"><span class="pre">database_connection=&lt;sqlite3.Connection</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ElectricGridData" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></code><code class="sig-name descname"><span class="pre">ElectricGridData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_connection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ElectricGridData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Electric grid data object.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="fledge.data_interface.ThermalGridData">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></code><code class="sig-name descname"><span class="pre">ThermalGridData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">scenario_name</span></em>, <em class="sig-param"><span class="pre">database_connection=&lt;sqlite3.Connection</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ThermalGridData" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></code><code class="sig-name descname"><span class="pre">ThermalGridData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_connection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ThermalGridData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Thermal grid data object.</p>
 </dd></dl>
@@ -1086,35 +1173,81 @@ reactive loss by DER reactive power vector.</p></li>
 <p>Price data object.</p>
 </dd></dl>
 
+</div>
+<div class="section" id="module-fledge.utils">
+<span id="fledge-utils"></span><h2><code class="docutils literal notranslate"><span class="pre">fledge.utils</span></code><a class="headerlink" href="#module-fledge.utils" title="Permalink to this headline">¶</a></h2>
+<p>Utility functions module.</p>
 <dl class="py class">
-<dt id="fledge.data_interface.ResultsDict">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></code><code class="sig-name descname"><span class="pre">ResultsDict</span></code><a class="headerlink" href="#fledge.data_interface.ResultsDict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.</span></code>]</p>
-<p>Results dictionary object, i.e., a modified dictionary object with strings as keys and dataframes as values.</p>
+<dt id="fledge.utils.ObjectBase">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">ObjectBase</span></code><a class="headerlink" href="#fledge.utils.ObjectBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>FLEDGE object base class, which extends the Python object base class.</p>
 <ul class="simple">
-<li>When printed or represented as string, all dataframes are printed in full.</li>
-<li>Provides a method for storing all results dataframes to CSV files.</li>
+<li><p>Requires all attributes, i.e. parameters or object variables, to be defined with type declaration at the
+beginning of the class definition. Setting a value to an attribute which has not been defined will raise an error.
+This is to ensure consistent definition structure of FLEDGE classes.</p></li>
+<li><p>String representation of the object is the concatenation of the string representation of all its attributes.
+Thus, printing the object will print all its attributes.</p></li>
 </ul>
+<p class="rubric">Example</p>
+<p>Attributes should be defined in the beginning of the class definition as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleClass</span><span class="p">(</span><span class="n">ObjectBase</span><span class="p">):</span>
+
+    <span class="n">example_attribute1</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">example_attribute2</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+</pre></div>
+</div>
+<p>In this case, <code class="docutils literal notranslate"><span class="pre">example_attribute1</span></code> and <code class="docutils literal notranslate"><span class="pre">example_attribute2</span></code> are valid attributes of the class.</p>
 <dl class="py method">
-<dt id="fledge.data_interface.ResultsDict.to_csv">
-<code class="sig-name descname"><span class="pre">to_csv</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ResultsDict.to_csv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Store results to CSV files at given <cite>path</cite>.</p>
+<dt id="fledge.utils.ObjectBase.copy">
+<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.ObjectBase.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of this object. A new object will be created with a copy of the calling object’s attributes.
+Modifications to the attributes of the copy will not be reflected in the original object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="fledge.utils.ResultsBase">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">ResultsBase</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.ResultsBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ObjectBase" title="fledge.utils.ObjectBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ObjectBase</span></code></a></p>
+<p>Results object base class.</p>
+<dl class="py method">
+<dt id="fledge.utils.ResultsBase.save">
+<code class="sig-name descname"><span class="pre">save</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.ResultsBase.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store results to files at given results path.</p>
+<ul class="simple">
+<li>Each results variable / attribute will be stored as separate file with the attribute name as file name.</li>
+<li>Pandas Series / DataFrame are stored to CSV.</li>
+<li>Other objects are stored to pickle binary file (PKL).</li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – </p>
+<dd class="field-odd"><p><strong>results_path</strong> (<em>str</em>) – </p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>None</p>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="fledge.utils.ResultsBase.load">
+<code class="sig-name descname"><span class="pre">load</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.ResultsBase.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load results from given path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>results_path</strong> (<em>str</em>) – </p>
 </dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-fledge.utils">
-<span id="fledge-utils"></span><h2><code class="docutils literal notranslate"><span class="pre">fledge.utils</span></code><a class="headerlink" href="#module-fledge.utils" title="Permalink to this headline">¶</a></h2>
-<p>Utility functions module.</p>
+<dl class="py class">
+<dt id="fledge.utils.OptimizationProblem">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">OptimizationProblem</span></code><a class="headerlink" href="#fledge.utils.OptimizationProblem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Optimization problem object for use with CVXPY.</p>
+</dd></dl>
+
 <dl class="py function">
 <dt id="fledge.utils.starmap">
 <code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">starmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argument_sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyword_arguments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.starmap" title="Permalink to this definition">¶</a></dt>
@@ -1177,13 +1310,26 @@ of <cite>multiprocess.Pool</cite>, hence running the function calls in parallel.
 <dl class="py function">
 <dt id="fledge.utils.log_time">
 <code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">log_time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">label</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log start message and return start time. Should be used together with <cite>log_timing_end</cite>.</p>
+<dd><p>Log start / end message and time duration for given label.</p>
+<ul class="simple">
+<li>When called with given label for the first time, will log start message.</li>
+<li><p>When called subsequently with the same / previously used label, will log end message and time duration since
+logging the start message.</p></li>
+<li><p>Start / end messages are logged as debug messages. The logger object can be given as keyword argument.
+By default, uses <code class="docutils literal notranslate"><span class="pre">utils.logger</span></code> as logger.</p></li>
+<li>Start message: “Starting <cite>label</cite>.”</li>
+<li>End message: “Completed <cite>label</cite> in <cite>duration</cite> seconds.”</li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>label</strong> (<em>str</em>) – </li>
+<li><strong>label</strong> (<em>str</em>) – Label for the start / end message.</li>
 <li><strong>logger_object</strong> (<em>logging.Logger</em>) – </li>
 </ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><p><strong>logger_object</strong> (<em>logging.logger.Logger</em>) – Logger object to which the start / end messages are output. Default:
+<code class="docutils literal notranslate"><span class="pre">utils.logger</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1254,15 +1400,20 @@ must correspond to a level name of the index set.</p></li>
 
 <dl class="py function">
 <dt id="fledge.utils.get_results_path">
-<code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">get_results_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.get_results_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">get_results_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scenario_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.get_results_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate results path, which is a new subfolder in the results directory. The subfolder name is
 assembled of the given base name, scenario name and current timestamp. The new subfolder is
 created on disk along with this.</p>
+<ul class="simple">
+<li>Non-alphanumeric characters are removed from <cite>base_name</cite> and <cite>scenario_name</cite>.</li>
+<li><p>If is a script file path or <cite>__file__</cite> is passed as <cite>base_name</cite>, the base file name without extension
+will be taken as base name.</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><strong>base_name</strong> (<em>str</em>) – </li>
-<li><strong>scenario_name</strong> (<em>str</em>) – </li>
+<li><strong>scenario_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -1292,6 +1443,26 @@ created on disk along with this.</p>
 <dt id="fledge.utils.get_building_model">
 <code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">get_building_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.get_building_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper function for <cite>cobmo.building_model.BuildingModel</cite> with caching support for better performance.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fledge.utils.write_figure_plotly">
+<code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">write_figure_plotly</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'png'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.write_figure_plotly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function for writing / storing plotly figure to output file. File format can be given with
+<cite>file_format</cite> keyword argument, otherwise the default is obtained from config parameter <cite>plots/file_format</cite>.</p>
+<ul class="simple">
+<li><p><cite>results_path</cite> should be given as file name without file extension, because the file extension is appended
+automatically based on given <cite>file_format</cite>.</p></li>
+<li>Valid file formats: ‘png’, ‘jpg’, ‘jpeg’, ‘webp’, ‘svg’, ‘pdf’, ‘html’, ‘json’</li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><strong>figure</strong> (<em>plotly.graph_objects.Figure</em>) – </li>
+<li><strong>results_path</strong> (<em>str</em>) – </li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -1358,8 +1529,8 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="data.html" class="btn btn-neutral float-right" title="Data reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="architecture.html" class="btn btn-neutral float-left" title="Software architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="software_architecture.html" class="btn btn-neutral float-right" title="Software architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="data_reference.html" class="btn btn-neutral float-left" title="Data reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
@@ -1396,30 +1567,30 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
     <div class="rst-other-versions">
         <dl>
             <dt>Tags</dt>
-            <dd><a href="../../v0.3.0/api.html">v0.3.0</a></dd>
+            <dd><a href="../../v0.3.0/index.html">v0.3.0</a></dd>
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../dro/index.html">feature/dro</a></dd>
-            <dd><a href="../../develop/index.html">develop</a></dd>
-            <dd><a href="../biogas_model/api.html">feature/biogas_model</a></dd>
-            <dd><a href="../dlmp_analysis/index.html">feature/dlmp_analysis</a></dd>
-            <dd><a href="../docs/api.html">feature/docs</a></dd>
-            <dd><a href="../electric_grid_extensions/index.html">feature/electric_grid_extensions</a></dd>
-            <dd><a href="api.html">feature/extended_line_type_definitions</a></dd>
-            <dd><a href="../gas_grid_model/index.html">feature/gas_grid_model</a></dd>
-            <dd><a href="../general_improvements/index.html">feature/general_improvements</a></dd>
-            <dd><a href="../grid_synthesis/api.html">feature/grid_synthesis</a></dd>
-            <dd><a href="../market_clearing_engine/api.html">feature/market_clearing_engine</a></dd>
-            <dd><a href="../project_sitem_extensions/api.html">feature/project_sitem_extensions</a></dd>
-            <dd><a href="../sitem/index.html">feature/sitem</a></dd>
-            <dd><a href="../test_cases/api.html">feature/test_cases</a></dd>
-            <dd><a href="../thermal_grid_extensions/api.html">feature/thermal_grid_extensions</a></dd>
-            <dd><a href="../trust_region/index.html">feature/trust_region</a></dd>
-            <dd><a href="../updated_plots/index.html">feature/updated_plots</a></dd>
-            <dd><a href="../validity_checks/index.html">feature/validity_checks</a></dd>
-            <dd><a href="../../master/api.html">master</a></dd>
-            <dd><a href="../../thermal_electric_MES/index.html">thermal_electric_MES</a></dd>
+            <dd><a href="api_reference.html">feature/extended_line_type_definitions</a></dd>
+            <dd><a href="../../develop/api_reference.html">develop</a></dd>
+            <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
+            <dd><a href="../dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></dd>
+            <dd><a href="../docs/index.html">feature/docs</a></dd>
+            <dd><a href="../dro/api_reference.html">feature/dro</a></dd>
+            <dd><a href="../electric_grid_extensions/api_reference.html">feature/electric_grid_extensions</a></dd>
+            <dd><a href="../gas_grid_model/api_reference.html">feature/gas_grid_model</a></dd>
+            <dd><a href="../general_improvements/api_reference.html">feature/general_improvements</a></dd>
+            <dd><a href="../grid_synthesis/index.html">feature/grid_synthesis</a></dd>
+            <dd><a href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
+            <dd><a href="../project_sitem_extensions/index.html">feature/project_sitem_extensions</a></dd>
+            <dd><a href="../sitem/api_reference.html">feature/sitem</a></dd>
+            <dd><a href="../test_cases/index.html">feature/test_cases</a></dd>
+            <dd><a href="../thermal_grid_extensions/index.html">feature/thermal_grid_extensions</a></dd>
+            <dd><a href="../trust_region/api_reference.html">feature/trust_region</a></dd>
+            <dd><a href="../updated_plots/api_reference.html">feature/updated_plots</a></dd>
+            <dd><a href="../validity_checks/api_reference.html">feature/validity_checks</a></dd>
+            <dd><a href="../../master/index.html">master</a></dd>
+            <dd><a href="../../thermal_electric_MES/api_reference.html">thermal_electric_MES</a></dd>
         </dl>
     </div>
 </div>
