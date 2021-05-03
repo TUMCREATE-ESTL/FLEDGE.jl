@@ -2495,321 +2495,185 @@ class LinearElectricGridModel(object):
     ):
         """Define constraints to express the linear electric grid model equations for given `optimization_problem`."""
 
-        # TODO: on slice(None) (there are no separate linearizations for every timestep), do everything just once
-        # TODO: move this to linear model set (into the loop over timesteps)
-        # Update constants
-        voltage_constant = (
+        # Define voltage equation.
+        optimization_problem.constraints.append(
+            optimization_problem.node_voltage_magnitude_vector[timestep_index, :]
+            ==
             (
-                self.sensitivity_voltage_magnitude_by_der_power_active
-                @ (- np.array([np.real(self.power_flow_solution.der_power_vector.ravel())])).T
-                + self.sensitivity_voltage_magnitude_by_der_power_reactive
-                @ (- np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())])).T
-            ).T
-            + np.array([np.abs(self.power_flow_solution.node_voltage_vector.ravel())])
+                cp.transpose(
+                    self.sensitivity_voltage_magnitude_by_der_power_active
+                    @ cp.transpose(cp.multiply(
+                        optimization_problem.der_active_power_vector[timestep_index, :],
+                        np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
+                    ) - np.array([np.real(self.power_flow_solution.der_power_vector.ravel())]))
+                    + self.sensitivity_voltage_magnitude_by_der_power_reactive
+                    @ cp.transpose(cp.multiply(
+                        optimization_problem.der_reactive_power_vector[timestep_index, :],
+                        np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
+                    ) - np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())]))
+                )
+                + np.array([np.abs(self.power_flow_solution.node_voltage_vector.ravel())])
+            )
+            / np.array([np.abs(self.electric_grid_model.node_voltage_vector_reference)])
         )
-        branch_power_1_constant = (
+
+        # Define branch flow equation.
+        optimization_problem.constraints.append(
+            optimization_problem.branch_power_magnitude_vector_1[timestep_index, :]
+            ==
             (
-                self.sensitivity_branch_power_1_magnitude_by_der_power_active
-                @ (- np.array([np.real(self.power_flow_solution.der_power_vector.ravel())])).T
-                + self.sensitivity_branch_power_1_magnitude_by_der_power_reactive
-                @ (- np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())])).T
-            ).T
-            + np.array([np.abs(self.power_flow_solution.branch_power_vector_1.ravel())])
+                cp.transpose(
+                    self.sensitivity_branch_power_1_magnitude_by_der_power_active
+                    @ cp.transpose(cp.multiply(
+                        optimization_problem.der_active_power_vector[timestep_index, :],
+                        np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
+                    ) - np.array([np.real(self.power_flow_solution.der_power_vector.ravel())]))
+                    + self.sensitivity_branch_power_1_magnitude_by_der_power_reactive
+                    @ cp.transpose(cp.multiply(
+                        optimization_problem.der_reactive_power_vector[timestep_index, :],
+                        np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
+                    ) - np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())]))
+                )
+                + np.array([np.abs(self.power_flow_solution.branch_power_vector_1.ravel())])
+            )
+            / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
         )
-        branch_power_2_constant = (
+        optimization_problem.constraints.append(
+            optimization_problem.branch_power_magnitude_vector_2[timestep_index, :]
+            ==
             (
-                self.sensitivity_branch_power_2_magnitude_by_der_power_active
-                @ (- np.array([np.real(self.power_flow_solution.der_power_vector.ravel())])).T
-                + self.sensitivity_branch_power_2_magnitude_by_der_power_reactive
-                @ (- np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())])).T
-            ).T
-            + np.array([np.abs(self.power_flow_solution.branch_power_vector_2.ravel())])
+                cp.transpose(
+                    self.sensitivity_branch_power_2_magnitude_by_der_power_active
+                    @ cp.transpose(cp.multiply(
+                        optimization_problem.der_active_power_vector[timestep_index, :],
+                        np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
+                    ) - np.array([np.real(self.power_flow_solution.der_power_vector.ravel())]))
+                    + self.sensitivity_branch_power_2_magnitude_by_der_power_reactive
+                    @ cp.transpose(cp.multiply(
+                        optimization_problem.der_reactive_power_vector[timestep_index, :],
+                        np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
+                    ) - np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())]))
+                )
+                + np.array([np.abs(self.power_flow_solution.branch_power_vector_2.ravel())])
+            )
+            / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
         )
-        loss_active_constant = (
-            (
+
+        # Define loss equation.
+        optimization_problem.constraints.append(
+            optimization_problem.loss_active[timestep_index, :]
+            ==
+            cp.transpose(
                 self.sensitivity_loss_active_by_der_power_active
-                @ (- np.array([np.real(self.power_flow_solution.der_power_vector.ravel())])).T
+                @ cp.transpose(cp.multiply(
+                    optimization_problem.der_active_power_vector[timestep_index, :],
+                    np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
+                ) - np.array([np.real(self.power_flow_solution.der_power_vector.ravel())]))
                 + self.sensitivity_loss_active_by_der_power_reactive
-                @ (- np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())])).T
-            ).T
+                @ cp.transpose(cp.multiply(
+                    optimization_problem.der_reactive_power_vector[timestep_index, :],
+                    np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
+                ) - np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())]))
+            )
             + np.real(self.power_flow_solution.loss)
         )
-        loss_reactive_constant = (
-            (
+        optimization_problem.constraints.append(
+            optimization_problem.loss_reactive[timestep_index, :]
+            ==
+            cp.transpose(
                 self.sensitivity_loss_reactive_by_der_power_active
-                @ (- np.array([np.real(self.power_flow_solution.der_power_vector.ravel())])).T
+                @ cp.transpose(cp.multiply(
+                    optimization_problem.der_active_power_vector[timestep_index, :],
+                    np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
+                ) - np.array([np.real(self.power_flow_solution.der_power_vector.ravel())]))
                 + self.sensitivity_loss_reactive_by_der_power_reactive
-                @ (- np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())])).T
-            ).T
+                @ cp.transpose(cp.multiply(
+                    optimization_problem.der_reactive_power_vector[timestep_index, :],
+                    np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
+                ) - np.array([np.imag(self.power_flow_solution.der_power_vector.ravel())]))
+            )
             + np.imag(self.power_flow_solution.loss)
         )
 
-        if timestep_index[0] not in optimization_problem.sensitivity_voltage_magnitude_by_der_power_active:
-            # Define parameter (this happens for every timestep / linear electric grid model)
-            # Constants
-            optimization_problem.voltage_constant[timestep_index[0]] = (
-                cp.Parameter(voltage_constant.shape)
-            )
-            optimization_problem.branch_power_1_constant[timestep_index[0]] = (
-                cp.Parameter(branch_power_1_constant.shape)
-            )
-            optimization_problem.branch_power_2_constant[timestep_index[0]] = (
-                cp.Parameter(branch_power_2_constant.shape)
-            )
-            optimization_problem.loss_active_constant[timestep_index[0]] = (
-                cp.Parameter(loss_active_constant.shape)
-            )
-            optimization_problem.loss_reactive_constant[timestep_index[0]] = (
-                cp.Parameter(loss_reactive_constant.shape)
-            )
-            # Sensitivity matrices as separate parameters
-            # NOTE: the parameters cannot be passed as sparse matrix, values are passed as (numpy) arrays
-            optimization_problem.sensitivity_voltage_magnitude_by_der_power_active[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_voltage_magnitude_by_der_power_active.toarray().shape)
-            )
-            optimization_problem.sensitivity_voltage_magnitude_by_der_power_reactive[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_voltage_magnitude_by_der_power_reactive.toarray().shape)
-            )
-            optimization_problem.sensitivity_branch_power_1_magnitude_by_der_power_active[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_branch_power_1_magnitude_by_der_power_active.toarray().shape)
-            )
-            optimization_problem.sensitivity_branch_power_1_magnitude_by_der_power_reactive[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_branch_power_1_magnitude_by_der_power_reactive.toarray().shape)
-            )
-            optimization_problem.sensitivity_branch_power_2_magnitude_by_der_power_active[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_branch_power_2_magnitude_by_der_power_active.toarray().shape)
-            )
-            optimization_problem.sensitivity_branch_power_2_magnitude_by_der_power_reactive[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_branch_power_2_magnitude_by_der_power_reactive.toarray().shape)
-            )
-            optimization_problem.sensitivity_loss_active_by_der_power_active[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_loss_active_by_der_power_active.toarray().shape)
-            )
-            optimization_problem.sensitivity_loss_active_by_der_power_reactive[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_loss_active_by_der_power_reactive.toarray().shape)
-            )
-            optimization_problem.sensitivity_loss_reactive_by_der_power_active[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_loss_reactive_by_der_power_active.toarray().shape)
-            )
-            optimization_problem.sensitivity_loss_reactive_by_der_power_reactive[timestep_index[0]] = (
-                cp.Parameter(self.sensitivity_loss_reactive_by_der_power_reactive.toarray().shape)
-            )
+        # TODO: Bring all limit constraints to g(x)<=0 form.
 
-            optimization_problem.constraints.append(
-                optimization_problem.node_voltage_magnitude_vector[timestep_index, :]
-                ==
-                (
-                    cp.transpose(
-                        optimization_problem.sensitivity_voltage_magnitude_by_der_power_active[timestep_index[0]]
-                        @ cp.transpose(cp.multiply(
-                            optimization_problem.der_active_power_vector[timestep_index, :],
-                            np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
-                        ))
-                        + optimization_problem.sensitivity_voltage_magnitude_by_der_power_reactive[timestep_index[0]]
-                        @ cp.transpose(cp.multiply(
-                            optimization_problem.der_reactive_power_vector[timestep_index, :],
-                            np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
-                        ))
-                    )
-                    + optimization_problem.voltage_constant[timestep_index[0]]
-                )
+        # Define voltage limits.
+        # - Add dedicated constraints variables to enable retrieving dual variables.
+        # - When using `LinearElectricGridModelSet`, this will be defined only once with the first model, because it
+        #   does not depend on the sensitivity matrices.
+        if (
+                (node_voltage_magnitude_vector_minimum is not None)
+                and not hasattr(optimization_problem, 'voltage_magnitude_vector_maximum_constraint')
+        ):
+            optimization_problem.voltage_magnitude_vector_minimum_constraint = (
+                optimization_problem.node_voltage_magnitude_vector
+                - np.array([node_voltage_magnitude_vector_minimum.ravel()])
                 / np.array([np.abs(self.electric_grid_model.node_voltage_vector_reference)])
+                >=
+                0.0
             )
+            optimization_problem.constraints.append(optimization_problem.voltage_magnitude_vector_minimum_constraint)
+        if (
+                (node_voltage_magnitude_vector_maximum is not None)
+                and not hasattr(optimization_problem, 'branch_power_magnitude_vector_1_minimum_constraint')
+        ):
+            optimization_problem.voltage_magnitude_vector_maximum_constraint = (
+                optimization_problem.node_voltage_magnitude_vector
+                - np.array([node_voltage_magnitude_vector_maximum.ravel()])
+                / np.array([np.abs(self.electric_grid_model.node_voltage_vector_reference)])
+                <=
+                0.0
+            )
+            optimization_problem.constraints.append(optimization_problem.voltage_magnitude_vector_maximum_constraint)
 
-            # Define branch flow equation.
-            optimization_problem.constraints.append(
-                optimization_problem.branch_power_magnitude_vector_1[timestep_index, :]
-                ==
-                (
-                    cp.transpose(
-                        optimization_problem.sensitivity_branch_power_1_magnitude_by_der_power_active[timestep_index[0]]
-                        @ cp.transpose(cp.multiply(
-                            optimization_problem.der_active_power_vector[timestep_index, :],
-                            np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
-                        ))
-                        + optimization_problem.sensitivity_branch_power_1_magnitude_by_der_power_reactive[timestep_index[0]]
-                        @ cp.transpose(cp.multiply(
-                            optimization_problem.der_reactive_power_vector[timestep_index, :],
-                            np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
-                        ))
-                    )
-                    + optimization_problem.branch_power_1_constant[timestep_index[0]]
-                )
+        # Define branch flow limits.
+        # - Add dedicated constraints variables to enable retrieving dual variables.
+        # - When using `LinearElectricGridModelSet`, this will be defined only once with the first model, because it
+        #   does not depend on the sensitivity matrices.
+        if (
+                (branch_power_magnitude_vector_maximum is not None)
+                and not hasattr(optimization_problem, 'branch_power_magnitude_vector_1_minimum_constraint')
+        ):
+            optimization_problem.branch_power_magnitude_vector_1_minimum_constraint = (
+                optimization_problem.branch_power_magnitude_vector_1
+                + np.array([branch_power_magnitude_vector_maximum.ravel()])
                 / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
+                >=
+                0.0
             )
             optimization_problem.constraints.append(
-                optimization_problem.branch_power_magnitude_vector_2[timestep_index, :]
-                ==
-                (
-                    cp.transpose(
-                        optimization_problem.sensitivity_branch_power_2_magnitude_by_der_power_active[timestep_index[0]]
-                        @ cp.transpose(cp.multiply(
-                            optimization_problem.der_active_power_vector[timestep_index, :],
-                            np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
-                        ))
-                        + optimization_problem.sensitivity_branch_power_2_magnitude_by_der_power_reactive[timestep_index[0]]
-                        @ cp.transpose(cp.multiply(
-                            optimization_problem.der_reactive_power_vector[timestep_index, :],
-                            np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
-                        ))
-                    )
-                    + optimization_problem.branch_power_2_constant[timestep_index[0]]
-                )
+                optimization_problem.branch_power_magnitude_vector_1_minimum_constraint
+            )
+            optimization_problem.branch_power_magnitude_vector_1_maximum_constraint = (
+                optimization_problem.branch_power_magnitude_vector_1
+                - np.array([branch_power_magnitude_vector_maximum.ravel()])
                 / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
-            )
-
-            # Define loss equation.
-            optimization_problem.constraints.append(
-                optimization_problem.loss_active[timestep_index, :]
-                ==
-                cp.transpose(
-                    optimization_problem.sensitivity_loss_active_by_der_power_active[timestep_index[0]]
-                    @ cp.transpose(cp.multiply(
-                        optimization_problem.der_active_power_vector[timestep_index, :],
-                        np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
-                    ))
-                    + optimization_problem.sensitivity_loss_active_by_der_power_reactive[timestep_index[0]]
-                    @ cp.transpose(cp.multiply(
-                        optimization_problem.der_reactive_power_vector[timestep_index, :],
-                        np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
-                    ))
-                )
-                + optimization_problem.loss_active_constant[timestep_index[0]]
+                <=
+                0.0
             )
             optimization_problem.constraints.append(
-                optimization_problem.loss_reactive[timestep_index, :]
-                ==
-                cp.transpose(
-                    optimization_problem.sensitivity_loss_reactive_by_der_power_active[timestep_index[0]]
-                    @ cp.transpose(cp.multiply(
-                        optimization_problem.der_active_power_vector[timestep_index, :],
-                        np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
-                    ))
-                    + optimization_problem.sensitivity_loss_reactive_by_der_power_reactive[timestep_index[0]]
-                    @ cp.transpose(cp.multiply(
-                        optimization_problem.der_reactive_power_vector[timestep_index, :],
-                        np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
-                    ))
-                )
-                + optimization_problem.loss_reactive_constant[timestep_index[0]]
+                optimization_problem.branch_power_magnitude_vector_1_maximum_constraint
             )
-
-            # TODO: Bring all limit constraints to g(x)<=0 form.
-
-            # Define voltage limits.
-            # - Add dedicated constraints variables to enable retrieving dual variables.
-            # - When using `LinearElectricGridModelSet`, this will be defined only once with the first model, because it
-            #   does not depend on the sensitivity matrices.
-            if (
-                    (node_voltage_magnitude_vector_minimum is not None)
-                    and not hasattr(optimization_problem, 'voltage_magnitude_vector_maximum_constraint')
-            ):
-                optimization_problem.voltage_magnitude_vector_minimum_constraint = (
-                    optimization_problem.node_voltage_magnitude_vector
-                    - np.array([node_voltage_magnitude_vector_minimum.ravel()])
-                    / np.array([np.abs(self.electric_grid_model.node_voltage_vector_reference)])
-                    >=
-                    0.0
-                )
-                optimization_problem.constraints.append(optimization_problem.voltage_magnitude_vector_minimum_constraint)
-            if (
-                    (node_voltage_magnitude_vector_maximum is not None)
-                    and not hasattr(optimization_problem, 'branch_power_magnitude_vector_1_minimum_constraint')
-            ):
-                optimization_problem.voltage_magnitude_vector_maximum_constraint = (
-                    optimization_problem.node_voltage_magnitude_vector
-                    - np.array([node_voltage_magnitude_vector_maximum.ravel()])
-                    / np.array([np.abs(self.electric_grid_model.node_voltage_vector_reference)])
-                    <=
-                    0.0
-                )
-                optimization_problem.constraints.append(optimization_problem.voltage_magnitude_vector_maximum_constraint)
-
-            # Define branch flow limits.
-            # - Add dedicated constraints variables to enable retrieving dual variables.
-            # - When using `LinearElectricGridModelSet`, this will be defined only once with the first model, because it
-            #   does not depend on the sensitivity matrices.
-            if (
-                    (branch_power_magnitude_vector_maximum is not None)
-                    and not hasattr(optimization_problem, 'branch_power_magnitude_vector_1_minimum_constraint')
-            ):
-                optimization_problem.branch_power_magnitude_vector_1_minimum_constraint = (
-                    optimization_problem.branch_power_magnitude_vector_1
-                    + np.array([branch_power_magnitude_vector_maximum.ravel()])
-                    / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
-                    >=
-                    0.0
-                )
-                optimization_problem.constraints.append(
-                    optimization_problem.branch_power_magnitude_vector_1_minimum_constraint
-                )
-                optimization_problem.branch_power_magnitude_vector_1_maximum_constraint = (
-                    optimization_problem.branch_power_magnitude_vector_1
-                    - np.array([branch_power_magnitude_vector_maximum.ravel()])
-                    / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
-                    <=
-                    0.0
-                )
-                optimization_problem.constraints.append(
-                    optimization_problem.branch_power_magnitude_vector_1_maximum_constraint
-                )
-                optimization_problem.branch_power_magnitude_vector_2_minimum_constraint = (
-                    optimization_problem.branch_power_magnitude_vector_2
-                    + np.array([branch_power_magnitude_vector_maximum.ravel()])
-                    / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
-                    >=
-                    0.0
-                )
-                optimization_problem.constraints.append(
-                    optimization_problem.branch_power_magnitude_vector_2_minimum_constraint
-                )
-                optimization_problem.branch_power_magnitude_vector_2_maximum_constraint = (
-                    optimization_problem.branch_power_magnitude_vector_2
-                    - np.array([branch_power_magnitude_vector_maximum.ravel()])
-                    / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
-                    <=
-                    0.0
-                )
-                optimization_problem.constraints.append(
-                    optimization_problem.branch_power_magnitude_vector_2_maximum_constraint
-                )
-
-        # Set / Update parameter values
-        optimization_problem.sensitivity_voltage_magnitude_by_der_power_active[timestep_index[0]].value = (
-            self.sensitivity_voltage_magnitude_by_der_power_active.toarray()
-        )
-        optimization_problem.sensitivity_voltage_magnitude_by_der_power_reactive[timestep_index[0]].value = (
-            self.sensitivity_voltage_magnitude_by_der_power_reactive.toarray()
-        )
-        optimization_problem.sensitivity_branch_power_1_magnitude_by_der_power_active[timestep_index[0]].value = (
-            self.sensitivity_branch_power_1_magnitude_by_der_power_active.toarray()
-        )
-        optimization_problem.sensitivity_branch_power_1_magnitude_by_der_power_reactive[timestep_index[0]].value = (
-            self.sensitivity_branch_power_1_magnitude_by_der_power_reactive.toarray()
-        )
-        optimization_problem.sensitivity_branch_power_2_magnitude_by_der_power_active[timestep_index[0]].value = (
-            self.sensitivity_branch_power_1_magnitude_by_der_power_active.toarray()
-        )
-        optimization_problem.sensitivity_branch_power_2_magnitude_by_der_power_reactive[timestep_index[0]].value = (
-            self.sensitivity_branch_power_1_magnitude_by_der_power_reactive.toarray()
-        )
-        optimization_problem.sensitivity_loss_active_by_der_power_active[timestep_index[0]].value = (
-            self.sensitivity_loss_active_by_der_power_active.toarray()
-        )
-        optimization_problem.sensitivity_loss_active_by_der_power_reactive[timestep_index[0]].value = (
-            self.sensitivity_loss_active_by_der_power_reactive.toarray()
-        )
-        optimization_problem.sensitivity_loss_reactive_by_der_power_active[timestep_index[0]].value = (
-            self.sensitivity_loss_reactive_by_der_power_active.toarray()
-        )
-        optimization_problem.sensitivity_loss_reactive_by_der_power_reactive[timestep_index[0]].value = (
-            self.sensitivity_loss_reactive_by_der_power_reactive.toarray()
-        )
-        optimization_problem.voltage_constant[timestep_index[0]].value = voltage_constant
-        optimization_problem.branch_power_1_constant[timestep_index[0]].value = branch_power_1_constant
-        optimization_problem.branch_power_2_constant[timestep_index[0]].value = branch_power_2_constant
-        optimization_problem.loss_active_constant[timestep_index[0]].value = loss_active_constant
-        optimization_problem.loss_reactive_constant[timestep_index[0]].value = loss_reactive_constant
+            optimization_problem.branch_power_magnitude_vector_2_minimum_constraint = (
+                optimization_problem.branch_power_magnitude_vector_2
+                + np.array([branch_power_magnitude_vector_maximum.ravel()])
+                / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
+                >=
+                0.0
+            )
+            optimization_problem.constraints.append(
+                optimization_problem.branch_power_magnitude_vector_2_minimum_constraint
+            )
+            optimization_problem.branch_power_magnitude_vector_2_maximum_constraint = (
+                optimization_problem.branch_power_magnitude_vector_2
+                - np.array([branch_power_magnitude_vector_maximum.ravel()])
+                / np.array([self.electric_grid_model.branch_power_vector_magnitude_reference])
+                <=
+                0.0
+            )
+            optimization_problem.constraints.append(
+                optimization_problem.branch_power_magnitude_vector_2_maximum_constraint
+            )
 
     def define_optimization_objective(
             self,
@@ -4845,23 +4709,6 @@ class LinearElectricGridModelSet(object):
             node_voltage_magnitude_vector_maximum: np.ndarray = None,
             branch_power_magnitude_vector_maximum: np.ndarray = None,
     ):
-        # Create parameter dictionary
-        if not hasattr(optimization_problem, 'sensitivity_voltage_magnitude_by_der_power_active'):
-            optimization_problem.voltage_constant = {}
-            optimization_problem.branch_power_1_constant = {}
-            optimization_problem.branch_power_2_constant = {}
-            optimization_problem.loss_active_constant = {}
-            optimization_problem.loss_reactive_constant = {}
-            optimization_problem.sensitivity_voltage_magnitude_by_der_power_active = {}
-            optimization_problem.sensitivity_voltage_magnitude_by_der_power_reactive = {}
-            optimization_problem.sensitivity_branch_power_1_magnitude_by_der_power_active = {}
-            optimization_problem.sensitivity_branch_power_1_magnitude_by_der_power_reactive = {}
-            optimization_problem.sensitivity_branch_power_2_magnitude_by_der_power_active = {}
-            optimization_problem.sensitivity_branch_power_2_magnitude_by_der_power_reactive = {}
-            optimization_problem.sensitivity_loss_active_by_der_power_active = {}
-            optimization_problem.sensitivity_loss_active_by_der_power_reactive = {}
-            optimization_problem.sensitivity_loss_reactive_by_der_power_active = {}
-            optimization_problem.sensitivity_loss_reactive_by_der_power_reactive = {}
 
         # Define optimization constraints through linear model for each time step.
         for timestep in self.timesteps:
