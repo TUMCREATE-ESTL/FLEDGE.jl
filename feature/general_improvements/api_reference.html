@@ -1273,43 +1273,8 @@ of <cite>multiprocess.Pool</cite>, hence running the function calls in parallel.
 </dd></dl>
 
 <dl class="py function">
-<dt id="fledge.utils.log_timing_start">
-<code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">log_timing_start</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">message</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_timing_start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log start message and return start time. Should be used together with <cite>log_timing_end</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><strong>message</strong> (<em>str</em>) – </li>
-<li><strong>logger_object</strong> (<em>logging.Logger</em>) – </li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="fledge.utils.log_timing_end">
-<code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">log_timing_end</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">start_time</span></em>, <em class="sig-param"><span class="pre">message</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_timing_end" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log end message and execution time based on given start time. Should be used together with <cite>log_timing_start</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><strong>start_time</strong> (<em>float</em>) – </li>
-<li><strong>message</strong> (<em>str</em>) – </li>
-<li><strong>logger_object</strong> (<em>logging.Logger</em>) – </li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt id="fledge.utils.log_time">
-<code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">log_time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">label</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">fledge.utils.</span></code><code class="sig-name descname"><span class="pre">log_time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">label</span></em>, <em class="sig-param"><span class="pre">log_level='debug'</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log start / end message and time duration for given label.</p>
 <ul class="simple">
 <li>When called with given label for the first time, will log start message.</li>
@@ -1324,12 +1289,17 @@ By default, uses <code class="docutils literal notranslate"><span class="pre">ut
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><strong>label</strong> (<em>str</em>) – Label for the start / end message.</li>
+<li><strong>log_level</strong> (<em>str</em>) – </li>
 <li><strong>logger_object</strong> (<em>logging.Logger</em>) – </li>
 </ul>
 </dd>
 <dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><p><strong>logger_object</strong> (<em>logging.logger.Logger</em>) – Logger object to which the start / end messages are output. Default:
-<code class="docutils literal notranslate"><span class="pre">utils.logger</span></code>.</p>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>log_level</strong> (<em>str</em>) – Log level to which the start / end messages are output. Choices: ‘debug’, ‘info’.
+Default: ‘debug’.</p></li>
+<li><p><strong>logger_object</strong> (<em>logging.logger.Logger</em>) – Logger object to which the start / end messages are output. Default:
+<code class="docutils literal notranslate"><span class="pre">utils.logger</span></code>.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -1571,21 +1541,17 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../dro/api_reference.html">feature/dro</a></dd>
+            <dd><a href="api_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../../develop/api_reference.html">develop</a></dd>
             <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></dd>
-            <dd><a href="../docs/index.html">feature/docs</a></dd>
+            <dd><a href="../dro/api_reference.html">feature/dro</a></dd>
             <dd><a href="../electric_grid_extensions/api_reference.html">feature/electric_grid_extensions</a></dd>
             <dd><a href="../extended_line_type_definitions/api_reference.html">feature/extended_line_type_definitions</a></dd>
             <dd><a href="../gas_grid_model/api_reference.html">feature/gas_grid_model</a></dd>
-            <dd><a href="api_reference.html">feature/general_improvements</a></dd>
-            <dd><a href="../grid_synthesis/index.html">feature/grid_synthesis</a></dd>
             <dd><a href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
-            <dd><a href="../project_sitem_extensions/index.html">feature/project_sitem_extensions</a></dd>
             <dd><a href="../sitem/api_reference.html">feature/sitem</a></dd>
             <dd><a href="../test_cases/index.html">feature/test_cases</a></dd>
-            <dd><a href="../thermal_grid_extensions/index.html">feature/thermal_grid_extensions</a></dd>
             <dd><a href="../trust_region/api_reference.html">feature/trust_region</a></dd>
             <dd><a href="../updated_plots/api_reference.html">feature/updated_plots</a></dd>
             <dd><a href="../validity_checks/api_reference.html">feature/validity_checks</a></dd>
