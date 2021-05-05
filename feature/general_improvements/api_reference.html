@@ -462,7 +462,7 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>numpy.bool</p>
+<dd class="field-even"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1280,10 +1280,11 @@ of <cite>multiprocess.Pool</cite>, hence running the function calls in parallel.
 <li>When called with given label for the first time, will log start message.</li>
 <li><p>When called subsequently with the same / previously used label, will log end message and time duration since
 logging the start message.</p></li>
-<li><p>Start / end messages are logged as debug messages. The logger object can be given as keyword argument.
-By default, uses <code class="docutils literal notranslate"><span class="pre">utils.logger</span></code> as logger.</p></li>
-<li>Start message: “Starting <cite>label</cite>.”</li>
-<li>End message: “Completed <cite>label</cite> in <cite>duration</cite> seconds.”</li>
+<li><p>The log level for start / end messages can be given as keyword argument, By default, messages are logged as
+debug messages.</p></li>
+<li>The logger object can be given as keyword argument. By default, uses <code class="docutils literal notranslate"><span class="pre">utils.logger</span></code> as logger.</li>
+<li>Start message: “Starting <code class="docutils literal notranslate"><span class="pre">label</span></code>.”</li>
+<li>End message: “Completed <code class="docutils literal notranslate"><span class="pre">label</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.”</li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
