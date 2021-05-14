@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,6 +33,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -202,8 +205,8 @@
 <span id="fledge-config"></span><h2><code class="docutils literal notranslate"><span class="pre">fledge.config</span></code><a class="headerlink" href="#module-fledge.config" title="Permalink to this headline">¶</a></h2>
 <p>Configuration module.</p>
 <dl class="py function">
-<dt id="fledge.config.get_config">
-<code class="sig-prename descclassname"><span class="pre">fledge.config.</span></code><code class="sig-name descname"><span class="pre">get_config</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.get_config" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="fledge.config.get_config">
+<span class="sig-prename descclassname"><span class="pre">fledge.config.</span></span><span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.get_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load the configuration dictionary.</p>
 <ul class="simple">
 <li>Default configuration is obtained from <cite>./fledge/config_default.yml</cite>.</li>
@@ -218,8 +221,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="fledge.config.get_logger">
-<code class="sig-prename descclassname"><span class="pre">fledge.config.</span></code><code class="sig-name descname"><span class="pre">get_logger</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.get_logger" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="fledge.config.get_logger">
+<span class="sig-prename descclassname"><span class="pre">fledge.config.</span></span><span class="sig-name descname"><span class="pre">get_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.get_logger" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate logger with given name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -232,8 +235,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="fledge.config.get_parallel_pool">
-<code class="sig-prename descclassname"><span class="pre">fledge.config.</span></code><code class="sig-name descname"><span class="pre">get_parallel_pool</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.get_parallel_pool" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="fledge.config.get_parallel_pool">
+<span class="sig-prename descclassname"><span class="pre">fledge.config.</span></span><span class="sig-name descname"><span class="pre">get_parallel_pool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.get_parallel_pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create multiprocessing / parallel computing pool.</p>
 <ul class="simple">
 <li>Number of parallel processes / workers defaults to number of CPU threads as returned by <cite>os.cpu_count()</cite>.</li>
@@ -246,8 +249,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="fledge.config.memoize">
-<code class="sig-prename descclassname"><span class="pre">fledge.config.</span></code><code class="sig-name descname"><span class="pre">memoize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.memoize" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="fledge.config.memoize">
+<span class="sig-prename descclassname"><span class="pre">fledge.config.</span></span><span class="sig-name descname"><span class="pre">memoize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.memoize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper for memoize decorator of cache. Invokes memoize with <cite>expiry_time</cite> from config,
 but only if caching is enabled for given <cite>name</cite> in config.</p>
 </dd></dl>
@@ -303,10 +306,10 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
         </dl>
         <dl>
             <dt>Branches</dt>
+            <dd><a href="../dro/api_reference.html">feature/dro</a></dd>
             <dd><a href="../../develop/api_reference.html">develop</a></dd>
             <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></dd>
-            <dd><a href="../dro/api_reference.html">feature/dro</a></dd>
             <dd><a href="../electric_grid_extensions/api_reference.html">feature/electric_grid_extensions</a></dd>
             <dd><a href="../extended_line_type_definitions/api_reference.html">feature/extended_line_type_definitions</a></dd>
             <dd><a href="../general_improvements/api_reference.html">feature/general_improvements</a></dd>
