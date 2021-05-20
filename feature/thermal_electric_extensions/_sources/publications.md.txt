@@ -31,7 +31,7 @@ The following publications are based on FLEDGE.
 The following publications served as the methodological basis for the implementation of FLEDGE as well as for the development of test cases.
 
 - Troitzsch, S., Hanif, S., Zhang, K., Trpovski, A., & Hamacher, T., **Flexible Distribution Grid Demonstrator (FLEDGE): Requirements and Software Architecture**, in IEEE PES General Meeting, Atlanta, GA, USA, 2019. [`doi: 10.1109/PESGM40551.2019.8973567`](https://doi.org/10.1109/PESGM40551.2019.8973567).
-    - This paper served as an outline for the [software architecture](architecture.md) of FLEDGE.
+    - This paper served as an outline for the [software architecture](software_architecture.md) of FLEDGE.
 - D. Recalde, A. Trpovski, S. Troitzsch, K. Zhang, S. Hanif, and T. Hamacher, **A Review of Operation Methods and Simulation Requirements for Future Smart Distribution Grids**, in IEEE PES Innovative Smart Grid Technologies Conference Asia, Singapore, 2018. [`doi:10.1109/ISGT-Asia.2018.8467850`](https://doi.org/10.1109/ISGT-Asia.2018.8467850).
     - This review paper initiated the development of FLEDGE.
 - S. Hanif, K. Zhang, C. Hackl, M. Barati, H. B. Gooi, and T. Hamacher, **Decomposition and Equilibrium Achieving Distribution Locational Marginal Prices using Trust-Region Method**, IEEE Transactions on Smart Grid, 2018. [`doi:10.1109/TSG.2018.2822766`](https://doi.org/10.1109/TSG.2018.2822766).
