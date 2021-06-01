@@ -15,18 +15,21 @@ url = {https://doi.org/10.5281/zenodo.3523568}
 }
 ```
 
-## FLEDGE-enabled papers
+## FLEDGE-enabled publications
 
 The following publications are based on FLEDGE.
 
-- [Preprint] Troitzsch, S., Zhang, K., Massier, T., & Hamacher, T., **Coordinated Market Clearing for Combined Thermal and Electric Distribution Grid Operation**, 2020. [`doi:10.36227/techrxiv.13247246`](https://doi.org/10.36227/techrxiv.13247246)
+- [Preprint] Kleinschmidt, V., Troitzsch, S., Hamacher, T., Perić, V., **Flexibility in distribution systems – Modelling a thermal-electric multi-energy system in FLEDGE**, 2021.
+  - FLEDGE [v0.4.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.0) was used to prepare the results for this paper.
+  - The related script is at `examples/publications/paper_2021_kleinschmidt_isgt_multi_energy_system.py`.
+- [Preprint] Troitzsch, S., Zhang, K., Massier, T., & Hamacher, T., **Coordinated Market Clearing for Combined Thermal and Electric Distribution Grid Operation**, in IEEE Power & Energy Society General Meeting (PESGM), 2021. [`doi:10.36227/techrxiv.13247246`](https://doi.org/10.36227/techrxiv.13247246)
     - FLEDGE [v0.4.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.0) was used to prepare the results for this paper.
     - The related script is at `examples/publications/paper_2020_coordination_thermal_electric.py`.
-- [Preprint] Troitzsch, S., Grussmann, M., Zhang, K., & Hamacher, T., **Distribution Locational Marginal Pricing for Combined Thermal and Electric Grid Operation**, IEEE PES Innovative Smart Grid Technologies Conference Europe, 2020. [`doi:10.36227/techrxiv.11918712`](https://doi.org/10.36227/techrxiv.11918712)
+- Troitzsch, S., Grussmann, M., Zhang, K., & Hamacher, T., **Distribution Locational Marginal Pricing for Combined Thermal and Electric Grid Operation**, IEEE PES Innovative Smart Grid Technologies Conference Europe, 2020. [`doi:10.1109/ISGT-Europe47291.2020.9248832`](https://doi.org/10.1109/ISGT-Europe47291.2020.9248832)
     - FLEDGE [v0.3.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.3.0) was used to prepare the results for this paper.
     - The related script is at `examples/publications/paper_2020_dlmp_combined_thermal_electric.py`.
 
-## Foundational papers
+## Foundational publications
 
 The following publications served as the methodological basis for the implementation of FLEDGE as well as for the development of test cases.
 

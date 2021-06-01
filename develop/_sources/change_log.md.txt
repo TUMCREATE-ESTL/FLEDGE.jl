@@ -2,21 +2,24 @@
 
 Note that version numbering follows the [Semantic Versioning principle](https://semver.org/).
 
-## Next release
+## [v0.4.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.0)
 
 ### New features
 
 - Added problems module with definitions for nominal operation problem (simulation) and optimal operation problem (optimization).
 - Added high-level API for executing optimal & nominal operation problems.
 - Added various DER models.
+- Enabled most DERs for thermal grids (Verena Kleinschmidt).
 - Added ability to define electric grid model as single-phase-approximate.
-- Added Z-Bus power flow solution method.
+- Added Z-Bus power flow solution method (Arif Ahmed).
 - Added plots module (work-in-progress).
 - Added ability to set local configuration with `config.yml`.
+- Added ability to set base units for apparent power, voltage and thermal power for in scenario definition.
 
 ### Changes
 
 - Moved implementation of optimization problems from Pyomo to CVXPY for performance improvements.
+- Reformulated optimization constraints to use normalized values for improved numerical performance.
 - Improved FLEDGE definition data format documentation.
 - Refactored DER model data definition format.
 - Refactored price data object.
