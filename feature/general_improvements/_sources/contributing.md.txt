@@ -3,7 +3,7 @@
 If you are keen to contribute to this project, please follow these guidelines:
 
 - Before making any change, please first discuss via issue or email with the owners of this repository.
-- Development is based on Python 3.7.
+- Development is based on Python 3.9.
 - Git branches follow the [GitFlow principle](https://nvie.com/posts/a-successful-git-branching-model/).
 - Release versioning follows the [Semantic Versioning principle](https://semver.org/).
 
