@@ -66,7 +66,7 @@ Before pushing a new commit / release to the `master` branch, please go through 
     - `docs/conf.py` (at `copyright =`)
     - `LICENSE`
 5. After pushing a new commit / release, create a tag and publish a new release on Github: <https://github.com/TUMCREATE-ESTL/fledge/releases>
-5. After publishing a new release, edit the latest Zenodo entry: <https://doi.org/10.5281/zenodo.3562875>
+6. After publishing a new release, edit the latest Zenodo entry: <https://doi.org/10.5281/zenodo.3562875>
     - Set title to "FLEDGE - Flexible Distribution Grid Demonstrator".
     - Set correct author names.
     - Set license needs to "MIT License".
