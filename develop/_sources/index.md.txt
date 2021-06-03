@@ -40,6 +40,7 @@ Please note that the repository is under active development and the interface ma
     contributing
     change_log
     publications
+    GitHub repository 🡕 <https://github.com/TUMCREATE-ESTL/fledge>
 ```
 
 ## Acknowledgements

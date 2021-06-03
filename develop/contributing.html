@@ -98,11 +98,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#git-branches">Git branches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#release-versioning">Release versioning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#style-guide">Style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-checklist">Release checklist</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#updating-environment-yml">Updating <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="change_log.html">Change log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge">GitHub repository 🡕</a></li>
 </ul>
 
             
@@ -175,7 +177,7 @@
 <p>If you are keen to contribute to this project, please follow these guidelines:</p>
 <ul class="simple">
 <li>Before making any change, please first discuss via issue or email with the owners of this repository.</li>
-<li>Development is based on Python 3.7.</li>
+<li>Development is based on Python 3.9.</li>
 <li>Git branches follow the <a class="reference external" href="https://nvie.com/posts/a-successful-git-branching-model/">GitFlow principle</a>.</li>
 <li>Release versioning follows the <a class="reference external" href="https://semver.org/">Semantic Versioning principle</a>.</li>
 </ul>
@@ -252,6 +254,32 @@
 </li>
 </ul>
 </div>
+<div class="section" id="release-checklist">
+<h2>Release checklist<a class="headerlink" href="#release-checklist" title="Permalink to this headline">¶</a></h2>
+<p>Before pushing a new commit / release to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, please go through the following steps:</p>
+<ol class="simple">
+<li>Update <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> (see below).</li>
+<li>Run tests locally and ensure that all tests complete successfully.</li>
+<li>Ensure that change log entry has been added for this version in <code class="docutils literal notranslate"><span class="pre">docs/change_log.md</span></code>.</li>
+<li>Ensure that version numbers and year numbers have been updated everywhere:
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">setup.py</span></code> (at <code class="docutils literal notranslate"><span class="pre">version=</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">docs/change_log.md</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">docs/publications.md</span></code> (at example citation)</li>
+<li><code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code> (at <code class="docutils literal notranslate"><span class="pre">copyright</span> <span class="pre">=</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">LICENSE</span></code></li>
+</ul>
+</li>
+<li>After pushing a new commit / release, create a tag and publish a new release on Github: <a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases">https://github.com/TUMCREATE-ESTL/fledge/releases</a></li>
+<li>After publishing a new release, edit the latest Zenodo entry: <a class="reference external" href="https://doi.org/10.5281/zenodo.3562875">https://doi.org/10.5281/zenodo.3562875</a>
+<ul class="simple">
+<li>Set title to “FLEDGE - Flexible Distribution Grid Demonstrator”.</li>
+<li>Set correct author names.</li>
+<li>Set license needs to “MIT License”.</li>
+</ul>
+</li>
+</ol>
+</div>
 <div class="section" id="updating-environment-yml">
 <h2>Updating <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code><a class="headerlink" href="#updating-environment-yml" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file in the repository base directory provides a snapshot of an Anaconda environment with specific package versions which has been tested and is confirmed to work. The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file should be updated before releases, i.e. commits to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. To update <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, follow these steps:</p>
@@ -261,6 +289,7 @@
 <li>Run <strong>all test</strong> and <strong>all examples scripts</strong> and fix any incompatibilities / bugs.</li>
 <li>Update <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">export</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">&gt;</span> <span class="pre">path_to_repository/environment.yml</span></code></li>
 <li>Remove <code class="docutils literal notranslate"><span class="pre">prefix:</span> <span class="pre">...</span></code> line from <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</li>
+<li>Add line at the top of file: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Last</span> <span class="pre">updated:</span> <span class="pre">DD</span> <span class="pre">Month</span> <span class="pre">YYYY</span> <span class="pre">(FLEDGE</span> <span class="pre">vX.X.X)</span></code></li>
 </ol>
 </div>
 </div>
@@ -279,7 +308,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2018-2021, TUMCREATE.
+        &#169; Copyright 2018-2020, TUMCREATE.
 
     </p>
   </div>
@@ -311,15 +340,15 @@
             <dt>Tags</dt>
             <dd><a href="../v0.3.0/contributing.html">v0.3.0</a></dd>
             <dd><a href="../v0.4.0/contributing.html">v0.4.0</a></dd>
+            <dd><a href="../v0.4.1/contributing.html">v0.4.1</a></dd>
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../master/contributing.html">master</a></dd>
+            <dd><a href="../feature/dro/contributing.html">feature/dro</a></dd>
             <dd><a href="contributing.html">develop</a></dd>
             <dd><a href="../feature/backup_verena/contributing.html">feature/backup_verena</a></dd>
             <dd><a href="../feature/biogas_model/contributing.html">feature/biogas_model</a></dd>
             <dd><a href="../feature/dlmp_analysis/contributing.html">feature/dlmp_analysis</a></dd>
-            <dd><a href="../feature/dro/contributing.html">feature/dro</a></dd>
             <dd><a href="../feature/electric_grid_extensions/contributing.html">feature/electric_grid_extensions</a></dd>
             <dd><a href="../feature/extended_line_type_definitions/contributing.html">feature/extended_line_type_definitions</a></dd>
             <dd><a href="../feature/general_improvements/contributing.html">feature/general_improvements</a></dd>
@@ -329,6 +358,7 @@
             <dd><a href="../feature/trust_region/contributing.html">feature/trust_region</a></dd>
             <dd><a href="../feature/updated_plots/contributing.html">feature/updated_plots</a></dd>
             <dd><a href="../feature/validity_checks/contributing.html">feature/validity_checks</a></dd>
+            <dd><a href="../master/contributing.html">master</a></dd>
         </dl>
     </div>
 </div>
