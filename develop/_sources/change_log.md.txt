@@ -2,6 +2,13 @@
 
 Note that version numbering follows the [Semantic Versioning principle](https://semver.org/).
 
+## [v0.4.1](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.1)
+
+### Fixes
+
+- Updated `environment.yml`.
+- Updated version indicators.
+
 ## [v0.4.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.0)
 
 ### New features

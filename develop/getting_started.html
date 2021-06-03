@@ -92,8 +92,8 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#quick-installation">Quick installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#recommended-installation">Recommended installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quick-installation">Quick installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#alternative-installation">Alternative installation</a></li>
 </ul>
 </li>
@@ -114,6 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="change_log.html">Change log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge">GitHub repository 🡕</a></li>
 </ul>
 
             
@@ -185,27 +186,9 @@
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="quick-installation">
-<h3>Quick installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline">¶</a></h3>
-<ol class="simple">
-<li>Check requirements:
-<ul class="simple">
-<li>Python 3.7</li>
-<li><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></li>
-</ul>
-</li>
-<li>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</li>
-<li>In your Python environment, run:
-<ol class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></li>
-</ol>
-</li>
-</ol>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">fledge.plots</span></code> module optionally allows adding contextual basemaps to grid plots for orientation. This requires installation of <code class="docutils literal notranslate"><span class="pre">contextily</span></code>, which is an optional dependency, because it needs to be installed through <code class="docutils literal notranslate"><span class="pre">conda</span></code> on Windows. If you need it, please follow the reccomended installation procedure below.</p>
-</div>
 <div class="section" id="recommended-installation">
 <h3>Recommended installation<a class="headerlink" href="#recommended-installation" title="Permalink to this headline">¶</a></h3>
-<p>The following installation procedure requires additional steps, but can improve performance and includes optional dependencies. For example, the numpy, pandas and cvxpy packages are installed through Anaconda, which ensures the use of more performant math libraries. Additionally, the contextily package is installed, which is required for some geographical plots.</p>
+<p>The following installation procedure is recommended, because it ensures best performance and includes optional dependencies. For example, the numpy, pandas and cvxpy packages are installed through Anaconda, which ensures the use of more performant math libraries. Additionally, the contextily package is installed, which is required for some geographical plots.</p>
 <ol class="simple">
 <li>Check requirements:
 <ul class="simple">
@@ -216,9 +199,8 @@
 <li>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</li>
 <li>In Anaconda Prompt, run:
 <ol class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">python=3.7</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">python=3.9</span> <span class="pre">contextily</span> <span class="pre">cvxpy</span> <span class="pre">numpy</span> <span class="pre">pandas</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">contextily</span> <span class="pre">cvxpy</span> <span class="pre">numpy</span> <span class="pre">pandas</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></li>
 </ol>
 </li>
@@ -229,6 +211,24 @@
 </ol>
 </li>
 </ol>
+</div>
+<div class="section" id="quick-installation">
+<h3>Quick installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li>Check requirements:
+<ul class="simple">
+<li>Python 3.9</li>
+<li><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></li>
+</ul>
+</li>
+<li>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</li>
+<li>In your Python environment, run:
+<ol class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></li>
+</ol>
+</li>
+</ol>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">fledge.plots</span></code> module optionally allows adding contextual basemaps to grid plots for orientation. This requires installation of <code class="docutils literal notranslate"><span class="pre">contextily</span></code>, which is an optional dependency, because it needs to be installed through <code class="docutils literal notranslate"><span class="pre">conda</span></code> on Windows. If you need it, please follow the reccomended installation procedure above.</p>
 </div>
 <div class="section" id="alternative-installation">
 <h3>Alternative installation<a class="headerlink" href="#alternative-installation" title="Permalink to this headline">¶</a></h3>

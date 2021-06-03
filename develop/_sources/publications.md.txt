@@ -2,14 +2,14 @@
 
 ## Citing FLEDGE
 
-The recommended way to cite FLEDGE is to refer to its latest [Zenodo record](https://doi.org/10.5281/zenodo.3523568). For example, you may use the following bibtex entry for version 0.4.0:
+The recommended way to cite FLEDGE is to refer to its latest [Zenodo record](https://doi.org/10.5281/zenodo.3523568). For example, you may use the following bibtex entry for version 0.4.1:
 
 ```
 @misc{fledge,
-author = {Sebastian Troitzsch},
+author = {Sebastian Troitzsch and Verena Kleinschmidt and Tom Schelo and Arif Ahmed},
 title = {{FLEDGE - Flexible Distribution Grid Demonstrator}},
-year = 2020,
-howpublished = {Version 0.4.0, Zenodo},
+year = 2021,
+howpublished = {Version 0.4.1, Zenodo},
 doi = {10.5281/zenodo.3523568},
 url = {https://doi.org/10.5281/zenodo.3523568}
 }
