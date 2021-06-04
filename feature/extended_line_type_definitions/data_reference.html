@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-ders"><code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types-matrices"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types-overhead-conductors"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_overhead_conductors</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-lines"><code class="docutils literal notranslate"><span class="pre">electric_grid_lines</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-nodes"><code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-operation-limit-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_types</span></code></a></li>
@@ -134,6 +135,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="change_log.html">Change log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge">GitHub repository 🡕</a></li>
 </ul>
 
             
@@ -467,7 +469,7 @@
 </table></div>
 <div class="section" id="electric-grid-line-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code><a class="headerlink" href="#electric-grid-line-types" title="Permalink to this headline">¶</a></h3>
-<p>Electric line type definitions are split into <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code> for the general type definition and <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code> for the definition of electric characteristics.</p>
+<p>Electric line type definitions are split into <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code> for the general type definition and <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code>, <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_overhead</span></code> and <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_overhead_conductors</span></code> for the definition of electric characteristics. The electric characteristics can be defined in the form of element matrices in <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code> or in the form of geometric and conductor properties for overhead lines in <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_overhead</span></code> and <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_overhead_conductors</span></code>, where only one definition is needed for each line type and is selected through the <code class="docutils literal notranslate"><span class="pre">definition_type</span></code> column.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -491,6 +493,11 @@
 <td><code>maximum_current</code></td>
 <td align="center">A</td>
 <td>Maximum permissible current (thermal line limit).</td>
+</tr>
+<tr>
+<td><code>definition_type</code></td>
+<td align="center"></td>
+<td>Electric characteristics definition type. Choices: <code>matrix</code> (line parameters are defined in <code>electric_grid_line_types_matrices</code>) or <code>overhead</code> (line parameters are defined in <code>electric_grid_line_types_overhead</code> and <code>electric_grid_line_types_overhead_conductors</code>). Optional column, which defaults to <code>matrix</code> if not explicitly defined.</td>
 </tr>
 </tbody>
 </table></div>
@@ -535,6 +542,59 @@
 <td><code>capacitance</code></td>
 <td align="center">nF/km</td>
 <td>Shunt capacitance matrix entry.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="electric-grid-line-types-overhead-conductors">
+<h3><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_overhead_conductors</span></code><a class="headerlink" href="#electric-grid-line-types-overhead-conductors" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conductor_id</code></td>
+<td align="center"></td>
+<td>Unique identifier.</td>
+</tr>
+<tr>
+<td><code>conductor_size_description</code></td>
+<td align="center"></td>
+<td>Conductor size description string (see <a href="https://doi.org/10.1201/9781315120782">Kersting, 2018, Appendix A</a>).</td>
+</tr>
+<tr>
+<td><code>conductor_stranding_description</code></td>
+<td align="center"></td>
+<td>Conductor stranding description string (see <a href="https://doi.org/10.1201/9781315120782">Kersting, 2018, Appendix A</a>).</td>
+</tr>
+<tr>
+<td><code>conductor_material_description</code></td>
+<td align="center"></td>
+<td>Conductor material description string (see <a href="https://doi.org/10.1201/9781315120782">Kersting, 2018, Appendix A</a>).</td>
+</tr>
+<tr>
+<td><code>conductor_diameter</code></td>
+<td align="center">mm</td>
+<td>Conductor diameter.</td>
+</tr>
+<tr>
+<td><code>conductor_geometric_mean_radius</code></td>
+<td align="center">mm</td>
+<td>Conductor geometric mean radius (GMR).</td>
+</tr>
+<tr>
+<td><code>conductor_resistance</code></td>
+<td align="center">Ω/km</td>
+<td>Specific resistance of conductor.</td>
+</tr>
+<tr>
+<td><code>conductor_maximum_current</code></td>
+<td align="center">A</td>
+<td>Maximum permissible current (thermal conductor limit).</td>
 </tr>
 </tbody>
 </table></div>
@@ -1083,7 +1143,7 @@
 <tr>
 <td><code>der_type</code></td>
 <td align="center"></td>
-<td>DER type selector. Choices: <code>fixed_load</code>, <code>flexible_load</code>, <code>fixed_generator</code>, <code>flexible_generator</code>, <code>fixed_ev_charger</code>, <code>cooling_plant</code>, <code>storage</code>. Note: <code>flexible_buildings</code> cannot be defined here, because it is obtained from the CoBMo submodule directly.</td>
+<td>DER type selector. Choices: <code>fixed_load</code>, <code>flexible_load</code>, <code>fixed_generator</code>, <code>flexible_generator</code>, <code>fixed_ev_charger</code>, <code>flexible_ev_charger</code>, <code>cooling_plant</code>, <code>heat_pump</code>, <code>flexible_chp</code>, <code>storage</code>. Note: <code>flexible_buildings</code> cannot be defined here, because it is obtained from the CoBMo submodule directly.</td>
 </tr>
 <tr>
 <td><code>der_model_name</code></td>
@@ -1140,6 +1200,21 @@
 <td align="center">$/kWh</td>
 <td>Marginal cost of power generation. <em>Currently, prices / costs are assumed to be in SGD.</em></td>
 </tr>
+<tr>
+<td><code>heat_pump_efficiency</code></td>
+<td align="center">-</td>
+<td>Efficiency factor for <code>heat_pump</code> DERs.</td>
+</tr>
+<tr>
+<td><code>thermal_efficiency</code></td>
+<td align="center">-</td>
+<td>Efficiency factor for <code>flexible_chp</code> DERs.</td>
+</tr>
+<tr>
+<td><code>electric_efficiency</code></td>
+<td align="center">-</td>
+<td>Efficiency factor for <code>flexible_chp</code> DERs.</td>
+</tr>
 </tbody>
 </table><p>For most DER types, the <code class="docutils literal notranslate"><span class="pre">der_models</span></code> table is supplemented by timeseries / schedule definitions in the tables <code class="docutils literal notranslate"><span class="pre">der_timeseries</span></code> / <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code> or supplementary parameter definitions in <code class="docutils literal notranslate"><span class="pre">der_cooling_plants</span></code> based on the columns <code class="docutils literal notranslate"><span class="pre">definition_type</span></code> / <code class="docutils literal notranslate"><span class="pre">definition_name</span></code>. Furthermore, each DER type relies on a different subset of columns / parameters in <code class="docutils literal notranslate"><span class="pre">der_models</span></code>. The table below outlines the required supplementary definitions for as well as the required columns for each DER type:</p>
 <table border="1" class="docutils">
@@ -1183,10 +1258,28 @@
 <td>Timeseries / schedule¹ for nominal active / reactive / thermal power².</td>
 </tr>
 <tr>
+<td><code>flexible_ev_charger</code></td>
+<td>Flexible EV charger, dispatchable within constraints regarding vehicle arrival, departure, availability and energy demand as defined in <code>der_ev_chargers</code>.</td>
+<td><code>definition_type</code>, <code>definition_name</code></td>
+<td>Flexible EV charger supplementary definitions according to <code>der_ev_chargers</code>.</td>
+</tr>
+<tr>
 <td><code>cooling_plant</code></td>
 <td>Cooling plant, converts electric power to thermal power, dispatchable with nominal power limits.</td>
 <td><code>definition_type</code>, <code>definition_name</code></td>
 <td>Cooling plant parameters according to <code>der_cooling_plants</code>.</td>
+</tr>
+<tr>
+<td><code>heat_pump</code></td>
+<td>Heat pump, converts electric power to thermal power, dispatchable with nominal power limits.</td>
+<td><code>definition_type</code>, <code>definition_name</code>, <code>power_per_unit_minimum</code>, <code>power_per_unit_maximum</code>, <code>marginal_cost</code>, <code>heat_pump_efficiency</code></td>
+<td>Timeseries / schedule¹ for nominal active / reactive / thermal power².</td>
+</tr>
+<tr>
+<td><code>flexible_chp</code></td>
+<td>Flexible combined heat and power plant, generates electric power and thermal power, dispatchable with nominal power limits.</td>
+<td><code>definition_type</code>, <code>definition_name</code>, <code>power_per_unit_minimum</code>, <code>power_per_unit_maximum</code>, <code>marginal_cost</code>, <code>thermal_efficiency</code>, <code>electric_efficiency</code></td>
+<td>Timeseries / schedule¹ for nominal active / reactive / thermal power².</td>
 </tr>
 <tr>
 <td><code>storage</code></td>
@@ -1430,7 +1523,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2018-2020, TUMCREATE.
+        &#169; Copyright 2018-2021, TUMCREATE.
 
     </p>
   </div>
@@ -1466,13 +1559,13 @@
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../dro/data_reference.html">feature/dro</a></dd>
+            <dd><a href="data_reference.html">feature/extended_line_type_definitions</a></dd>
             <dd><a href="../../develop/data_reference.html">develop</a></dd>
             <dd><a href="../backup_verena/data_reference.html">feature/backup_verena</a></dd>
             <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../dlmp_analysis/data_reference.html">feature/dlmp_analysis</a></dd>
+            <dd><a href="../dro/data_reference.html">feature/dro</a></dd>
             <dd><a href="../electric_grid_extensions/data_reference.html">feature/electric_grid_extensions</a></dd>
-            <dd><a href="data_reference.html">feature/extended_line_type_definitions</a></dd>
             <dd><a href="../general_improvements/data_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
             <dd><a href="../sitem/data_reference.html">feature/sitem</a></dd>

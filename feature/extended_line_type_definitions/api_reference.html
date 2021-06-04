@@ -107,6 +107,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="change_log.html">Change log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge">GitHub repository 🡕</a></li>
 </ul>
 
             
@@ -468,7 +469,7 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>numpy.bool</p>
+<dd class="field-even"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1160,6 +1161,35 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="fledge.der_models.HeatPumpModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">HeatPumpModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.HeatPumpModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
+<p>Heat pump model object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
+<li><strong>der_name</strong> (<em>str</em>) – </li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="fledge.der_models.FlexibleCHP">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleCHP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleCHP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
+<li><strong>der_name</strong> (<em>str</em>) – </li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.DERModelSetOperationResults">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">DERModelSetOperationResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.DERModelSetOperationResults" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
@@ -1403,63 +1433,34 @@ of <cite>multiprocess.Pool</cite>, hence running the function calls in parallel.
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="fledge.utils.log_timing_start">
-<span class="sig-prename descclassname"><span class="pre">fledge.utils.</span></span><span class="sig-name descname"><span class="pre">log_timing_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">message</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_timing_start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log start message and return start time. Should be used together with <cite>log_timing_end</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><strong>message</strong> (<em>str</em>) – </li>
-<li><strong>logger_object</strong> (<em>logging.Logger</em>) – </li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="fledge.utils.log_timing_end">
-<span class="sig-prename descclassname"><span class="pre">fledge.utils.</span></span><span class="sig-name descname"><span class="pre">log_timing_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">start_time</span></em>, <em class="sig-param"><span class="pre">message</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_timing_end" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log end message and execution time based on given start time. Should be used together with <cite>log_timing_start</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><strong>start_time</strong> (<em>float</em>) – </li>
-<li><strong>message</strong> (<em>str</em>) – </li>
-<li><strong>logger_object</strong> (<em>logging.Logger</em>) – </li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="fledge.utils.log_time">
-<span class="sig-prename descclassname"><span class="pre">fledge.utils.</span></span><span class="sig-name descname"><span class="pre">log_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">label</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_time" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fledge.utils.</span></span><span class="sig-name descname"><span class="pre">log_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">label</span></em>, <em class="sig-param"><span class="pre">log_level='debug'</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log start / end message and time duration for given label.</p>
 <ul class="simple">
 <li>When called with given label for the first time, will log start message.</li>
 <li><p>When called subsequently with the same / previously used label, will log end message and time duration since
 logging the start message.</p></li>
-<li><p>Start / end messages are logged as debug messages. The logger object can be given as keyword argument.
-By default, uses <code class="docutils literal notranslate"><span class="pre">utils.logger</span></code> as logger.</p></li>
-<li>Start message: “Starting <cite>label</cite>.”</li>
-<li>End message: “Completed <cite>label</cite> in <cite>duration</cite> seconds.”</li>
+<li><p>The log level for start / end messages can be given as keyword argument, By default, messages are logged as
+debug messages.</p></li>
+<li>The logger object can be given as keyword argument. By default, uses <code class="docutils literal notranslate"><span class="pre">utils.logger</span></code> as logger.</li>
+<li>Start message: “Starting <code class="docutils literal notranslate"><span class="pre">label</span></code>.”</li>
+<li>End message: “Completed <code class="docutils literal notranslate"><span class="pre">label</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.”</li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><strong>label</strong> (<em>str</em>) – Label for the start / end message.</li>
+<li><strong>log_level</strong> (<em>str</em>) – </li>
 <li><strong>logger_object</strong> (<em>logging.Logger</em>) – </li>
 </ul>
 </dd>
 <dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><p><strong>logger_object</strong> (<em>logging.logger.Logger</em>) – Logger object to which the start / end messages are output. Default:
-<code class="docutils literal notranslate"><span class="pre">utils.logger</span></code>.</p>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>log_level</strong> (<em>str</em>) – Log level to which the start / end messages are output. Choices: ‘debug’, ‘info’.
+Default: ‘debug’.</p></li>
+<li><p><strong>logger_object</strong> (<em>logging.logger.Logger</em>) – Logger object to which the start / end messages are output. Default:
+<code class="docutils literal notranslate"><span class="pre">utils.logger</span></code>.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -1667,7 +1668,7 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2018-2020, TUMCREATE.
+        &#169; Copyright 2018-2021, TUMCREATE.
 
     </p>
   </div>
@@ -1703,13 +1704,13 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../dro/api_reference.html">feature/dro</a></dd>
+            <dd><a href="api_reference.html">feature/extended_line_type_definitions</a></dd>
             <dd><a href="../../develop/api_reference.html">develop</a></dd>
             <dd><a href="../backup_verena/api_reference.html">feature/backup_verena</a></dd>
             <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></dd>
+            <dd><a href="../dro/api_reference.html">feature/dro</a></dd>
             <dd><a href="../electric_grid_extensions/api_reference.html">feature/electric_grid_extensions</a></dd>
-            <dd><a href="api_reference.html">feature/extended_line_type_definitions</a></dd>
             <dd><a href="../general_improvements/api_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
             <dd><a href="../sitem/api_reference.html">feature/sitem</a></dd>
