@@ -92,8 +92,8 @@ Electric line type definitions are split into `electric_grid_line_types` for the
 | Column | Unit | Description |
 | --- |:---:| --- |
 | `line_type` | | Unique type identifier. |
-| `n_phases` | - | Number of phases. |
-| `maximum_current` | A | Maximum permissible current (thermal line limit). |
+| `n_phases` | - | Number of phases. This column is not used for `overhead` line types. |
+| `maximum_current` | A | Maximum permissible current (thermal line limit). This column is not used for `overhead` line types. |
 | `definition_type` | | Electric characteristics definition type. Choices: `matrix` (line parameters are defined in `electric_grid_line_types_matrices`) or `overhead` (line parameters are defined in `electric_grid_line_types_overhead` and `electric_grid_line_types_overhead_conductors`). Optional column, which defaults to `matrix` if not explicitly defined. |
 
 ### `electric_grid_line_types_matrices`
