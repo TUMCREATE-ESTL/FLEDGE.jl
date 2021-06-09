@@ -109,6 +109,26 @@ Electric line characteristics are defined in terms of element property matrices.
 | `reactance` | Ω/km | Series reactance matrix entry. |
 | `capacitance` | nF/km | Shunt capacitance matrix entry. |
 
+### `electric_grid_line_types_overhead`
+
+| Column | Unit | Description |
+| --- |:---:| --- |
+| line_type | | Line type identifier as defined in `electric_grid_line_types`. |
+| phase_1_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| phase_2_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| phase_3_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| neutral_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| earth_resistivity | Ωm | Earth / soil resistivity. |
+| air_permittivity | nF/km | Air permittivity. |
+| phase_1_x | m | Horizontal coordinate of phase 1 in meters. An arbitrary reference for `x = 0` can be chosen. |
+| phase_1_y | m | Vertical coordinate of phase 1 in meters. Reference is the earth surface at `y = 0`. |
+| phase_2_x | m | Horizontal coordinate of phase 2 in meters. An arbitrary reference for `x = 0` can be chosen. |
+| phase_2_y | m | Vertical coordinate of phase 2 in meters. Reference is the earth surface at `y = 0`. |
+| phase_3_x | m | Horizontal coordinate of phase 3 in meters. An arbitrary reference for `x = 0` can be chosen. |
+| phase_3_y | m | Vertical coordinate of phase 3 in meters. Reference is the earth surface at `y = 0`. |
+| neutral_x | m | Horizontal coordinate of neutral phase in meters. An arbitrary reference for `x = 0` can be chosen. |
+| neutral_y | m | Vertical coordinate of neutral phase in meters. Reference is the earth surface at `y = 0`. |
+
 ### `electric_grid_line_types_overhead_conductors`
 
 | Column | Unit | Description |

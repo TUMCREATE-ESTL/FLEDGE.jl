@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-ders"><code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types-matrices"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types-overhead"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_overhead</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types-overhead-conductors"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_overhead_conductors</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-lines"><code class="docutils literal notranslate"><span class="pre">electric_grid_lines</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electric-grid-nodes"><code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></a></li>
@@ -542,6 +543,94 @@
 <td><code>capacitance</code></td>
 <td align="center">nF/km</td>
 <td>Shunt capacitance matrix entry.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="electric-grid-line-types-overhead">
+<h3><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_overhead</span></code><a class="headerlink" href="#electric-grid-line-types-overhead" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>line_type</td>
+<td align="center"></td>
+<td>Line type identifier as defined in <code>electric_grid_line_types</code>.</td>
+</tr>
+<tr>
+<td>phase_1_conductor_id</td>
+<td align="center"></td>
+<td>Conductor ID as defined in <code>electric_grid_line_types_overhead_conductors</code>. To be left empty if phase is missing.</td>
+</tr>
+<tr>
+<td>phase_2_conductor_id</td>
+<td align="center"></td>
+<td>Conductor ID as defined in <code>electric_grid_line_types_overhead_conductors</code>. To be left empty if phase is missing.</td>
+</tr>
+<tr>
+<td>phase_3_conductor_id</td>
+<td align="center"></td>
+<td>Conductor ID as defined in <code>electric_grid_line_types_overhead_conductors</code>. To be left empty if phase is missing.</td>
+</tr>
+<tr>
+<td>neutral_conductor_id</td>
+<td align="center"></td>
+<td>Conductor ID as defined in <code>electric_grid_line_types_overhead_conductors</code>. To be left empty if phase is missing.</td>
+</tr>
+<tr>
+<td>earth_resistivity</td>
+<td align="center">Ωm</td>
+<td>Earth / soil resistivity.</td>
+</tr>
+<tr>
+<td>air_permittivity</td>
+<td align="center">nF/km</td>
+<td>Air permittivity.</td>
+</tr>
+<tr>
+<td>phase_1_x</td>
+<td align="center">m</td>
+<td>Horizontal coordinate of phase 1 in meters. An arbitrary reference for <code>x = 0</code> can be chosen.</td>
+</tr>
+<tr>
+<td>phase_1_y</td>
+<td align="center">m</td>
+<td>Vertical coordinate of phase 1 in meters. Reference is the earth surface at <code>y = 0</code>.</td>
+</tr>
+<tr>
+<td>phase_2_x</td>
+<td align="center">m</td>
+<td>Horizontal coordinate of phase 2 in meters. An arbitrary reference for <code>x = 0</code> can be chosen.</td>
+</tr>
+<tr>
+<td>phase_2_y</td>
+<td align="center">m</td>
+<td>Vertical coordinate of phase 2 in meters. Reference is the earth surface at <code>y = 0</code>.</td>
+</tr>
+<tr>
+<td>phase_3_x</td>
+<td align="center">m</td>
+<td>Horizontal coordinate of phase 3 in meters. An arbitrary reference for <code>x = 0</code> can be chosen.</td>
+</tr>
+<tr>
+<td>phase_3_y</td>
+<td align="center">m</td>
+<td>Vertical coordinate of phase 3 in meters. Reference is the earth surface at <code>y = 0</code>.</td>
+</tr>
+<tr>
+<td>neutral_x</td>
+<td align="center">m</td>
+<td>Horizontal coordinate of neutral phase in meters. An arbitrary reference for <code>x = 0</code> can be chosen.</td>
+</tr>
+<tr>
+<td>neutral_y</td>
+<td align="center">m</td>
+<td>Vertical coordinate of neutral phase in meters. Reference is the earth surface at <code>y = 0</code>.</td>
 </tr>
 </tbody>
 </table></div>
