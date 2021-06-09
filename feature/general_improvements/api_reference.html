@@ -281,6 +281,8 @@ but does not implement any functionality.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>timesteps</strong> (<em>pd.Index</em>) – Index set of time steps of the current scenario. This is needed for optimization problem
+definitions within linear electric grid models (see <code class="docutils literal notranslate"><span class="pre">LinearElectricGridModel</span></code>).</p></li>
 <li><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</li>
 <li><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</li>
 <li><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</li>
@@ -310,6 +312,20 @@ as single-phase-equivalent of three-phase balanced system.</p></li>
 <dd class="field-even"><p><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.data_interface.ElectricGridData" title="fledge.data_interface.ElectricGridData"><em>fledge.data_interface.ElectricGridData</em></a>) – </p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="fledge.electric_grid_models.ElectricGridModel.process_line_types_overhead">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">process_line_types_overhead</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">electric_grid_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridModel.process_line_types_overhead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process overhead line type definitions in electric grid data object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.data_interface.ElectricGridData" title="fledge.data_interface.ElectricGridData"><em>fledge.data_interface.ElectricGridData</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#fledge.data_interface.ElectricGridData" title="fledge.data_interface.ElectricGridData">fledge.data_interface.ElectricGridData</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -430,6 +446,24 @@ possible reinitialization of the OpenDSS model.</p></li>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="fledge.electric_grid_models.ElectricGridDEROperationResults">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></span><span class="sig-name descname"><span class="pre">ElectricGridDEROperationResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridDEROperationResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="fledge.electric_grid_models.ElectricGridOperationResults">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></span><span class="sig-name descname"><span class="pre">ElectricGridOperationResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridOperationResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.electric_grid_models.ElectricGridDEROperationResults" title="fledge.electric_grid_models.ElectricGridDEROperationResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.electric_grid_models.ElectricGridDEROperationResults</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="fledge.electric_grid_models.ElectricGridDLMPResults">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></span><span class="sig-name descname"><span class="pre">ElectricGridDLMPResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridDLMPResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
@@ -609,18 +643,6 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="fledge.electric_grid_models.ElectricGridOperationResults">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></span><span class="sig-name descname"><span class="pre">ElectricGridOperationResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridOperationResults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="fledge.electric_grid_models.ElectricGridDLMPResults">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></span><span class="sig-name descname"><span class="pre">ElectricGridDLMPResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.ElectricGridDLMPResults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="fledge.electric_grid_models.LinearElectricGridModel">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></span><span class="sig-name descname"><span class="pre">LinearElectricGridModel</span></span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -738,7 +760,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="fledge.electric_grid_models.LinearElectricGridModel.define_optimization_variables">
-<span class="sig-name descname"><span class="pre">define_optimization_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pandas.Index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_variables" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">define_optimization_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define decision variables for given <cite>optimization_problem</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -749,7 +771,7 @@ reactive loss by DER reactive power vector.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fledge.electric_grid_models.LinearElectricGridModel.define_optimization_constraints">
-<span class="sig-name descname"><span class="pre">define_optimization_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pandas.Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_power_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_constraints" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">define_optimization_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_problem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">slice(None,</span> <span class="pre">None,</span> <span class="pre">None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_voltage_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch_power_magnitude_vector_maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModel.define_optimization_constraints" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define constraints to express the linear electric grid model equations for given <cite>optimization_problem</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -778,6 +800,135 @@ nodal delta power.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">LinearElectricGridModelGlobal(electric_grid_model,</span> <span class="pre">power_flow_solution)</span></code>: Instantiate linear electric grid
 model object for given <cite>electric_grid_model</cite> and <cite>power_flow_solution</cite>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">LinearElectricGridModelGlobal(scenario_name)</span></code>: Instantiate linear electric grid model for given
+<cite>scenario_name</cite>. The required <cite>electric_grid_model</cite> is obtained for given <cite>scenario_name</cite> and the
+<cite>power_flow_solution</cite> is obtained for nominal power conditions.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</li>
+<li><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Power flow solution object.</li>
+<li><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</li>
+</ul>
+</dd>
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</li>
+<li><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Reference power flow solution object.</li>
+<li><p><strong>sensitivity_voltage_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage vector
+by active wye power vector.</p></li>
+<li><p><strong>sensitivity_voltage_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage
+vector by reactive wye power vector.</p></li>
+<li><p><strong>sensitivity_voltage_by_power_delta_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage vector
+by active delta power vector.</p></li>
+<li><p><strong>sensitivity_voltage_by_power_delta_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage
+vector by reactive delta power vector.</p></li>
+<li><p><strong>sensitivity_voltage_by_der_power_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+complex voltage vector by DER active power vector.</p></li>
+<li><p><strong>sensitivity_voltage_by_der_power_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+complex voltage vector by DER reactive power vector.</p></li>
+<li><p><strong>sensitivity_voltage_magnitude_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for voltage
+magnitude vector by active wye power vector.</p></li>
+<li><p><strong>sensitivity_voltage_magnitude_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+voltage magnitude vector by reactive wye power vector.</p></li>
+<li><p><strong>sensitivity_voltage_magnitude_by_power_delta_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+voltage magnitude vector by active delta power vector.</p></li>
+<li><p><strong>sensitivity_voltage_magnitude_by_power_delta_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+voltage magnitude vector by reactive delta power vector.</p></li>
+<li><p><strong>sensitivity_voltage_magnitude_by_der_power_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+voltage magnitude vector by DER active power vector.</p></li>
+<li><p><strong>sensitivity_voltage_magnitude_by_der_power_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+voltage magnitude vector by DER reactive power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_magnitude_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 1 (‘from’ direction) by active wye power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_magnitude_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 1 (‘from’ direction) by reactive wye power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_magnitude_by_power_delta_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 1 (‘from’ direction) by active delta power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_magnitude_by_power_delta_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 1 (‘from’ direction) by reactive delta power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_magnitude_by_der_power_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 1 by DER active power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_magnitude_by_der_power_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 1 by DER reactive power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_magnitude_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 2 (‘to’ direction) by active wye power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_magnitude_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 2 (‘to’ direction) by reactive wye power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_magnitude_by_power_delta_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 2 (‘to’ direction) by active delta power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_magnitude_by_power_delta_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 2 (‘to’ direction) by reactive delta power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_magnitude_by_der_power_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 2 by DER active power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_magnitude_by_der_power_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+branch flow power magnitude vector 2 by DER reactive power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_squared_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 1 (‘from’ direction) by active wye power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_squared_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 1 (‘from’ direction) by reactive wye power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_squared_by_power_delta_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 1 (‘from’ direction) by active delta power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_squared_by_power_delta_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 1 (‘from’ direction) by reactive delta power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_squared_by_der_power_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 1 by DER active power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_1_squared_by_der_power_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 1 by DER reactive power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_squared_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 2 (‘to’ direction) by active wye power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_squared_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 2 (‘to’ direction) by reactive wye power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_squared_by_power_delta_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 2 (‘to’ direction) by active delta power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_squared_by_power_delta_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 2 (‘to’ direction) by reactive delta power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_squared_by_der_power_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 2 by DER active power vector.</p></li>
+<li><p><strong>sensitivity_branch_power_2_squared_by_der_power_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+squared branch flow power vector 2 by DER reactive power vector.</p></li>
+<li><p><strong>sensitivity_loss_active_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+active loss by active wye power vector.</p></li>
+<li><p><strong>sensitivity_loss_active_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+active loss by reactive wye power vector.</p></li>
+<li><p><strong>sensitivity_loss_active_by_power_delta_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+active loss by active delta power vector.</p></li>
+<li><p><strong>sensitivity_loss_active_by_power_delta_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+active loss by reactive delta power vector.</p></li>
+<li><p><strong>sensitivity_loss_active_by_der_power_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+active loss by DER active power vector.</p></li>
+<li><p><strong>sensitivity_loss_active_by_der_power_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+active loss by DER reactive power vector.</p></li>
+<li><p><strong>sensitivity_loss_reactive_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+reactive loss by active wye power vector.</p></li>
+<li><p><strong>sensitivity_loss_reactive_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+reactive loss by reactive wye power vector.</p></li>
+<li><p><strong>sensitivity_loss_reactive_by_power_delta_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+reactive loss by active delta power vector.</p></li>
+<li><p><strong>sensitivity_loss_reactive_by_power_delta_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+reactive loss by reactive delta power vector.</p></li>
+<li><p><strong>sensitivity_loss_reactive_by_der_power_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+reactive loss by DER active power vector.</p></li>
+<li><p><strong>sensitivity_loss_reactive_by_der_power_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for
+reactive loss by DER reactive power vector.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="fledge.electric_grid_models.LinearElectricGridModelLocal">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.electric_grid_models.</span></span><span class="sig-name descname"><span class="pre">LinearElectricGridModelLocal</span></span><a class="headerlink" href="#fledge.electric_grid_models.LinearElectricGridModelLocal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fledge.electric_grid_models.LinearElectricGridModel" title="fledge.electric_grid_models.LinearElectricGridModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.electric_grid_models.LinearElectricGridModel</span></code></a></p>
+<p>Linear electric grid model object based on local approximations, consisting of the sensitivity matrices for
+voltage / voltage magnitude / squared branch power / active loss / reactive loss by changes in nodal wye power /
+nodal delta power.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Syntax</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LinearElectricGridModelLocal(electric_grid_model,</span> <span class="pre">power_flow_solution)</span></code>: Instantiate linear electric grid
+model object for given <cite>electric_grid_model</cite> and <cite>power_flow_solution</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LinearElectricGridModelLocal(scenario_name)</span></code>: Instantiate linear electric grid model for given
 <cite>scenario_name</cite>. The required <cite>electric_grid_model</cite> is obtained for given <cite>scenario_name</cite> and the
 <cite>power_flow_solution</cite> is obtained for nominal power conditions.</p></li>
 </ul>
@@ -1192,7 +1343,7 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.DERModelSetOperationResults">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">DERModelSetOperationResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.DERModelSetOperationResults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#fledge.utils.ResultsBase" title="fledge.utils.ResultsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.utils.ResultsBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#fledge.electric_grid_models.ElectricGridDEROperationResults" title="fledge.electric_grid_models.ElectricGridDEROperationResults"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.electric_grid_models.ElectricGridDEROperationResults</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
@@ -1204,13 +1355,13 @@ reactive loss by DER reactive power vector.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fledge.der_models.make_der_model">
-<span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">make_der_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.make_der_model" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">make_der_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.make_der_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method for DER models, makes appropriate DER model type for given <cite>der_name</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
 <li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -1408,6 +1559,13 @@ Modifications to the attributes of the copy will not be reflected in the origina
 <p>Optimization problem object for use with CVXPY.</p>
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="fledge.utils.StandardForm">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.utils.</span></span><span class="sig-name descname"><span class="pre">StandardForm</span></span><a class="headerlink" href="#fledge.utils.StandardForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Standard form object for linear program, which is defined as <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">b</span></code>.</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="fledge.utils.starmap">
 <span class="sig-prename descclassname"><span class="pre">fledge.utils.</span></span><span class="sig-name descname"><span class="pre">starmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argument_sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyword_arguments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.starmap" title="Permalink to this definition">¶</a></dt>
@@ -1415,7 +1573,7 @@ Modifications to the attributes of the copy will not be reflected in the origina
 Allows running repeated function calls in-parallel, based on Python’s <cite>multiprocessing</cite> module.</p>
 <ul class="simple">
 <li><p>If configuration parameter <cite>run_parallel</cite> is set to True, execution is passed to <cite>starmap</cite>
-of <cite>multiprocess.Pool</cite>, hence running the function calls in parallel.</p></li>
+of multiprocessing pool, hence running the function calls in parallel.</p></li>
 <li>Otherwise, execution is passed to <cite>itertools.starmap</cite>, which is the non-parallel equivalent.</li>
 </ul>
 <dl class="field-list simple">
@@ -1428,6 +1586,34 @@ of <cite>multiprocess.Pool</cite>, hence running the function calls in parallel.
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fledge.utils.chunk_dict">
+<span class="sig-prename descclassname"><span class="pre">fledge.utils.</span></span><span class="sig-name descname"><span class="pre">chunk_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.chunk_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divide dictionary into equally sized chunks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><strong>dict_in</strong> (<em>dict</em>) – </li>
+<li><strong>chunk_count</strong> (<em>int</em>) – </li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fledge.utils.chunk_list">
+<span class="sig-prename descclassname"><span class="pre">fledge.utils.</span></span><span class="sig-name descname"><span class="pre">chunk_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.chunk_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divide list into equally sized chunks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><strong>list_in</strong> (<em>Union</em><em>[</em><em>Iterable</em><em>, </em><em>Sized</em><em>]</em>) – </li>
+<li><strong>chunk_count</strong> (<em>int</em>) – </li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -1639,7 +1825,7 @@ automatically based on given <cite>file_format</cite>.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>multiprocess.Pool</p>
+<dd class="field-odd"><p>ray.util.multiprocessing.Pool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1704,13 +1890,13 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
         </dl>
         <dl>
             <dt>Branches</dt>
+            <dd><a href="api_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../../develop/api_reference.html">develop</a></dd>
             <dd><a href="../backup_verena/api_reference.html">feature/backup_verena</a></dd>
             <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></dd>
             <dd><a href="../dro/api_reference.html">feature/dro</a></dd>
             <dd><a href="../electric_grid_extensions/api_reference.html">feature/electric_grid_extensions</a></dd>
-            <dd><a href="api_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
             <dd><a href="../sitem/api_reference.html">feature/sitem</a></dd>
             <dd><a href="../test_cases/index.html">feature/test_cases</a></dd>
