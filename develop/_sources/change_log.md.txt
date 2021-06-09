@@ -2,6 +2,12 @@
 
 Note that version numbering follows the [Semantic Versioning principle](https://semver.org/).
 
+## [v0.5.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.5.0)
+
+### New features
+
+- Overhead line types can now be defined in terms of conductor data and geometric arrangement (Arif Ahmed).
+
 ## [v0.4.1](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.1)
 
 ### Fixes

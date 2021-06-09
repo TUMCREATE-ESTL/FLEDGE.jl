@@ -87,13 +87,14 @@ Distributed energy resources (DERs) in the electric grid. Can define both loads 
 
 ### `electric_grid_line_types`
 
-Electric line type definitions are split into `electric_grid_line_types` for the general type definition and `electric_grid_line_types_matrices` for the definition of electric characteristics.
+Electric line type definitions are split into `electric_grid_line_types` for the general type definition and `electric_grid_line_types_matrices`, `electric_grid_line_types_overhead` and `electric_grid_line_types_overhead_conductors` for the definition of electric characteristics. The electric characteristics can be defined in the form of element matrices in `electric_grid_line_types_matrices` or in the form of geometric and conductor properties for overhead lines in `electric_grid_line_types_overhead` and `electric_grid_line_types_overhead_conductors`, where only one definition is needed for each line type and is selected through the `definition_type` column.
 
 | Column | Unit | Description |
 | --- |:---:| --- |
 | `line_type` | | Unique type identifier. |
-| `n_phases` | - | Number of phases. |
-| `maximum_current` | A | Maximum permissible current (thermal line limit). |
+| `n_phases` | - | Number of phases. This column is not used for `overhead` line types. |
+| `maximum_current` | A | Maximum permissible current (thermal line limit). This column is not used for `overhead` line types. |
+| `definition_type` | | Electric characteristics definition type. Choices: `matrix` (line parameters are defined in `electric_grid_line_types_matrices`) or `overhead` (line parameters are defined in `electric_grid_line_types_overhead` and `electric_grid_line_types_overhead_conductors`). Optional column, which defaults to `matrix` if not explicitly defined. |
 
 ### `electric_grid_line_types_matrices`
 
@@ -107,6 +108,39 @@ Electric line characteristics are defined in terms of element property matrices.
 | `resistance` | Ω/km | Series resistance matrix entry. |
 | `reactance` | Ω/km | Series reactance matrix entry. |
 | `capacitance` | nF/km | Shunt capacitance matrix entry. |
+
+### `electric_grid_line_types_overhead`
+
+| Column | Unit | Description |
+| --- |:---:| --- |
+| line_type | | Line type identifier as defined in `electric_grid_line_types`. |
+| phase_1_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| phase_2_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| phase_3_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| neutral_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| earth_resistivity | Ωm | Earth / soil resistivity. |
+| air_permittivity | nF/km | Air permittivity. |
+| phase_1_x | m | Horizontal coordinate of phase 1 in meters. An arbitrary reference for `x = 0` can be chosen. |
+| phase_1_y | m | Vertical coordinate of phase 1 in meters. Reference is the earth surface at `y = 0`. |
+| phase_2_x | m | Horizontal coordinate of phase 2 in meters. An arbitrary reference for `x = 0` can be chosen. |
+| phase_2_y | m | Vertical coordinate of phase 2 in meters. Reference is the earth surface at `y = 0`. |
+| phase_3_x | m | Horizontal coordinate of phase 3 in meters. An arbitrary reference for `x = 0` can be chosen. |
+| phase_3_y | m | Vertical coordinate of phase 3 in meters. Reference is the earth surface at `y = 0`. |
+| neutral_x | m | Horizontal coordinate of neutral phase in meters. An arbitrary reference for `x = 0` can be chosen. |
+| neutral_y | m | Vertical coordinate of neutral phase in meters. Reference is the earth surface at `y = 0`. |
+
+### `electric_grid_line_types_overhead_conductors`
+
+| Column | Unit | Description |
+| --- |:---:| --- |
+| `conductor_id` | | Unique identifier. |
+| `conductor_size_description` | | Conductor size description string (see [Kersting, 2018, Appendix A](https://doi.org/10.1201/9781315120782)). |
+| `conductor_stranding_description` | | Conductor stranding description string (see [Kersting, 2018, Appendix A](https://doi.org/10.1201/9781315120782)). |
+| `conductor_material_description` | | Conductor material description string (see [Kersting, 2018, Appendix A](https://doi.org/10.1201/9781315120782)). |
+| `conductor_diameter` | mm | Conductor diameter. |
+| `conductor_geometric_mean_radius` | mm | Conductor geometric mean radius (GMR). |
+| `conductor_resistance` | Ω/km | Specific resistance of conductor. |
+| `conductor_maximum_current` | A | Maximum permissible current (thermal conductor limit). |
 
 ### `electric_grid_lines`
 
