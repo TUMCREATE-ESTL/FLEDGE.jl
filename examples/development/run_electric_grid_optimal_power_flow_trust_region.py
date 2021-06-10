@@ -13,10 +13,7 @@ in North American Power Symposium 2010, Arlington, TX, USA, Sep. 2010, pp. 1–6
 import numpy as np
 from datetime import datetime
 
-import fledge.config
-import fledge.data_interface
-import fledge.electric_grid_models
-import fledge.utils
+import fledge
 
 # Ignore division by zero or nan warnings (this can happen with e.g. DERs with zero reactive power output)
 np.seterr(divide='ignore', invalid='ignore')
@@ -183,10 +180,7 @@ def main():
         # )
 
         # Define DER constraints.
-        der_model_set.define_optimization_constraints(
-            optimization_problem=optimization_problem,
-            electric_grid_model=electric_grid_model
-        )
+        der_model_set.define_optimization_constraints(optimization_problem)
 
         # ---------------------------------------------------------------------------------------------------------
         # Define trust region constraints.

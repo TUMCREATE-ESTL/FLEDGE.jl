@@ -1,17 +1,13 @@
 """Example script for setting up and solving a thermal grid optimal operation problem."""
 
+import cvxpy as cp
 import numpy as np
 import os
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-import fledge.config
-import fledge.data_interface
-import fledge.der_models
-import fledge.problems
-import fledge.thermal_grid_models
-import fledge.utils
+import fledge
 
 
 def main():
@@ -42,38 +38,27 @@ def main():
     optimization_problem = fledge.utils.OptimizationProblem()
 
     # Define optimization variables.
-    linear_thermal_grid_model.define_optimization_variables(
-        optimization_problem,
-        scenario_data.timesteps
-    )
-    der_model_set.define_optimization_variables(
-        optimization_problem
-    )
+    linear_thermal_grid_model.define_optimization_variables(optimization_problem)
+    der_model_set.define_optimization_variables(optimization_problem)
 
     # Define constraints.
     node_head_vector_minimum = 1.5 * thermal_power_flow_solution.node_head_vector
     branch_flow_vector_maximum = 10.0 * thermal_power_flow_solution.branch_flow_vector
     linear_thermal_grid_model.define_optimization_constraints(
         optimization_problem,
-        scenario_data.timesteps,
         node_head_vector_minimum=node_head_vector_minimum,
         branch_flow_vector_maximum=branch_flow_vector_maximum
     )
-    der_model_set.define_optimization_constraints(
-        optimization_problem,
-        thermal_grid_model=thermal_grid_model
-    )
+    der_model_set.define_optimization_constraints(optimization_problem)
 
     # Define objective.
     der_model_set.define_optimization_objective(
         optimization_problem,
-        price_data,
-        thermal_grid_model=thermal_grid_model
+        price_data
     )
     linear_thermal_grid_model.define_optimization_objective(
         optimization_problem,
-        price_data,
-        scenario_data.timesteps
+        price_data
     )
 
     # Solve optimization problem.
@@ -81,17 +66,8 @@ def main():
 
     # Obtain results.
     results = fledge.problems.Results()
-    results.update(
-        linear_thermal_grid_model.get_optimization_results(
-            optimization_problem,
-            scenario_data.timesteps
-        )
-    )
-    results.update(
-        der_model_set.get_optimization_results(
-            optimization_problem
-        )
-    )
+    results.update(linear_thermal_grid_model.get_optimization_results(optimization_problem))
+    results.update(der_model_set.get_optimization_results(optimization_problem))
 
     # Print results.
     print(results)
@@ -103,8 +79,7 @@ def main():
     dlmps = (
         linear_thermal_grid_model.get_optimization_dlmps(
             optimization_problem,
-            price_data,
-            scenario_data.timesteps
+            price_data
         )
     )
 

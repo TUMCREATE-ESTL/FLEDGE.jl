@@ -1,0 +1,2 @@
+line_type,phase_1_conductor_id,phase_2_conductor_id,phase_3_conductor_id,neutral_conductor_id,earth_resistivity,air_permittivity,phase_1_x,phase_1_y,phase_2_x,phase_2_y,phase_3_x,phase_3_y,neutral_x,neutral_y
+overhead_linetype_generic,58,58,58,45,100,8.85,-2.1336,8.8392,-1.3716,8.8392,0,8.8392,-0.9144,7.62

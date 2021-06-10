@@ -1,0 +1,7 @@
+line_type,row,col,resistance,reactance,capacitance
+paper_2020_troitzsch_dlmp_cable,1,1,1.199246401,0.877065436,8.439934918
+paper_2020_troitzsch_dlmp_cable,2,1,0.144593077,0.400287323,-2.367473688
+paper_2020_troitzsch_dlmp_cable,2,2,1.190360794,0.8873802,8.085242395
+paper_2020_troitzsch_dlmp_cable,3,1,0.146581463,0.353622346,-1.549637123
+paper_2020_troitzsch_dlmp_cable,3,2,0.142169728,0.325474229,-0.980843491
+paper_2020_troitzsch_dlmp_cable,3,3,1.194213294,0.882906325,7.771919682

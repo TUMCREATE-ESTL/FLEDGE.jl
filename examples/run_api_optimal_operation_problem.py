@@ -5,7 +5,7 @@
   subject to the model constraints of all DERs and grids.
 """
 
-import fledge.api
+import fledge
 
 
 def main():

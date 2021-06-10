@@ -1,0 +1,2 @@
+thermal_grid_name,source_node_name,distribution_pump_efficiency,energy_transfer_station_head_loss,enthalpy_difference_distribution_water,water_density,water_kinematic_viscosity,plant_type,plant_model_name
+paper_2021_troitzsch_admm_dlmp,0,0.75,6,37355,998.31,1.3504e-6,cooling_plant,paper_2021_troitzsch_admm_dlmp_cooling_plant

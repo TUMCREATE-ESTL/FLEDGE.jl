@@ -18,6 +18,7 @@ logger = fledge.config.get_logger(__name__)
 class ThermalGridModel(object):
     """Thermal grid model object."""
 
+    timesteps: pd.Index
     node_names: pd.Index
     line_names: pd.Index
     der_names: pd.Index
@@ -38,6 +39,10 @@ class ThermalGridModel(object):
 
         # Obtain thermal grid data.
         thermal_grid_data = fledge.data_interface.ThermalGridData(scenario_name)
+
+        # Obtain index set for time steps.
+        # - This is needed for optimization problem definitions within linear thermal grid models.
+        self.timesteps = thermal_grid_data.scenario_data.timesteps
 
         # Obtain node / line / DER names.
         self.node_names = pd.Index(thermal_grid_data.thermal_grid_nodes['node_name'])
@@ -63,7 +68,7 @@ class ThermalGridModel(object):
 
         # Define branch to node incidence matrix.
         self.branch_node_incidence_matrix = (
-            scipy.sparse.dok_matrix((len(self.nodes), len(self.branches)), dtype=np.int)
+            scipy.sparse.dok_matrix((len(self.nodes), len(self.branches)), dtype=int)
         )
         for node_index, node_name in enumerate(self.nodes.get_level_values('node_name')):
             for branch_index, branch in enumerate(self.branches):
@@ -75,7 +80,7 @@ class ThermalGridModel(object):
 
         # Define DER to node incidence matrix.
         self.der_node_incidence_matrix = (
-            scipy.sparse.dok_matrix((len(self.nodes), len(self.ders)), dtype=np.int)
+            scipy.sparse.dok_matrix((len(self.nodes), len(self.ders)), dtype=int)
         )
         for node_index, node_name in enumerate(self.nodes.get_level_values('node_name')):
             for der_index, der_name in enumerate(self.der_names):
@@ -108,13 +113,13 @@ class ThermalGridModel(object):
 
         # Obtain other system parameters.
         self.energy_transfer_station_head_loss = (
-            np.float(thermal_grid_data.thermal_grid['energy_transfer_station_head_loss'])
+            float(thermal_grid_data.thermal_grid['energy_transfer_station_head_loss'])
         )
         self.enthalpy_difference_distribution_water = (
-            np.float(thermal_grid_data.thermal_grid['enthalpy_difference_distribution_water'])
+            float(thermal_grid_data.thermal_grid['enthalpy_difference_distribution_water'])
         )
         self.distribution_pump_efficiency = (
-            np.float(thermal_grid_data.thermal_grid['distribution_pump_efficiency'])
+            float(thermal_grid_data.thermal_grid['distribution_pump_efficiency'])
         )
 
         # Obtain cooling plant efficiency.
@@ -191,16 +196,16 @@ class ThermalPowerFlowSolution(object):
 
     der_thermal_power_vector: np.ndarray
     der_flow_vector: np.ndarray
-    source_flow: np.float
+    source_flow: float
     branch_flow_vector: np.ndarray
     branch_velocity_vector: np.ndarray
     branch_reynold_vector: np.ndarray
     branch_friction_factor_vector: np.ndarray
     branch_head_vector: np.ndarray
-    source_head: np.float
+    source_head: float
     node_head_vector: np.ndarray
-    pump_power: np.float
-    source_electric_power_cooling_plant: np.float
+    pump_power: float
+    source_electric_power_cooling_plant: float
 
     @multimethod
     def __init__(
@@ -348,7 +353,7 @@ class ThermalPowerFlowSolution(object):
         self.source_head = (
             np.max(np.abs(node_head_vector_no_source))
         )
-        self.node_head_vector = np.zeros(len(thermal_grid_model.nodes), dtype=np.float)
+        self.node_head_vector = np.zeros(len(thermal_grid_model.nodes), dtype=float)
         self.node_head_vector[fledge.utils.get_index(thermal_grid_model.nodes, node_type='no_source')] = (
             node_head_vector_no_source
         )
@@ -427,7 +432,7 @@ class LinearThermalGridModel(object):
         branch_node_incidence_matrix_inverse = (
             scipy.sparse.dok_matrix(
                 (len(self.thermal_grid_model.branches), len(self.thermal_grid_model.nodes)),
-                dtype=np.float
+                dtype=float
             )
         )
         branch_node_incidence_matrix_inverse[np.ix_(
@@ -442,7 +447,7 @@ class LinearThermalGridModel(object):
         branch_node_incidence_matrix_transpose_inverse = (
             scipy.sparse.dok_matrix(
                 (len(self.thermal_grid_model.nodes), len(self.thermal_grid_model.branches)),
-                dtype=np.float
+                dtype=float
             )
         )
         branch_node_incidence_matrix_transpose_inverse[np.ix_(
@@ -513,8 +518,7 @@ class LinearThermalGridModel(object):
 
     def define_optimization_variables(
             self,
-            optimization_problem: fledge.utils.OptimizationProblem,
-            timesteps=pd.Index([0], name='timestep')
+            optimization_problem: fledge.utils.OptimizationProblem
     ):
         """Define decision variables for given `optimization_problem`."""
 
@@ -522,24 +526,28 @@ class LinearThermalGridModel(object):
         # - Only if this has not yet been defined within `DERModelSet`.
         if not hasattr(optimization_problem, 'der_thermal_power_vector'):
             optimization_problem.der_thermal_power_vector = (
-                cp.Variable((len(timesteps), len(self.thermal_grid_model.ders)))
+                cp.Variable((len(self.thermal_grid_model.timesteps), len(self.thermal_grid_model.ders)))
             )
 
         # Define node head, branch flow and pump power variables.
         optimization_problem.node_head_vector = (
-            cp.Variable((len(timesteps), len(self.thermal_grid_model.nodes)))
+            cp.Variable((len(self.thermal_grid_model.timesteps), len(self.thermal_grid_model.nodes)))
         )
         optimization_problem.branch_flow_vector = (
-            cp.Variable((len(timesteps), len(self.thermal_grid_model.branches)))
+            cp.Variable((len(self.thermal_grid_model.timesteps), len(self.thermal_grid_model.branches)))
         )
         optimization_problem.pump_power = (
-            cp.Variable((len(timesteps), 1))
+            cp.Variable((len(self.thermal_grid_model.timesteps), 1))
         )
+        # # TODO: Pump power not non-negative?
+        # optimization_problem.pump_power = (
+        #     cp.Variable((len(self.thermal_grid_model.timesteps), 1))
+        # )
 
     def define_optimization_constraints(
             self,
             optimization_problem: fledge.utils.OptimizationProblem,
-            timesteps=pd.Index([0], name='timestep'),
+            timestep_index=slice(None),  # TODO: Enable passing as time step / list of time steps.
             node_head_vector_minimum: np.ndarray = None,
             branch_flow_vector_maximum: np.ndarray = None
     ):
@@ -547,12 +555,12 @@ class LinearThermalGridModel(object):
 
         # Define node head equation.
         optimization_problem.constraints.append(
-            optimization_problem.node_head_vector
+            optimization_problem.node_head_vector[timestep_index, :]
             ==
             cp.transpose(
                 self.sensitivity_node_head_by_der_power
                 @ cp.transpose(cp.multiply(
-                    optimization_problem.der_thermal_power_vector,
+                    optimization_problem.der_thermal_power_vector[timestep_index, :],
                     np.array([self.thermal_grid_model.der_thermal_power_vector_reference])
                 ))
             )
@@ -561,12 +569,12 @@ class LinearThermalGridModel(object):
 
         # Define branch flow equation.
         optimization_problem.constraints.append(
-            optimization_problem.branch_flow_vector
+            optimization_problem.branch_flow_vector[timestep_index, :]
             ==
             cp.transpose(
                 self.sensitivity_branch_flow_by_der_power
                 @ cp.transpose(cp.multiply(
-                    optimization_problem.der_thermal_power_vector,
+                    optimization_problem.der_thermal_power_vector[timestep_index, :],
                     np.array([self.thermal_grid_model.der_thermal_power_vector_reference])
                 ))
             )
@@ -575,19 +583,25 @@ class LinearThermalGridModel(object):
 
         # Define pump power equation.
         optimization_problem.constraints.append(
-            optimization_problem.pump_power
+            optimization_problem.pump_power[timestep_index, :]
             ==
             cp.transpose(
                 self.sensitivity_pump_power_by_der_power
                 @ cp.transpose(cp.multiply(
-                    optimization_problem.der_thermal_power_vector,
+                    optimization_problem.der_thermal_power_vector[timestep_index, :],
                     np.array([self.thermal_grid_model.der_thermal_power_vector_reference])
                 ))
             )
         )
 
         # Define node head limits.
-        if node_head_vector_minimum is not None:
+        # - Add dedicated constraints variables to enable retrieving dual variables.
+        # - When using `LinearElectricGridModelSet`, this will be defined only once with the first model, because it
+        #   does not depend on the sensitivity matrices.
+        if (
+                (node_head_vector_minimum is not None)
+                and not hasattr(optimization_problem, 'node_head_vector_minimum_constraint')
+        ):
             optimization_problem.node_head_vector_minimum_constraint = (
                 optimization_problem.node_head_vector
                 - np.array([node_head_vector_minimum.ravel()])
@@ -598,7 +612,13 @@ class LinearThermalGridModel(object):
             optimization_problem.constraints.append(optimization_problem.node_head_vector_minimum_constraint)
 
         # Define branch flow limits.
-        if branch_flow_vector_maximum is not None:
+        # - Add dedicated constraints variables to enable retrieving dual variables.
+        # - When using `LinearElectricGridModelSet`, this will be defined only once with the first model, because it
+        #   does not depend on the sensitivity matrices.
+        if (
+                (branch_flow_vector_maximum is not None)
+                and not hasattr(optimization_problem, 'branch_flow_vector_minimum_constraint')
+        ):
             optimization_problem.branch_flow_vector_minimum_constraint = (
                 optimization_problem.branch_flow_vector
                 + np.array([branch_flow_vector_maximum.ravel()])
@@ -620,62 +640,75 @@ class LinearThermalGridModel(object):
             self,
             optimization_problem: fledge.utils.OptimizationProblem,
             price_data: fledge.data_interface.PriceData,
-            timesteps=pd.Index([0], name='timestep')
+            timestep_index=slice(None)  # TODO: Enable passing as time step / list of time steps.
     ):
 
+        # Set objective flag.
+        optimization_problem.has_thermal_grid_objective = True
+
         # Obtain timestep interval in hours, for conversion of power to energy.
-        if len(timesteps) > 1:
-            timestep_interval_hours = (timesteps[1] - timesteps[0]) / pd.Timedelta('1h')
+        if len(self.thermal_grid_model.timesteps) > 1:
+            timestep_interval_hours = (
+                (self.thermal_grid_model.timesteps[1] - self.thermal_grid_model.timesteps[0])
+                / pd.Timedelta('1h')
+            )
         else:
             timestep_interval_hours = 1.0
 
-        # Define thermal power cost / revenue.
-        # - Cost for load / demand, revenue for generation / supply.
-        optimization_problem.objective += (
-            (
-                price_data.price_timeseries.loc[:, ('thermal_power', 'source', 'source')].values.T
-                * timestep_interval_hours  # In Wh.
-                @ cp.sum(-1.0 * (
-                    cp.multiply(
-                        optimization_problem.der_thermal_power_vector,
-                        np.array([self.thermal_grid_model.der_thermal_power_vector_reference])
-                    )
-                    / self.thermal_grid_model.cooling_plant_efficiency
-                ), axis=1, keepdims=True)  # Sum along DERs, i.e. sum for each timestep.
+        # Define objective for thermal loads.
+        # - Defined as cost of thermal supply at electric grid source node.
+        # - Only defined here, if not yet defined as cost of thermal power supply at the DER node
+        #   in `fledge.der_models.DERModel.define_optimization_objective`.
+        if not optimization_problem.has_der_objective:
+
+            # Thermal power cost / revenue.
+            # - Cost for load / demand, revenue for generation / supply.
+            optimization_problem.objective += (
+                (
+                    np.array([
+                        price_data.price_timeseries.loc[:, ('thermal_power', 'source', 'source')].values[timestep_index]
+                    ])
+                    * timestep_interval_hours  # In Wh.
+                    @ cp.sum(-1.0 * (
+                        cp.multiply(
+                            optimization_problem.der_thermal_power_vector[timestep_index, :],
+                            np.array([self.thermal_grid_model.der_thermal_power_vector_reference])
+                        )
+                    ), axis=1, keepdims=True)  # Sum along DERs, i.e. sum for each timestep.
+                )
+                + ((
+                    price_data.price_sensitivity_coefficient
+                    * timestep_interval_hours  # In Wh.
+                    * cp.sum((
+                        cp.multiply(
+                            optimization_problem.der_thermal_power_vector[timestep_index, :],
+                            np.array([self.thermal_grid_model.der_thermal_power_vector_reference])
+                        )
+                    ) ** 2)
+                ) if price_data.price_sensitivity_coefficient != 0.0 else 0.0)
             )
-            + ((
-                price_data.price_sensitivity_coefficient
-                * timestep_interval_hours  # In Wh.
-                * cp.sum((
-                    cp.multiply(
-                        optimization_problem.der_thermal_power_vector,
-                        np.array([self.thermal_grid_model.der_thermal_power_vector_reference])
-                    )
-                    / self.thermal_grid_model.cooling_plant_efficiency
-                ) ** 2)
-            ) if price_data.price_sensitivity_coefficient != 0.0 else 0.0)
-        )
 
         # Define pump cost.
         optimization_problem.objective += (
             (
                 # TODO: Use active power instead of thermal power price.
-                price_data.price_timeseries.loc[:, ('thermal_power', 'source', 'source')].values.T
+                np.array([
+                    price_data.price_timeseries.loc[:, ('thermal_power', 'source', 'source')].values[timestep_index]
+                ])
                 * timestep_interval_hours  # In Wh.
-                @ optimization_problem.pump_power
+                @ optimization_problem.pump_power[timestep_index, :]
             )
             + ((
                 price_data.price_sensitivity_coefficient
                 * timestep_interval_hours  # In Wh.
-                * cp.sum(optimization_problem.pump_power ** 2)
+                * cp.sum(optimization_problem.pump_power[timestep_index, :] ** 2)
             ) if price_data.price_sensitivity_coefficient != 0.0 else 0.0)
         )
 
     def get_optimization_dlmps(
             self,
             optimization_problem: fledge.utils.OptimizationProblem,
-            price_data: fledge.data_interface.PriceData,
-            timesteps=pd.Index([0], name='timestep')
+            price_data: fledge.data_interface.PriceData
     ) -> ThermalGridDLMPResults:
 
         # Obtain duals.
@@ -688,7 +721,7 @@ class LinearThermalGridModel(object):
                     else 0.0
                 ),
                 columns=self.thermal_grid_model.nodes,
-                index=timesteps
+                index=self.thermal_grid_model.timesteps
             )
         )
         branch_flow_vector_minimum_dual = (
@@ -700,7 +733,7 @@ class LinearThermalGridModel(object):
                     else 0.0
                 ),
                 columns=self.thermal_grid_model.branches,
-                index=timesteps
+                index=self.thermal_grid_model.timesteps
             )
         )
         branch_flow_vector_maximum_dual = (
@@ -712,39 +745,39 @@ class LinearThermalGridModel(object):
                     else 0.0
                 ),
                 columns=self.thermal_grid_model.branches,
-                index=timesteps
+                index=self.thermal_grid_model.timesteps
             )
         )
 
         # Instantiate DLMP variables.
         thermal_grid_energy_dlmp_node_thermal_power = (
-            pd.DataFrame(columns=self.thermal_grid_model.nodes, index=timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.thermal_grid_model.nodes, index=self.thermal_grid_model.timesteps, dtype=float)
         )
         thermal_grid_head_dlmp_node_thermal_power = (
-            pd.DataFrame(columns=self.thermal_grid_model.nodes, index=timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.thermal_grid_model.nodes, index=self.thermal_grid_model.timesteps, dtype=float)
         )
         thermal_grid_congestion_dlmp_node_thermal_power = (
-            pd.DataFrame(columns=self.thermal_grid_model.nodes, index=timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.thermal_grid_model.nodes, index=self.thermal_grid_model.timesteps, dtype=float)
         )
         thermal_grid_pump_dlmp_node_thermal_power = (
-            pd.DataFrame(columns=self.thermal_grid_model.nodes, index=timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.thermal_grid_model.nodes, index=self.thermal_grid_model.timesteps, dtype=float)
         )
 
         thermal_grid_energy_dlmp_der_thermal_power = (
-            pd.DataFrame(columns=self.thermal_grid_model.ders, index=timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.thermal_grid_model.ders, index=self.thermal_grid_model.timesteps, dtype=float)
         )
         thermal_grid_head_dlmp_der_thermal_power = (
-            pd.DataFrame(columns=self.thermal_grid_model.ders, index=timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.thermal_grid_model.ders, index=self.thermal_grid_model.timesteps, dtype=float)
         )
         thermal_grid_congestion_dlmp_der_thermal_power = (
-            pd.DataFrame(columns=self.thermal_grid_model.ders, index=timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.thermal_grid_model.ders, index=self.thermal_grid_model.timesteps, dtype=float)
         )
         thermal_grid_pump_dlmp_der_thermal_power = (
-            pd.DataFrame(columns=self.thermal_grid_model.ders, index=timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.thermal_grid_model.ders, index=self.thermal_grid_model.timesteps, dtype=float)
         )
 
         # Obtain DLMPs.
-        for timestep in timesteps:
+        for timestep in self.thermal_grid_model.timesteps:
             thermal_grid_energy_dlmp_node_thermal_power.loc[timestep, :] = (
                 price_data.price_timeseries.at[timestep, ('thermal_power', 'source', 'source')]
                 / self.thermal_grid_model.cooling_plant_efficiency
@@ -847,8 +880,7 @@ class LinearThermalGridModel(object):
 
     def get_optimization_results(
             self,
-            optimization_problem: fledge.utils.OptimizationProblem,
-            timesteps=pd.Index([0], name='timestep')
+            optimization_problem: fledge.utils.OptimizationProblem
     ) -> ThermalGridOperationResults:
 
         # Instantiate results variables.
@@ -859,7 +891,7 @@ class LinearThermalGridModel(object):
                     * np.array([self.thermal_grid_model.der_thermal_power_vector_reference])
                 ),
                 columns=self.thermal_grid_model.ders,
-                index=timesteps
+                index=self.thermal_grid_model.timesteps
             )
         )
         node_head_vector = (
@@ -869,7 +901,7 @@ class LinearThermalGridModel(object):
                     * np.array([self.thermal_grid_model.node_head_vector_reference])
                 ),
                 columns=self.thermal_grid_model.nodes,
-                index=timesteps
+                index=self.thermal_grid_model.timesteps
             )
         )
         branch_flow_vector = (
@@ -879,14 +911,14 @@ class LinearThermalGridModel(object):
                     * np.array([self.thermal_grid_model.branch_flow_vector_reference])
                 ),
                 columns=self.thermal_grid_model.branches,
-                index=timesteps
+                index=self.thermal_grid_model.timesteps
             )
         )
         pump_power = (
             pd.DataFrame(
                 optimization_problem.pump_power.value,
                 columns=['total'],
-                index=timesteps
+                index=self.thermal_grid_model.timesteps
             )
         )
 

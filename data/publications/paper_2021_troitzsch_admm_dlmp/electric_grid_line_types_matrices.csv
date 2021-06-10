@@ -1,0 +1,7 @@
+line_type,row,col,resistance,reactance,capacitance
+paper_2021_troitzsch_admm_dlmp_cable,1,1,0.077,0.108,312.0
+paper_2021_troitzsch_admm_dlmp_cable,2,1,0.0,0.0,0.0
+paper_2021_troitzsch_admm_dlmp_cable,2,2,0.077,0.108,312.0
+paper_2021_troitzsch_admm_dlmp_cable,3,1,0.0,0.0,0.0
+paper_2021_troitzsch_admm_dlmp_cable,3,2,0.0,0.0,0.0
+paper_2021_troitzsch_admm_dlmp_cable,3,3,0.077,0.108,312.0

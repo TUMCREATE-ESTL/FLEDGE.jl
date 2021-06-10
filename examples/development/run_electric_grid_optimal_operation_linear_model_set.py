@@ -59,7 +59,7 @@ def main():
         der_model_set.evaluate_optimization_objective(
             pre_solve_der_results,
             price_data,
-            electric_grid_model=electric_grid_model
+            has_electric_grid_objective=True
         )
     )
     pre_solve_objective_value += (
@@ -74,12 +74,8 @@ def main():
     optimization_problem = fledge.utils.OptimizationProblem()
 
     # Define optimization variables.
-    linear_electric_grid_model_set.define_optimization_variables(
-        optimization_problem
-    )
-    der_model_set.define_optimization_variables(
-        optimization_problem
-    )
+    linear_electric_grid_model_set.define_optimization_variables(optimization_problem)
+    der_model_set.define_optimization_variables(optimization_problem)
 
     # Define constraints.
     node_voltage_magnitude_vector_minimum = 0.5 * np.abs(electric_grid_model.node_voltage_vector_reference)
@@ -91,10 +87,7 @@ def main():
         node_voltage_magnitude_vector_maximum=node_voltage_magnitude_vector_maximum,
         branch_power_magnitude_vector_maximum=branch_power_magnitude_vector_maximum
     )
-    der_model_set.define_optimization_constraints(
-        optimization_problem,
-        electric_grid_model=electric_grid_model
-    )
+    der_model_set.define_optimization_constraints(optimization_problem)
 
     # Define objective.
     linear_electric_grid_model_set.define_optimization_objective(
@@ -111,16 +104,8 @@ def main():
 
     # Obtain results.
     results = fledge.problems.Results()
-    results.update(
-        linear_electric_grid_model_set.get_optimization_results(
-            optimization_problem
-        )
-    )
-    results.update(
-        der_model_set.get_optimization_results(
-            optimization_problem
-        )
-    )
+    results.update(linear_electric_grid_model_set.get_optimization_results(optimization_problem))
+    results.update(der_model_set.get_optimization_results(optimization_problem))
 
     # Print results.
     print(results)

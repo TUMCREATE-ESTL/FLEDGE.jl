@@ -1,17 +1,13 @@
 """Example script for setting up and solving an electric grid optimal operation problem."""
 
+import cvxpy as cp
 import numpy as np
 import os
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-import fledge.config
-import fledge.data_interface
-import fledge.der_models
-import fledge.electric_grid_models
-import fledge.problems
-import fledge.utils
+import fledge
 
 
 def main():
@@ -42,12 +38,8 @@ def main():
     optimization_problem = fledge.utils.OptimizationProblem()
 
     # Define optimization variables.
-    linear_electric_grid_model.define_optimization_variables(
-        optimization_problem
-    )
-    der_model_set.define_optimization_variables(
-        optimization_problem
-    )
+    linear_electric_grid_model.define_optimization_variables(optimization_problem)
+    der_model_set.define_optimization_variables(optimization_problem)
 
     # Define constraints.
     node_voltage_magnitude_vector_minimum = 0.5 * np.abs(electric_grid_model.node_voltage_vector_reference)
@@ -59,15 +51,12 @@ def main():
         node_voltage_magnitude_vector_maximum=node_voltage_magnitude_vector_maximum,
         branch_power_magnitude_vector_maximum=branch_power_magnitude_vector_maximum
     )
-    der_model_set.define_optimization_constraints(
-        optimization_problem,
-        electric_grid_model=electric_grid_model
-    )
+    der_model_set.define_optimization_constraints(optimization_problem)
 
     # Define objective.
     linear_electric_grid_model.define_optimization_objective(
         optimization_problem,
-        price_data,
+        price_data
     )
     der_model_set.define_optimization_objective(
         optimization_problem,
@@ -79,16 +68,8 @@ def main():
 
     # Obtain results.
     results = fledge.problems.Results()
-    results.update(
-        linear_electric_grid_model.get_optimization_results(
-            optimization_problem
-        )
-    )
-    results.update(
-        der_model_set.get_optimization_results(
-            optimization_problem
-        )
-    )
+    results.update(linear_electric_grid_model.get_optimization_results(optimization_problem))
+    results.update(der_model_set.get_optimization_results(optimization_problem))
 
     # Print results.
     print(results)

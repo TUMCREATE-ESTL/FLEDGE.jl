@@ -1,0 +1,3 @@
+surface_type,heat_capacity,heat_transfer_coefficient_conduction_surface,absorptivity_surface,emissivity_surface,window_type,window_wall_ratio,sky_view_factor
+paper_2021_troitzsch_admm_dlmp_wall,0.0,786.269,0.6,0.95,paper_2021_troitzsch_admm_dlmp_window,0.29,0.5
+paper_2021_troitzsch_admm_dlmp_roof,0.0,1.336,0.6,0.94,paper_2021_troitzsch_admm_dlmp_window,0.0,1.0

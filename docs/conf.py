@@ -3,7 +3,7 @@
 
 # Project information.
 project = 'FLEDGE'
-copyright = '2018-2020, TUMCREATE'
+copyright = '2018-2021, TUMCREATE'
 author = 'TUMCREATE'
 
 # Extensions.

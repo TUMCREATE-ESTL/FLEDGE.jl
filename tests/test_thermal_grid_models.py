@@ -1,10 +1,8 @@
 """Test script for thermal grid models module."""
 
-import time
 import unittest
 
-import fledge.config
-import fledge.thermal_grid_models
+import fledge
 
 logger = fledge.config.get_logger(__name__)
 
@@ -13,17 +11,15 @@ class TestThermalGridModels(unittest.TestCase):
 
     def test_thermal_grid_model(self):
         # Get result.
-        time_start = time.time()
+        fledge.utils.log_time("test_thermal_grid_model", log_level='info', logger_object=logger)
         fledge.thermal_grid_models.ThermalGridModel('singapore_tanjongpagar')
-        time_duration = time.time() - time_start
-        logger.info(f"Test ThermalGridModel: Completed in {time_duration:.6f} seconds.")
+        fledge.utils.log_time("test_thermal_grid_model", log_level='info', logger_object=logger)
 
     def test_thermal_power_flow_solution(self):
         # Get result.
-        time_start = time.time()
+        fledge.utils.log_time("test_thermal_power_flow_solution", log_level='info', logger_object=logger)
         fledge.thermal_grid_models.ThermalPowerFlowSolution('singapore_tanjongpagar')
-        time_duration = time.time() - time_start
-        logger.info(f"Test ThermalPowerFlowSolution: Completed in {time_duration:.6f} seconds.")
+        fledge.utils.log_time("test_thermal_power_flow_solution", log_level='info', logger_object=logger)
 
 
 if __name__ == '__main__':

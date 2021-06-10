@@ -7,14 +7,15 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       max-parallel: 8
       matrix:
         os: [
           windows-latest,
-          # macos-latest,
+          macos-latest,
           ubuntu-latest
         ]
-        python-version: [3.7]
+        python-version: [3.7, 3.8]
 
     steps:
     - name: Checkout repository

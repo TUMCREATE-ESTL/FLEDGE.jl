@@ -3,8 +3,8 @@ singapore_6node,4_1,fixed_load,mixed_commercial_residential,4,1,1,1,wye,-1000000
 singapore_6node,4_2,flexible_load,mixed_commercial_residential,4,1,1,1,wye,-3000000.0,-1500000.0,1
 singapore_6node,4_3,fixed_ev_charger,fixed_ev_charger_generic,4,1,1,1,wye,-1000000.0,-500000.0,1
 singapore_6node,4_4,flexible_building,tanjongpagar_building_1,4,1,1,1,wye,-2414989.499,-793768.6625,1
-singapore_6node,4_5,flexible_generator,photovoltaic,4,1,1,1,wye,500000.0,0.0,1
-singapore_6node,4_6,storage,default_battery_storage,4,1,1,1,wye,200000.0,0.0,1
+singapore_6node,4_5,flexible_generator,photovoltaic_generic,4,1,1,1,wye,500000.0,0.0,1
+singapore_6node,4_6,storage,battery_storage_generic,4,1,1,1,wye,200000.0,0.0,1
 singapore_6node,6_1,fixed_load,mixed_commercial_residential,6,1,0,0,wye,-15000.0,-7500.0,1
 singapore_6node,6_2,fixed_load,mixed_commercial_residential,6,0,1,0,wye,-10000.0,-5000.0,1
 singapore_6node,6_3,fixed_load,mixed_commercial_residential,6,0,0,1,wye,-5000.0,-2500.0,1
@@ -14,4 +14,4 @@ singapore_6node,6_6,flexible_load,mixed_commercial_residential,6,0,0,1,wye,-5000
 singapore_6node,6_7,fixed_ev_charger,fixed_ev_charger_generic,6,1,0,0,wye,-15000.0,-7500.0,1
 singapore_6node,6_8,fixed_ev_charger,fixed_ev_charger_generic,6,0,1,0,wye,-10000.0,-5000.0,1
 singapore_6node,6_9,fixed_ev_charger,fixed_ev_charger_generic,6,0,0,1,wye,-5000.0,-2500.0,1
-singapore_6node,6_10,fixed_generator,photovoltaic,6,1,1,1,wye,500000.0,0.0,1
+singapore_6node,6_10,fixed_generator,photovoltaic_generic,6,1,1,1,wye,500000.0,0.0,1

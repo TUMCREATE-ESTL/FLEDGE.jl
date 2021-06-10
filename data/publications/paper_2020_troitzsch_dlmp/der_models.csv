@@ -1,0 +1,2 @@
+der_type,der_model_name,definition_type,definition_name,power_per_unit_minimum,power_per_unit_maximum,power_factor_minimum,power_factor_maximum,energy_storage_capacity_per_unit,charging_efficiency,self_discharge_rate,marginal_cost,heat_pump_efficiency,thermal_efficiency,electric_efficiency
+cooling_plant,paper_2020_troitzsch_dlmp_cooling_plant,cooling_plant,paper_2020_troitzsch_dlmp_cooling_plant,,,,,,,,,,,

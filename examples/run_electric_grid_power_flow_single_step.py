@@ -1,5 +1,6 @@
 """Example script for setting up and solving an single step electric grid power flow problem."""
 
+import cvxpy as cp
 import numpy as np
 import os
 import pandas as pd

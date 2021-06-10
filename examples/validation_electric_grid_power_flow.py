@@ -1,15 +1,14 @@
 """Example script for testing / validating the electric grid power flow solution."""
 
-import matplotlib.pyplot as plt
+import cvxpy as cp
 import numpy as np
+import matplotlib.pyplot as plt  # TODO: Remove matplotlib dependency.
 import os
 import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
 
-import fledge.config
-import fledge.data_interface
-import fledge.electric_grid_models
-import fledge.problems
-import fledge.utils
+import fledge
 
 
 def main():
@@ -22,6 +21,11 @@ def main():
     # Recreate / overwrite database, to incorporate changes in the CSV files.
     fledge.data_interface.recreate_database()
 
+    # Obtain base scaling parameters.
+    scenario_data = fledge.data_interface.ScenarioData(scenario_name)
+    base_power = scenario_data.scenario.at['base_apparent_power']
+    base_voltage = scenario_data.scenario.at['base_voltage']
+
     # Obtain electric grid models.
     electric_grid_model_default = fledge.electric_grid_models.ElectricGridModelDefault(scenario_name)
     electric_grid_model_opendss = fledge.electric_grid_models.ElectricGridModelOpenDSS(scenario_name)
@@ -32,43 +36,43 @@ def main():
 
     # Instantiate results variables.
     der_power_vector = (
-        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.ders, dtype=np.float)
+        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.ders, dtype=float)
     )
     node_voltage_vector_fledge = (
-        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.nodes, dtype=np.complex)
+        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.nodes, dtype=complex)
     )
     node_voltage_vector_opendss = (
-        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.nodes, dtype=np.complex)
+        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.nodes, dtype=complex)
     )
     node_voltage_vector_magnitude_fledge = (
-        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.nodes, dtype=np.float)
+        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.nodes, dtype=float)
     )
     node_voltage_vector_magnitude_opendss = (
-        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.nodes, dtype=np.float)
+        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.nodes, dtype=float)
     )
     branch_power_vector_1_magnitude_fledge = (
-        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.branches, dtype=np.float)
+        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.branches, dtype=float)
     )
     branch_power_vector_1_magnitude_opendss = (
-        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.branches, dtype=np.float)
+        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.branches, dtype=float)
     )
     branch_power_vector_2_magnitude_fledge = (
-        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.branches, dtype=np.float)
+        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.branches, dtype=float)
     )
     branch_power_vector_2_magnitude_opendss = (
-        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.branches, dtype=np.float)
+        pd.DataFrame(index=power_multipliers, columns=electric_grid_model_default.branches, dtype=float)
     )
     loss_active_fledge = (
-        pd.Series(index=power_multipliers, dtype=np.float)
+        pd.Series(index=power_multipliers, dtype=float)
     )
     loss_active_opendss = (
-        pd.Series(index=power_multipliers, dtype=np.float)
+        pd.Series(index=power_multipliers, dtype=float)
     )
     loss_reactive_fledge = (
-        pd.Series(index=power_multipliers, dtype=np.float)
+        pd.Series(index=power_multipliers, dtype=float)
     )
     loss_reactive_opendss = (
-        pd.Series(index=power_multipliers, dtype=np.float)
+        pd.Series(index=power_multipliers, dtype=float)
     )
 
     # Obtain DER power / change.
@@ -300,16 +304,16 @@ def main():
     plt.scatter(
         [1, 2],
         [
-            np.real(power_flow_solution_fledge_nominal.loss),
-            np.imag(power_flow_solution_fledge_nominal.loss)
+            np.real(base_power * power_flow_solution_fledge_nominal.loss ),
+            np.imag(base_power * power_flow_solution_fledge_nominal.loss )
         ],
         marker=4
     )
     plt.scatter(
         [1, 2],
         [
-            np.real(power_flow_solution_opendss_nominal.loss),
-            np.imag(power_flow_solution_opendss_nominal.loss)
+            np.real(base_power * power_flow_solution_opendss_nominal.loss),
+            np.imag(base_power * power_flow_solution_opendss_nominal.loss)
         ],
         marker=5
     )
@@ -328,8 +332,8 @@ def main():
 
     # Voltage magnitude.
     for node_index, node in enumerate(electric_grid_model_default.nodes):
-        plt.plot(power_multipliers, node_voltage_vector_magnitude_opendss.loc[:, node], label='OpenDSS')
-        plt.plot(power_multipliers, node_voltage_vector_magnitude_fledge.loc[:, node], label='FLEDGE')
+        plt.plot(power_multipliers, base_voltage * node_voltage_vector_magnitude_opendss.loc[:, node], label='OpenDSS')
+        plt.plot(power_multipliers, base_voltage * node_voltage_vector_magnitude_fledge.loc[:, node], label='FLEDGE')
         plt.legend()
         plt.title(f"Voltage magnitude [V] for\n (node_type, node_name, phase): {node}")
         plt.savefig(os.path.join(results_path, f'voltage_magnitude_{node}.png'))
@@ -338,16 +342,16 @@ def main():
 
     # Branch flow.
     for branch_index, branch in enumerate(electric_grid_model_default.branches):
-        plt.plot(power_multipliers, branch_power_vector_1_magnitude_opendss.loc[:, branch], label='OpenDSS')
-        plt.plot(power_multipliers, branch_power_vector_1_magnitude_fledge.loc[:, branch], label='FLEDGE')
+        plt.plot(power_multipliers, base_power * branch_power_vector_1_magnitude_opendss.loc[:, branch], label='OpenDSS')
+        plt.plot(power_multipliers, base_power * branch_power_vector_1_magnitude_fledge.loc[:, branch], label='FLEDGE')
         plt.legend()
         plt.title(f"Branch power 1 magnitude [VA] for\n (branch_type, branch_name, phase): {branch}")
         plt.savefig(os.path.join(results_path, f'branch_power_1_{branch}.png'))
         # plt.show()
         plt.close()
 
-        plt.plot(power_multipliers, branch_power_vector_2_magnitude_opendss.loc[:, branch], label='OpenDSS')
-        plt.plot(power_multipliers, branch_power_vector_2_magnitude_fledge.loc[:, branch], label='FLEDGE')
+        plt.plot(power_multipliers, base_power * branch_power_vector_2_magnitude_opendss.loc[:, branch], label='OpenDSS')
+        plt.plot(power_multipliers, base_power * branch_power_vector_2_magnitude_fledge.loc[:, branch], label='FLEDGE')
         plt.legend()
         plt.title(f"Branch power 2 magnitude [VA] for\n (branch_type, branch_name, phase): {branch}")
         plt.savefig(os.path.join(results_path, f'branch_power_2_{branch}.png'))
@@ -355,16 +359,16 @@ def main():
         plt.close()
 
     # Loss.
-    plt.plot(power_multipliers, loss_active_opendss, label='OpenDSS')
-    plt.plot(power_multipliers, loss_active_fledge, label='FLEDGE')
+    plt.plot(power_multipliers, base_power * loss_active_opendss, label='OpenDSS')
+    plt.plot(power_multipliers, base_power * loss_active_fledge, label='FLEDGE')
     plt.legend()
     plt.title("Total loss active [W]")
     plt.savefig(os.path.join(results_path, f'loss_active.png'))
     # plt.show()
     plt.close()
 
-    plt.plot(power_multipliers, loss_reactive_opendss, label='OpenDSS')
-    plt.plot(power_multipliers, loss_reactive_fledge, label='FLEDGE')
+    plt.plot(power_multipliers, base_power * loss_reactive_opendss, label='OpenDSS')
+    plt.plot(power_multipliers, base_power * loss_reactive_fledge, label='FLEDGE')
     plt.legend()
     plt.title("Total loss reactive [VAr]")
     plt.savefig(os.path.join(results_path, f'loss_reactive.png'))

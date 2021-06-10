@@ -5,7 +5,7 @@
   subject to the nominal operation schedule of all DERs.
 """
 
-import fledge.api
+import fledge
 
 
 def main():

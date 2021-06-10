@@ -1,9 +1,8 @@
 """Test template."""
 
-import time
 import unittest
 
-import fledge.config
+import fledge
 
 logger = fledge.config.get_logger(__name__)
 
@@ -15,10 +14,9 @@ class TestTemplate(unittest.TestCase):
         expected = 4
 
         # Get actual result.
-        time_start = time.time()
+        fledge.utils.log_time("test_equal", log_level='info', logger_object=logger)
         actual = 2 + 2
-        time_duration = time.time() - time_start
-        logger.info(f"Test equal: Completed in {time_duration:.6f} seconds.")
+        fledge.utils.log_time("test_equal", log_level='info', logger_object=logger)
 
         # Compare expected and actual.
         self.assertEqual(actual, expected)
@@ -28,10 +26,9 @@ class TestTemplate(unittest.TestCase):
         expected = 4
 
         # Get actual result.
-        time_start = time.time()
+        fledge.utils.log_time("test_not_equal", log_level='info', logger_object=logger)
         actual = 2 + 1
-        time_duration = time.time() - time_start
-        logger.info(f"Test not equal: Completed in {time_duration:.6f} seconds.")
+        fledge.utils.log_time("test_not_equal", log_level='info', logger_object=logger)
 
         # Compare expected and actual.
         self.assertNotEqual(actual, expected)
