@@ -11,7 +11,7 @@ The following installation procedure is recommended, because it ensures best per
    - [Gurobi Optimizer](http://www.gurobi.com/) or [CPLEX Optimizer](https://www.ibm.com/analytics/cplex-optimizer)
 2. Clone or download repository. Ensure that the `cobmo` submodule directory is loaded as well.
 3. In Anaconda Prompt, run:
-   1. `conda create -n fledge -c conda-forge python=3.9 contextily cvxpy numpy pandas`
+   1. `conda create -n fledge -c conda-forge python=3.8 contextily cvxpy numpy pandas`
    2. `conda activate fledge`
    3. `pip install -v -e path_to_repository`
 4. If you want to use CPLEX:
@@ -21,7 +21,7 @@ The following installation procedure is recommended, because it ensures best per
 ### Quick installation
 
 1. Check requirements:
-   - Python 3.9
+   - Python 3.8
    - [Gurobi Optimizer](http://www.gurobi.com/)
 2. Clone or download repository. Ensure that the `cobmo` submodule directory is loaded as well.
 3. In your Python environment, run:
