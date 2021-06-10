@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="change_log.html">Change log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge">GitHub repository 🡕</a></li>
 </ul>
 
             
@@ -169,6 +170,7 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -295,8 +297,6 @@
         <li><a href="api_reference.html#module-fledge.der_models">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     fledge.electric_grid_models
 
@@ -304,6 +304,8 @@
         <li><a href="api_reference.html#module-fledge.electric_grid_models">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     fledge.problems
 
@@ -326,6 +328,8 @@
 </li>
       </ul></li>
       <li><a href="api_reference.html#fledge.der_models.FlexibleBuildingModel">FlexibleBuildingModel (class in fledge.der_models)</a>
+</li>
+      <li><a href="api_reference.html#fledge.der_models.FlexibleCHP">FlexibleCHP (class in fledge.der_models)</a>
 </li>
       <li><a href="api_reference.html#fledge.der_models.FlexibleDERModel">FlexibleDERModel (class in fledge.der_models)</a>
 </li>
@@ -386,6 +390,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#fledge.der_models.HeatPumpModel">HeatPumpModel (class in fledge.der_models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -395,19 +407,15 @@
 </li>
       <li><a href="api_reference.html#fledge.electric_grid_models.LinearElectricGridModelGlobal">LinearElectricGridModelGlobal (class in fledge.electric_grid_models)</a>
 </li>
-      <li><a href="api_reference.html#fledge.electric_grid_models.LinearElectricGridModelLocal">LinearElectricGridModelLocal (class in fledge.electric_grid_models)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#fledge.electric_grid_models.LinearElectricGridModelLocal">LinearElectricGridModelLocal (class in fledge.electric_grid_models)</a>
+</li>
       <li><a href="api_reference.html#fledge.thermal_grid_models.LinearThermalGridModel">LinearThermalGridModel (class in fledge.thermal_grid_models)</a>
 </li>
       <li><a href="api_reference.html#fledge.utils.ResultsBase.load">load() (fledge.utils.ResultsBase method)</a>
 </li>
       <li><a href="api_reference.html#fledge.utils.log_time">log_time() (in module fledge.utils)</a>
-</li>
-      <li><a href="api_reference.html#fledge.utils.log_timing_end">log_timing_end() (in module fledge.utils)</a>
-</li>
-      <li><a href="api_reference.html#fledge.utils.log_timing_start">log_timing_start() (in module fledge.utils)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -474,15 +482,17 @@
 </li>
       <li><a href="api_reference.html#fledge.electric_grid_models.PowerFlowSolution">PowerFlowSolution (class in fledge.electric_grid_models)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api_reference.html#fledge.electric_grid_models.PowerFlowSolutionFixedPoint">PowerFlowSolutionFixedPoint (class in fledge.electric_grid_models)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api_reference.html#fledge.electric_grid_models.PowerFlowSolutionOpenDSS">PowerFlowSolutionOpenDSS (class in fledge.electric_grid_models)</a>
 </li>
       <li><a href="api_reference.html#fledge.electric_grid_models.PowerFlowSolutionZBus">PowerFlowSolutionZBus (class in fledge.electric_grid_models)</a>
 </li>
       <li><a href="api_reference.html#fledge.data_interface.PriceData">PriceData (class in fledge.data_interface)</a>
+</li>
+      <li><a href="api_reference.html#fledge.electric_grid_models.ElectricGridModel.process_line_types_overhead">process_line_types_overhead() (fledge.electric_grid_models.ElectricGridModel static method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -514,6 +524,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference.html#fledge.utils.StandardForm">StandardForm (class in fledge.utils)</a>
+</li>
       <li><a href="api_reference.html#fledge.utils.starmap">starmap() (in module fledge.utils)</a>
 </li>
       <li><a href="api_reference.html#fledge.der_models.StorageModel">StorageModel (class in fledge.der_models)</a>
@@ -594,15 +606,15 @@
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../dro/index.html">feature/dro</a></dd>
+            <dd><a href="genindex.html">feature/sitem</a></dd>
             <dd><a href="../../develop/index.html">develop</a></dd>
             <dd><a href="../backup_verena/index.html">feature/backup_verena</a></dd>
             <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../dlmp_analysis/index.html">feature/dlmp_analysis</a></dd>
+            <dd><a href="../dro/index.html">feature/dro</a></dd>
             <dd><a href="../electric_grid_extensions/index.html">feature/electric_grid_extensions</a></dd>
             <dd><a href="../general_improvements/index.html">feature/general_improvements</a></dd>
             <dd><a href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
-            <dd><a href="genindex.html">feature/sitem</a></dd>
             <dd><a href="../test_cases/index.html">feature/test_cases</a></dd>
             <dd><a href="../trust_region/index.html">feature/trust_region</a></dd>
             <dd><a href="../updated_plots/index.html">feature/updated_plots</a></dd>
