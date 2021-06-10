@@ -171,81 +171,81 @@
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
 <p>If you are keen to contribute to this project, please follow these guidelines:</p>
 <ul class="simple">
-<li><p>Before making any change, please first discuss via issue or email with the owners of this repository.</p></li>
-<li><p>Development is based on Python 3.7.</p></li>
-<li><p>Git branches follow the <a class="reference external" href="https://nvie.com/posts/a-successful-git-branching-model/">GitFlow principle</a>.</p></li>
-<li><p>Release versioning follows the <a class="reference external" href="https://semver.org/">Semantic Versioning principle</a>.</p></li>
+<li>Before making any change, please first discuss via issue or email with the owners of this repository.</li>
+<li>Development is based on Python 3.7.</li>
+<li>Git branches follow the <a class="reference external" href="https://nvie.com/posts/a-successful-git-branching-model/">GitFlow principle</a>.</li>
+<li>Release versioning follows the <a class="reference external" href="https://semver.org/">Semantic Versioning principle</a>.</li>
 </ul>
 <section id="git-branches">
 <h2>Git branches<a class="headerlink" href="#git-branches" title="Permalink to this headline">¶</a></h2>
 <p>Based on the <a class="reference external" href="https://nvie.com/posts/a-successful-git-branching-model/">GitFlow principle</a> there are the following branches:</p>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">master</span></code> - Contains stable release versions of the repository. Only admins should send pull requests / commits to <code class="docutils literal notranslate"><span class="pre">master</span></code> when 1) fixing a bug or 2) publishing a new release.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">development</span></code> - This branch is intended as the main branch for development or improvement of features. Anyone can send pull requests to <code class="docutils literal notranslate"><span class="pre">develop</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">feature/xxx</span></code> - This branch is dedicated to developing feature <code class="docutils literal notranslate"><span class="pre">xxx</span></code>. The idea is to keep development or improvement works separate from the main <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch. Once the work is finished, a pull request is created for feature <code class="docutils literal notranslate"><span class="pre">xxx</span></code> to be merged back into the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch.</p></li>
+<li><code class="docutils literal notranslate"><span class="pre">master</span></code> - Contains stable release versions of the repository. Only admins should send pull requests / commits to <code class="docutils literal notranslate"><span class="pre">master</span></code> when 1) fixing a bug or 2) publishing a new release.</li>
+<li><code class="docutils literal notranslate"><span class="pre">development</span></code> - This branch is intended as the main branch for development or improvement of features. Anyone can send pull requests to <code class="docutils literal notranslate"><span class="pre">develop</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">feature/xxx</span></code> - This branch is dedicated to developing feature <code class="docutils literal notranslate"><span class="pre">xxx</span></code>. The idea is to keep development or improvement works separate from the main <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch. Once the work is finished, a pull request is created for feature <code class="docutils literal notranslate"><span class="pre">xxx</span></code> to be merged back into the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch.</li>
 </ol>
 </section>
 <section id="release-versioning">
 <h2>Release versioning<a class="headerlink" href="#release-versioning" title="Permalink to this headline">¶</a></h2>
 <p>Every time the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch changes, a new version number is defined according to the <a class="reference external" href="https://semver.org/">Semantic Versioning principle</a>:</p>
 <ol class="simple">
-<li><p>New releases cause a changing version number in the first digit for major changes and in the second digit for minor changes (e.g. from 0.1.13 -&gt; 0.2.0).</p></li>
-<li><p>Bugfixes cause a changing version number in the third digit (eg. from 0.1.12 -&gt; 0.1.13)</p></li>
+<li>New releases cause a changing version number in the first digit for major changes and in the second digit for minor changes (e.g. from 0.1.13 -&gt; 0.2.0).</li>
+<li>Bugfixes cause a changing version number in the third digit (eg. from 0.1.12 -&gt; 0.1.13)</li>
 </ol>
 </section>
 <section id="style-guide">
 <h2>Style guide<a class="headerlink" href="#style-guide" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8 Style Guide</a> and check <a class="reference external" href="https://realpython.com/python-pep8/">this PEP8 Explainer</a>.</p></li>
-<li><p>Variable / function / object / class / module names:</p>
+<li>Follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8 Style Guide</a> and check <a class="reference external" href="https://realpython.com/python-pep8/">this PEP8 Explainer</a>.</li>
+<li>Variable / function / object / class / module names:
 <ul>
-<li><p>Names are verbose and avoid abbreviations.</p></li>
-<li><p>Variable / function / object names are in lowercase and underscore_case (all letters are lowercase and all words are separated by underscores).</p></li>
-<li><p>Variable / object names start with a lowercase letter.</p></li>
-<li><p>Class / module names start with an uppercase letter and are in CamelCase (all letters are lowercase except for the first letter of new words).</p></li>
+<li>Names are verbose and avoid abbreviations.</li>
+<li>Variable / function / object names are in lowercase and underscore_case (all letters are lowercase and all words are separated by underscores).</li>
+<li>Variable / object names start with a lowercase letter.</li>
+<li>Class / module names start with an uppercase letter and are in CamelCase (all letters are lowercase except for the first letter of new words).</li>
 </ul>
 </li>
-<li><p>Paths:</p>
+<li>Paths:
 <ul>
-<li><p>Use relative paths.</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">os.join.path(&quot;x&quot;,</span> <span class="pre">&quot;y&quot;)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">&quot;x/y&quot;</span></code>.</p></li>
+<li>Use relative paths.</li>
+<li>Use <code class="docutils literal notranslate"><span class="pre">os.join.path(&quot;x&quot;,</span> <span class="pre">&quot;y&quot;)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">&quot;x/y&quot;</span></code>.</li>
 </ul>
 </li>
-<li><p>Docstrings / comments:</p>
+<li>Docstrings / comments:
 <ul>
-<li><p>Docstrings should at minimum contain a short description of the function / class / module.</p></li>
-<li><p>Docstrings and comments should only contain full sentences which conclude with a full stop (dot).</p></li>
-<li><p>Docstrings follow <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">Google style</a>.</p></li>
+<li>Docstrings should at minimum contain a short description of the function / class / module.</li>
+<li>Docstrings and comments should only contain full sentences which conclude with a full stop (dot).</li>
+<li>Docstrings follow <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">Google style</a>.</li>
 </ul>
 </li>
-<li><p>Exceptions / errors / warnings / debug info:</p>
+<li>Exceptions / errors / warnings / debug info:
 <ul>
-<li><p>Use proper logging tools instead of <code class="docutils literal notranslate"><span class="pre">print(&quot;Error:</span> <span class="pre">...&quot;)</span></code>.</p></li>
-<li><p>Use <a class="reference external" href="https://docs.python.org/3.6/library/logging.html">logging</a> like <code class="docutils literal notranslate"><span class="pre">logger.error(&quot;...&quot;)</span></code> or <code class="docutils literal notranslate"><span class="pre">logger.warning(&quot;...&quot;)</span></code> or <code class="docutils literal notranslate"><span class="pre">logger.debug(&quot;...&quot;)</span></code>.</p></li>
+<li>Use proper logging tools instead of <code class="docutils literal notranslate"><span class="pre">print(&quot;Error:</span> <span class="pre">...&quot;)</span></code>.</li>
+<li>Use <a class="reference external" href="https://docs.python.org/3.6/library/logging.html">logging</a> like <code class="docutils literal notranslate"><span class="pre">logger.error(&quot;...&quot;)</span></code> or <code class="docutils literal notranslate"><span class="pre">logger.warning(&quot;...&quot;)</span></code> or <code class="docutils literal notranslate"><span class="pre">logger.debug(&quot;...&quot;)</span></code>.</li>
 </ul>
 </li>
-<li><p>Line length:</p>
+<li>Line length:
 <ul>
-<li><p>Line lengths should not exceed 120 characters.</p></li>
+<li>Line lengths should not exceed 120 characters.</li>
 </ul>
 </li>
-<li><p>Line breaks:</p>
+<li>Line breaks:
 <ul>
-<li><p>Use brackets to contain content spanning multiple lines.</p></li>
-<li><p>Do not use the <code class="docutils literal notranslate"><span class="pre">\</span></code> symbol for line breaks.</p></li>
+<li>Use brackets to contain content spanning multiple lines.</li>
+<li>Do not use the <code class="docutils literal notranslate"><span class="pre">\</span></code> symbol for line breaks.</li>
 </ul>
 </li>
-<li><p>Quotes / strings:</p>
+<li>Quotes / strings:
 <ul>
-<li><p>Use single quotes <code class="docutils literal notranslate"><span class="pre">'...'</span></code> for parameters, indexes, pathes and use double quotes <code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code> for content, messages and docstrings.</p></li>
+<li>Use single quotes <code class="docutils literal notranslate"><span class="pre">'...'</span></code> for parameters, indexes, pathes and use double quotes <code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code> for content, messages and docstrings.</li>
 </ul>
 </li>
-<li><p>Results / output files:</p>
+<li>Results / output files:
 <ul>
-<li><p>Store results / output files only in the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory.</p></li>
-<li><p>The results path should be taken from <code class="docutils literal notranslate"><span class="pre">fledge.config</span></code> as <code class="docutils literal notranslate"><span class="pre">fledge.config.config['paths']['results']</span></code>.</p></li>
-<li><p>When saving results with timestamp, use <code class="docutils literal notranslate"><span class="pre">fledge.config.get_timestamp()</span></code>.</p></li>
-<li><p>The content of the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory should remain local, i.e., it should be ignored by Git and should not appear in any commits to the repository.</p></li>
+<li>Store results / output files only in the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory.</li>
+<li>The results path should be taken from <code class="docutils literal notranslate"><span class="pre">fledge.config</span></code> as <code class="docutils literal notranslate"><span class="pre">fledge.config.config['paths']['results']</span></code>.</li>
+<li>When saving results with timestamp, use <code class="docutils literal notranslate"><span class="pre">fledge.config.get_timestamp()</span></code>.</li>
+<li>The content of the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory should remain local, i.e., it should be ignored by Git and should not appear in any commits to the repository.</li>
 </ul>
 </li>
 </ul>

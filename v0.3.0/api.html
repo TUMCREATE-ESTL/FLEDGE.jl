@@ -185,14 +185,14 @@
 <p>Database interface.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="fledge.database_interface.recreate_database">
-<span class="sig-prename descclassname"><span class="pre">fledge.database_interface.</span></span><span class="sig-name descname"><span class="pre">recreate_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/tmp51pqph4s/2bedf354775dc5ace100a5c15848d32fcfc92d4e/data/database.sqlite'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_schema_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/tmp51pqph4s/2bedf354775dc5ace100a5c15848d32fcfc92d4e/fledge/database_schema.sql'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/tmp51pqph4s/2bedf354775dc5ace100a5c15848d32fcfc92d4e/data'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.database_interface.recreate_database" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fledge.database_interface.</span></span><span class="sig-name descname"><span class="pre">recreate_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/tmpsqa76ayh/2bedf354775dc5ace100a5c15848d32fcfc92d4e/data/database.sqlite'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_schema_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/tmpsqa76ayh/2bedf354775dc5ace100a5c15848d32fcfc92d4e/fledge/database_schema.sql'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/tmpsqa76ayh/2bedf354775dc5ace100a5c15848d32fcfc92d4e/data'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.database_interface.recreate_database" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recreate SQLITE database from SQL schema file and CSV files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>database_path</strong> (<em>str</em>) – </p></li>
-<li><p><strong>database_schema_path</strong> (<em>str</em>) – </p></li>
-<li><p><strong>csv_path</strong> (<em>str</em>) – </p></li>
+<li><strong>database_path</strong> (<em>str</em>) – </li>
+<li><strong>database_schema_path</strong> (<em>str</em>) – </li>
+<li><strong>csv_path</strong> (<em>str</em>) – </li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -203,7 +203,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fledge.database_interface.connect_database">
-<span class="sig-prename descclassname"><span class="pre">fledge.database_interface.</span></span><span class="sig-name descname"><span class="pre">connect_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/tmp51pqph4s/2bedf354775dc5ace100a5c15848d32fcfc92d4e/data/database.sqlite'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.database_interface.connect_database" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fledge.database_interface.</span></span><span class="sig-name descname"><span class="pre">connect_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/tmpsqa76ayh/2bedf354775dc5ace100a5c15848d32fcfc92d4e/data/database.sqlite'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.database_interface.connect_database" title="Permalink to this definition">¶</a></dt>
 <dd><p>Connect to the database at given <cite>data_path</cite> and return connection handle.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -291,8 +291,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.database_interface.DERData" title="fledge.database_interface.DERData"><em>fledge.database_interface.DERData</em></a>) – </p></li>
-<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
+<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.database_interface.DERData" title="fledge.database_interface.DERData"><em>fledge.database_interface.DERData</em></a>) – </li>
+<li><strong>der_name</strong> (<em>str</em>) – </li>
 </ul>
 </dd>
 </dl>
@@ -306,8 +306,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.database_interface.DERData" title="fledge.database_interface.DERData"><em>fledge.database_interface.DERData</em></a>) – </p></li>
-<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
+<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.database_interface.DERData" title="fledge.database_interface.DERData"><em>fledge.database_interface.DERData</em></a>) – </li>
+<li><strong>der_name</strong> (<em>str</em>) – </li>
 </ul>
 </dd>
 </dl>
@@ -328,8 +328,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.database_interface.DERData" title="fledge.database_interface.DERData"><em>fledge.database_interface.DERData</em></a>) – </p></li>
-<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
+<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.database_interface.DERData" title="fledge.database_interface.DERData"><em>fledge.database_interface.DERData</em></a>) – </li>
+<li><strong>der_name</strong> (<em>str</em>) – </li>
 </ul>
 </dd>
 </dl>
@@ -343,8 +343,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.database_interface.DERData" title="fledge.database_interface.DERData"><em>fledge.database_interface.DERData</em></a>) – </p></li>
-<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
+<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.database_interface.DERData" title="fledge.database_interface.DERData"><em>fledge.database_interface.DERData</em></a>) – </li>
+<li><strong>der_name</strong> (<em>str</em>) – </li>
 </ul>
 </dd>
 </dl>
@@ -379,20 +379,20 @@ but does not implement any functionality.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</p></li>
-<li><p><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</p></li>
-<li><p><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</p></li>
-<li><p><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</p></li>
-<li><p><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</p></li>
-<li><p><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</p></li>
-<li><p><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</p></li>
-<li><p><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</p></li>
-<li><p><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</p></li>
+<li><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</li>
+<li><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</li>
+<li><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</li>
+<li><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</li>
+<li><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</li>
+<li><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</li>
+<li><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</li>
+<li><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</li>
+<li><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</li>
 <li><p><strong>branches</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the branch types, branch names and phases
 corresponding to the dimension of the branch admittance matrices.</p></li>
 <li><p><strong>nodes</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the node types, node names and phases
 corresponding to the dimension of the node admittance matrices.</p></li>
-<li><p><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</p></li>
+<li><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</li>
 </ul>
 </dd>
 <dt class="field-even">Parameters</dt>
@@ -419,8 +419,8 @@ The required <cite>electric_grid_data</cite> is obtained from the database.</p><
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</p></li>
-<li><p><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.database_interface.ElectricGridData" title="fledge.database_interface.ElectricGridData"><em>fledge.database_interface.ElectricGridData</em></a>) – Electric grid data object.</p></li>
+<li><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</li>
+<li><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.database_interface.ElectricGridData" title="fledge.database_interface.ElectricGridData"><em>fledge.database_interface.ElectricGridData</em></a>) – Electric grid data object.</li>
 </ul>
 </dd>
 <dt class="field-odd">Keyword Arguments</dt>
@@ -432,30 +432,30 @@ and the nodal admittance matrix.</p>
 </dd>
 <dt class="field-even">Variables</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</p></li>
-<li><p><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</p></li>
-<li><p><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</p></li>
-<li><p><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</p></li>
-<li><p><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</p></li>
-<li><p><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</p></li>
-<li><p><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</p></li>
-<li><p><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</p></li>
-<li><p><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</p></li>
+<li><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</li>
+<li><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</li>
+<li><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</li>
+<li><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</li>
+<li><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</li>
+<li><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</li>
+<li><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</li>
+<li><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</li>
+<li><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</li>
 <li><p><strong>branches</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the branch types, branch names and phases
 corresponding to the dimension of the branch admittance matrices.</p></li>
 <li><p><strong>nodes</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the node types, node names and phases
 corresponding to the dimension of the node admittance matrices.</p></li>
-<li><p><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</p></li>
-<li><p><strong>node_admittance_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Nodal admittance matrix.</p></li>
-<li><p><strong>node_transformation_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Nodal transformation matrix.</p></li>
-<li><p><strong>branch_admittance_1_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch admittance matrix in the ‘from’ direction.</p></li>
-<li><p><strong>branch_admittance_2_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch admittance matrix in the ‘to’ direction.</p></li>
-<li><p><strong>branch_incidence_1_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch incidence matrix in the ‘from’ direction.</p></li>
-<li><p><strong>branch_incidence_2_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch incidence matrix in the ‘to’ direction.</p></li>
-<li><p><strong>der_incidence_wye_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Load incidence matrix for ‘wye’ DERs.</p></li>
-<li><p><strong>der_incidence_delta_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Load incidence matrix for ‘delta’ DERs.</p></li>
-<li><p><strong>node_voltage_vector_no_load</strong> (<em>np.ndarray</em>) – Nodal voltage at no load conditions.</p></li>
-<li><p><strong>der_power_vector_nominal</strong> (<em>np.ndarray</em>) – Load power vector at nominal power conditions.</p></li>
+<li><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</li>
+<li><strong>node_admittance_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Nodal admittance matrix.</li>
+<li><strong>node_transformation_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Nodal transformation matrix.</li>
+<li><strong>branch_admittance_1_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch admittance matrix in the ‘from’ direction.</li>
+<li><strong>branch_admittance_2_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch admittance matrix in the ‘to’ direction.</li>
+<li><strong>branch_incidence_1_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch incidence matrix in the ‘from’ direction.</li>
+<li><strong>branch_incidence_2_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch incidence matrix in the ‘to’ direction.</li>
+<li><strong>der_incidence_wye_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Load incidence matrix for ‘wye’ DERs.</li>
+<li><strong>der_incidence_delta_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Load incidence matrix for ‘delta’ DERs.</li>
+<li><strong>node_voltage_vector_no_load</strong> (<em>np.ndarray</em>) – Nodal voltage at no load conditions.</li>
+<li><strong>der_power_vector_nominal</strong> (<em>np.ndarray</em>) – Load power vector at nominal power conditions.</li>
 </ul>
 </dd>
 </dl>
@@ -471,7 +471,7 @@ corresponding to the dimension of the node admittance matrices.</p></li>
 utilizing the <cite>OpenDSSDirect.py</cite> package.</p></li>
 <li><p>The OpenDSS circuit can be accessed with the API of
 <cite>OpenDSSDirect.py</cite>: <a class="reference external" href="http://dss-extensions.org/OpenDSSDirect.py/opendssdirect.html">http://dss-extensions.org/OpenDSSDirect.py/opendssdirect.html</a></p></li>
-<li><p>Due to dependency on <cite>OpenDSSDirect.py</cite>, creating multiple objects of this type may result in erroneous behavior.</p></li>
+<li>Due to dependency on <cite>OpenDSSDirect.py</cite>, creating multiple objects of this type may result in erroneous behavior.</li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Syntax</dt>
@@ -484,26 +484,26 @@ The required <cite>electric_grid_data</cite> is obtained from the database.</p><
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</p></li>
-<li><p><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.database_interface.ElectricGridData" title="fledge.database_interface.ElectricGridData"><em>fledge.database_interface.ElectricGridData</em></a>) – Electric grid data object.</p></li>
+<li><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</li>
+<li><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.database_interface.ElectricGridData" title="fledge.database_interface.ElectricGridData"><em>fledge.database_interface.ElectricGridData</em></a>) – Electric grid data object.</li>
 </ul>
 </dd>
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</p></li>
-<li><p><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</p></li>
-<li><p><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</p></li>
-<li><p><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</p></li>
-<li><p><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</p></li>
-<li><p><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</p></li>
-<li><p><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</p></li>
-<li><p><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</p></li>
-<li><p><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</p></li>
+<li><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</li>
+<li><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</li>
+<li><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</li>
+<li><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</li>
+<li><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</li>
+<li><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</li>
+<li><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</li>
+<li><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</li>
+<li><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</li>
 <li><p><strong>branches</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the branch types, branch names and phases
 corresponding to the dimension of the branch admittance matrices.</p></li>
 <li><p><strong>nodes</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the node types, node names and phases
 corresponding to the dimension of the node admittance matrices.</p></li>
-<li><p><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</p></li>
+<li><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</li>
 </ul>
 </dd>
 </dl>
@@ -529,13 +529,13 @@ corresponding to the dimension of the node admittance matrices.</p></li>
 <li><p>Initial DER power vector / node voltage vector must be a valid
 solution to te fixed-point equation, e.g., a previous solution from a past
 operation point.</p></li>
-<li><p>Fixed point equation according to: &lt;<a class="reference external" href="https://arxiv.org/pdf/1702.03310.pdf">https://arxiv.org/pdf/1702.03310.pdf</a>&gt;</p></li>
+<li>Fixed point equation according to: &lt;<a class="reference external" href="https://arxiv.org/pdf/1702.03310.pdf">https://arxiv.org/pdf/1702.03310.pdf</a>&gt;</li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </p></li>
-<li><p><strong>der_power_vector</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </li>
+<li><strong>der_power_vector</strong> (<em>numpy.ndarray</em>) – </li>
 </ul>
 </dd>
 </dl>
@@ -552,8 +552,8 @@ operation point.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </p></li>
-<li><p><strong>node_voltage_vector</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </li>
+<li><strong>node_voltage_vector</strong> (<em>numpy.ndarray</em>) – </li>
 </ul>
 </dd>
 </dl>
@@ -566,8 +566,8 @@ operation point.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </p></li>
-<li><p><strong>node_voltage_vector</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </li>
+<li><strong>node_voltage_vector</strong> (<em>numpy.ndarray</em>) – </li>
 </ul>
 </dd>
 </dl>
@@ -585,7 +585,7 @@ operation point.</p></li>
 <em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_voltage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.PowerFlowSolutionOpenDSS.get_voltage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get nodal voltage vector by solving OpenDSS model.</p>
 <ul class="simple">
-<li><p>OpenDSS model must be readily set up, with the desired power being set for all DERs.</p></li>
+<li>OpenDSS model must be readily set up, with the desired power being set for all DERs.</li>
 </ul>
 </dd></dl>
 
@@ -594,7 +594,7 @@ operation point.</p></li>
 <em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_branch_power</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.PowerFlowSolutionOpenDSS.get_branch_power" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get branch power vectors by solving OpenDSS model.</p>
 <ul class="simple">
-<li><p>OpenDSS model must be readily set up, with the desired power being set for all DERs.</p></li>
+<li>OpenDSS model must be readily set up, with the desired power being set for all DERs.</li>
 </ul>
 </dd></dl>
 
@@ -603,7 +603,7 @@ operation point.</p></li>
 <em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_loss</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.PowerFlowSolutionOpenDSS.get_loss" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get total loss by solving OpenDSS model.</p>
 <ul class="simple">
-<li><p>OpenDSS model must be readily set up, with the desired power being set for all DERs.</p></li>
+<li>OpenDSS model must be readily set up, with the desired power being set for all DERs.</li>
 </ul>
 </dd></dl>
 
@@ -624,8 +624,8 @@ but does not implement any functionality.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</p></li>
-<li><p><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Reference power flow solution object.</p></li>
+<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</li>
+<li><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Reference power flow solution object.</li>
 <li><p><strong>sensitivity_voltage_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage vector
 by active wye power vector.</p></li>
 <li><p><strong>sensitivity_voltage_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage
@@ -744,15 +744,15 @@ model object for given <cite>electric_grid_model</cite> and <cite>power_flow_sol
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</p></li>
-<li><p><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Power flow solution object.</p></li>
-<li><p><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</p></li>
+<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</li>
+<li><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Power flow solution object.</li>
+<li><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</li>
 </ul>
 </dd>
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</p></li>
-<li><p><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Reference power flow solution object.</p></li>
+<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</li>
+<li><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Reference power flow solution object.</li>
 <li><p><strong>sensitivity_voltage_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage vector
 by active wye power vector.</p></li>
 <li><p><strong>sensitivity_voltage_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage
@@ -861,8 +861,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>thermal_grid_model</strong> (<a class="reference internal" href="#fledge.thermal_grid_models.ThermalGridModel" title="fledge.thermal_grid_models.ThermalGridModel"><em>fledge.thermal_grid_models.ThermalGridModel</em></a>) – </p></li>
-<li><p><strong>thermal_power_flow_solution</strong> (<a class="reference internal" href="#fledge.thermal_grid_models.ThermalPowerFlowSolution" title="fledge.thermal_grid_models.ThermalPowerFlowSolution"><em>fledge.thermal_grid_models.ThermalPowerFlowSolution</em></a>) – </p></li>
+<li><strong>thermal_grid_model</strong> (<a class="reference internal" href="#fledge.thermal_grid_models.ThermalGridModel" title="fledge.thermal_grid_models.ThermalGridModel"><em>fledge.thermal_grid_models.ThermalGridModel</em></a>) – </li>
+<li><strong>thermal_power_flow_solution</strong> (<a class="reference internal" href="#fledge.thermal_grid_models.ThermalPowerFlowSolution" title="fledge.thermal_grid_models.ThermalPowerFlowSolution"><em>fledge.thermal_grid_models.ThermalPowerFlowSolution</em></a>) – </li>
 </ul>
 </dd>
 </dl>
