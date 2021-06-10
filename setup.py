@@ -26,16 +26,16 @@ subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-i', 'https://py
 
 setuptools.setup(
     name='fledge',
-    version='0.3.0',
+    version='0.4.1',
     py_modules=setuptools.find_packages(),
     install_requires=[
         # Please note: Dependencies must also be added in `docs/conf.py` to `autodoc_mock_imports`.
         'cvxpy',
+        'dill',
         'diskcache',
         'kaleido',  # For static plot output with plotly.
         'matplotlib',
         'multimethod',
-        'multiprocess',
         'networkx',
         'natsort',
         'numpy',
@@ -45,6 +45,7 @@ setuptools.setup(
         'parameterized',  # For tests.
         'plotly',
         'pyyaml',
+        'ray',
         'scipy',
     ]
 )

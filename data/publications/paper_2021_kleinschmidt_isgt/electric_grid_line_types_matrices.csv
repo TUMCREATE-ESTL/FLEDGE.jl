@@ -1,0 +1,7 @@
+line_type,row,col,resistance,reactance,capacitance
+isgt_2021_cable_300amp,1,1,0.077,0.108,312.0
+isgt_2021_cable_300amp,2,1,0.0,0.0,0.0
+isgt_2021_cable_300amp,2,2,0.077,0.108,312.0
+isgt_2021_cable_300amp,3,1,0.0,0.0,0.0
+isgt_2021_cable_300amp,3,2,0.0,0.0,0.0
+isgt_2021_cable_300amp,3,3,0.077,0.108,312.0

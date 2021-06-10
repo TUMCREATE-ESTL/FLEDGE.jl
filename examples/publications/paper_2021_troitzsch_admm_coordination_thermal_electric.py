@@ -1,4 +1,6 @@
-"""Run script for reproducing results of the Paper XXX."""
+"""Run script for reproducing results of the Paper: 'Coordinated Market Clearing for Combined Thermal and Electric
+Distribution Grid Operation'.
+"""
 
 import cvxpy as cp
 import numpy as np
@@ -8,14 +10,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
 
-import fledge.config
-import fledge.data_interface
-import fledge.der_models
-import fledge.electric_grid_models
-import fledge.plots
-import fledge.problems
-import fledge.thermal_grid_models
-import fledge.utils
+import fledge
 
 
 def main(
@@ -24,10 +19,10 @@ def main(
 ):
 
     # Settings.
-    admm_iteration_limit = 10000
+    admm_iteration_limit = 1000
     admm_rho = 1e-1 if admm_rho is None else admm_rho
-    admm_primal_residual_termination_limit = 1e-6
-    admm_dual_residual_termination_limit = 1e-6
+    admm_primal_residual_termination_limit = 1e-1
+    admm_dual_residual_termination_limit = 1e-1
     scenario_number = 2 if scenario_number is None else scenario_number
     # Choices (Note that constrained cases may not solve reliably):
     # 1 - unconstrained operation,
@@ -35,7 +30,7 @@ def main(
     # 3 - constrained thermal grid pressure head,
     # 4 - constrained electric grid branch power,
     # 5 - constrained electric grid voltage
-    scenario_name = 'paper_2020_3'
+    scenario_name = 'paper_2021_troitzsch_admm'
 
     # Obtain results path.
     results_path = (
@@ -50,7 +45,7 @@ def main(
     fledge.utils.log_time(f"model setup")
     electric_grid_model = fledge.electric_grid_models.ElectricGridModelDefault(scenario_name)
     # Use base scenario power flow for consistent linear model behavior and per unit values.
-    power_flow_solution = fledge.electric_grid_models.PowerFlowSolutionFixedPoint('singapore_tanjongpagar_modified')
+    power_flow_solution = fledge.electric_grid_models.PowerFlowSolutionFixedPoint('paper_2021_troitzsch_admm_dlmp')
     linear_electric_grid_model = (
         fledge.electric_grid_models.LinearElectricGridModelGlobal(
             electric_grid_model,
@@ -58,8 +53,9 @@ def main(
         )
     )
     thermal_grid_model = fledge.thermal_grid_models.ThermalGridModel(scenario_name)
+    thermal_grid_model.cooling_plant_efficiency = 10.0  # Change model parameter to incentivize use of thermal grid.
     # Use base scenario power flow for consistent linear model behavior and per unit values.
-    thermal_power_flow_solution = fledge.thermal_grid_models.ThermalPowerFlowSolution('singapore_tanjongpagar_modified')
+    thermal_power_flow_solution = fledge.thermal_grid_models.ThermalPowerFlowSolution('paper_2021_troitzsch_admm_dlmp')
     linear_thermal_grid_model = (
         fledge.thermal_grid_models.LinearThermalGridModel(
             thermal_grid_model,
@@ -175,66 +171,48 @@ def main(
     fledge.utils.log_time(f"baseline problem setup")
 
     # Define linear electric grid model variables.
-    linear_electric_grid_model.define_optimization_variables(
-        optimization_problem_baseline,
-        scenario_data.timesteps
-    )
+    linear_electric_grid_model.define_optimization_variables(optimization_problem_baseline)
 
     # Define linear electric grid model constraints.
     linear_electric_grid_model.define_optimization_constraints(
         optimization_problem_baseline,
-        scenario_data.timesteps,
         node_voltage_magnitude_vector_minimum=node_voltage_magnitude_vector_minimum,
         node_voltage_magnitude_vector_maximum=node_voltage_magnitude_vector_maximum,
         branch_power_magnitude_vector_maximum=branch_power_magnitude_vector_maximum
     )
 
     # Define thermal grid model variables.
-    linear_thermal_grid_model.define_optimization_variables(
-        optimization_problem_baseline,
-        scenario_data.timesteps
-    )
+    linear_thermal_grid_model.define_optimization_variables(optimization_problem_baseline)
 
     # Define thermal grid model constraints.
     linear_thermal_grid_model.define_optimization_constraints(
         optimization_problem_baseline,
-        scenario_data.timesteps,
         node_head_vector_minimum=node_head_vector_minimum,
         branch_flow_vector_maximum=branch_flow_vector_maximum
     )
 
     # Define DER variables.
-    der_model_set.define_optimization_variables(
-        optimization_problem_baseline
-    )
+    der_model_set.define_optimization_variables(optimization_problem_baseline)
 
     # Define DER constraints.
-    der_model_set.define_optimization_constraints(
-        optimization_problem_baseline,
-        electric_grid_model=electric_grid_model,
-        thermal_grid_model=thermal_grid_model
-    )
+    der_model_set.define_optimization_constraints(optimization_problem_baseline)
 
     # Define electric grid objective.
     linear_electric_grid_model.define_optimization_objective(
         optimization_problem_baseline,
-        price_data,
-        timesteps=scenario_data.timesteps
+        price_data
     )
 
     # Define thermal grid objective.
     linear_thermal_grid_model.define_optimization_objective(
         optimization_problem_baseline,
-        price_data,
-        timesteps=scenario_data.timesteps
+        price_data
     )
 
     # Define DER objective.
     der_model_set.define_optimization_objective(
         optimization_problem_baseline,
-        price_data,
-        electric_grid_model=electric_grid_model,
-        thermal_grid_model=thermal_grid_model
+        price_data
     )
 
     # Log progress.
@@ -247,38 +225,21 @@ def main(
 
     # Get baseline results.
     results_baseline = fledge.problems.Results()
-    results_baseline.update(
-        linear_electric_grid_model.get_optimization_results(
-            optimization_problem_baseline,
-            power_flow_solution,
-            scenario_data.timesteps
-        )
-    )
+    results_baseline.update(linear_electric_grid_model.get_optimization_results(optimization_problem_baseline))
     results_baseline.update(
         linear_electric_grid_model.get_optimization_dlmps(
             optimization_problem_baseline,
-            price_data,
-            scenario_data.timesteps
+            price_data
         )
     )
-    results_baseline.update(
-        linear_thermal_grid_model.get_optimization_results(
-            optimization_problem_baseline,
-            scenario_data.timesteps
-        )
-    )
+    results_baseline.update(linear_thermal_grid_model.get_optimization_results(optimization_problem_baseline))
     results_baseline.update(
         linear_thermal_grid_model.get_optimization_dlmps(
             optimization_problem_baseline,
-            price_data,
-            scenario_data.timesteps
+            price_data
         )
     )
-    results_baseline.update(
-        der_model_set.get_optimization_results(
-            optimization_problem_baseline
-        )
-    )
+    results_baseline.update(der_model_set.get_optimization_results(optimization_problem_baseline))
 
     # ADMM: Electric sub-problem.
 
@@ -286,15 +247,11 @@ def main(
     fledge.utils.log_time(f"electric sub-problem setup")
 
     # Define linear electric grid model variables.
-    linear_electric_grid_model.define_optimization_variables(
-        optimization_problem_electric,
-        scenario_data.timesteps
-    )
+    linear_electric_grid_model.define_optimization_variables(optimization_problem_electric)
 
     # Define linear electric grid model constraints.
     linear_electric_grid_model.define_optimization_constraints(
         optimization_problem_electric,
-        scenario_data.timesteps,
         node_voltage_magnitude_vector_minimum=node_voltage_magnitude_vector_minimum,
         node_voltage_magnitude_vector_maximum=node_voltage_magnitude_vector_maximum,
         branch_power_magnitude_vector_maximum=branch_power_magnitude_vector_maximum
@@ -303,8 +260,7 @@ def main(
     # Define electric grid objective.
     linear_electric_grid_model.define_optimization_objective(
         optimization_problem_electric,
-        price_data,
-        timesteps=scenario_data.timesteps
+        price_data
     )
 
     # Define ADMM objective.
@@ -358,15 +314,11 @@ def main(
     fledge.utils.log_time(f"thermal sub-problem setup")
 
     # Define thermal grid model variables.
-    linear_thermal_grid_model.define_optimization_variables(
-        optimization_problem_thermal,
-        scenario_data.timesteps
-    )
+    linear_thermal_grid_model.define_optimization_variables(optimization_problem_thermal)
 
     # Define thermal grid model constraints.
     linear_thermal_grid_model.define_optimization_constraints(
         optimization_problem_thermal,
-        scenario_data.timesteps,
         node_head_vector_minimum=node_head_vector_minimum,
         branch_flow_vector_maximum=branch_flow_vector_maximum
     )
@@ -374,8 +326,7 @@ def main(
     # Define thermal grid objective.
     linear_thermal_grid_model.define_optimization_objective(
         optimization_problem_thermal,
-        price_data,
-        timesteps=scenario_data.timesteps
+        price_data
     )
 
     # Define ADMM objective.
@@ -416,18 +367,12 @@ def main(
     )
 
     # Define DER constraints.
-    der_model_set.define_optimization_constraints(
-        optimization_problem_aggregator,
-        electric_grid_model=electric_grid_model,
-        thermal_grid_model=thermal_grid_model
-    )
+    der_model_set.define_optimization_constraints(optimization_problem_aggregator)
 
     # # Define DER objective.
     # der_model_set.define_optimization_objective(
     #     optimization_problem_aggregator,
-    #     price_data,
-    #     electric_grid_model=electric_grid_model,
-    #     thermal_grid_model=thermal_grid_model
+    #     price_data
     # )
 
     # Define ADMM objective.
@@ -519,28 +464,13 @@ def main(
             fledge.utils.log_time(f"ADMM intermediate steps #{admm_iteration}")
 
             # Get electric sub-problem results.
-            results_electric = (
-                linear_electric_grid_model.get_optimization_results(
-                    optimization_problem_electric,
-                    power_flow_solution,
-                    scenario_data.timesteps
-                )
-            )
+            results_electric = linear_electric_grid_model.get_optimization_results(optimization_problem_electric)
 
             # Get thermal sub-problem results.
-            results_thermal = (
-                linear_thermal_grid_model.get_optimization_results(
-                    optimization_problem_thermal,
-                    scenario_data.timesteps
-                )
-            )
+            results_thermal = linear_thermal_grid_model.get_optimization_results(optimization_problem_thermal)
 
             # Get aggregator sub-problem results.
-            results_aggregator = (
-                der_model_set.get_optimization_results(
-                    optimization_problem_aggregator
-                )
-            )
+            results_aggregator = der_model_set.get_optimization_results(optimization_problem_aggregator)
 
             # Update ADMM variables.
             admm_exchange_der_active_power.value = (
@@ -888,7 +818,6 @@ def main(
                 x=results_baseline['thermal_grid_total_dlmp_der_thermal_power'].index,
                 y=(
                     results_baseline['thermal_grid_total_dlmp_der_thermal_power'].loc[:, (slice(None), der_name)].iloc[:, 0]
-                    / 1e3
                 ).values,
                 name='Centralized op.',
                 # fill='tozeroy',
@@ -900,7 +829,6 @@ def main(
                 x=admm_lambda_thermal_der_thermal_power.index,
                 y=(
                     admm_lambda_thermal_der_thermal_power.loc[:, (slice(None), der_name)].iloc[:, 0]
-                    / 1e3
                 ).values,
                 name='Thermal grid op.',
                 # line=go.scatter.Line(width=6, shape='hv')
@@ -911,7 +839,6 @@ def main(
                 x=admm_lambda_aggregator_der_thermal_power.index,
                 y=(
                     -1.0 * admm_lambda_aggregator_der_thermal_power.loc[:, (slice(None), der_name)].iloc[:, 0]
-                    / 1e3
                 ).values,
                 name='Flexible load agg.',
                 # line=go.scatter.Line(width=3, shape='hv')
@@ -935,7 +862,6 @@ def main(
                 x=results_baseline['electric_grid_total_dlmp_der_active_power'].index,
                 y=(
                     results_baseline['electric_grid_total_dlmp_der_active_power'].loc[:, (slice(None), der_name)].iloc[:, 0]
-                    / 1e3
                 ).values,
                 name='Centralized op.',
                 # fill='tozeroy',
@@ -947,7 +873,6 @@ def main(
                 x=admm_lambda_electric_der_active_power.index,
                 y=(
                     admm_lambda_electric_der_active_power.loc[:, (slice(None), der_name)].iloc[:, 0]
-                    / 1e3
                 ).values,
                 name='Electric grid op.',
                 # line=go.scatter.Line(width=6, shape='hv')
@@ -958,7 +883,6 @@ def main(
                 x=admm_lambda_aggregator_der_active_power.index,
                 y=(
                     -1.0 * admm_lambda_aggregator_der_active_power.loc[:, (slice(None), der_name)].iloc[:, 0]
-                    / 1e3
                 ).values,
                 name='Flexible load agg.',
                 # line=go.scatter.Line(width=3, shape='hv')
@@ -983,7 +907,6 @@ def main(
                 x=results_baseline['electric_grid_total_dlmp_der_reactive_power'].index,
                 y=(
                     results_baseline['electric_grid_total_dlmp_der_reactive_power'].loc[:, (slice(None), der_name)].iloc[:, 0]
-                    / 1e3
                 ).values,
                 name='Centralized op.',
                 # fill='tozeroy',
@@ -995,7 +918,6 @@ def main(
                 x=admm_lambda_electric_der_reactive_power.index,
                 y=(
                     admm_lambda_electric_der_reactive_power.loc[:, (slice(None), der_name)].iloc[:, 0]
-                    / 1e3
                 ).values,
                 name='Electric grid op.',
                 # line=go.scatter.Line(width=6, shape='hv')
@@ -1006,7 +928,6 @@ def main(
                 x=admm_lambda_aggregator_der_reactive_power.index,
                 y=(
                     -1.0 * admm_lambda_aggregator_der_reactive_power.loc[:, (slice(None), der_name)].iloc[:, 0]
-                    / 1e3
                 ).values,
                 name='Flexible load agg.',
                 # line=go.scatter.Line(width=3, shape='hv')

@@ -1,0 +1,2 @@
+zone_type,heat_capacity,infiltration_rate,internal_gain_type,hvac_generic_type,hvac_radiator_type,hvac_ahu_type,hvac_tu_type,constraint_type
+paper_2020_troitzsch_dlmp_office,47142.9,2.565e-05,cea_office,,,cea_ahu,,cea_office

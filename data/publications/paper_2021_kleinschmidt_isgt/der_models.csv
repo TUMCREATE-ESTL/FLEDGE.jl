@@ -1,0 +1,12 @@
+der_type,der_model_name,definition_type,definition_name,power_per_unit_minimum,power_per_unit_maximum,power_factor_minimum,power_factor_maximum,energy_storage_capacity_per_unit,charging_efficiency,self_discharge_rate,marginal_cost,heat_pump_efficiency,thermal_efficiency,electric_efficiency
+fixed_load,fixed_power_residential_isgt_2021,schedule_per_unit,power_residential_isgt_2021,,,,,,,,,,,
+fixed_load,fixed_thermal_residential_isgt_2021,schedule_per_unit,thermal_residential_isgt_2021,,,,,,,,,,,
+flexible_load,flex_power_residential_isgt_2021,schedule_per_unit,power_residential_isgt_2021,0.6,1.4,,,6,,,,,,
+flexible_load,flex_thermal_residential_isgt_2021,schedule_per_unit,thermal_residential_isgt_2021,0.6,1.4,,,6,,,,,,
+fixed_generator,photovoltaic_isgt_2021,schedule_per_unit,photovoltaic_isgt_2021,,,,,,,,,,,
+fixed_generator,solarthermal_isgt_2021,schedule_per_unit,solarthermal_isgt_2021,,,,,,,,,,,
+flexible_generator,photovoltaic_isgt_2021,schedule_per_unit,photovoltaic_isgt_2021,0,1,,,,,,0.1,,,
+flexible_generator,solarthermal_isgt_2021,schedule_per_unit,solarthermal_isgt_2021,0,1,,,,,,0.1,,,
+cooling_plant,heating_plant_isgt_2021,cooling_plant,heating_plant_isgt_2021,,,,,,,,,,,
+heat_pump,heat_pump_isgt_2021,schedule_per_unit,heat_pump_isgt_2021,0,1,,,6,,,1,1.2,,
+flexible_chp,flexible_chp_isgt_2021,schedule_per_unit,flexible_chp_isgt_2021,0,1,,,6,,,1,,0.55,0.37

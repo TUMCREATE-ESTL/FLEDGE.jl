@@ -173,10 +173,8 @@ def create_video(
         if type(label) is pd.Timestamp:
             filename = f"{name}_{fledge.utils.get_alphanumeric_string(f'{label}')}.png"
             images.append(cv2.imread(os.path.join(results_path, filename)))
-        try:
-            assert len(images) > 0
-        except AssertionError:
-            logger.error(f"No images / frames found for video of '{name}'. Check if given labels are valid timesteps.")
+        if len(images) == 0:
+            raise FileNotFoundError(f"No images / frames found for video of '{name}'. Check if given labels are valid timesteps.")
 
     # Setup video.
     video_writer = (

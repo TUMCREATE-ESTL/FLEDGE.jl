@@ -1,2 +1,2 @@
 scenario_name,electric_grid_name,thermal_grid_name,price_type,price_sensitivity_coefficient,parameter_set,timestep_start,timestep_end,timestep_interval,base_apparent_power,base_voltage
-singapore_6node,singapore_6node,,singapore_wholesale,1e-9,,2017-01-01T00:00:00,2017-01-02T00:00:00,01:00:00,10e3,10e3
+singapore_6node,singapore_6node,,singapore_wholesale,1e-9,,2017-01-02T00:00:00,2017-01-03T00:00:00,01:00:00,10e3,10e3

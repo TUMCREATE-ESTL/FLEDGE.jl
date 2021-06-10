@@ -17,6 +17,8 @@ CREATE TABLE der_cooling_plants (
 );
 CREATE TABLE der_ev_chargers (
     definition_name TEXT,
+    nominal_charging_definition_type TEXT,
+    nominal_charging_definition_name TEXT,
     maximum_charging_definition_type TEXT,
     maximum_charging_definition_name TEXT,
     maximum_discharging_definition_type TEXT,
@@ -40,6 +42,9 @@ CREATE TABLE der_models (
     charging_efficiency TEXT,
     self_discharge_rate TEXT,
     marginal_cost TEXT,
+    heat_pump_efficiency TEXT,
+    thermal_efficiency TEXT,
+    electric_efficiency TEXT,
     PRIMARY KEY(der_type,der_model_name)
 );
 CREATE TABLE der_schedules (
@@ -73,6 +78,7 @@ CREATE TABLE electric_grid_line_types (
     line_type TEXT,
     n_phases TEXT,
     maximum_current TEXT,
+    definition_type TEXT DEFAULT 'matrix',
     PRIMARY KEY(line_type)
 );
 CREATE TABLE electric_grid_line_types_matrices (
@@ -83,6 +89,35 @@ CREATE TABLE electric_grid_line_types_matrices (
     reactance TEXT,
     capacitance TEXT,
     PRIMARY KEY(line_type,row,col)
+);
+CREATE TABLE electric_grid_line_types_overhead (
+    line_type TEXT,
+    phase_1_conductor_id TEXT,
+    phase_2_conductor_id TEXT,
+    phase_3_conductor_id TEXT,
+    neutral_conductor_id TEXT,
+    earth_resistivity REAL,
+    air_permittivity TEXT,
+    phase_1_x REAL,
+    phase_1_y REAL,
+    phase_2_x REAL,
+    phase_2_y REAL,
+    phase_3_x REAL,
+    phase_3_y REAL,
+    neutral_x REAL,
+    neutral_y REAL,
+    PRIMARY KEY(line_type)
+);
+CREATE TABLE electric_grid_line_types_overhead_conductors (
+    conductor_id TEXT,
+    conductor_size_description TEXT,
+    conductor_stranding_description TEXT,
+    conductor_material_description TEXT,
+    conductor_diameter REAL,
+    conductor_geometric_mean_radius REAL,
+    conductor_resistance REAL,
+    conductor_maximum_current REAL,
+    PRIMARY KEY(conductor_id)
 );
 CREATE TABLE electric_grid_lines (
     electric_grid_name TEXT,

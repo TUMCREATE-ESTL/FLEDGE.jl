@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: s-weigand/setup-conda@v1
       with:
-        python-version: 3.7
+        python-version: 3.8
     - name: Install dependencies
       run: |
         conda install sphinx

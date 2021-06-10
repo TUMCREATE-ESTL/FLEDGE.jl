@@ -77,6 +77,10 @@ class ElectricGridModel(object):
             electric_grid_data: fledge.data_interface.ElectricGridData
     ):
 
+        # Process overhead line type definitions.
+        # - This is implemented as direct modification on the electric grid data object and therefore done first.
+        electric_grid_data = self.process_line_types_overhead(electric_grid_data)
+
         # Obtain index set for time steps.
         # - This is needed for optimization problem definitions within linear electric grid models.
         self.timesteps = electric_grid_data.scenario_data.timesteps
@@ -282,7 +286,7 @@ class ElectricGridModel(object):
         self.ders = pd.MultiIndex.from_frame(electric_grid_data.electric_grid_ders[['der_type', 'der_name']])
 
         # Obtain reference / no load voltage vector.
-        self.node_voltage_vector_reference = np.zeros(len(self.nodes), dtype=np.complex)
+        self.node_voltage_vector_reference = np.zeros(len(self.nodes), dtype=complex)
         voltage_phase_factors = (
             np.array([
                 np.exp(0 * 1j),  # Phase 1.
@@ -302,7 +306,7 @@ class ElectricGridModel(object):
             )
 
         # Obtain reference / rated branch power vector.
-        self.branch_power_vector_magnitude_reference = np.zeros(len(self.branches), dtype=np.float)
+        self.branch_power_vector_magnitude_reference = np.zeros(len(self.branches), dtype=float)
         for line_name, line in electric_grid_data.electric_grid_lines.iterrows():
             # Obtain branch index.
             branch_index = fledge.utils.get_index(self.branches, branch_type='line', branch_name=line_name)
@@ -333,10 +337,8 @@ class ElectricGridModel(object):
 
         # Obtain flag for single-phase-equivalent modelling.
         if electric_grid_data.electric_grid.at['is_single_phase_equivalent'] == 1:
-            try:
-                assert len(self.phases) == 1
-            except AssertionError:
-                logger.error(f"Cannot model electric grid with {len(self.phases)} phase as single-phase-equivalent.")
+            if len(self.phases) != 1:
+                raise ValueError(f"Cannot model electric grid with {len(self.phases)} phase as single-phase-equivalent.")
             self.is_single_phase_equivalent = True
         else:
             self.is_single_phase_equivalent = False
@@ -344,6 +346,227 @@ class ElectricGridModel(object):
         # Make modifications for single-phase-equivalent modelling.
         if self.is_single_phase_equivalent:
             self.branch_power_vector_magnitude_reference[fledge.utils.get_index(self.branches, branch_type='line')] *= 3
+
+    @staticmethod
+    def process_line_types_overhead(
+            electric_grid_data: fledge.data_interface.ElectricGridData
+    ) -> fledge.data_interface.ElectricGridData:
+        """Process overhead line type definitions in electric grid data object."""
+
+        # Process over-head line type definitions.
+        for line_type, line_type_data in electric_grid_data.electric_grid_line_types_overhead.iterrows():
+
+            # Obtain data shorthands.
+            # - Only for phases which have `conductor_id` defined in `electric_grid_line_types_overhead`.
+            phases = (
+                pd.Index([
+                    1 if pd.notnull(line_type_data.at['phase_1_conductor_id']) else None,
+                    2 if pd.notnull(line_type_data.at['phase_2_conductor_id']) else None,
+                    3 if pd.notnull(line_type_data.at['phase_3_conductor_id']) else None,
+                    'n' if pd.notnull(line_type_data.at['neutral_conductor_id']) else None
+                ]).dropna()
+            )
+            phase_conductor_id = (
+                pd.Series({
+                    1: line_type_data.at['phase_1_conductor_id'],
+                    2: line_type_data.at['phase_2_conductor_id'],
+                    3: line_type_data.at['phase_3_conductor_id'],
+                    'n': line_type_data.at['neutral_conductor_id']
+                }).loc[phases]
+            )
+            phase_y = (
+                pd.Series({
+                    1: line_type_data.at['phase_1_y'],
+                    2: line_type_data.at['phase_2_y'],
+                    3: line_type_data.at['phase_3_y'],
+                    'n': line_type_data.at['neutral_y']
+                }).loc[phases]
+            )
+            phase_xy = (
+                pd.Series({
+                    1: np.array([line_type_data.at['phase_1_x'], line_type_data.at['phase_1_y']]),
+                    2: np.array([line_type_data.at['phase_2_x'], line_type_data.at['phase_2_y']]),
+                    3: np.array([line_type_data.at['phase_3_x'], line_type_data.at['phase_3_y']]),
+                    'n': np.array([line_type_data.at['neutral_x'], line_type_data.at['neutral_y']])
+                }).loc[phases]
+            )
+            phase_conductor_diameter = (
+                pd.Series([
+                    electric_grid_data.electric_grid_line_types_overhead_conductors.at[
+                        phase_conductor_id.at[phase], 'conductor_diameter'
+                    ]
+                    for phase in phases
+                ], index=phases)
+                * 1e-3  # mm to m.
+            )
+            phase_conductor_geometric_mean_radius = (
+                pd.Series([
+                    electric_grid_data.electric_grid_line_types_overhead_conductors.at[
+                        phase_conductor_id.at[phase], 'conductor_geometric_mean_radius'
+                    ]
+                    for phase in phases
+                ], index=phases)
+                * 1e-3  # mm to m.
+            )
+            phase_conductor_resistance = (
+                pd.Series([
+                    electric_grid_data.electric_grid_line_types_overhead_conductors.at[
+                        phase_conductor_id.at[phase], 'conductor_resistance'
+                    ]
+                    for phase in phases
+                ], index=phases)
+            )
+            phase_conductor_maximum_current = (
+                pd.Series([
+                    electric_grid_data.electric_grid_line_types_overhead_conductors.at[
+                        phase_conductor_id.at[phase], 'conductor_maximum_current'
+                    ]
+                    for phase in phases
+                ], index=phases)
+            )
+
+            # Obtain shorthands for neutral / non-neutral phases.
+            # - This is needed for Kron reduction.
+            phases_neutral = phases[phases.isin(['n'])]
+            phases_non_neutral = phases[~phases.isin(['n'])]
+
+            # Other parameter shorthands.
+            frequency = electric_grid_data.electric_grid.at['base_frequency']  # In Hz.
+            earth_resistivity = line_type_data.at['earth_resistivity']  # In Ωm.
+            air_permittivity = line_type_data.at['air_permittivity']  # In nF/km.
+            g_factor = 1e-4  # In Ω/km from 0.1609347e-3 Ω/mile from Kersting <https://doi.org/10.1201/9781315120782>.
+
+            # Obtain impedance matrix in Ω/km based on Kersting <https://doi.org/10.1201/9781315120782>.
+            z_matrix = pd.DataFrame(index=phases, columns=phases, dtype=complex)
+            for phase_row, phase_col in itertools.product(phases, phases):
+                # Calculate geometric parameters.
+                d_distance = np.linalg.norm(phase_xy.at[phase_row] - phase_xy.at[phase_col])
+                s_distance = np.linalg.norm(phase_xy.at[phase_row] - np.array([1, -1]) * phase_xy.at[phase_col])
+                s_angle = np.pi / 2 - np.arcsin((phase_y.at[phase_row] + phase_y.at[phase_col]) / s_distance)
+                # Calculate Kersting / Carson parameters.
+                k_factor = (
+                    8.565e-4 * s_distance * np.sqrt(frequency / earth_resistivity)
+                )
+                p_factor = (
+                    np.pi / 8
+                    - (3 * np.sqrt(2)) ** -1 * k_factor * np.cos(s_angle)
+                    - k_factor ** 2 / 16 * np.cos(2 * s_angle) * (0.6728 + np.log(2 / k_factor))
+                )
+                q_factor = (
+                    -0.0386
+                    + 0.5 * np.log(2 / k_factor)
+                    + (3 * np.sqrt(2)) ** -1 * k_factor * np.cos(2 * s_angle)
+                )
+                x_factor = (
+                    2 * np.pi * frequency * g_factor
+                    * np.log(
+                        phase_conductor_diameter[phase_row]
+                        / phase_conductor_geometric_mean_radius.at[phase_row]
+                    )
+                )
+                # Calculate admittance according to Kersting / Carson <https://doi.org/10.1201/9781315120782>.
+                if phase_row == phase_col:
+                    z_matrix.at[phase_row, phase_col] = (
+                        phase_conductor_resistance.at[phase_row]
+                        + 4 * np.pi * frequency * p_factor * g_factor
+                        + 1j * (
+                            x_factor
+                            + 2 * np.pi * frequency * g_factor
+                            * np.log(s_distance / phase_conductor_diameter[phase_row])
+                            + 4 * np.pi * frequency * q_factor * g_factor
+                        )
+                    )
+                else:
+                    z_matrix.at[phase_row, phase_col] = (
+                        4 * np.pi * frequency * p_factor * g_factor
+                        + 1j * (
+                            2 * np.pi * frequency * g_factor
+                            * np.log(s_distance / d_distance)
+                            + 4 * np.pi * frequency * q_factor * g_factor
+                        )
+                    )
+
+            # Apply Kron reduction.
+            z_matrix = (
+                pd.DataFrame(
+                    (
+                        z_matrix.loc[phases_non_neutral, phases_non_neutral].values
+                        - z_matrix.loc[phases_non_neutral, phases_neutral].values
+                        @ z_matrix.loc[phases_neutral, phases_neutral].values ** -1  # Inverse of scalar value.
+                        @ z_matrix.loc[phases_neutral, phases_non_neutral].values
+                    ),
+                    index=phases_non_neutral,
+                    columns=phases_non_neutral
+                )
+            )
+
+            # Obtain potentials matrix in km/nF based on Kersting <https://doi.org/10.1201/9781315120782>.
+            p_matrix = pd.DataFrame(index=phases, columns=phases, dtype=float)
+            for phase_row, phase_col in itertools.product(phases, phases):
+                # Calculate geometric parameters.
+                d_distance = np.linalg.norm(phase_xy.at[phase_row] - phase_xy.at[phase_col])
+                s_distance = np.linalg.norm(phase_xy.at[phase_row] - np.array([1, -1]) * phase_xy.at[phase_col])
+                # Calculate potential according to Kersting <https://doi.org/10.1201/9781315120782>.
+                if phase_row == phase_col:
+                    p_matrix.at[phase_row, phase_col] = (
+                        1 / (2 * np.pi * air_permittivity)
+                        * np.log(s_distance / phase_conductor_diameter.at[phase_row])
+                    )
+                else:
+                    p_matrix.at[phase_row, phase_col] = (
+                        1 / (2 * np.pi * air_permittivity)
+                        * np.log(s_distance / d_distance)
+                    )
+
+            # Apply Kron reduction.
+            p_matrix = (
+                pd.DataFrame(
+                    (
+                        p_matrix.loc[phases_non_neutral, phases_non_neutral].values
+                        - p_matrix.loc[phases_non_neutral, phases_neutral].values
+                        @ p_matrix.loc[phases_neutral, phases_neutral].values ** -1  # Inverse of scalar value.
+                        @ p_matrix.loc[phases_neutral, phases_non_neutral].values
+                    ),
+                    index=phases_non_neutral,
+                    columns=phases_non_neutral
+                )
+            )
+
+            # Obtain capacitance matrix in nF/km.
+            c_matrix = pd.DataFrame(np.linalg.inv(p_matrix), index=phases_non_neutral, columns=phases_non_neutral)
+
+            # Obtain final element matrices.
+            resistance_matrix = z_matrix.apply(np.real)  # In Ω/km.
+            reactance_matrix = z_matrix.apply(np.imag)  # In Ω/km.
+            capacitance_matrix = c_matrix  # In nF/km.
+
+            # Add to line type matrices definition.
+            for phase_row in phases_non_neutral:
+                for phase_col in phases_non_neutral[phases_non_neutral <= phase_row]:
+                    electric_grid_data.electric_grid_line_types_matrices = (
+                        electric_grid_data.electric_grid_line_types_matrices.append(
+                            pd.Series({
+                                'line_type': line_type,
+                                'row': phase_row,
+                                'col': phase_col,
+                                'resistance': resistance_matrix.at[phase_row, phase_col],
+                                'reactance': reactance_matrix.at[phase_row, phase_col],
+                                'capacitance': capacitance_matrix.at[phase_row, phase_col]
+                            }),
+                            ignore_index=True
+                        )
+                    )
+
+            # Obtain number of phases.
+            electric_grid_data.electric_grid_line_types.loc[line_type, 'n_phases'] = len(phases_non_neutral)
+
+            # Obtain maximum current.
+            # TODO: Validate this.
+            electric_grid_data.electric_grid_line_types.loc[line_type, 'maximum_current'] = (
+                phase_conductor_maximum_current.loc[phases_non_neutral].mean()
+            )
+
+        return electric_grid_data
 
 
 class ElectricGridModelDefault(ElectricGridModel):
@@ -430,28 +653,28 @@ class ElectricGridModelDefault(ElectricGridModel):
         # Define sparse matrices for nodal admittance, nodal transformation,
         # branch admittance, branch incidence and der incidence matrix entries.
         self.node_admittance_matrix = (
-             scipy.sparse.dok_matrix((len(self.nodes), len(self.nodes)), dtype=np.complex)
+             scipy.sparse.dok_matrix((len(self.nodes), len(self.nodes)), dtype=complex)
         )
         self.node_transformation_matrix = (
-             scipy.sparse.dok_matrix((len(self.nodes), len(self.nodes)), dtype=np.int)
+             scipy.sparse.dok_matrix((len(self.nodes), len(self.nodes)), dtype=int)
         )
         self.branch_admittance_1_matrix = (
-             scipy.sparse.dok_matrix((len(self.branches), len(self.nodes)), dtype=np.complex)
+             scipy.sparse.dok_matrix((len(self.branches), len(self.nodes)), dtype=complex)
         )
         self.branch_admittance_2_matrix = (
-             scipy.sparse.dok_matrix((len(self.branches), len(self.nodes)), dtype=np.complex)
+             scipy.sparse.dok_matrix((len(self.branches), len(self.nodes)), dtype=complex)
         )
         self.branch_incidence_1_matrix = (
-             scipy.sparse.dok_matrix((len(self.branches), len(self.nodes)), dtype=np.int)
+             scipy.sparse.dok_matrix((len(self.branches), len(self.nodes)), dtype=int)
         )
         self.branch_incidence_2_matrix = (
-             scipy.sparse.dok_matrix((len(self.branches), len(self.nodes)), dtype=np.int)
+             scipy.sparse.dok_matrix((len(self.branches), len(self.nodes)), dtype=int)
         )
         self.der_incidence_wye_matrix = (
-             scipy.sparse.dok_matrix((len(self.nodes), len(self.ders)), dtype=np.float)
+             scipy.sparse.dok_matrix((len(self.nodes), len(self.ders)), dtype=float)
         )
         self.der_incidence_delta_matrix = (
-             scipy.sparse.dok_matrix((len(self.nodes), len(self.ders)), dtype=np.float)
+             scipy.sparse.dok_matrix((len(self.nodes), len(self.ders)), dtype=float)
         )
 
         # Add lines to admittance, transformation and incidence matrices.
@@ -562,10 +785,10 @@ class ElectricGridModelDefault(ElectricGridModel):
 
             # Add line element matrices to the branch incidence matrices.
             self.branch_incidence_1_matrix[np.ix_(branch_index, node_index_1)] += (
-                np.identity(len(branch_index), dtype=np.int)
+                np.identity(len(branch_index), dtype=int)
             )
             self.branch_incidence_2_matrix[np.ix_(branch_index, node_index_2)] += (
-                 np.identity(len(branch_index), dtype=np.int)
+                 np.identity(len(branch_index), dtype=int)
             )
 
         # Add transformers to admittance, transformation and incidence matrices.
@@ -773,10 +996,10 @@ class ElectricGridModelDefault(ElectricGridModel):
 
             # Add transformer element matrices to the branch incidence matrices.
             self.branch_incidence_1_matrix[np.ix_(branch_index, node_index_1)] += (
-                np.identity(len(branch_index), dtype=np.int)
+                np.identity(len(branch_index), dtype=int)
             )
             self.branch_incidence_2_matrix[np.ix_(branch_index, node_index_2)] += (
-                np.identity(len(branch_index), dtype=np.int)
+                np.identity(len(branch_index), dtype=int)
             )
 
         # Define transformation matrix according to:
@@ -831,7 +1054,7 @@ class ElectricGridModelDefault(ElectricGridModel):
                 # - Wye ders are represented as balanced ders across all
                 #   their connected phases.
                 incidence_matrix = (
-                    np.ones((len(node_index), 1), dtype=np.float)
+                    np.ones((len(node_index), 1), dtype=float)
                     / len(node_index)
                 )
                 self.der_incidence_wye_matrix[np.ix_(node_index, der_index)] = incidence_matrix
@@ -841,6 +1064,7 @@ class ElectricGridModelDefault(ElectricGridModel):
                 phases_list = fledge.utils.get_element_phases_array(der).tolist()
 
                 # Select connection node based on phase arrangement of delta der.
+                # TODO: Why no multi-phase delta DERs?
                 # - Delta DERs must be single-phase.
                 if phases_list in ([1, 2], [2, 3]):
                     node_index = [node_index[0]]
@@ -874,15 +1098,6 @@ class ElectricGridModelDefault(ElectricGridModel):
         self.branch_incidence_2_matrix = self.branch_incidence_2_matrix.tocsr()
         self.der_incidence_wye_matrix = self.der_incidence_wye_matrix.tocsr()
         self.der_incidence_delta_matrix = self.der_incidence_delta_matrix.tocsr()
-
-        # Calculate inverse of node admittance matrix.
-        # - Raise error if not invertible.
-        try:
-            self.node_admittance_matrix_inverse = scipy.sparse.linalg.inv(self.node_admittance_matrix.tocsc())
-            assert not np.isnan(self.node_admittance_matrix_inverse.data).any()
-        except (RuntimeError, AssertionError):
-            logger.error(f"Node admittance matrix could not be inverted. Please check electric grid definition.")
-            raise
 
         # Define shorthands for no-source variables.
         # TODO: Add in class documentation.
@@ -931,6 +1146,20 @@ class ElectricGridModelDefault(ElectricGridModel):
                 fledge.utils.get_index(self.nodes, node_type='source')
             ]
         )
+
+        # Calculate inverse of no-source node admittance matrix.
+        # - Raise error if not invertible.
+        # - Only checking invertibility of no-source node admittance matrix, because full node admittance matrix may
+        #   be non-invertible, e.g. zero entries when connecting a multi-phase line at three-phase source node.
+        try:
+            self.node_admittance_matrix_no_source_inverse = (
+                scipy.sparse.linalg.inv(self.node_admittance_matrix_no_source.tocsc())
+            )
+            assert not np.isnan(self.node_admittance_matrix_no_source_inverse.data).any()
+        except (RuntimeError, AssertionError) as exception:
+            raise (
+                ValueError(f"Node admittance matrix could not be inverted. Please check electric grid definition.")
+            ) from exception
 
 
 class ElectricGridModelOpenDSS(ElectricGridModel):
@@ -1301,7 +1530,7 @@ class PowerFlowSolution(object):
     node_voltage_vector: np.ndarray
     branch_power_vector_1: np.ndarray
     branch_power_vector_2: np.ndarray
-    loss: np.complex
+    loss: complex
 
 
 class PowerFlowSolutionFixedPoint(PowerFlowSolution):
@@ -1385,7 +1614,7 @@ class PowerFlowSolutionFixedPoint(PowerFlowSolution):
         node_power_vector_wye_candidate_no_source: np.ndarray,
         node_power_vector_delta_candidate_no_source: np.ndarray,
         node_voltage_vector_initial_no_source: np.ndarray
-    ) -> np.bool:
+    ) -> bool:
         """Check conditions for fixed-point solution existence, uniqueness and non-singularity for
          given power vector candidate and initial point.
 
@@ -1751,7 +1980,7 @@ class PowerFlowSolutionFixedPoint(PowerFlowSolution):
         )
 
         # Get full voltage vector.
-        node_voltage_vector = np.zeros(len(electric_grid_model.nodes), dtype=np.complex)
+        node_voltage_vector = np.zeros(len(electric_grid_model.nodes), dtype=complex)
         node_voltage_vector[fledge.utils.get_index(electric_grid_model.nodes, node_type='source')] += (
             electric_grid_model.node_voltage_vector_reference_source
         )
@@ -1955,7 +2184,7 @@ class PowerFlowSolutionZBus(PowerFlowSolutionFixedPoint):
             )
 
         # Get full voltage vector.
-        node_voltage_vector = np.zeros(len(electric_grid_model.nodes), dtype=np.complex)
+        node_voltage_vector = np.zeros(len(electric_grid_model.nodes), dtype=complex)
         node_voltage_vector[fledge.utils.get_index(electric_grid_model.nodes, node_type='source')] += (
             electric_grid_model.node_voltage_vector_reference_source
         )
@@ -2060,7 +2289,7 @@ class PowerFlowSolutionOpenDSS(PowerFlowSolution):
         # Create index for OpenDSS nodes.
         opendss_nodes = pd.Series(opendssdirect.Circuit.AllNodeNames()).str.split('.', expand=True)
         opendss_nodes.columns = ['node_name', 'phase']
-        opendss_nodes.loc[:, 'phase'] = opendss_nodes.loc[:, 'phase'].astype(np.int)
+        opendss_nodes.loc[:, 'phase'] = opendss_nodes.loc[:, 'phase'].astype(int)
         opendss_nodes = pd.MultiIndex.from_frame(opendss_nodes)
 
         # Extract nodal voltage vector and reindex to match FLEDGE nodes order.
@@ -2094,10 +2323,10 @@ class PowerFlowSolutionOpenDSS(PowerFlowSolution):
 
         # Instantiate branch vectors.
         branch_power_vector_1 = (
-            np.full(((opendssdirect.Lines.Count() + opendssdirect.Transformers.Count()), 3), np.nan, dtype=np.complex)
+            np.full(((opendssdirect.Lines.Count() + opendssdirect.Transformers.Count()), 3), np.nan, dtype=complex)
         )
         branch_power_vector_2 = (
-            np.full(((opendssdirect.Lines.Count() + opendssdirect.Transformers.Count()), 3), np.nan, dtype=np.complex)
+            np.full(((opendssdirect.Lines.Count() + opendssdirect.Transformers.Count()), 3), np.nan, dtype=complex)
         )
 
         # Instantiate iteration variables.
@@ -2221,18 +2450,18 @@ class PowerFlowSolutionSet(object):
 
         # Instantiate results variables.
         der_power_vector = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.timesteps, dtype=np.complex)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.timesteps, dtype=complex)
         )
         node_voltage_vector = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.timesteps, dtype=np.complex)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.timesteps, dtype=complex)
         )
         branch_power_vector_1 = (
-            pd.DataFrame(columns=self.electric_grid_model.branches, index=self.timesteps, dtype=np.complex)
+            pd.DataFrame(columns=self.electric_grid_model.branches, index=self.timesteps, dtype=complex)
         )
         branch_power_vector_2 = (
-            pd.DataFrame(columns=self.electric_grid_model.branches, index=self.timesteps, dtype=np.complex)
+            pd.DataFrame(columns=self.electric_grid_model.branches, index=self.timesteps, dtype=complex)
         )
-        loss = pd.DataFrame(columns=['total'], index=self.timesteps, dtype=np.complex)
+        loss = pd.DataFrame(columns=['total'], index=self.timesteps, dtype=complex)
 
         # Obtain results.
         for timestep in self.timesteps:
@@ -2488,7 +2717,7 @@ class LinearElectricGridModel(object):
     def define_optimization_constraints(
             self,
             optimization_problem: fledge.utils.OptimizationProblem,
-            timestep_index=slice(None),
+            timestep_index=slice(None),  # TODO: Enable passing as time step / list of time steps.
             node_voltage_magnitude_vector_minimum: np.ndarray = None,
             node_voltage_magnitude_vector_maximum: np.ndarray = None,
             branch_power_magnitude_vector_maximum: np.ndarray = None
@@ -2679,8 +2908,11 @@ class LinearElectricGridModel(object):
             self,
             optimization_problem: fledge.utils.OptimizationProblem,
             price_data: fledge.data_interface.PriceData,
-            timestep_index=slice(None)
+            timestep_index=slice(None)  # TODO: Enable passing as time step / list of time steps.
     ):
+
+        # Set objective flag.
+        optimization_problem.has_electric_grid_objective = True
 
         # Obtain timestep interval in hours, for conversion of power to energy.
         if len(price_data.price_timeseries.index) > 1:
@@ -2691,59 +2923,65 @@ class LinearElectricGridModel(object):
         else:
             timestep_interval_hours = 1.0
 
-        # Define active power cost / revenue.
-        # - Cost for load / demand, revenue for generation / supply.
-        optimization_problem.objective += (
-            (
-                np.array([
-                    price_data.price_timeseries.loc[:, ('active_power', 'source', 'source')].values[timestep_index]
-                ])
-                * timestep_interval_hours  # In Wh.
-                @ cp.sum(-1.0 * (
-                    cp.multiply(
-                        optimization_problem.der_active_power_vector[timestep_index, :],
-                        np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
-                    )
-                ), axis=1, keepdims=True)  # Sum along DERs, i.e. sum for each timestep.
-            )
-            + ((
-                price_data.price_sensitivity_coefficient
-                * timestep_interval_hours  # In Wh.
-                * cp.sum((
-                    cp.multiply(
-                        optimization_problem.der_active_power_vector[timestep_index, :],
-                        np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
-                    )
-                ) ** 2)
-            ) if price_data.price_sensitivity_coefficient != 0.0 else 0.0)
-        )
+        # Define objective for electric loads.
+        # - Defined as cost of electric supply at electric grid source node.
+        # - Only defined here, if not yet defined as cost of electric power supply at the DER node
+        #   in `fledge.der_models.DERModel.define_optimization_objective`.
+        if not optimization_problem.has_der_objective:
 
-        # Define reactive power cost / revenue.
-        # - Cost for load / demand, revenue for generation / supply.
-        optimization_problem.objective += (
-            (
-                np.array([
-                    price_data.price_timeseries.loc[:, ('reactive_power', 'source', 'source')].values[timestep_index]
-                ])
-                * timestep_interval_hours  # In Wh.
-                @ cp.sum(-1.0 * (
-                    cp.multiply(
-                        optimization_problem.der_reactive_power_vector[timestep_index, :],
-                        np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
-                    )
-                ), axis=1, keepdims=True)  # Sum along DERs, i.e. sum for each timestep.
+            # Active power cost / revenue.
+            # - Cost for load / demand, revenue for generation / supply.
+            optimization_problem.objective += (
+                (
+                    np.array([
+                        price_data.price_timeseries.loc[:, ('active_power', 'source', 'source')].values[timestep_index]
+                    ])
+                    * timestep_interval_hours  # In Wh.
+                    @ cp.sum(-1.0 * (
+                        cp.multiply(
+                            optimization_problem.der_active_power_vector[timestep_index, :],
+                            np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
+                        )
+                    ), axis=1, keepdims=True)  # Sum along DERs, i.e. sum for each timestep.
+                )
+                + ((
+                    price_data.price_sensitivity_coefficient
+                    * timestep_interval_hours  # In Wh.
+                    * cp.sum((
+                        cp.multiply(
+                            optimization_problem.der_active_power_vector[timestep_index, :],
+                            np.array([np.real(self.electric_grid_model.der_power_vector_reference)])
+                        )
+                    ) ** 2)
+                ) if price_data.price_sensitivity_coefficient != 0.0 else 0.0)
             )
-            + ((
-                price_data.price_sensitivity_coefficient
-                * timestep_interval_hours  # In Wh.
-                * cp.sum((
-                    cp.multiply(
-                        optimization_problem.der_reactive_power_vector[timestep_index, :],
-                        np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
-                    )
-                ) ** 2)  # Sum along DERs, i.e. sum for each timestep.
-            ) if price_data.price_sensitivity_coefficient != 0.0 else 0.0)
-        )
+
+            # Reactive power cost / revenue.
+            # - Cost for load / demand, revenue for generation / supply.
+            optimization_problem.objective += (
+                (
+                    np.array([
+                        price_data.price_timeseries.loc[:, ('reactive_power', 'source', 'source')].values[timestep_index]
+                    ])
+                    * timestep_interval_hours  # In Wh.
+                    @ cp.sum(-1.0 * (
+                        cp.multiply(
+                            optimization_problem.der_reactive_power_vector[timestep_index, :],
+                            np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
+                        )
+                    ), axis=1, keepdims=True)  # Sum along DERs, i.e. sum for each timestep.
+                )
+                + ((
+                    price_data.price_sensitivity_coefficient
+                    * timestep_interval_hours  # In Wh.
+                    * cp.sum((
+                        cp.multiply(
+                            optimization_problem.der_reactive_power_vector[timestep_index, :],
+                            np.array([np.imag(self.electric_grid_model.der_power_vector_reference)])
+                        )
+                    ) ** 2)  # Sum along DERs, i.e. sum for each timestep.
+                ) if price_data.price_sensitivity_coefficient != 0.0 else 0.0)
+            )
 
         # Define active loss cost.
         optimization_problem.objective += (
@@ -2885,55 +3123,55 @@ class LinearElectricGridModel(object):
         # Instantiate DLMP variables.
         # TODO: Consider delta connections in nodal DLMPs.
         electric_grid_energy_dlmp_node_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_voltage_dlmp_node_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_congestion_dlmp_node_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_loss_dlmp_node_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
 
         electric_grid_energy_dlmp_node_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_voltage_dlmp_node_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_congestion_dlmp_node_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_loss_dlmp_node_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
 
         electric_grid_energy_dlmp_der_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_voltage_dlmp_der_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_congestion_dlmp_der_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_loss_dlmp_der_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
 
         electric_grid_energy_dlmp_der_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_voltage_dlmp_der_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_congestion_dlmp_der_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_loss_dlmp_der_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
 
         # Obtain DLMPs.
@@ -4726,6 +4964,9 @@ class LinearElectricGridModelSet(object):
             price_data: fledge.data_interface.PriceData
     ):
 
+        # Set objective flag.
+        optimization_problem.has_electric_grid_objective = True
+
         for timestep in self.timesteps:
             self.linear_electric_grid_models[timestep].define_optimization_objective(
                 optimization_problem,
@@ -4853,55 +5094,55 @@ class LinearElectricGridModelSet(object):
         # Instantiate DLMP variables.
         # TODO: Consider delta connections in nodal DLMPs.
         electric_grid_energy_dlmp_node_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_voltage_dlmp_node_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_congestion_dlmp_node_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_loss_dlmp_node_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
 
         electric_grid_energy_dlmp_node_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_voltage_dlmp_node_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_congestion_dlmp_node_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_loss_dlmp_node_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.nodes, index=self.electric_grid_model.timesteps, dtype=float)
         )
 
         electric_grid_energy_dlmp_der_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_voltage_dlmp_der_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_congestion_dlmp_der_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_loss_dlmp_der_active_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
 
         electric_grid_energy_dlmp_der_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_voltage_dlmp_der_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_congestion_dlmp_der_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
         electric_grid_loss_dlmp_der_reactive_power = (
-            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=np.float)
+            pd.DataFrame(columns=self.electric_grid_model.ders, index=self.electric_grid_model.timesteps, dtype=float)
         )
 
         # Obtain DLMPs.

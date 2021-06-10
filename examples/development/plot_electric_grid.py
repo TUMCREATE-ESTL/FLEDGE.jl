@@ -13,9 +13,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import rasterio.warp
 
-import fledge.data_interface
-import fledge.plots
-import fledge.utils
+import fledge
 
 
 def main():

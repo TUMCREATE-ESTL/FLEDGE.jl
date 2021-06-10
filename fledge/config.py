@@ -4,11 +4,11 @@ import diskcache
 import logging
 import matplotlib
 import matplotlib.pyplot as plt
-import multiprocess
 import os
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
+import ray.util.multiprocessing
 import yaml
 
 
@@ -76,11 +76,6 @@ def get_config() -> dict:
     complete_config['paths']['database'] = get_full_path(complete_config['paths']['database'])
     complete_config['paths']['results'] = get_full_path(complete_config['paths']['results'])
 
-    # If not running as main process, set `run_parallel` to False.
-    # - Workaround to avoid that subprocesses / workers infinitely spawn further subprocesses / workers.
-    if multiprocess.current_process().name != 'MainProcess':
-        complete_config['multiprocessing']['run_parallel'] = False
-
     return complete_config
 
 
@@ -109,13 +104,14 @@ def get_logger(
     return logger
 
 
-def get_parallel_pool() -> multiprocess.Pool:
+def get_parallel_pool() -> ray.util.multiprocessing.Pool:
     """Create multiprocessing / parallel computing pool.
 
     - Number of parallel processes / workers defaults to number of CPU threads as returned by `os.cpu_count()`.
     """
 
-    return multiprocess.Pool()
+    # Obtain multiprocessing pool.
+    return ray.util.multiprocessing.Pool()
 
 
 def memoize(name):
