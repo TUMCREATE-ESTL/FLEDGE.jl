@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Contributing &mdash; FLEDGE  documentation</title>
@@ -172,7 +173,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="contributing">
+  <section id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
 <p>If you are keen to contribute to this project, please follow these guidelines:</p>
 <ul class="simple">
@@ -181,7 +182,7 @@
 <li>Git branches follow the <a class="reference external" href="https://nvie.com/posts/a-successful-git-branching-model/">GitFlow principle</a>.</li>
 <li>Release versioning follows the <a class="reference external" href="https://semver.org/">Semantic Versioning principle</a>.</li>
 </ul>
-<div class="section" id="git-branches">
+<section id="git-branches">
 <h2>Git branches<a class="headerlink" href="#git-branches" title="Permalink to this headline">¶</a></h2>
 <p>Based on the <a class="reference external" href="https://nvie.com/posts/a-successful-git-branching-model/">GitFlow principle</a> there are the following branches:</p>
 <ol class="simple">
@@ -189,16 +190,16 @@
 <li><code class="docutils literal notranslate"><span class="pre">develop</span></code> - This branch is intended as the main branch for development or improvement of features. Anyone can send pull requests to <code class="docutils literal notranslate"><span class="pre">develop</span></code>.</li>
 <li><code class="docutils literal notranslate"><span class="pre">feature/xxx</span></code> - This branch is dedicated to developing feature <code class="docutils literal notranslate"><span class="pre">xxx</span></code>. The idea is to keep development or improvement works separate from the main <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch. Once the work is finished, a pull request is created for feature <code class="docutils literal notranslate"><span class="pre">xxx</span></code> to be merged back into the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch.</li>
 </ol>
-</div>
-<div class="section" id="release-versioning">
+</section>
+<section id="release-versioning">
 <h2>Release versioning<a class="headerlink" href="#release-versioning" title="Permalink to this headline">¶</a></h2>
 <p>Every time the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch changes, a new version number is defined according to the <a class="reference external" href="https://semver.org/">Semantic Versioning principle</a>:</p>
 <ol class="simple">
 <li>New releases cause a changing version number in the first digit for major changes and in the second digit for minor changes (e.g. from 0.1.13 -&gt; 0.2.0).</li>
 <li>Bugfixes cause a changing version number in the third digit (eg. from 0.1.12 -&gt; 0.1.13)</li>
 </ol>
-</div>
-<div class="section" id="style-guide">
+</section>
+<section id="style-guide">
 <h2>Style guide<a class="headerlink" href="#style-guide" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8 Style Guide</a> and check <a class="reference external" href="https://realpython.com/python-pep8/">this PEP8 Explainer</a>.</li>
@@ -253,8 +254,8 @@
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="release-checklist">
+</section>
+<section id="release-checklist">
 <h2>Release checklist<a class="headerlink" href="#release-checklist" title="Permalink to this headline">¶</a></h2>
 <p>Before pushing a new commit / release to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, please go through the following steps:</p>
 <ol class="simple">
@@ -279,8 +280,8 @@
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="updating-environment-yml">
+</section>
+<section id="updating-environment-yml">
 <h2>Updating <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code><a class="headerlink" href="#updating-environment-yml" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file in the repository base directory provides a snapshot of an Anaconda environment with specific package versions which has been tested and is confirmed to work. The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file should be updated before releases, i.e. commits to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. To update <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, follow these steps:</p>
 <ol class="simple">
@@ -291,8 +292,8 @@
 <li>Remove <code class="docutils literal notranslate"><span class="pre">prefix:</span> <span class="pre">...</span></code> line from <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</li>
 <li>Add line at the top of file: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Last</span> <span class="pre">updated:</span> <span class="pre">DD</span> <span class="pre">Month</span> <span class="pre">YYYY</span> <span class="pre">(FLEDGE</span> <span class="pre">vX.X.X)</span></code></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

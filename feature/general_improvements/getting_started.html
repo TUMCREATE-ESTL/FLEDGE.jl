@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Getting Started &mdash; FLEDGE  documentation</title>
@@ -182,11 +183,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="getting-started">
+  <section id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="installation">
+<section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="recommended-installation">
+<section id="recommended-installation">
 <h3>Recommended installation<a class="headerlink" href="#recommended-installation" title="Permalink to this headline">¶</a></h3>
 <p>The following installation procedure is recommended, because it ensures best performance and includes optional dependencies. For example, the numpy, pandas and cvxpy packages are installed through Anaconda, which ensures the use of more performant math libraries. Additionally, the contextily package is installed, which is required for some geographical plots.</p>
 <ol class="simple">
@@ -199,7 +200,7 @@
 <li>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</li>
 <li>In Anaconda Prompt, run:
 <ol class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">python=3.9</span> <span class="pre">contextily</span> <span class="pre">cvxpy</span> <span class="pre">numpy</span> <span class="pre">pandas</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">python=3.8</span> <span class="pre">contextily</span> <span class="pre">cvxpy</span> <span class="pre">numpy</span> <span class="pre">pandas</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></li>
 </ol>
@@ -211,13 +212,13 @@
 </ol>
 </li>
 </ol>
-</div>
-<div class="section" id="quick-installation">
+</section>
+<section id="quick-installation">
 <h3>Quick installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li>Check requirements:
 <ul class="simple">
-<li>Python 3.9</li>
+<li>Python 3.8</li>
 <li><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></li>
 </ul>
 </li>
@@ -229,8 +230,8 @@
 </li>
 </ol>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">fledge.plots</span></code> module optionally allows adding contextual basemaps to grid plots for orientation. This requires installation of <code class="docutils literal notranslate"><span class="pre">contextily</span></code>, which is an optional dependency, because it needs to be installed through <code class="docutils literal notranslate"><span class="pre">conda</span></code> on Windows. If you need it, please follow the reccomended installation procedure above.</p>
-</div>
-<div class="section" id="alternative-installation">
+</section>
+<section id="alternative-installation">
 <h3>Alternative installation<a class="headerlink" href="#alternative-installation" title="Permalink to this headline">¶</a></h3>
 <p>If you are running into errors when installing or running FLEDGE, this may be due to incompatibility with new versions of package dependencies, which have yet to be discovered and fixed. As a workaround, try installing FLEDGE in an tested Anaconda environment via the the provided <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, which represents the latest Anaconda Python environment in which FLEDGE was tested and is expected to work.</p>
 <ol class="simple">
@@ -254,20 +255,20 @@
 <p class="admonition-title">Important</p>
 <p>Please create an issue on Github if you run into problems with the normal installation procedure.</p>
 </div>
-</div>
-</div>
-<div class="section" id="examples">
+</section>
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory contains run scripts which demonstrate the usage of FLEDGE.</p>
-<div class="section" id="api-examples">
+<section id="api-examples">
 <h3>API examples<a class="headerlink" href="#api-examples" title="Permalink to this headline">¶</a></h3>
 <p>These examples demonstrate the usage of the high-level API to execute predefined problem types.</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">run_api_nominal_operation_problem.py</span></code>: Example script for setting up and solving an nominal operation problem. The nominal operation problem (alias: power flow problem, electric grid simulation problem) formulates the steady-state power flow problem for all timesteps of the given scenario subject to the nominal operation schedule of all DERs.</li>
 <li><code class="docutils literal notranslate"><span class="pre">run_api_optimal_operation_problem.py</span></code>: Example script for setting up and solving an optimal operation problem. The optimal operation problem (alias: optimal dispatch problem, optimal power flow problem) formulates the optimization problem for minimizing the objective functions of DERs and grid operators subject to the model constraints of all DERs and grids.</li>
 </ul>
-</div>
-<div class="section" id="advanced-examples">
+</section>
+<section id="advanced-examples">
 <h3>Advanced examples<a class="headerlink" href="#advanced-examples" title="Permalink to this headline">¶</a></h3>
 <p>For advanced usage of FLEDGE, the following examples demonstrate in a step-by-step manner how energy system models and optimization problems can be defined and solved with FLEDGE. These example scripts serve as a reference for setting up custom work flows.</p>
 <ul class="simple">
@@ -277,8 +278,8 @@
 <li><code class="docutils literal notranslate"><span class="pre">run_flexible_der_optimal_operation.py</span></code>: Example script for setting up and solving a flexible DER optimal operation problem.</li>
 <li><code class="docutils literal notranslate"><span class="pre">run_electric_grid_power_flow_single_step.py</span></code>: Example script for setting up and solving an single step electric grid power flow problem.</li>
 </ul>
-</div>
-<div class="section" id="validation-scripts">
+</section>
+<section id="validation-scripts">
 <h3>Validation scripts<a class="headerlink" href="#validation-scripts" title="Permalink to this headline">¶</a></h3>
 <p>Since the model implementations in FLEDGE are not infallible, these validation scripts are provided for model testing.</p>
 <ul class="simple">
@@ -286,16 +287,16 @@
 <li><code class="docutils literal notranslate"><span class="pre">validation_linear_electric_grid_model.py</span></code>: Example script for testing / validating the linear electric grid model.</li>
 <li><code class="docutils literal notranslate"><span class="pre">validation_electric_grid_dlmp_solution.py</span></code>: Validation script for solving a decentralized DER operation problem based on DLMPs from the centralized problem.</li>
 </ul>
-</div>
-<div class="section" id="other-scripts">
+</section>
+<section id="other-scripts">
 <h3>Other scripts<a class="headerlink" href="#other-scripts" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>The directory <code class="docutils literal notranslate"><span class="pre">examples/development</span></code> contains example scripts which are under development and scripts related to the development of new features for FLEDGE.</li>
 <li>The directory <code class="docutils literal notranslate"><span class="pre">examples/publications</span></code> contains scripts related to publications which based on FLEDGE.</li>
 </ul>
-</div>
-</div>
-<div class="section" id="configuration-with-config-yml">
+</section>
+</section>
+<section id="configuration-with-config-yml">
 <h2>Configuration with <code class="docutils literal notranslate"><span class="pre">config.yml</span></code><a class="headerlink" href="#configuration-with-config-yml" title="Permalink to this headline">¶</a></h2>
 <p>FLEDGE configuration parameters (e.g. the output format of plots) can be set in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. As an initial user, you most likely will not need to modify the configuration.</p>
 <p>If you want to change the configuration, you can create or modify <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> in the FLEDGE repository main directory. FLEDGE will automatically create <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> if it does not exist. Initially, <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> will be empty. You can copy configuration parameters from <code class="docutils literal notranslate"><span class="pre">fledge/config_default.yml</span></code> to <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> and modify their value to define your local configuration. To define nested configuration parameters, you need to replicate the nested structure in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. For example, to define CPLEX as the optimization solver, use:</p>
@@ -304,12 +305,12 @@
 </pre></div>
 </div>
 <p>The configuration parameters which are defined in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> will take precedence over those defined in <code class="docutils literal notranslate"><span class="pre">fledge/config_default.yml</span></code>. If you would like to revert a parameter to its default value, just delete the parameter from <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. Please do not modify <code class="docutils literal notranslate"><span class="pre">fledge/config_default.yml</span></code> directly.</p>
-</div>
-<div class="section" id="contributing">
+</section>
+<section id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
 <p>If you are keen to contribute to this project, please see <a class="reference internal" href="contributing.html"><span class="doc">Contributing</span></a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

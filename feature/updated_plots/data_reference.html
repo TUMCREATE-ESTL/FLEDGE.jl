@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Data reference &mdash; FLEDGE  documentation</title>
@@ -200,16 +201,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-reference">
+  <section id="data-reference">
 <h1>Data reference<a class="headerlink" href="#data-reference" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This reference is work in progress.</p>
 </div>
 <p>FLEDGE scenarios are defined through CSV files, where each CSV file represents a table as defined below (the file name is interpreted as the table name). Internally, FLEDGE loads all CSV files into a local SQLITE database for more convenient processing. The default location for FLEDGE scenario definitions is in the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory in the repository and all CSV files in the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory are automatically loaded into the database. The CSV files may be structured into sub-directories, but all files are eventually combined into the same database. Hence, all type / element identifiers must be unique across all scenario definitions.</p>
-<div class="section" id="scenario-data">
+<section id="scenario-data">
 <h2>Scenario data<a class="headerlink" href="#scenario-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="scenarios">
+<section id="scenarios">
 <h3><code class="docutils literal notranslate"><span class="pre">scenarios</span></code><a class="headerlink" href="#scenarios" title="Permalink to this headline">¶</a></h3>
 <p>Scenario definition.</p>
 <table border="1" class="docutils">
@@ -293,8 +294,8 @@
 </tr>
 </tbody>
 </table><p>¹ Normalization / scaling factors are used internally to reduce the order of magnitude of variable values. Appropriate scaling significantly improves numerical performance, especially in numerical optimization problems. Note that this only applies internally to variables and models, but inputs and outputs are reported unscaled in SI units.</p>
-</div>
-<div class="section" id="parameters">
+</section>
+<section id="parameters">
 <h3><code class="docutils literal notranslate"><span class="pre">parameters</span></code><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
 <p>In all tables, a <code class="docutils literal notranslate"><span class="pre">parameter_name</span></code> string can be used to define numerical parameters in place of numerical values (identifiers or string values cannot be replaced with parameters). During model setup, those strings will be parsed from the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> table to obtain the corresponding numerical values.</p>
 <table border="1" class="docutils">
@@ -322,8 +323,8 @@
 <td>Parameter value.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="price-timeseries">
+</table></section>
+<section id="price-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">price_timeseries</span></code><a class="headerlink" href="#price-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Price timeseries.</p>
 <table border="1" class="docutils">
@@ -351,11 +352,11 @@
 <td>Price value. <em>Currently, prices / costs are assumed to be in SGD.</em></td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="electric-grid-data">
+</table></section>
+</section>
+<section id="electric-grid-data">
 <h2>Electric grid data<a class="headerlink" href="#electric-grid-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="electric-grids">
+<section id="electric-grids">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grids</span></code><a class="headerlink" href="#electric-grids" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid definition.</p>
 <table border="1" class="docutils">
@@ -389,8 +390,8 @@
 </tr>
 </tbody>
 </table><p>¹ If single-phase-equivalent modelling is used, all nodes, lines, transformers and DERs must be defined as single-phase elements, i.e., these elements should be connected only to phase 1. However, all power values (DER active / reactive power, transformer apparent power) must be defined as total three-phase power.</p>
-</div>
-<div class="section" id="electric-grid-ders">
+</section>
+<section id="electric-grid-ders">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code><a class="headerlink" href="#electric-grid-ders" title="Permalink to this headline">¶</a></h3>
 <p>Distributed energy resources (DERs) in the electric grid. Can define both loads (negative power) and generations (positive power). The corresponding DER models are defined in <code class="docutils literal notranslate"><span class="pre">der_models</span></code>. The selection of DER types will be extended in the future.</p>
 <table border="1" class="docutils">
@@ -463,8 +464,8 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="electric-grid-line-types">
+</table></section>
+<section id="electric-grid-line-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code><a class="headerlink" href="#electric-grid-line-types" title="Permalink to this headline">¶</a></h3>
 <p>Electric line type definitions are split into <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code> for the general type definition and <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code> for the definition of electric characteristics.</p>
 <table border="1" class="docutils">
@@ -492,8 +493,8 @@
 <td>Maximum permissible current (thermal line limit).</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="electric-grid-line-types-matrices">
+</table></section>
+<section id="electric-grid-line-types-matrices">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code><a class="headerlink" href="#electric-grid-line-types-matrices" title="Permalink to this headline">¶</a></h3>
 <p>Electric line characteristics are defined in terms of element property matrices. Note that the matrices are expected to be symmetric and therefore only the lower triangular matrix should be defined. The matrices are defined element-wise (indexed by row / column pairs), to allow definition of single-phase line types alongside multi-phase line types.</p>
 <table border="1" class="docutils">
@@ -536,8 +537,8 @@
 <td>Shunt capacitance matrix entry.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="electric-grid-lines">
+</table></section>
+<section id="electric-grid-lines">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_lines</span></code><a class="headerlink" href="#electric-grid-lines" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid lines.</p>
 <table border="1" class="docutils">
@@ -600,8 +601,8 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="electric-grid-nodes">
+</table></section>
+<section id="electric-grid-nodes">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code><a class="headerlink" href="#electric-grid-nodes" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid nodes.</p>
 <table border="1" class="docutils">
@@ -659,8 +660,8 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="electric-grid-operation-limit-types">
+</table></section>
+<section id="electric-grid-operation-limit-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_types</span></code><a class="headerlink" href="#electric-grid-operation-limit-types" title="Permalink to this headline">¶</a></h3>
 <p>Operation limit type definition for the electric grid. This information is utilized for the definition of the operational constraints in an optimal operation problem.</p>
 <table border="1" class="docutils">
@@ -693,8 +694,8 @@
 <td>Maximum branch flow in per unit of the branch flow at nominal loading conditions.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="electric-grid-transformer-types">
+</table></section>
+<section id="electric-grid-transformer-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_transformer_types</span></code><a class="headerlink" href="#electric-grid-transformer-types" title="Permalink to this headline">¶</a></h3>
 <p>Transformer type characteristics.</p>
 <table border="1" class="docutils">
@@ -732,8 +733,8 @@
 <td>Minimum secondary side tap position. (Currently not used.)</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="electric-grid-transformers">
+</table></section>
+<section id="electric-grid-transformers">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_transformers</span></code><a class="headerlink" href="#electric-grid-transformers" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid transformers, which are limited to transformers with two windings, where the same number of phases is connected at each winding.</p>
 <table border="1" class="docutils">
@@ -801,11 +802,11 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="thermal-grid-data">
+</table></section>
+</section>
+<section id="thermal-grid-data">
 <h2>Thermal grid data<a class="headerlink" href="#thermal-grid-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="thermal-grids">
+<section id="thermal-grids">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code><a class="headerlink" href="#thermal-grids" title="Permalink to this headline">¶</a></h3>
 <p>Thermal grid definition.</p>
 <table border="1" class="docutils">
@@ -863,8 +864,8 @@
 <td>Plant model identifier. If plant type <code>cooling_plant</code>, as defined in <code>der_cooling_plants</code>.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="thermal-grid-ders">
+</table></section>
+<section id="thermal-grid-ders">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code><a class="headerlink" href="#thermal-grid-ders" title="Permalink to this headline">¶</a></h3>
 <p>Distributed energy resources (DERs) in the thermal grid. Can define both loads (negative power) and generations (positive power). The corresponding DER models are defined in <code class="docutils literal notranslate"><span class="pre">der_models</span></code>. The selection of DER types will be extended in the future.</p>
 <table border="1" class="docutils">
@@ -912,8 +913,8 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="thermal-grid-line-types">
+</table></section>
+<section id="thermal-grid-line-types">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_line_types</span></code><a class="headerlink" href="#thermal-grid-line-types" title="Permalink to this headline">¶</a></h3>
 <p>Thermal line types for defining pipe characteristics.</p>
 <table border="1" class="docutils">
@@ -946,8 +947,8 @@
 <td>Nominal maximum pipe velocity.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="thermal-grid-lines">
+</table></section>
+<section id="thermal-grid-lines">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_lines</span></code><a class="headerlink" href="#thermal-grid-lines" title="Permalink to this headline">¶</a></h3>
 <p>Thermal grid line (pipe) definitions. The definition only includes the supply side piping, as the return side is assumed be symmetric.</p>
 <table border="1" class="docutils">
@@ -995,8 +996,8 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="thermal-grid-nodes">
+</table></section>
+<section id="thermal-grid-nodes">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code><a class="headerlink" href="#thermal-grid-nodes" title="Permalink to this headline">¶</a></h3>
 <p>Thermal grid nodes.</p>
 <table border="1" class="docutils">
@@ -1034,8 +1035,8 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="thermal-grid-operation-limit-types">
+</table></section>
+<section id="thermal-grid-operation-limit-types">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_types</span></code><a class="headerlink" href="#thermal-grid-operation-limit-types" title="Permalink to this headline">¶</a></h3>
 <p>Operation limit type definition for the thermal grid. This information is utilized for the definition of the operational constraints in an optimal operation problem. Note that thermal line limits are currently defined in per unit of the nominal thermal power solution, i.e., the thermal power flow solution for nominal loading conditions as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>, but this should be changed in future.</p>
 <table border="1" class="docutils">
@@ -1063,11 +1064,11 @@
 <td>Maximum pipe / branch flow, in per unit of the nominal thermal power solution.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="distributed-energy-resource-der-data">
+</table></section>
+</section>
+<section id="distributed-energy-resource-der-data">
 <h2>Distributed energy resource (DER) data<a class="headerlink" href="#distributed-energy-resource-der-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="der-models">
+<section id="der-models">
 <h3><code class="docutils literal notranslate"><span class="pre">der_models</span></code><a class="headerlink" href="#der-models" title="Permalink to this headline">¶</a></h3>
 <p>DER model parameter definitions. This table incorporates the definition of various DER types, which have different characteristics and require a different subset of the columns. See below for a detailed description of each DER type.</p>
 <table border="1" class="docutils">
@@ -1198,8 +1199,8 @@
 <p>Not all DER types can be connected to all grid types, e.g. <code class="docutils literal notranslate"><span class="pre">fixed_ev_charger</span></code> is only available in the electric grid. Refer to <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> / <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code> to check which DER types can be connected respectively.</p>
 <p>¹ For DER types which require the definition of timeseries values, these can be defined either directly as a timeseries or as a schedule, where the latter describes recurring schedules based on weekday / time of day (see <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code>).</p>
 <p>² Active / reactive / thermal power values can be defined as absolute values or in per unit values. Per unit values are assumed to be in per unit of the nominal active / reactive power as defined <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> / <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>. Note that the sign of the active / reactive / thermal power values in the timeseries / schedule definition are ignored and superseded by the sign of the nominal active / reactive / thermal power value as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> / <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>, where positive values are interpreted as generation and negative values as consumption. Additionally, note that <code class="docutils literal notranslate"><span class="pre">der_timeseries</span></code> / <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code> only define a single power value for each timestep. Thus, for electric DERs the active power is derived directly based on the value in <code class="docutils literal notranslate"><span class="pre">der_timeseries</span></code> / <code class="docutils literal notranslate"><span class="pre">der_schedules</span></code> and the reactive power is calculated from the active power assuming a fixed power factor according to the nominal active / reactive power in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code>.</p>
-</div>
-<div class="section" id="der-timeseries">
+</section>
+<section id="der-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">der_timeseries</span></code><a class="headerlink" href="#der-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>DER timeseries definition.</p>
 <table border="1" class="docutils">
@@ -1227,8 +1228,8 @@
 <td>Power value (absolute or per unit according to <code>der_models</code>).</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="der-schedules">
+</table></section>
+<section id="der-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">der_schedules</span></code><a class="headerlink" href="#der-schedules" title="Permalink to this headline">¶</a></h3>
 <p>DER schedules definition. The timeseries is constructed by obtaining the appropriate values based on the <code class="docutils literal notranslate"><span class="pre">time_period</span></code> in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. Each value is kept constant at the given value for any daytime greater than or equal to <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> and any weekday greater than or equal to <code class="docutils literal notranslate"><span class="pre">dd</span></code> until the next defined <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code>. Note that the daily schedule is repeated for any weekday greater than or equal to <code class="docutils literal notranslate"><span class="pre">dd</span></code> until the next defined <code class="docutils literal notranslate"><span class="pre">dd</span></code>. The initial value for each schedule must start at <code class="docutils literal notranslate"><span class="pre">time_period</span> <span class="pre">=</span> <span class="pre">01T00:00</span></code>.</p>
 <table border="1" class="docutils">
@@ -1256,8 +1257,8 @@
 <td>Power value (absolute or per unit according to <code>der_models</code>).</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="der-cooling-plants">
+</table></section>
+<section id="der-cooling-plants">
 <h3><code class="docutils literal notranslate"><span class="pre">der_cooling_plants</span></code><a class="headerlink" href="#der-cooling-plants" title="Permalink to this headline">¶</a></h3>
 <p>Supplementary cooling plant model parameter definition. The cooling plant model can represent district cooling plants as well as distributed cooling plants. Cooling plants must be connected to both electric and thermal grid, therefore must be defined both in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> and <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>.</p>
 <table border="1" class="docutils">
@@ -1345,9 +1346,9 @@
 <td>Cooling tower set ventilation factor, used to model the ventilation requirements depending on the condenser water flow.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-</div>
+</table></section>
+</section>
+</section>
 
 
            </div>

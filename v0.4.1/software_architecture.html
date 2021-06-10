@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Software architecture &mdash; FLEDGE  documentation</title>
@@ -176,27 +177,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="software-architecture">
+  <section id="software-architecture">
 <h1>Software architecture<a class="headerlink" href="#software-architecture" title="Permalink to this headline">¶</a></h1>
 <p>The software requirements and proposed software architecture for FLEDGE are discussed here to provide an overview for interested users and developers.</p>
 <p>For the original publication on this topic, please refer to:</p>
 <ul class="simple">
 <li>Troitzsch, S., Hanif, S., Zhang, K., Trpovski, A., &amp; Hamacher, T., <strong>Flexible Distribution Grid Demonstrator (FLEDGE): Requirements and Software Architecture</strong>, in IEEE PES General Meeting, Atlanta, GA, USA, 2019. <a class="reference external" href="https://doi.org/10.1109/PESGM40551.2019.8973567"><code class="docutils literal notranslate"><span class="pre">doi:</span> <span class="pre">10.1109/PESGM40551.2019.8973567</span></code></a>.</li>
 </ul>
-<div class="section" id="preliminaries">
+<section id="preliminaries">
 <h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h2>
 <p><img alt="_images/architecture_0.png" src="_images/architecture_0.png" /></p>
 <p>Expert users and non-expert users are distinguished as stakeholders. Expert users are assumed to be trained with the software such that they are able to define test cases and scenarios, whereas non-expert users may be interested in the result of a scenario analysis without comprehending each asset of the distribution grid.</p>
 <p>Optimization problems are distinguished into planning and operation problems. Optimal planning problems aim to determine the design, sizing or expansion plan for the distribution grid, whereas optimal operation problems focus on deriving the operation schedules, control signals or set points for flexible</p>
-</div>
-<div class="section" id="problem-statement">
+</section>
+<section id="problem-statement">
 <h2>Problem statement<a class="headerlink" href="#problem-statement" title="Permalink to this headline">¶</a></h2>
 <p>In the advent of DERs, the distribution system operator (DSO) seeks to study the deployment of flexible resources in the distribution grid and the the benefit of cost-optimal planning and operation methodologies to manage its assets. Based on this analysis, the DSO may plan its future investments and day-to-day operations.</p>
-</div>
-<div class="section" id="requirements">
+</section>
+<section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>To make FLEDGE practically and scientifically relevant, the key requirements were identified through 1) interaction with government agencies, companies and research entities in the distribution grid sector in Singapore 2) and conducting an in-depth domain analysis, i.e., evaluating existing software and identifying relevant gaps required for operating active distribution grid. Furthermore, the requirements were also tuned by 3) prototyping, i.e., a working example was set up to identify key challenges. The requirements are grouped into functional and non-functional, i.e, qualitative, requirements.</p>
-<div class="section" id="functional-requirements">
+<section id="functional-requirements">
 <h3>Functional requirements<a class="headerlink" href="#functional-requirements" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>The software computes planning and operation problems for the distribution grid in the presence of DERs.</li>
@@ -211,8 +212,8 @@
 <li>The non-expert user is provided with the ability select and view results for scenarios which have been defined by expert users.</li>
 <li>The non-expert user is provided with results for each scenario in a graphical user interface through visual representation of the distribution grid and its operational performance, i.e. nodal voltage, line loading, line losses and dispatched load and generation.</li>
 </ul>
-</div>
-<div class="section" id="non-functional-requirements">
+</section>
+<section id="non-functional-requirements">
 <h3>Non-functional requirements<a class="headerlink" href="#non-functional-requirements" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>The solution mechanism is highly scalable, i.e., distributed optimization techniques are utilized to improve the computational performance for large-scale test cases.</li>
@@ -224,30 +225,30 @@
 <li>The software documentation enables expert users to comprehend the mathematical foundation of models and algorithms.</li>
 <li>The software documentation enables non-expert users to operate the software independently given a set of predefined scenarios.</li>
 </ul>
-</div>
-</div>
-<div class="section" id="general-architecture">
+</section>
+</section>
+<section id="general-architecture">
 <h2>General architecture<a class="headerlink" href="#general-architecture" title="Permalink to this headline">¶</a></h2>
 <p><img alt="_images/architecture_1.png" src="_images/architecture_1.png" /></p>
 <p>The fundamental subsystems of FLEDGE are defined based on the identified requirements. The input file is the interface for expert users to define test cases and scenarios. The dashboard is the graphical user interface for non-expert users to view the scenario results. The application programming interface (API) is the interface which enables the expert user to interact with FLEDGE. The test cases, scenarios and results are stored in a relational database management system (RDBMS) which is integrated through the database interface. The solution functionality is bundled into the solution engine, which comprises all mathematical models and solution algorithms.</p>
 <p>The API provide methods for reading and updating the test case, scenario and result data as well as methods for invoking the solution engine. It provides a layer of abstraction to ensure that changes in one subsystem don’t incur changes in others, e.g., the database interface can be changed without having to change the solution engine. Consequently, the API must be relatively stable throughout the software development to maintain compatibility.</p>
 <p>The input file is imported to the database through the input file processor which interfaces with the API to import the test case and scenario data. The input file format may be changed by amending this processor, independent from the internal database structure. The dashboard is is the graphical user interface to present the non-expert user with scenario results. This subsystem also relies on API functions to load the results data. With this architecture, additional user interfaces can easily be deployed at a later point by interfacing the API. For example, a graphical editor may be provided which interacts with the API to manipulate the test case and scenario definition in the database.</p>
 <p>A RDBMS is chosen as the internal storage solution, because it enables more efficient reading, writing, updating interactions then a file system. A persistent storage solution is preferred over in-memory storage to enable reviewing the results at a later time without repeatedly invoking the computationally intensive solution engine. Furthermore, the database can easily be centralized to allow concurrent access across multiple machines, e.g. to allow collaborative work on the test cases and scenarios.</p>
-</div>
-<div class="section" id="solution-engine-architecture">
+</section>
+<section id="solution-engine-architecture">
 <h2>Solution engine architecture<a class="headerlink" href="#solution-engine-architecture" title="Permalink to this headline">¶</a></h2>
 <p><img alt="_images/architecture_2.png" src="_images/architecture_2.png" /></p>
 <p>The solution engine is the core subsystem of FLEDGE and is concerned with implementing the mathematical routines for solving planning and operation problems as above. At the top level, the classes for planning and operation problems are distinguished, as both problem types yield a different organization of the optimization problem. These classes construct the respective problem based on subordinate classes for the electric grid model and DER models as well as optimization solvers and simulation solvers. The operation problem class further considers a class for aggregators to adequately model the separated concerns between the DSO and aggregators.</p>
 <p>The electric grid model classes implement the methods for deriving the power flow approximations for the optimization problem. Similarly, DER model classes provide methods for deriving the mathematical models for renewable generation, EV charging, flexible loads, fixed loads and BESSs. DER models take the form of 1) time series models for non-controllable assets and 2) state space models in the case of flexible resources. In the operation problem, DER model instances are not created in the central problem, but rather within the aggregator subproblem.</p>
 <p>Optimization solver classes either 1) directly implement the optimization algorithm or 2) provide the interface to an existing solver, e.g., CPLEX or Gurobi.</p>
 <p>Power flow solver classes implement solvers for the exact equations of the distribution grid power flow. The exact power flow solution is desired as a benchmark for the optimal power flow solution which was obtained with an approximate model. These classes may interface existing power flow solvers, e.g., OpenDSS.</p>
-</div>
-<div class="section" id="use-case-optimal-operation-problem">
+</section>
+<section id="use-case-optimal-operation-problem">
 <h2>Use case: Optimal operation problem<a class="headerlink" href="#use-case-optimal-operation-problem" title="Permalink to this headline">¶</a></h2>
 <p><img alt="_images/operation.png" src="_images/operation.png" /></p>
 <p>Above figure describes the process flow for an exemplary operation problem in FLEDGE. The input files for defining the test case and scenario have already been imported to FLEDGE and the program is invoked by a call to the API seeking the solution of the scenario. First, the test case and scenario data is loaded through the database interface and an object of the operation problem class is instantiated. The test case and scenario data is passed to the operation problem during creation. Within the operation problem, the electric grid model, aggregator and DER model objects are instantiated, where each DER model object is associated with one aggregator. Once all models have been derived, the optimization problem is constructed and passed to the optimization solver. Lastly, the solution of the optimization problem is used to calculate the exact power flow. All results are stored in the database.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
