@@ -87,13 +87,14 @@ Distributed energy resources (DERs) in the electric grid. Can define both loads 
 
 ### `electric_grid_line_types`
 
-Electric line type definitions are split into `electric_grid_line_types` for the general type definition and `electric_grid_line_types_matrices` for the definition of electric characteristics.
+Electric line type definitions are split into `electric_grid_line_types` for the general type definition and `electric_grid_line_types_matrices`, `electric_grid_line_types_overhead` and `electric_grid_line_types_overhead_conductors` for the definition of electric characteristics. The electric characteristics can be defined in the form of element matrices in `electric_grid_line_types_matrices` or in the form of geometric and conductor properties for overhead lines in `electric_grid_line_types_overhead` and `electric_grid_line_types_overhead_conductors`, where only one definition is needed for each line type and is selected through the `definition_type` column.
 
 | Column | Unit | Description |
 | --- |:---:| --- |
 | `line_type` | | Unique type identifier. |
-| `n_phases` | - | Number of phases. |
-| `maximum_current` | A | Maximum permissible current (thermal line limit). |
+| `n_phases` | - | Number of phases. This column is not used for `overhead` line types. |
+| `maximum_current` | A | Maximum permissible current (thermal line limit). This column is not used for `overhead` line types. |
+| `definition_type` | | Electric characteristics definition type. Choices: `matrix` (line parameters are defined in `electric_grid_line_types_matrices`) or `overhead` (line parameters are defined in `electric_grid_line_types_overhead` and `electric_grid_line_types_overhead_conductors`). Optional column, which defaults to `matrix` if not explicitly defined. |
 
 ### `electric_grid_line_types_matrices`
 
@@ -107,6 +108,39 @@ Electric line characteristics are defined in terms of element property matrices.
 | `resistance` | Ω/km | Series resistance matrix entry. |
 | `reactance` | Ω/km | Series reactance matrix entry. |
 | `capacitance` | nF/km | Shunt capacitance matrix entry. |
+
+### `electric_grid_line_types_overhead`
+
+| Column | Unit | Description |
+| --- |:---:| --- |
+| line_type | | Line type identifier as defined in `electric_grid_line_types`. |
+| phase_1_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| phase_2_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| phase_3_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| neutral_conductor_id | | Conductor ID as defined in `electric_grid_line_types_overhead_conductors`. To be left empty if phase is missing. |
+| earth_resistivity | Ωm | Earth / soil resistivity. |
+| air_permittivity | nF/km | Air permittivity. |
+| phase_1_x | m | Horizontal coordinate of phase 1 in meters. An arbitrary reference for `x = 0` can be chosen. |
+| phase_1_y | m | Vertical coordinate of phase 1 in meters. Reference is the earth surface at `y = 0`. |
+| phase_2_x | m | Horizontal coordinate of phase 2 in meters. An arbitrary reference for `x = 0` can be chosen. |
+| phase_2_y | m | Vertical coordinate of phase 2 in meters. Reference is the earth surface at `y = 0`. |
+| phase_3_x | m | Horizontal coordinate of phase 3 in meters. An arbitrary reference for `x = 0` can be chosen. |
+| phase_3_y | m | Vertical coordinate of phase 3 in meters. Reference is the earth surface at `y = 0`. |
+| neutral_x | m | Horizontal coordinate of neutral phase in meters. An arbitrary reference for `x = 0` can be chosen. |
+| neutral_y | m | Vertical coordinate of neutral phase in meters. Reference is the earth surface at `y = 0`. |
+
+### `electric_grid_line_types_overhead_conductors`
+
+| Column | Unit | Description |
+| --- |:---:| --- |
+| `conductor_id` | | Unique identifier. |
+| `conductor_size_description` | | Conductor size description string (see [Kersting, 2018, Appendix A](https://doi.org/10.1201/9781315120782)). |
+| `conductor_stranding_description` | | Conductor stranding description string (see [Kersting, 2018, Appendix A](https://doi.org/10.1201/9781315120782)). |
+| `conductor_material_description` | | Conductor material description string (see [Kersting, 2018, Appendix A](https://doi.org/10.1201/9781315120782)). |
+| `conductor_diameter` | mm | Conductor diameter. |
+| `conductor_geometric_mean_radius` | mm | Conductor geometric mean radius (GMR). |
+| `conductor_resistance` | Ω/km | Specific resistance of conductor. |
+| `conductor_maximum_current` | A | Maximum permissible current (thermal conductor limit). |
 
 ### `electric_grid_lines`
 
@@ -269,7 +303,7 @@ DER model parameter definitions. This table incorporates the definition of vario
 
 | Column | Unit | Description |
 | --- |:---:| --- |
-| `der_type` | | DER type selector. Choices: `fixed_load`, `flexible_load`, `fixed_generator`, `flexible_generator`, `fixed_ev_charger`, `cooling_plant`, `storage`. Note: `flexible_buildings` cannot be defined here, because it is obtained from the CoBMo submodule directly. |
+| `der_type` | | DER type selector. Choices: `fixed_load`, `flexible_load`, `fixed_generator`, `flexible_generator`, `fixed_ev_charger`, `flexible_ev_charger`, `cooling_plant`, `heat_pump`, `flexible_chp`, `storage`. Note: `flexible_buildings` cannot be defined here, because it is obtained from the CoBMo submodule directly. |
 | `der_model_name` | | Unique DER model identifier (must only be unique within the associated DER type). |
 | `definition_type` | | Definition type selector, because most DER types require either additional timeseries / schedule definition¹ or other supplementary parameter definitions from either of the tables `der_timeseries`, `der_schedules` or `der_cooling_plants`. Choices: `timeseries` (Defines timeseries of absolute values².) `schedule` (Defines schedule of absolute values².), `timeseries_per_unit` (Define timeseries of per unit values².), `schedule_per_unit` (Defines schedule of per unit values².), `cooling_plant` (Defines cooling plant.) |
 | `definition_name` | | Definition identifier, which corresponds to `definition_name` in either `der_timeseries`, `der_schedules` or `der_cooling_plants`. If `definition_type` is `timeseries` or `timeseries_per_unit`: defined in `der_timeseries`; if `definition_type` is `schedule` or `schedule_per_unit`: defined in `der_schedules`; if `definition_type` is `cooling_plant`: defined in `der_cooling_plants`. |
@@ -281,6 +315,9 @@ DER model parameter definitions. This table incorporates the definition of vario
 | `charging_efficiency` | - | Energy storage charging efficiency factor. |
 | `self_discharge_rate` | 1/h | Energy storage self discharge rate. |
 | `marginal_cost` | $/kWh | Marginal cost of power generation. *Currently, prices / costs are assumed to be in SGD.* |
+| `heat_pump_efficiency` | - | Efficiency factor for `heat_pump` DERs. |
+| `thermal_efficiency` | - | Efficiency factor for `flexible_chp` DERs. |
+| `electric_efficiency` | - | Efficiency factor for `flexible_chp` DERs. |
 
 For most DER types, the `der_models` table is supplemented by timeseries / schedule definitions in the tables `der_timeseries` / `der_schedules` or supplementary parameter definitions in `der_cooling_plants` based on the columns `definition_type` / `definition_name`. Furthermore, each DER type relies on a different subset of columns / parameters in `der_models`. The table below outlines the required supplementary definitions for as well as the required columns for each DER type:
 
@@ -291,7 +328,10 @@ For most DER types, the `der_models` table is supplemented by timeseries / sched
 | `fixed_generator` | Fixed generator, following a fixed generation timeseries. | `definition_type`, `definition_name`, `marginal_cost` | Timeseries / schedule¹ for nominal active / reactive / thermal power². |
 | `flexible_generator` | Flexible generator, dispatchable within given limits and based on a generation timeseries. | `definition_type`, `definition_name`, `power_per_unit_minimum`, `power_per_unit_maximum`, `marginal_cost` | Timeseries / schedule¹ for nominal active / reactive / thermal power². |
 | `fixed_ev_charger` | Fixed EV charger, following a fixed demand timeseries. | `definition_type`, `definition_name` | Timeseries / schedule¹ for nominal active / reactive / thermal power². |
+| `flexible_ev_charger` | Flexible EV charger, dispatchable within constraints regarding vehicle arrival, departure, availability and energy demand as defined in `der_ev_chargers`. | `definition_type`, `definition_name` | Flexible EV charger supplementary definitions according to `der_ev_chargers`. |
 | `cooling_plant` | Cooling plant, converts electric power to thermal power, dispatchable with nominal power limits. | `definition_type`, `definition_name` | Cooling plant parameters according to `der_cooling_plants`. |
+| `heat_pump` | Heat pump, converts electric power to thermal power, dispatchable with nominal power limits. | `definition_type`, `definition_name`, `power_per_unit_minimum`, `power_per_unit_maximum`, `marginal_cost`, `heat_pump_efficiency` | Timeseries / schedule¹ for nominal active / reactive / thermal power². |
+| `flexible_chp` | Flexible combined heat and power plant, generates electric power and thermal power, dispatchable with nominal power limits. | `definition_type`, `definition_name`, `power_per_unit_minimum`, `power_per_unit_maximum`, `marginal_cost`, `thermal_efficiency`, `electric_efficiency` | Timeseries / schedule¹ for nominal active / reactive / thermal power². |
 | `storage` | Energy storage, can charge / discharge within given limits and based on its energy storage capacity. | `power_per_unit_minimum`, `power_per_unit_maximum`, `energy_storage_capacity_per_unit`, `charging_efficiency`, `self_discharge_rate` | N.A. |
 
 The selection of DER types will be extended in the future. Note that the DER type `flexible_buildings` is not defined here, instead the model definition is obtained from the Control-oriented Building Model (CoBMo) submodule.
