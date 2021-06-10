@@ -7,6 +7,16 @@ Note that version numbering follows the [Semantic Versioning principle](https://
 ### New features
 
 - Overhead line types can now be defined in terms of conductor data and geometric arrangement (Arif Ahmed).
+- Added standard form object for generating the standard form of linear optimization problems.
+- Added local-approximation variant for linear electric grid model.
+- Added linear model set for electric grid model, which enables defining separate linear models for each time step.
+- Added power flow solution set, to obtain power flow solutions more conveniently for multiple time steps.
+- Added pre-solve method for DER model set, to obtain baseline nominal power time series for flexible DERs.
+
+### Changes
+
+- Improved / simplified `define_optimization...()` methods for most use cases.
+- Switched from `multiprocess` to `ray` for parallel processing for performance reasons.
 
 ## [v0.4.1](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.1)
 
