@@ -202,19 +202,19 @@
 <section id="new-features">
 <h3>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Overhead line types can now be defined in terms of conductor data and geometric arrangement (Arif Ahmed).</li>
-<li>Added standard form object for generating the standard form of linear optimization problems.</li>
-<li>Added local-approximation variant for linear electric grid model.</li>
-<li>Added linear model set for electric grid model, which enables defining separate linear models for each time step.</li>
-<li>Added power flow solution set, to obtain power flow solutions more conveniently for multiple time steps.</li>
-<li>Added pre-solve method for DER model set, to obtain baseline nominal power time series for flexible DERs.</li>
+<li><p>Overhead line types can now be defined in terms of conductor data and geometric arrangement (Arif Ahmed).</p></li>
+<li><p>Added standard form object for generating the standard form of linear optimization problems.</p></li>
+<li><p>Added local-approximation variant for linear electric grid model.</p></li>
+<li><p>Added linear model set for electric grid model, which enables defining separate linear models for each time step.</p></li>
+<li><p>Added power flow solution set, to obtain power flow solutions more conveniently for multiple time steps.</p></li>
+<li><p>Added pre-solve method for DER model set, to obtain baseline nominal power time series for flexible DERs.</p></li>
 </ul>
 </section>
 <section id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Improved / simplified <code class="docutils literal notranslate"><span class="pre">define_optimization...()</span></code> methods for most use cases.</li>
-<li>Switched from <code class="docutils literal notranslate"><span class="pre">multiprocess</span></code> to <code class="docutils literal notranslate"><span class="pre">ray</span></code> for parallel processing for performance reasons.</li>
+<li><p>Improved / simplified <code class="docutils literal notranslate"><span class="pre">define_optimization...()</span></code> methods for most use cases.</p></li>
+<li><p>Switched from <code class="docutils literal notranslate"><span class="pre">multiprocess</span></code> to <code class="docutils literal notranslate"><span class="pre">ray</span></code> for parallel processing for performance reasons.</p></li>
 </ul>
 </section>
 </section>
@@ -223,8 +223,8 @@
 <section id="fixes">
 <h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Updated <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</li>
-<li>Updated version indicators.</li>
+<li><p>Updated <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</p></li>
+<li><p>Updated version indicators.</p></li>
 </ul>
 </section>
 </section>
@@ -233,27 +233,27 @@
 <section id="id1">
 <h3>New features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Added problems module with definitions for nominal operation problem (simulation) and optimal operation problem (optimization).</li>
-<li>Added high-level API for executing optimal &amp; nominal operation problems.</li>
-<li>Added various DER models.</li>
-<li>Enabled most DERs for thermal grids (Verena Kleinschmidt).</li>
-<li>Added ability to define electric grid model as single-phase-approximate.</li>
-<li>Added Z-Bus power flow solution method (Arif Ahmed).</li>
-<li>Added plots module (work-in-progress).</li>
-<li>Added ability to set local configuration with <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>.</li>
-<li>Added ability to set base units for apparent power, voltage and thermal power for in scenario definition.</li>
+<li><p>Added problems module with definitions for nominal operation problem (simulation) and optimal operation problem (optimization).</p></li>
+<li><p>Added high-level API for executing optimal &amp; nominal operation problems.</p></li>
+<li><p>Added various DER models.</p></li>
+<li><p>Enabled most DERs for thermal grids (Verena Kleinschmidt).</p></li>
+<li><p>Added ability to define electric grid model as single-phase-approximate.</p></li>
+<li><p>Added Z-Bus power flow solution method (Arif Ahmed).</p></li>
+<li><p>Added plots module (work-in-progress).</p></li>
+<li><p>Added ability to set local configuration with <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>.</p></li>
+<li><p>Added ability to set base units for apparent power, voltage and thermal power for in scenario definition.</p></li>
 </ul>
 </section>
 <section id="id2">
 <h3>Changes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Moved implementation of optimization problems from Pyomo to CVXPY for performance improvements.</li>
-<li>Reformulated optimization constraints to use normalized values for improved numerical performance.</li>
-<li>Improved FLEDGE definition data format documentation.</li>
-<li>Refactored DER model data definition format.</li>
-<li>Refactored price data object.</li>
-<li>Various fixes in linear electric grid model model and DLMP calculations.</li>
-<li>Introduced various error messages for common issues.</li>
+<li><p>Moved implementation of optimization problems from Pyomo to CVXPY for performance improvements.</p></li>
+<li><p>Reformulated optimization constraints to use normalized values for improved numerical performance.</p></li>
+<li><p>Improved FLEDGE definition data format documentation.</p></li>
+<li><p>Refactored DER model data definition format.</p></li>
+<li><p>Refactored price data object.</p></li>
+<li><p>Various fixes in linear electric grid model model and DLMP calculations.</p></li>
+<li><p>Introduced various error messages for common issues.</p></li>
 </ul>
 </section>
 </section>
@@ -262,13 +262,13 @@
 <section id="id3">
 <h3>New features<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Moved to Python as main implementation language.</li>
-<li>Extended linear electric models with methods for defining optimization variables / constraints.</li>
-<li>Added thermal grid model.</li>
-<li>Added linear thermal grid model with methods for defining optimization variables / constraints.</li>
-<li>Added DER models and integrated CoBMo for flexible building models.</li>
-<li>Added methods for defining operation limits and obtaining DLMPs for electric and thermal grids.</li>
-<li>Provided various example scripts for running optimal operation problems for DERs / electric grids / thermal grids / multi-energy grids.</li>
+<li><p>Moved to Python as main implementation language.</p></li>
+<li><p>Extended linear electric models with methods for defining optimization variables / constraints.</p></li>
+<li><p>Added thermal grid model.</p></li>
+<li><p>Added linear thermal grid model with methods for defining optimization variables / constraints.</p></li>
+<li><p>Added DER models and integrated CoBMo for flexible building models.</p></li>
+<li><p>Added methods for defining operation limits and obtaining DLMPs for electric and thermal grids.</p></li>
+<li><p>Provided various example scripts for running optimal operation problems for DERs / electric grids / thermal grids / multi-energy grids.</p></li>
 </ul>
 </section>
 </section>
@@ -277,7 +277,7 @@
 <section id="auxiliary-release">
 <h3>Auxiliary Release<a class="headerlink" href="#auxiliary-release" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Snapshot before moving to Python as main implementation language.</li>
+<li><p>Snapshot before moving to Python as main implementation language.</p></li>
 </ul>
 </section>
 </section>
@@ -286,7 +286,7 @@
 <section id="initial-release">
 <h3>Initial release<a class="headerlink" href="#initial-release" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Initial set of modules with Julia as main implementation language.</li>
+<li><p>Initial set of modules with Julia as main implementation language.</p></li>
 </ul>
 </section>
 </section>
@@ -342,15 +342,15 @@
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../feature/pnnl_tumcreate_colab/change_log.html">feature/pnnl_tumcreate_colab</a></dd>
+            <dd><a href="../feature/general_improvements/change_log.html">feature/general_improvements</a></dd>
             <dd><a href="change_log.html">develop</a></dd>
             <dd><a href="../feature/backup_verena/change_log.html">feature/backup_verena</a></dd>
             <dd><a href="../feature/biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../feature/dlmp_analysis/change_log.html">feature/dlmp_analysis</a></dd>
             <dd><a href="../feature/dro/change_log.html">feature/dro</a></dd>
             <dd><a href="../feature/electric_grid_extensions/change_log.html">feature/electric_grid_extensions</a></dd>
-            <dd><a href="../feature/general_improvements/change_log.html">feature/general_improvements</a></dd>
             <dd><a href="../feature/market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
+            <dd><a href="../feature/pnnl_tumcreate_colab/change_log.html">feature/pnnl_tumcreate_colab</a></dd>
             <dd><a href="../feature/sitem/change_log.html">feature/sitem</a></dd>
             <dd><a href="../feature/test_cases/index.html">feature/test_cases</a></dd>
             <dd><a href="../feature/trust_region/change_log.html">feature/trust_region</a></dd>

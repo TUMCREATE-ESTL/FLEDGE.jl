@@ -191,11 +191,11 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>scenario_name</strong> (<em>str</em>) – </li>
-<li><strong>recreate_database</strong> (<em>bool</em>) – </li>
-<li><strong>print_results</strong> (<em>bool</em>) – </li>
-<li><strong>store_results</strong> (<em>bool</em>) – </li>
-<li><strong>results_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </li>
+<li><p><strong>scenario_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>recreate_database</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>print_results</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>store_results</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>results_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -211,11 +211,11 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>scenario_name</strong> (<em>str</em>) – </li>
-<li><strong>recreate_database</strong> (<em>bool</em>) – </li>
-<li><strong>print_results</strong> (<em>bool</em>) – </li>
-<li><strong>store_results</strong> (<em>bool</em>) – </li>
-<li><strong>results_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </li>
+<li><p><strong>scenario_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>recreate_database</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>print_results</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>store_results</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>results_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -281,15 +281,15 @@ but does not implement any functionality.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</li>
-<li><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</li>
-<li><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</li>
-<li><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</li>
-<li><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</li>
-<li><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</li>
-<li><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</li>
-<li><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</li>
-<li><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</li>
+<li><p><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</p></li>
+<li><p><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</p></li>
+<li><p><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</p></li>
+<li><p><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</p></li>
+<li><p><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</p></li>
+<li><p><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</p></li>
+<li><p><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</p></li>
+<li><p><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</p></li>
+<li><p><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</p></li>
 <li><p><strong>nodes</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the node types, node names and phases
 corresponding to the dimension of the node admittance matrices.</p></li>
 <li><p><strong>branches</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the branch types, branch names and phases
@@ -298,10 +298,10 @@ corresponding to the dimension of the branch admittance matrices.</p></li>
 for the lines only.</p></li>
 <li><p><strong>transformers</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the branch types, branch names and phases
 for the transformers only.</p></li>
-<li><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</li>
-<li><strong>node_voltage_vector_reference</strong> (<em>np.ndarray</em>) – Node voltage reference / no load vector.</li>
-<li><strong>branch_power_vector_magnitude_reference</strong> (<em>np.ndarray</em>) – Branch power reference / rated power vector.</li>
-<li><strong>der_power_vector_reference</strong> (<em>np.ndarray</em>) – DER power reference / nominal power vector.</li>
+<li><p><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</p></li>
+<li><p><strong>node_voltage_vector_reference</strong> (<em>np.ndarray</em>) – Node voltage reference / no load vector.</p></li>
+<li><p><strong>branch_power_vector_magnitude_reference</strong> (<em>np.ndarray</em>) – Branch power reference / rated power vector.</p></li>
+<li><p><strong>der_power_vector_reference</strong> (<em>np.ndarray</em>) – DER power reference / nominal power vector.</p></li>
 <li><p><strong>is_single_phase_equivalent</strong> (<em>bool</em>) – Singe-phase-equivalent modelling flag. If true, electric grid is modelled
 as single-phase-equivalent of three-phase balanced system.</p></li>
 </ul>
@@ -330,21 +330,21 @@ The required <cite>electric_grid_data</cite> is obtained from the database.</p><
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.data_interface.ElectricGridData" title="fledge.data_interface.ElectricGridData"><em>fledge.data_interface.ElectricGridData</em></a>) – Electric grid data object.</li>
-<li><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</li>
+<li><p><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.data_interface.ElectricGridData" title="fledge.data_interface.ElectricGridData"><em>fledge.data_interface.ElectricGridData</em></a>) – Electric grid data object.</p></li>
+<li><p><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</li>
-<li><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</li>
-<li><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</li>
-<li><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</li>
-<li><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</li>
-<li><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</li>
-<li><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</li>
-<li><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</li>
-<li><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</li>
+<li><p><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</p></li>
+<li><p><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</p></li>
+<li><p><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</p></li>
+<li><p><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</p></li>
+<li><p><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</p></li>
+<li><p><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</p></li>
+<li><p><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</p></li>
+<li><p><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</p></li>
+<li><p><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</p></li>
 <li><p><strong>nodes</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the node types, node names and phases
 corresponding to the dimension of the node admittance matrices.</p></li>
 <li><p><strong>branches</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the branch types, branch names and phases
@@ -353,20 +353,20 @@ corresponding to the dimension of the branch admittance matrices.</p></li>
 for the lines only.</p></li>
 <li><p><strong>transformers</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the branch types, branch names and phases
 for the transformers only.</p></li>
-<li><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</li>
-<li><strong>node_voltage_vector_reference</strong> (<em>np.ndarray</em>) – Node voltage reference / no load vector.</li>
-<li><strong>branch_power_vector_magnitude_reference</strong> (<em>np.ndarray</em>) – Branch power reference / rated power vector.</li>
-<li><strong>der_power_vector_reference</strong> (<em>np.ndarray</em>) – DER power reference / nominal power vector.</li>
+<li><p><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</p></li>
+<li><p><strong>node_voltage_vector_reference</strong> (<em>np.ndarray</em>) – Node voltage reference / no load vector.</p></li>
+<li><p><strong>branch_power_vector_magnitude_reference</strong> (<em>np.ndarray</em>) – Branch power reference / rated power vector.</p></li>
+<li><p><strong>der_power_vector_reference</strong> (<em>np.ndarray</em>) – DER power reference / nominal power vector.</p></li>
 <li><p><strong>is_single_phase_equivalent</strong> (<em>bool</em>) – Singe-phase-equivalent modelling flag. If true, electric grid is modelled
 as single-phase-equivalent of three-phase balanced system.</p></li>
-<li><strong>node_admittance_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Nodal admittance matrix.</li>
-<li><strong>node_transformation_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Nodal transformation matrix.</li>
-<li><strong>branch_admittance_1_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch admittance matrix in the ‘from’ direction.</li>
-<li><strong>branch_admittance_2_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch admittance matrix in the ‘to’ direction.</li>
-<li><strong>branch_incidence_1_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch incidence matrix in the ‘from’ direction.</li>
-<li><strong>branch_incidence_2_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch incidence matrix in the ‘to’ direction.</li>
-<li><strong>der_incidence_wye_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Load incidence matrix for ‘wye’ DERs.</li>
-<li><strong>der_incidence_delta_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Load incidence matrix for ‘delta’ DERs.</li>
+<li><p><strong>node_admittance_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Nodal admittance matrix.</p></li>
+<li><p><strong>node_transformation_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Nodal transformation matrix.</p></li>
+<li><p><strong>branch_admittance_1_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch admittance matrix in the ‘from’ direction.</p></li>
+<li><p><strong>branch_admittance_2_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch admittance matrix in the ‘to’ direction.</p></li>
+<li><p><strong>branch_incidence_1_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch incidence matrix in the ‘from’ direction.</p></li>
+<li><p><strong>branch_incidence_2_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Branch incidence matrix in the ‘to’ direction.</p></li>
+<li><p><strong>der_incidence_wye_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Load incidence matrix for ‘wye’ DERs.</p></li>
+<li><p><strong>der_incidence_delta_matrix</strong> (<em>scipy.sparse.spmatrix</em>) – Load incidence matrix for ‘delta’ DERs.</p></li>
 </ul>
 </dd>
 </dl>
@@ -382,7 +382,7 @@ as single-phase-equivalent of three-phase balanced system.</p></li>
 utilizing the <cite>OpenDSSDirect.py</cite> package.</p></li>
 <li><p>The OpenDSS circuit can be accessed with the API of
 <cite>OpenDSSDirect.py</cite>: <a class="reference external" href="http://dss-extensions.org/OpenDSSDirect.py/opendssdirect.html">http://dss-extensions.org/OpenDSSDirect.py/opendssdirect.html</a></p></li>
-<li>Due to dependency on <cite>OpenDSSDirect.py</cite>, creating multiple objects of this type may result in erroneous behavior.</li>
+<li><p>Due to dependency on <cite>OpenDSSDirect.py</cite>, creating multiple objects of this type may result in erroneous behavior.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Syntax</dt>
@@ -395,21 +395,21 @@ The required <cite>electric_grid_data</cite> is obtained from the database.</p><
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</li>
-<li><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.data_interface.ElectricGridData" title="fledge.data_interface.ElectricGridData"><em>fledge.data_interface.ElectricGridData</em></a>) – Electric grid data object.</li>
+<li><p><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</p></li>
+<li><p><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.data_interface.ElectricGridData" title="fledge.data_interface.ElectricGridData"><em>fledge.data_interface.ElectricGridData</em></a>) – Electric grid data object.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</li>
-<li><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</li>
-<li><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</li>
-<li><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</li>
-<li><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</li>
-<li><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</li>
-<li><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</li>
-<li><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</li>
-<li><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</li>
+<li><p><strong>phases</strong> (<em>pd.Index</em>) – Index set of the phases.</p></li>
+<li><p><strong>node_names</strong> (<em>pd.Index</em>) – Index set of the node names.</p></li>
+<li><p><strong>node_types</strong> (<em>pd.Index</em>) – Index set of the node types.</p></li>
+<li><p><strong>line_names</strong> (<em>pd.Index</em>) – Index set of the line names.</p></li>
+<li><p><strong>transformer_names</strong> (<em>pd.Index</em>) – Index set of the transformer names.</p></li>
+<li><p><strong>branch_names</strong> (<em>pd.Index</em>) – Index set of the branch names, i.e., all line names and transformer names.</p></li>
+<li><p><strong>branch_types</strong> (<em>pd.Index</em>) – Index set of the branch types.</p></li>
+<li><p><strong>der_names</strong> (<em>pd.Index</em>) – Index set of the DER names.</p></li>
+<li><p><strong>der_types</strong> (<em>pd.Index</em>) – Index set of the DER types.</p></li>
 <li><p><strong>nodes</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the node types, node names and phases
 corresponding to the dimension of the node admittance matrices.</p></li>
 <li><p><strong>branches</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the branch types, branch names and phases
@@ -418,13 +418,13 @@ corresponding to the dimension of the branch admittance matrices.</p></li>
 for the lines only.</p></li>
 <li><p><strong>transformers</strong> (<em>pd.Index</em>) – Multi-level / tuple index set of the branch types, branch names and phases
 for the transformers only.</p></li>
-<li><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</li>
-<li><strong>node_voltage_vector_reference</strong> (<em>np.ndarray</em>) – Node voltage reference / no load vector.</li>
-<li><strong>branch_power_vector_magnitude_reference</strong> (<em>np.ndarray</em>) – Branch power reference / rated power vector.</li>
-<li><strong>der_power_vector_reference</strong> (<em>np.ndarray</em>) – DER power reference / nominal power vector.</li>
+<li><p><strong>ders</strong> (<em>pd.Index</em>) – Index set of the DER names, corresponding to the dimension of the DER power vector.</p></li>
+<li><p><strong>node_voltage_vector_reference</strong> (<em>np.ndarray</em>) – Node voltage reference / no load vector.</p></li>
+<li><p><strong>branch_power_vector_magnitude_reference</strong> (<em>np.ndarray</em>) – Branch power reference / rated power vector.</p></li>
+<li><p><strong>der_power_vector_reference</strong> (<em>np.ndarray</em>) – DER power reference / nominal power vector.</p></li>
 <li><p><strong>is_single_phase_equivalent</strong> (<em>bool</em>) – Singe-phase-equivalent modelling flag. If true, electric grid is modelled
 as single-phase-equivalent of three-phase balanced system.</p></li>
-<li><strong>circuit_name</strong> (<em>str</em>) – Circuit name, stored for validation that the correct OpenDSS model is being accessed.</li>
+<li><p><strong>circuit_name</strong> (<em>str</em>) – Circuit name, stored for validation that the correct OpenDSS model is being accessed.</p></li>
 <li><p><strong>electric_grid_data</strong> (<a class="reference internal" href="#fledge.data_interface.ElectricGridData" title="fledge.data_interface.ElectricGridData"><em>fledge.data_interface.ElectricGridData</em></a>) – (fledge.data_interface.ElectricGridData): Electric grid data object, stored for
 possible reinitialization of the OpenDSS model.</p></li>
 </ul>
@@ -453,19 +453,19 @@ nodal voltage vector / branch power vector and total loss (all complex valued).<
 </dd>
 </dl>
 <ul class="simple">
-<li>Conditions are formulated according to: &lt;<a class="reference external" href="https://arxiv.org/pdf/1702.03310.pdf">https://arxiv.org/pdf/1702.03310.pdf</a>&gt;</li>
+<li><p>Conditions are formulated according to: &lt;<a class="reference external" href="https://arxiv.org/pdf/1702.03310.pdf">https://arxiv.org/pdf/1702.03310.pdf</a>&gt;</p></li>
 <li><p>Note the performance issues of this condition check algorithm due to the
 requirement for matrix inversions / solving of linear equations.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </li>
-<li><strong>node_power_vector_wye_initial_no_source</strong> (<em>numpy.ndarray</em>) – </li>
-<li><strong>node_power_vector_delta_initial_no_source</strong> (<em>numpy.ndarray</em>) – </li>
-<li><strong>node_power_vector_wye_candidate_no_source</strong> (<em>numpy.ndarray</em>) – </li>
-<li><strong>node_power_vector_delta_candidate_no_source</strong> (<em>numpy.ndarray</em>) – </li>
-<li><strong>node_voltage_vector_initial_no_source</strong> (<em>numpy.ndarray</em>) – </li>
+<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </p></li>
+<li><p><strong>node_power_vector_wye_initial_no_source</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>node_power_vector_delta_initial_no_source</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>node_power_vector_wye_candidate_no_source</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>node_power_vector_delta_candidate_no_source</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>node_voltage_vector_initial_no_source</strong> (<em>numpy.ndarray</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -482,13 +482,13 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 <li><p>Initial DER power vector / node voltage vector must be a valid
 solution to te fixed-point equation, e.g., a previous solution from a past
 operation point.</p></li>
-<li>Fixed point equation according to: &lt;<a class="reference external" href="https://arxiv.org/pdf/1702.03310.pdf">https://arxiv.org/pdf/1702.03310.pdf</a>&gt;</li>
+<li><p>Fixed point equation according to: &lt;<a class="reference external" href="https://arxiv.org/pdf/1702.03310.pdf">https://arxiv.org/pdf/1702.03310.pdf</a>&gt;</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </li>
-<li><strong>der_power_vector</strong> (<em>numpy.ndarray</em>) – </li>
+<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </p></li>
+<li><p><strong>der_power_vector</strong> (<em>numpy.ndarray</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -508,8 +508,8 @@ operation point.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </li>
-<li><strong>node_voltage_vector</strong> (<em>numpy.ndarray</em>) – </li>
+<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </p></li>
+<li><p><strong>node_voltage_vector</strong> (<em>numpy.ndarray</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -522,8 +522,8 @@ operation point.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </li>
-<li><strong>node_voltage_vector</strong> (<em>numpy.ndarray</em>) – </li>
+<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </p></li>
+<li><p><strong>node_voltage_vector</strong> (<em>numpy.ndarray</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -544,7 +544,7 @@ operation point.</p></li>
 </dd>
 </dl>
 <ul class="simple">
-<li>Conditions are formulated according to: &lt;<a class="reference external" href="https://arxiv.org/pdf/1702.03310.pdf">https://arxiv.org/pdf/1702.03310.pdf</a>&gt;</li>
+<li><p>Conditions are formulated according to: &lt;<a class="reference external" href="https://arxiv.org/pdf/1702.03310.pdf">https://arxiv.org/pdf/1702.03310.pdf</a>&gt;</p></li>
 <li><p>Note the performance issues of this condition check algorithm due to the
 requirement for matrix inversions / solving of linear equations.</p></li>
 </ul>
@@ -557,8 +557,8 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </li>
-<li><strong>der_power_vector</strong> (<em>numpy.ndarray</em>) – </li>
+<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>fledge.electric_grid_models.ElectricGridModelDefault</em></a>) – </p></li>
+<li><p><strong>der_power_vector</strong> (<em>numpy.ndarray</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -579,7 +579,7 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 <em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">electric_grid_model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.PowerFlowSolutionOpenDSS.get_voltage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get nodal voltage vector by solving OpenDSS model.</p>
 <ul class="simple">
-<li>OpenDSS model must be readily set up, with the desired power being set for all DERs.</li>
+<li><p>OpenDSS model must be readily set up, with the desired power being set for all DERs.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -593,7 +593,7 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 <em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_branch_power</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.PowerFlowSolutionOpenDSS.get_branch_power" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get branch power vectors by solving OpenDSS model.</p>
 <ul class="simple">
-<li>OpenDSS model must be readily set up, with the desired power being set for all DERs.</li>
+<li><p>OpenDSS model must be readily set up, with the desired power being set for all DERs.</p></li>
 </ul>
 </dd></dl>
 
@@ -602,7 +602,7 @@ requirement for matrix inversions / solving of linear equations.</p></li>
 <em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_loss</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.electric_grid_models.PowerFlowSolutionOpenDSS.get_loss" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get total loss by solving OpenDSS model.</p>
 <ul class="simple">
-<li>OpenDSS model must be readily set up, with the desired power being set for all DERs.</li>
+<li><p>OpenDSS model must be readily set up, with the desired power being set for all DERs.</p></li>
 </ul>
 </dd></dl>
 
@@ -635,8 +635,8 @@ but does not implement any functionality.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</li>
-<li><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Reference power flow solution object.</li>
+<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</p></li>
+<li><p><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Reference power flow solution object.</p></li>
 <li><p><strong>sensitivity_voltage_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage vector
 by active wye power vector.</p></li>
 <li><p><strong>sensitivity_voltage_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage
@@ -754,10 +754,10 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>optimization_problem</strong> (<a class="reference internal" href="#fledge.utils.OptimizationProblem" title="fledge.utils.OptimizationProblem"><em>fledge.utils.OptimizationProblem</em></a>) – </li>
-<li><strong>node_voltage_magnitude_vector_minimum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
-<li><strong>node_voltage_magnitude_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
-<li><strong>branch_power_magnitude_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
+<li><p><strong>optimization_problem</strong> (<a class="reference internal" href="#fledge.utils.OptimizationProblem" title="fledge.utils.OptimizationProblem"><em>fledge.utils.OptimizationProblem</em></a>) – </p></li>
+<li><p><strong>node_voltage_magnitude_vector_minimum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>node_voltage_magnitude_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>branch_power_magnitude_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -784,15 +784,15 @@ model object for given <cite>electric_grid_model</cite> and <cite>power_flow_sol
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</li>
-<li><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Power flow solution object.</li>
-<li><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</li>
+<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</p></li>
+<li><p><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Power flow solution object.</p></li>
+<li><p><strong>scenario_name</strong> (<em>str</em>) – FLEDGE scenario name.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Variables</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</li>
-<li><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Reference power flow solution object.</li>
+<li><p><strong>electric_grid_model</strong> (<a class="reference internal" href="#fledge.electric_grid_models.ElectricGridModelDefault" title="fledge.electric_grid_models.ElectricGridModelDefault"><em>ElectricGridModelDefault</em></a>) – Electric grid model object.</p></li>
+<li><p><strong>power_flow_solution</strong> (<a class="reference internal" href="#fledge.electric_grid_models.PowerFlowSolution" title="fledge.electric_grid_models.PowerFlowSolution"><em>PowerFlowSolution</em></a>) – Reference power flow solution object.</p></li>
 <li><p><strong>sensitivity_voltage_by_power_wye_active</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage vector
 by active wye power vector.</p></li>
 <li><p><strong>sensitivity_voltage_by_power_wye_reactive</strong> (<em>scipy.sparse.spmatrix</em>) – Sensitivity matrix for complex voltage
@@ -937,8 +937,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>thermal_grid_model</strong> (<a class="reference internal" href="#fledge.thermal_grid_models.ThermalGridModel" title="fledge.thermal_grid_models.ThermalGridModel"><em>fledge.thermal_grid_models.ThermalGridModel</em></a>) – </li>
-<li><strong>thermal_power_flow_solution</strong> (<a class="reference internal" href="#fledge.thermal_grid_models.ThermalPowerFlowSolution" title="fledge.thermal_grid_models.ThermalPowerFlowSolution"><em>fledge.thermal_grid_models.ThermalPowerFlowSolution</em></a>) – </li>
+<li><p><strong>thermal_grid_model</strong> (<a class="reference internal" href="#fledge.thermal_grid_models.ThermalGridModel" title="fledge.thermal_grid_models.ThermalGridModel"><em>fledge.thermal_grid_models.ThermalGridModel</em></a>) – </p></li>
+<li><p><strong>thermal_power_flow_solution</strong> (<a class="reference internal" href="#fledge.thermal_grid_models.ThermalPowerFlowSolution" title="fledge.thermal_grid_models.ThermalPowerFlowSolution"><em>fledge.thermal_grid_models.ThermalPowerFlowSolution</em></a>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -960,9 +960,9 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>optimization_problem</strong> (<a class="reference internal" href="#fledge.utils.OptimizationProblem" title="fledge.utils.OptimizationProblem"><em>fledge.utils.OptimizationProblem</em></a>) – </li>
-<li><strong>node_head_vector_minimum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
-<li><strong>branch_flow_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </li>
+<li><p><strong>optimization_problem</strong> (<a class="reference internal" href="#fledge.utils.OptimizationProblem" title="fledge.utils.OptimizationProblem"><em>fledge.utils.OptimizationProblem</em></a>) – </p></li>
+<li><p><strong>node_head_vector_minimum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>branch_flow_vector_maximum</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -982,8 +982,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1003,8 +1003,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1018,8 +1018,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1033,8 +1033,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1048,8 +1048,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1063,8 +1063,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1078,8 +1078,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1093,8 +1093,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1108,8 +1108,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1123,8 +1123,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1138,8 +1138,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1153,8 +1153,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1168,8 +1168,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1182,8 +1182,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1209,8 +1209,8 @@ reactive loss by DER reactive power vector.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </li>
-<li><strong>der_name</strong> (<em>str</em>) – </li>
+<li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
+<li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -1263,10 +1263,10 @@ reactive loss by DER reactive power vector.</p></li>
 <span class="sig-name descname"><span class="pre">parse_parameters_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ScenarioData.parse_parameters_column" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse parameters into one column of a dataframe.</p>
 <ul class="simple">
-<li>Replace strings that match <cite>parameter_name</cite> with <cite>parameter_value</cite>.</li>
-<li>Other strings are are directly parsed into numbers.</li>
-<li>If a string doesn’t match any match <cite>parameter_name</cite> and cannot be parsed, it is replaced with NaN.</li>
-<li>Expects <cite>column</cite> to be passed as <cite>np.ndarray</cite> rather than directly as <cite>pd.Series</cite> (for performance reasons).</li>
+<li><p>Replace strings that match <cite>parameter_name</cite> with <cite>parameter_value</cite>.</p></li>
+<li><p>Other strings are are directly parsed into numbers.</p></li>
+<li><p>If a string doesn’t match any match <cite>parameter_name</cite> and cannot be parsed, it is replaced with NaN.</p></li>
+<li><p>Expects <cite>column</cite> to be passed as <cite>np.ndarray</cite> rather than directly as <cite>pd.Series</cite> (for performance reasons).</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1280,14 +1280,14 @@ reactive loss by DER reactive power vector.</p></li>
 <span class="sig-name descname"><span class="pre">parse_parameters_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluded_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ScenarioData.parse_parameters_dataframe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse parameters into a dataframe.</p>
 <ul class="simple">
-<li>Applies <cite>parse_parameters_column</cite> for all string columns.</li>
-<li>Columns in <cite>excluded_columns</cite> are not parsed. By default this includes <cite>_name</cite>, <cite>_type</cite>, <cite>connection</cite> columns.</li>
+<li><p>Applies <cite>parse_parameters_column</cite> for all string columns.</p></li>
+<li><p>Columns in <cite>excluded_columns</cite> are not parsed. By default this includes <cite>_name</cite>, <cite>_type</cite>, <cite>connection</cite> columns.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>dataframe</strong> (<em>pandas.DataFrame</em>) – </li>
-<li><strong>excluded_columns</strong> (<em>Optional</em><em>[</em><em>list</em><em>]</em>) – </li>
+<li><p><strong>dataframe</strong> (<em>pandas.DataFrame</em>) – </p></li>
+<li><p><strong>excluded_columns</strong> (<em>Optional</em><em>[</em><em>list</em><em>]</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1377,9 +1377,9 @@ Modifications to the attributes of the copy will not be reflected in the origina
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.ResultsBase.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Store results to files at given results path.</p>
 <ul class="simple">
-<li>Each results variable / attribute will be stored as separate file with the attribute name as file name.</li>
-<li>Pandas Series / DataFrame are stored to CSV.</li>
-<li>Other objects are stored to pickle binary file (PKL).</li>
+<li><p>Each results variable / attribute will be stored as separate file with the attribute name as file name.</p></li>
+<li><p>Pandas Series / DataFrame are stored to CSV.</p></li>
+<li><p>Other objects are stored to pickle binary file (PKL).</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1416,14 +1416,14 @@ Allows running repeated function calls in-parallel, based on Python’s <cite>mu
 <ul class="simple">
 <li><p>If configuration parameter <cite>run_parallel</cite> is set to True, execution is passed to <cite>starmap</cite>
 of <cite>multiprocess.Pool</cite>, hence running the function calls in parallel.</p></li>
-<li>Otherwise, execution is passed to <cite>itertools.starmap</cite>, which is the non-parallel equivalent.</li>
+<li><p>Otherwise, execution is passed to <cite>itertools.starmap</cite>, which is the non-parallel equivalent.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>function</strong> (<em>Callable</em>) – </li>
-<li><strong>argument_sequence</strong> (<em>Iterable</em><em>[</em><em>tuple</em><em>]</em>) – </li>
-<li><strong>keyword_arguments</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – </li>
+<li><p><strong>function</strong> (<em>Callable</em>) – </p></li>
+<li><p><strong>argument_sequence</strong> (<em>Iterable</em><em>[</em><em>tuple</em><em>]</em>) – </p></li>
+<li><p><strong>keyword_arguments</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -1437,21 +1437,21 @@ of <cite>multiprocess.Pool</cite>, hence running the function calls in parallel.
 <span class="sig-prename descclassname"><span class="pre">fledge.utils.</span></span><span class="sig-name descname"><span class="pre">log_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">label</span></em>, <em class="sig-param"><span class="pre">log_level='debug'</span></em>, <em class="sig-param"><span class="pre">logger_object=&lt;Logger</span> <span class="pre">fledge.utils</span> <span class="pre">(INFO)&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.utils.log_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log start / end message and time duration for given label.</p>
 <ul class="simple">
-<li>When called with given label for the first time, will log start message.</li>
+<li><p>When called with given label for the first time, will log start message.</p></li>
 <li><p>When called subsequently with the same / previously used label, will log end message and time duration since
 logging the start message.</p></li>
 <li><p>The log level for start / end messages can be given as keyword argument, By default, messages are logged as
 debug messages.</p></li>
-<li>The logger object can be given as keyword argument. By default, uses <code class="docutils literal notranslate"><span class="pre">utils.logger</span></code> as logger.</li>
-<li>Start message: “Starting <code class="docutils literal notranslate"><span class="pre">label</span></code>.”</li>
-<li>End message: “Completed <code class="docutils literal notranslate"><span class="pre">label</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.”</li>
+<li><p>The logger object can be given as keyword argument. By default, uses <code class="docutils literal notranslate"><span class="pre">utils.logger</span></code> as logger.</p></li>
+<li><p>Start message: “Starting <code class="docutils literal notranslate"><span class="pre">label</span></code>.”</p></li>
+<li><p>End message: “Completed <code class="docutils literal notranslate"><span class="pre">label</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.”</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>label</strong> (<em>str</em>) – Label for the start / end message.</li>
-<li><strong>log_level</strong> (<em>str</em>) – </li>
-<li><strong>logger_object</strong> (<em>logging.Logger</em>) – </li>
+<li><p><strong>label</strong> (<em>str</em>) – Label for the start / end message.</p></li>
+<li><p><strong>log_level</strong> (<em>str</em>) – </p></li>
+<li><p><strong>logger_object</strong> (<em>logging.Logger</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Keyword Arguments</dt>
@@ -1478,8 +1478,8 @@ index set <cite>electric_grid_model.nodes</cite> with given <cite>node_type</cit
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><strong>index_set</strong> (<em>pd.Index</em>) – Index set, e.g., <cite>electric_grid_model.nodes</cite>.</li>
-<li><strong>raise_empty_index_error</strong> (<em>bool</em>) – </li>
+<li><p><strong>index_set</strong> (<em>pd.Index</em>) – Index set, e.g., <cite>electric_grid_model.nodes</cite>.</p></li>
+<li><p><strong>raise_empty_index_error</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-odd">Keyword Arguments</dt>
@@ -1536,15 +1536,15 @@ must correspond to a level name of the index set.</p></li>
 assembled of the given base name, scenario name and current timestamp. The new subfolder is
 created on disk along with this.</p>
 <ul class="simple">
-<li>Non-alphanumeric characters are removed from <cite>base_name</cite> and <cite>scenario_name</cite>.</li>
+<li><p>Non-alphanumeric characters are removed from <cite>base_name</cite> and <cite>scenario_name</cite>.</p></li>
 <li><p>If is a script file path or <cite>__file__</cite> is passed as <cite>base_name</cite>, the base file name without extension
 will be taken as base name.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>base_name</strong> (<em>str</em>) – </li>
-<li><strong>scenario_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </li>
+<li><p><strong>base_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>scenario_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -1584,13 +1584,13 @@ will be taken as base name.</p></li>
 <ul class="simple">
 <li><p><cite>results_path</cite> should be given as file name without file extension, because the file extension is appended
 automatically based on given <cite>file_format</cite>.</p></li>
-<li>Valid file formats: ‘png’, ‘jpg’, ‘jpeg’, ‘webp’, ‘svg’, ‘pdf’, ‘html’, ‘json’</li>
+<li><p>Valid file formats: ‘png’, ‘jpg’, ‘jpeg’, ‘webp’, ‘svg’, ‘pdf’, ‘html’, ‘json’</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><strong>figure</strong> (<em>plotly.graph_objects.Figure</em>) – </li>
-<li><strong>results_path</strong> (<em>str</em>) – </li>
+<li><p><strong>figure</strong> (<em>plotly.graph_objects.Figure</em>) – </p></li>
+<li><p><strong>results_path</strong> (<em>str</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1605,9 +1605,9 @@ automatically based on given <cite>file_format</cite>.</p></li>
 <span class="sig-prename descclassname"><span class="pre">fledge.config.</span></span><span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.get_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load the configuration dictionary.</p>
 <ul class="simple">
-<li>Default configuration is obtained from <cite>./fledge/config_default.yml</cite>.</li>
-<li>Custom configuration is obtained from <cite>./config.yml</cite> and overwrites the respective default configuration.</li>
-<li><cite>./</cite> denotes the repository base directory.</li>
+<li><p>Default configuration is obtained from <cite>./fledge/config_default.yml</cite>.</p></li>
+<li><p>Custom configuration is obtained from <cite>./config.yml</cite> and overwrites the respective default configuration.</p></li>
+<li><p><cite>./</cite> denotes the repository base directory.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -1635,7 +1635,7 @@ automatically based on given <cite>file_format</cite>.</p></li>
 <span class="sig-prename descclassname"><span class="pre">fledge.config.</span></span><span class="sig-name descname"><span class="pre">get_parallel_pool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fledge.config.get_parallel_pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create multiprocessing / parallel computing pool.</p>
 <ul class="simple">
-<li>Number of parallel processes / workers defaults to number of CPU threads as returned by <cite>os.cpu_count()</cite>.</li>
+<li><p>Number of parallel processes / workers defaults to number of CPU threads as returned by <cite>os.cpu_count()</cite>.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -1704,15 +1704,15 @@ but only if caching is enabled for given <cite>name</cite> in config.</p>
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../feature/pnnl_tumcreate_colab/api_reference.html">feature/pnnl_tumcreate_colab</a></dd>
+            <dd><a href="../feature/general_improvements/api_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../develop/api_reference.html">develop</a></dd>
             <dd><a href="../feature/backup_verena/api_reference.html">feature/backup_verena</a></dd>
             <dd><a href="../feature/biogas_model/index.html">feature/biogas_model</a></dd>
             <dd><a href="../feature/dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></dd>
             <dd><a href="../feature/dro/api_reference.html">feature/dro</a></dd>
             <dd><a href="../feature/electric_grid_extensions/api_reference.html">feature/electric_grid_extensions</a></dd>
-            <dd><a href="../feature/general_improvements/api_reference.html">feature/general_improvements</a></dd>
             <dd><a href="../feature/market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
+            <dd><a href="../feature/pnnl_tumcreate_colab/api_reference.html">feature/pnnl_tumcreate_colab</a></dd>
             <dd><a href="../feature/sitem/api_reference.html">feature/sitem</a></dd>
             <dd><a href="../feature/test_cases/index.html">feature/test_cases</a></dd>
             <dd><a href="../feature/trust_region/api_reference.html">feature/trust_region</a></dd>

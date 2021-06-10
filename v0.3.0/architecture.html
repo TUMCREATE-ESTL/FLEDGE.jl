@@ -180,7 +180,7 @@
 <p>The software requirements and proposed software architecture for FLEDGE are discussed here to provide an overview for interested users and developers.</p>
 <p>For the original publication on this topic, please refer to:</p>
 <ul class="simple">
-<li>Troitzsch, S., Hanif, S., Zhang, K., Trpovski, A., &amp; Hamacher, T., <strong>Flexible Distribution Grid Demonstrator (FLEDGE): Requirements and Software Architecture</strong>, in IEEE PES General Meeting, Atlanta, GA, USA, 2019. <a class="reference external" href="https://doi.org/10.1109/PESGM40551.2019.8973567"><code class="docutils literal notranslate"><span class="pre">doi:</span> <span class="pre">10.1109/PESGM40551.2019.8973567</span></code></a>.</li>
+<li><p>Troitzsch, S., Hanif, S., Zhang, K., Trpovski, A., &amp; Hamacher, T., <strong>Flexible Distribution Grid Demonstrator (FLEDGE): Requirements and Software Architecture</strong>, in IEEE PES General Meeting, Atlanta, GA, USA, 2019. <a class="reference external" href="https://doi.org/10.1109/PESGM40551.2019.8973567"><code class="docutils literal notranslate"><span class="pre">doi:</span> <span class="pre">10.1109/PESGM40551.2019.8973567</span></code></a>.</p></li>
 </ul>
 <section id="preliminaries">
 <h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h2>
@@ -198,30 +198,30 @@
 <section id="functional-requirements">
 <h3>Functional requirements<a class="headerlink" href="#functional-requirements" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>The software computes planning and operation problems for the distribution grid in the presence of DERs.</li>
-<li>The software comprises a framework to represent and compare different (numerical optimization) problem formulations for both planning an operation. This includes the ability to specify different objective functions, mathematical component models and constraints.</li>
-<li>The software can interface numerical optimization solvers as a tool for computing the planning and operation problems.</li>
-<li>The software comprises mathematical component models for the distribution grid, fixed loads, flexible loads, BESSs, EV charging and renewable generation.</li>
-<li>The software allows adding more mathematical component models at a later stage.</li>
-<li>The software allows computation of results on a scenario basis. A scenario defines the test case, problem type, problem formulation and solution parameters. The test case defines the distribution grid along with its connected DERs. The problem type is either planning or operation. The problem formulation describes which objective function, mathematical component models and constraints are being considered. Solution parameters define which solution algorithm is applied.</li>
-<li>The expert user is provided with an interface for a tabular input format to define scenarios along with the required test case and component model parameters.</li>
-<li>The expert user is provided with programmable interface for instructing the software to compute results for the scenarios from within a high-level programming language.</li>
-<li>The expert user is provided with results for each scenario in a tabular output format comprising the time series data of all state variables of all components.</li>
-<li>The non-expert user is provided with the ability select and view results for scenarios which have been defined by expert users.</li>
-<li>The non-expert user is provided with results for each scenario in a graphical user interface through visual representation of the distribution grid and its operational performance, i.e. nodal voltage, line loading, line losses and dispatched load and generation.</li>
+<li><p>The software computes planning and operation problems for the distribution grid in the presence of DERs.</p></li>
+<li><p>The software comprises a framework to represent and compare different (numerical optimization) problem formulations for both planning an operation. This includes the ability to specify different objective functions, mathematical component models and constraints.</p></li>
+<li><p>The software can interface numerical optimization solvers as a tool for computing the planning and operation problems.</p></li>
+<li><p>The software comprises mathematical component models for the distribution grid, fixed loads, flexible loads, BESSs, EV charging and renewable generation.</p></li>
+<li><p>The software allows adding more mathematical component models at a later stage.</p></li>
+<li><p>The software allows computation of results on a scenario basis. A scenario defines the test case, problem type, problem formulation and solution parameters. The test case defines the distribution grid along with its connected DERs. The problem type is either planning or operation. The problem formulation describes which objective function, mathematical component models and constraints are being considered. Solution parameters define which solution algorithm is applied.</p></li>
+<li><p>The expert user is provided with an interface for a tabular input format to define scenarios along with the required test case and component model parameters.</p></li>
+<li><p>The expert user is provided with programmable interface for instructing the software to compute results for the scenarios from within a high-level programming language.</p></li>
+<li><p>The expert user is provided with results for each scenario in a tabular output format comprising the time series data of all state variables of all components.</p></li>
+<li><p>The non-expert user is provided with the ability select and view results for scenarios which have been defined by expert users.</p></li>
+<li><p>The non-expert user is provided with results for each scenario in a graphical user interface through visual representation of the distribution grid and its operational performance, i.e. nodal voltage, line loading, line losses and dispatched load and generation.</p></li>
 </ul>
 </section>
 <section id="non-functional-requirements">
 <h3>Non-functional Requirements<a class="headerlink" href="#non-functional-requirements" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>The solution mechanism is highly scalable, i.e., distributed optimization techniques are utilized to improve the computational performance for large-scale test cases.</li>
-<li>The solution mechanism accounts for multiphase unbalanced loading conditions in the distribution grid.</li>
-<li>The framework specifies a tabular input definition format for test case data, i.e., distribution grid layout, grid component parameters, DER connection points and DER parameters.</li>
-<li>The definition of the test case is separated from the mathematical definition of component model such that the test case is easily replaceable.</li>
-<li>The software makes it easy to reconfigure and re-run scenarios. Hence, the performance of the solution procedure is a major concern.</li>
-<li>The software should not depend on third-party software that would incur additional license fees.</li>
-<li>The software documentation enables expert users to comprehend the mathematical foundation of models and algorithms.</li>
-<li>The software documentation enables non-expert users to operate the software independently given a set of predefined scenarios.</li>
+<li><p>The solution mechanism is highly scalable, i.e., distributed optimization techniques are utilized to improve the computational performance for large-scale test cases.</p></li>
+<li><p>The solution mechanism accounts for multiphase unbalanced loading conditions in the distribution grid.</p></li>
+<li><p>The framework specifies a tabular input definition format for test case data, i.e., distribution grid layout, grid component parameters, DER connection points and DER parameters.</p></li>
+<li><p>The definition of the test case is separated from the mathematical definition of component model such that the test case is easily replaceable.</p></li>
+<li><p>The software makes it easy to reconfigure and re-run scenarios. Hence, the performance of the solution procedure is a major concern.</p></li>
+<li><p>The software should not depend on third-party software that would incur additional license fees.</p></li>
+<li><p>The software documentation enables expert users to comprehend the mathematical foundation of models and algorithms.</p></li>
+<li><p>The software documentation enables non-expert users to operate the software independently given a set of predefined scenarios.</p></li>
 </ul>
 </section>
 </section>
@@ -298,15 +298,15 @@
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="../feature/pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></dd>
+            <dd><a href="../feature/general_improvements/index.html">feature/general_improvements</a></dd>
             <dd><a href="../develop/index.html">develop</a></dd>
             <dd><a href="../feature/backup_verena/index.html">feature/backup_verena</a></dd>
             <dd><a href="../feature/biogas_model/architecture.html">feature/biogas_model</a></dd>
             <dd><a href="../feature/dlmp_analysis/index.html">feature/dlmp_analysis</a></dd>
             <dd><a href="../feature/dro/index.html">feature/dro</a></dd>
             <dd><a href="../feature/electric_grid_extensions/index.html">feature/electric_grid_extensions</a></dd>
-            <dd><a href="../feature/general_improvements/index.html">feature/general_improvements</a></dd>
             <dd><a href="../feature/market_clearing_engine/architecture.html">feature/market_clearing_engine</a></dd>
+            <dd><a href="../feature/pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></dd>
             <dd><a href="../feature/sitem/index.html">feature/sitem</a></dd>
             <dd><a href="../feature/test_cases/architecture.html">feature/test_cases</a></dd>
             <dd><a href="../feature/trust_region/index.html">feature/trust_region</a></dd>
