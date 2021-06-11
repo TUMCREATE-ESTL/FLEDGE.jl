@@ -43,8 +43,8 @@ If you are running into errors when installing or running FLEDGE, this may be du
    2. `conda activate fledge`
    3. `pip install -v -e path_to_repository`.
 
-``` important::
-    Please create an issue on Github if you run into problems with the normal installation procedure.
+```{important}
+Please create an issue on Github if you run into problems with the normal installation procedure.
 ```
 
 ## Examples
