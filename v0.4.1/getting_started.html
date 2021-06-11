@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Data reference" href="data_reference.html" /><link rel="prev" title="FLEDGE - Flexible Distribution Grid Demonstrator" href="index.html" />
 
     <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
         <title>Getting Started - FLEDGE documentation</title>
@@ -108,7 +108,16 @@
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form><div class="sidebar-tree">
-  
+  <ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_reference.html">Data reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software_architecture.html">Software architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html">Change log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+</ul>
+
 </div>
     <div class="sidebar-tree">
         <ul>
@@ -130,9 +139,6 @@
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../develop/getting_started.html">develop</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../feature/backup_verena/getting_started.html">feature/backup_verena</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../feature/biogas_model/index.html">feature/biogas_model</a></li>
@@ -192,16 +198,16 @@
 <div class="section" id="quick-installation">
 <h3>Quick installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
-<li>Check requirements:
+<li><p>Check requirements:</p>
 <ul class="simple">
-<li>Python 3.7</li>
-<li><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></li>
+<li><p>Python 3.7</p></li>
+<li><p><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></p></li>
 </ul>
 </li>
-<li>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</li>
-<li>In your Python environment, run:
+<li><p>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</p></li>
+<li><p>In your Python environment, run:</p>
 <ol class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></p></li>
 </ol>
 </li>
 </ol>
@@ -211,25 +217,25 @@
 <h3>Recommended installation<a class="headerlink" href="#recommended-installation" title="Permalink to this headline">¶</a></h3>
 <p>The following installation procedure requires additional steps, but can improve performance and includes optional dependencies. For example, the numpy, pandas and cvxpy packages are installed through Anaconda, which ensures the use of more performant math libraries. Additionally, the contextily package is installed, which is required for some geographical plots.</p>
 <ol class="simple">
-<li>Check requirements:
+<li><p>Check requirements:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda Python Distribution</a></li>
-<li><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a> or <a class="reference external" href="https://www.ibm.com/analytics/cplex-optimizer">CPLEX Optimizer</a></li>
+<li><p><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda Python Distribution</a></p></li>
+<li><p><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a> or <a class="reference external" href="https://www.ibm.com/analytics/cplex-optimizer">CPLEX Optimizer</a></p></li>
 </ul>
 </li>
-<li>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</li>
-<li>In Anaconda Prompt, run:
+<li><p>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</p></li>
+<li><p>In Anaconda Prompt, run:</p>
 <ol class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">python=3.7</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">contextily</span> <span class="pre">cvxpy</span> <span class="pre">numpy</span> <span class="pre">pandas</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">python=3.7</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">contextily</span> <span class="pre">cvxpy</span> <span class="pre">numpy</span> <span class="pre">pandas</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></p></li>
 </ol>
 </li>
-<li>If you want to use CPLEX:
+<li><p>If you want to use CPLEX:</p>
 <ol class="simple">
-<li>Install CPLEX Python interface (see latest CPLEX documentation).</li>
-<li>Create or modify <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> (see below in “Configuration with <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>”).</li>
+<li><p>Install CPLEX Python interface (see latest CPLEX documentation).</p></li>
+<li><p>Create or modify <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> (see below in “Configuration with <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>”).</p></li>
 </ol>
 </li>
 </ol>
@@ -238,24 +244,25 @@
 <h3>Alternative installation<a class="headerlink" href="#alternative-installation" title="Permalink to this headline">¶</a></h3>
 <p>If you are running into errors when installing or running FLEDGE, this may be due to incompatibility with new versions of package dependencies, which have yet to be discovered and fixed. As a workaround, try installing FLEDGE in an tested Anaconda environment via the the provided <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, which represents the latest Anaconda Python environment in which FLEDGE was tested and is expected to work.</p>
 <ol class="simple">
-<li>Check requirements:
+<li><p>Check requirements:</p>
 <ul class="simple">
-<li>Windows 10</li>
-<li><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda Python Distribution</a></li>
-<li><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></li>
+<li><p>Windows 10</p></li>
+<li><p><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda Python Distribution</a></p></li>
+<li><p><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></p></li>
 </ul>
 </li>
-<li>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</li>
-<li>In Anaconda Prompt, run:
+<li><p>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</p></li>
+<li><p>In Anaconda Prompt, run:</p>
 <ol class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">path_to_fledge_repository/environment.yml</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code>.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">path_to_fledge_repository/environment.yml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code>.</p></li>
 </ol>
 </li>
 </ol>
-<div class="highlight-important:: notranslate"><div class="highlight"><pre><span></span>    Please create an issue on Github if you run into problems with the normal installation procedure.
-</pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please create an issue on Github if you run into problems with the normal installation procedure.</p>
 </div>
 </div>
 </div>
@@ -266,35 +273,35 @@
 <h3>API examples<a class="headerlink" href="#api-examples" title="Permalink to this headline">¶</a></h3>
 <p>These examples demonstrate the usage of the high-level API to execute predefined problem types.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">run_api_nominal_operation_problem.py</span></code>: Example script for setting up and solving an nominal operation problem. The nominal operation problem (alias: power flow problem, electric grid simulation problem) formulates the steady-state power flow problem for all timesteps of the given scenario subject to the nominal operation schedule of all DERs.</li>
-<li><code class="docutils literal notranslate"><span class="pre">run_api_optimal_operation_problem.py</span></code>: Example script for setting up and solving an optimal operation problem. The optimal operation problem (alias: optimal dispatch problem, optimal power flow problem) formulates the optimization problem for minimizing the objective functions of DERs and grid operators subject to the model constraints of all DERs and grids.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_api_nominal_operation_problem.py</span></code>: Example script for setting up and solving an nominal operation problem. The nominal operation problem (alias: power flow problem, electric grid simulation problem) formulates the steady-state power flow problem for all timesteps of the given scenario subject to the nominal operation schedule of all DERs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_api_optimal_operation_problem.py</span></code>: Example script for setting up and solving an optimal operation problem. The optimal operation problem (alias: optimal dispatch problem, optimal power flow problem) formulates the optimization problem for minimizing the objective functions of DERs and grid operators subject to the model constraints of all DERs and grids.</p></li>
 </ul>
 </div>
 <div class="section" id="advanced-examples">
 <h3>Advanced examples<a class="headerlink" href="#advanced-examples" title="Permalink to this headline">¶</a></h3>
 <p>For advanced usage of FLEDGE, the following examples demonstrate in a step-by-step manner how energy system models and optimization problems can be defined and solved with FLEDGE. These example scripts serve as a reference for setting up custom work flows.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">run_electric_grid_optimal_operation.py</span></code>: Example script for setting up and solving an electric grid optimal operation problem.</li>
-<li><code class="docutils literal notranslate"><span class="pre">run_thermal_grid_optimal_operation.py</span></code>: Example script for setting up and solving a thermal grid optimal operation problem.</li>
-<li><code class="docutils literal notranslate"><span class="pre">run_multi_grid_optimal_operation.py</span></code>: Example script for setting up and solving a multi-grid optimal operation problem.</li>
-<li><code class="docutils literal notranslate"><span class="pre">run_flexible_der_optimal_operation.py</span></code>: Example script for setting up and solving a flexible DER optimal operation problem.</li>
-<li><code class="docutils literal notranslate"><span class="pre">run_electric_grid_power_flow_single_step.py</span></code>: Example script for setting up and solving an single step electric grid power flow problem.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_electric_grid_optimal_operation.py</span></code>: Example script for setting up and solving an electric grid optimal operation problem.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_thermal_grid_optimal_operation.py</span></code>: Example script for setting up and solving a thermal grid optimal operation problem.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_multi_grid_optimal_operation.py</span></code>: Example script for setting up and solving a multi-grid optimal operation problem.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_flexible_der_optimal_operation.py</span></code>: Example script for setting up and solving a flexible DER optimal operation problem.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_electric_grid_power_flow_single_step.py</span></code>: Example script for setting up and solving an single step electric grid power flow problem.</p></li>
 </ul>
 </div>
 <div class="section" id="validation-scripts">
 <h3>Validation scripts<a class="headerlink" href="#validation-scripts" title="Permalink to this headline">¶</a></h3>
 <p>Since the model implementations in FLEDGE are not infallible, these validation scripts are provided for model testing.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">validation_electric_grid_power_flow.py</span></code>: Example script for testing / validating the electric grid power flow solution.</li>
-<li><code class="docutils literal notranslate"><span class="pre">validation_linear_electric_grid_model.py</span></code>: Example script for testing / validating the linear electric grid model.</li>
-<li><code class="docutils literal notranslate"><span class="pre">validation_electric_grid_dlmp_solution.py</span></code>: Validation script for solving a decentralized DER operation problem based on DLMPs from the centralized problem.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validation_electric_grid_power_flow.py</span></code>: Example script for testing / validating the electric grid power flow solution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validation_linear_electric_grid_model.py</span></code>: Example script for testing / validating the linear electric grid model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validation_electric_grid_dlmp_solution.py</span></code>: Validation script for solving a decentralized DER operation problem based on DLMPs from the centralized problem.</p></li>
 </ul>
 </div>
 <div class="section" id="other-scripts">
 <h3>Other scripts<a class="headerlink" href="#other-scripts" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>The directory <code class="docutils literal notranslate"><span class="pre">examples/development</span></code> contains example scripts which are under development and scripts related to the development of new features for FLEDGE.</li>
-<li>The directory <code class="docutils literal notranslate"><span class="pre">examples/publications</span></code> contains scripts related to publications which based on FLEDGE.</li>
+<li><p>The directory <code class="docutils literal notranslate"><span class="pre">examples/development</span></code> contains example scripts which are under development and scripts related to the development of new features for FLEDGE.</p></li>
+<li><p>The directory <code class="docutils literal notranslate"><span class="pre">examples/publications</span></code> contains scripts related to publications which based on FLEDGE.</p></li>
 </ul>
 </div>
 </div>
@@ -310,7 +317,7 @@
 </div>
 <div class="section" id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
-<p>If you are keen to contribute to this project, please see <a class="reference internal" href="contributing.html"><span class="doc">Contributing</span></a>.</p>
+<p>If you are keen to contribute to this project, please see <a class="reference internal" href="contributing.html"><span class="doc std std-doc">Contributing</span></a>.</p>
 </div>
 </div>
 
@@ -318,8 +325,26 @@
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="data_reference.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Data reference</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
         </div>
 
         <div class="related-information">

@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Getting Started" href="intro.html" />
 
     <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
         <title>Home - FLEDGE documentation</title>
@@ -108,7 +108,14 @@
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form><div class="sidebar-tree">
-  
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Software architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
 </div>
     <div class="sidebar-tree">
         <ul>
@@ -130,9 +137,6 @@
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../../develop/index.html">develop</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../backup_verena/index.html">feature/backup_verena</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../biogas_model/index.html">feature/biogas_model</a></li>
@@ -187,39 +191,39 @@
         </label>
         <div class="section" id="fledge-flexible-distribution-grid-demonstrator">
 <h1>FLEDGE - Flexible Distribution Grid Demonstrator<a class="headerlink" href="#fledge-flexible-distribution-grid-demonstrator" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://zenodo.org/badge/latestdoi/201130660"><img alt="https://zenodo.org/badge/201130660.svg" src="https://zenodo.org/badge/201130660.svg"/></a></p>
+<p><a class="reference external" href="https://zenodo.org/badge/latestdoi/201130660"><img alt="" src="https://zenodo.org/badge/201130660.svg"/></a></p>
 <p>The Flexible Distribution Grid Demonstrator (FLEDGE) is a software tool for optimal operation problems of electric and thermal distribution grids along with distributed energy resources (DERs), such as flexible building loads, electric vehicle (EV) chargers, distributed generators (DGs) and energy storage systems (ESS). To this end, it implements 1) electric grid models, 2) thermal grid models, 3) DER models, and 4) optimal operation problems.</p>
 </div>
 <div class="section" id="features">
 <h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li>Electric grid models:
+<li><p>Electric grid models:</p>
 <ul>
-<li>Obtain nodal / branch admittance and incidence matrices¹.</li>
-<li>Obtain steady state power flow solution for nodal voltage / branch flows / losses via fixed-point algorithm / <a class="reference external" href="https://github.com/dss-extensions/OpenDSSDirect.py">OpenDSS</a>¹.</li>
-<li>Obtain sensitivity matrices of global linear approximate grid model¹.</li>
-<li>¹Fully enabled for unbalanced / multiphase grid configuration.</li>
+<li><p>Obtain nodal / branch admittance and incidence matrices¹.</p></li>
+<li><p>Obtain steady state power flow solution for nodal voltage / branch flows / losses via fixed-point algorithm / <a class="reference external" href="https://github.com/dss-extensions/OpenDSSDirect.py">OpenDSS</a>¹.</p></li>
+<li><p>Obtain sensitivity matrices of global linear approximate grid model¹.</p></li>
+<li><p>¹Fully enabled for unbalanced / multiphase grid configuration.</p></li>
 </ul>
 </li>
-<li>Thermal grid models:
+<li><p>Thermal grid models:</p>
 <ul>
-<li>Obtain nodal / branch incidence matrices.</li>
-<li>Obtain thermal power flow solution for nodal head / branch flows / pumping losses.</li>
-<li>Obtain sensitivity matrices of global linear approximate grid model.</li>
+<li><p>Obtain nodal / branch incidence matrices.</p></li>
+<li><p>Obtain thermal power flow solution for nodal head / branch flows / pumping losses.</p></li>
+<li><p>Obtain sensitivity matrices of global linear approximate grid model.</p></li>
 </ul>
 </li>
-<li>Distributed energy resource (DER) models:
+<li><p>Distributed energy resource (DER) models:</p>
 <ul>
-<li>Time series models for fixed loads.</li>
-<li>Time series models for EV charging.</li>
-<li>Linear models for flexible building loads.</li>
+<li><p>Time series models for fixed loads.</p></li>
+<li><p>Time series models for EV charging.</p></li>
+<li><p>Linear models for flexible building loads.</p></li>
 </ul>
 </li>
-<li>Optimal operation problems:
+<li><p>Optimal operation problems:</p>
 <ul>
-<li>Obtain numerical optimization problem for combined optimal operation for electric / thermal grids with DERs via <a class="reference external" href="https://github.com/Pyomo/pyomo">Pyomo</a>.</li>
-<li>Obtain electric / thermal optimal power flow solution.</li>
-<li>Obtain distribution locational marginal prices (DLMPs) for the electric / thermal grids.</li>
+<li><p>Obtain numerical optimization problem for combined optimal operation for electric / thermal grids with DERs via <a class="reference external" href="https://github.com/Pyomo/pyomo">Pyomo</a>.</p></li>
+<li><p>Obtain electric / thermal optimal power flow solution.</p></li>
+<li><p>Obtain distribution locational marginal prices (DLMPs) for the electric / thermal grids.</p></li>
 </ul>
 </li>
 </ul>
@@ -230,14 +234,50 @@
 </div>
 <div class="section" id="contents">
 <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-toctree:: notranslate"><div class="highlight"><pre><span></span>    :maxdepth: 2
-
-    intro
-    architecture
-    api
-    data
-    contributing
-</pre></div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#papers">Papers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#contributing">Contributing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Software architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#preliminaries">Preliminaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#problem-statement">Problem statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#general-architecture">General architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#solution-engine-architecture">Solution engine architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#use-case-optimal-operation-problem">Use case: Optimal operation problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#fledge-api"><code class="docutils literal notranslate"><span class="pre">fledge.api</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#fledge-problems"><code class="docutils literal notranslate"><span class="pre">fledge.problems</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#fledge-electric-grid-models"><code class="docutils literal notranslate"><span class="pre">fledge.electric_grid_models</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#fledge-thermal-grid-models"><code class="docutils literal notranslate"><span class="pre">fledge.thermal_grid_models</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#fledge-der-models"><code class="docutils literal notranslate"><span class="pre">fledge.der_models</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#fledge-data-interface"><code class="docutils literal notranslate"><span class="pre">fledge.data_interface</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#fledge-utils"><code class="docutils literal notranslate"><span class="pre">fledge.utils</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#fledge-config"><code class="docutils literal notranslate"><span class="pre">fledge.config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html#scenario-data">Scenario data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#electric-grid-data">Electric grid data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#thermal-grid-data">Thermal grid data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#distributed-energy-resource-der-data">Distributed energy resource (DER) data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#git-branches">Git branches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#release-versioning">Release versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#style-guide">Style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#environment-yml"><code class="docutils literal notranslate"><span class="pre">environment.yml</span></code></a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -245,7 +285,15 @@
       <footer>
         
         <div class="related-pages">
-          
+          <a class="next-page" href="intro.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Getting Started</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
           
         </div>
 

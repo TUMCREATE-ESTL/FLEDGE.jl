@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Software Architecture" href="architecture.html" /><link rel="prev" title="FLEDGE - Flexible Distribution Grid Demonstrator" href="index.html" />
 
     <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
         <title>Getting Started - FLEDGE documentation</title>
@@ -108,7 +108,14 @@
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form><div class="sidebar-tree">
-  
+  <ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Database Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
 </div>
     <div class="sidebar-tree">
         <ul>
@@ -130,9 +137,6 @@
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../develop/index.html">develop</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../feature/backup_verena/index.html">feature/backup_verena</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../feature/biogas_model/intro.html">feature/biogas_model</a></li>
@@ -192,17 +196,17 @@
 <div class="section" id="quick-installation">
 <h3>Quick installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
-<li>Check requirements:
+<li><p>Check requirements:</p>
 <ul class="simple">
-<li>Python 3.7</li>
-<li><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></li>
+<li><p>Python 3.7</p></li>
+<li><p><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></p></li>
 </ul>
 </li>
-<li>Clone or download repository.</li>
-<li>In your Python environment, run:
+<li><p>Clone or download repository.</p></li>
+<li><p>In your Python environment, run:</p>
 <ol class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository/cobmo</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository/cobmo</span></code></p></li>
 </ol>
 </li>
 </ol>
@@ -211,48 +215,49 @@
 <h3>Recommended installation<a class="headerlink" href="#recommended-installation" title="Permalink to this headline">¶</a></h3>
 <p>The following installation procedure contains additional steps and requirements which can improve the numerical performance when running FLEDGE.</p>
 <ol class="simple">
-<li>Check requirements:
+<li><p>Check requirements:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda Distribution</a> (Python 3.x version)</li>
-<li><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a> or <a class="reference external" href="https://www.ibm.com/analytics/cplex-optimizer">CPLEX Optimizer</a></li>
+<li><p><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda Distribution</a> (Python 3.x version)</p></li>
+<li><p><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a> or <a class="reference external" href="https://www.ibm.com/analytics/cplex-optimizer">CPLEX Optimizer</a></p></li>
 </ul>
 </li>
-<li>Clone or download repository.</li>
-<li>In Anaconda Prompt, run:
+<li><p>Clone or download repository.</p></li>
+<li><p>In Anaconda Prompt, run:</p>
 <ol class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">python=3.7</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">pandas</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository/cobmo</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">python=3.7</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">pandas</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository/cobmo</span></code></p></li>
 </ol>
 </li>
-<li>In <code class="docutils literal notranslate"><span class="pre">fledge/config.py</span></code>, change <code class="docutils literal notranslate"><span class="pre">solver_name</span></code> to <code class="docutils literal notranslate"><span class="pre">'gurobi'</span></code> or <code class="docutils literal notranslate"><span class="pre">'cplex'</span></code>.</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">fledge/config.py</span></code>, change <code class="docutils literal notranslate"><span class="pre">solver_name</span></code> to <code class="docutils literal notranslate"><span class="pre">'gurobi'</span></code> or <code class="docutils literal notranslate"><span class="pre">'cplex'</span></code>.</p></li>
 </ol>
 </div>
 <div class="section" id="alternative-installation">
 <h3>Alternative installation<a class="headerlink" href="#alternative-installation" title="Permalink to this headline">¶</a></h3>
 <p>If you are running into errors when installing or running FLEDGE, this may be due to incompatibility with new versions of package dependencies, which have yet to be discovered and fixed. As a workaround, try installing FLEDGE in an tested Anaconda environment via the the provided <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, which represents the latest Anaconda Python environment in which FLEDGE was tested and is expected to work.</p>
 <ol class="simple">
-<li>Check requirements:
+<li><p>Check requirements:</p>
 <ul class="simple">
-<li>Windows 10</li>
-<li><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda Distribution</a> (Python 3.x version)</li>
-<li><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></li>
+<li><p>Windows 10</p></li>
+<li><p><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda Distribution</a> (Python 3.x version)</p></li>
+<li><p><a class="reference external" href="http://www.gurobi.com/">Gurobi Optimizer</a></p></li>
 </ul>
 </li>
-<li>Clone or download repository.</li>
-<li>In Anaconda Prompt, run:
+<li><p>Clone or download repository.</p></li>
+<li><p>In Anaconda Prompt, run:</p>
 <ol class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">path_to_fledge_repository/environment.yml</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository/cobmo</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">path_to_fledge_repository/environment.yml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">path_to_repository/cobmo</span></code></p></li>
 </ol>
 </li>
 </ol>
-<div class="highlight-important:: notranslate"><div class="highlight"><pre><span></span>    Please also create an issue on Github if you run into problems with the normal installation procedure.
-</pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please also create an issue on Github if you run into problems with the normal installation procedure.</p>
 </div>
 </div>
 </div>
@@ -264,33 +269,33 @@
 <h2>Papers<a class="headerlink" href="#papers" title="Permalink to this headline">¶</a></h2>
 <p>The following papers have been prepared in relation to FLEDGE:</p>
 <ul class="simple">
-<li>[Preprint] Troitzsch, S., Grussmann, M., Zhang, K., &amp; Hamacher, T., <strong>Distribution Locational Marginal Pricing for Combined Thermal and Electric Grid Operation</strong>, 2020. <a class="reference external" href="https://doi.org/10.36227/techrxiv.11918712"><code class="docutils literal notranslate"><span class="pre">doi:</span> <span class="pre">10.36227/techrxiv.11918712</span></code></a>
+<li><p>[Preprint] Troitzsch, S., Grussmann, M., Zhang, K., &amp; Hamacher, T., <strong>Distribution Locational Marginal Pricing for Combined Thermal and Electric Grid Operation</strong>, 2020. <a class="reference external" href="https://doi.org/10.36227/techrxiv.11918712"><code class="docutils literal notranslate"><span class="pre">doi:</span> <span class="pre">10.36227/techrxiv.11918712</span></code></a></p>
 <ul>
-<li>FLEDGE <a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.3.0">v0.3.0</a> was used to preare the results for this paper.</li>
-<li>The related script is <a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/blob/v0.3.0/examples/paper_2020_dlmp_combined_thermal_electric.py"><code class="docutils literal notranslate"><span class="pre">examples/paper_2020_dlmp_combined_thermal_electric.py</span></code></a>.</li>
+<li><p>FLEDGE <a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.3.0">v0.3.0</a> was used to preare the results for this paper.</p></li>
+<li><p>The related script is <a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/blob/v0.3.0/examples/paper_2020_dlmp_combined_thermal_electric.py"><code class="docutils literal notranslate"><span class="pre">examples/paper_2020_dlmp_combined_thermal_electric.py</span></code></a>.</p></li>
 </ul>
 </li>
-<li>Troitzsch, S., Hanif, S., Zhang, K., Trpovski, A., &amp; Hamacher, T., <strong>Flexible Distribution Grid Demonstrator (FLEDGE): Requirements and Software Architecture</strong>, in IEEE PES General Meeting, Atlanta, GA, USA, 2019. <a class="reference external" href="https://doi.org/10.1109/PESGM40551.2019.8973567"><code class="docutils literal notranslate"><span class="pre">doi:</span> <span class="pre">10.1109/PESGM40551.2019.8973567</span></code></a>.
+<li><p>Troitzsch, S., Hanif, S., Zhang, K., Trpovski, A., &amp; Hamacher, T., <strong>Flexible Distribution Grid Demonstrator (FLEDGE): Requirements and Software Architecture</strong>, in IEEE PES General Meeting, Atlanta, GA, USA, 2019. <a class="reference external" href="https://doi.org/10.1109/PESGM40551.2019.8973567"><code class="docutils literal notranslate"><span class="pre">doi:</span> <span class="pre">10.1109/PESGM40551.2019.8973567</span></code></a>.</p>
 <ul>
-<li>The paper served as an outline for the <a class="reference internal" href="architecture.html"><span class="doc">software architecture</span></a> of FLEDGE.</li>
+<li><p>The paper served as an outline for the <a class="reference internal" href="architecture.html"><span class="doc std std-doc">software architecture</span></a> of FLEDGE.</p></li>
 </ul>
 </li>
-<li>D. Recalde, A. Trpovski, S. Troitzsch, K. Zhang, S. Hanif, and T. Hamacher, <strong>A Review of Operation Methods and Simulation Requirements for Future Smart Distribution Grids</strong>, in IEEE PES Innovative Smart Grid Technologies Conference Asia, Singapore, 2018. <a class="reference external" href="https://doi.org/10.1109/ISGT-Asia.2018.8467850"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/ISGT-Asia.2018.8467850</span></code></a>.
+<li><p>D. Recalde, A. Trpovski, S. Troitzsch, K. Zhang, S. Hanif, and T. Hamacher, <strong>A Review of Operation Methods and Simulation Requirements for Future Smart Distribution Grids</strong>, in IEEE PES Innovative Smart Grid Technologies Conference Asia, Singapore, 2018. <a class="reference external" href="https://doi.org/10.1109/ISGT-Asia.2018.8467850"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/ISGT-Asia.2018.8467850</span></code></a>.</p>
 <ul>
-<li>The review paper initiated the development of FLEDGE.</li>
+<li><p>The review paper initiated the development of FLEDGE.</p></li>
 </ul>
 </li>
 </ul>
 <p>The following papers served as the methodological basis for the implementation of FLEDGE as well as for the development of test cases:</p>
 <ul class="simple">
-<li>S. Hanif, K. Zhang, C. Hackl, M. Barati, H. B. Gooi, and T. Hamacher, <strong>Decomposition and Equilibrium Achieving Distribution Locational Marginal Prices using Trust-Region Method</strong>, IEEE Transactions on Smart Grid, 2018. <a class="reference external" href="https://doi.org/10.1109/TSG.2018.2822766"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/TSG.2018.2822766</span></code></a>.</li>
-<li>K. Zhang, S. Hanif, C. M. Hackl, and T. Hamacher, <strong>A Framework for Multi-Regional Real-Time Pricing in Distribution Grids</strong>, IEEE Transactions Smart Grid, vol. 10, no. 6, pp. 6826–6838, 2019. <a class="reference external" href="https://doi.org/10.1109/TSG.2019.2911996"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/TSG.2019.2911996</span></code></a>.</li>
-<li>A. Trpovski, D. Recalde, and T. Hamacher, <strong>Synthetic Distribution Grid Generation Using Power System Planning: Case Study of Singapore</strong>, in UPEC International Universities Power Engineering Conference, 2018. <a class="reference external" href="https://doi.org/10.1109/UPEC.2018.8542054"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/UPEC.2018.8542054</span></code></a>.</li>
+<li><p>S. Hanif, K. Zhang, C. Hackl, M. Barati, H. B. Gooi, and T. Hamacher, <strong>Decomposition and Equilibrium Achieving Distribution Locational Marginal Prices using Trust-Region Method</strong>, IEEE Transactions on Smart Grid, 2018. <a class="reference external" href="https://doi.org/10.1109/TSG.2018.2822766"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/TSG.2018.2822766</span></code></a>.</p></li>
+<li><p>K. Zhang, S. Hanif, C. M. Hackl, and T. Hamacher, <strong>A Framework for Multi-Regional Real-Time Pricing in Distribution Grids</strong>, IEEE Transactions Smart Grid, vol. 10, no. 6, pp. 6826–6838, 2019. <a class="reference external" href="https://doi.org/10.1109/TSG.2019.2911996"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/TSG.2019.2911996</span></code></a>.</p></li>
+<li><p>A. Trpovski, D. Recalde, and T. Hamacher, <strong>Synthetic Distribution Grid Generation Using Power System Planning: Case Study of Singapore</strong>, in UPEC International Universities Power Engineering Conference, 2018. <a class="reference external" href="https://doi.org/10.1109/UPEC.2018.8542054"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/UPEC.2018.8542054</span></code></a>.</p></li>
 </ul>
 </div>
 <div class="section" id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
-<p>If you are keen to contribute to this project, please see <a class="reference internal" href="contributing.html"><span class="doc">Contributing</span></a>.</p>
+<p>If you are keen to contribute to this project, please see <a class="reference internal" href="contributing.html"><span class="doc std std-doc">Contributing</span></a>.</p>
 </div>
 </div>
 
@@ -298,8 +303,26 @@
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="architecture.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Software Architecture</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
         </div>
 
         <div class="related-information">
