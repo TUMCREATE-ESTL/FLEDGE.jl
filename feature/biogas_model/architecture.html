@@ -1,331 +1,347 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="API reference" href="api.html" /><link rel="prev" title="Getting Started" href="intro.html" />
 
-
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Software architecture &mdash; FLEDGE  documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
+    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>Software architecture - FLEDGE documentation</title>
+      <link rel="stylesheet" href="_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css">
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" href="_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b"></head>
+  <body dir="">
     
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
 
-    
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API reference" href="api.html" />
-    <link rel="prev" title="Getting Started" href="intro.html" /> 
-</head>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
 
-<body class="wy-body-for-nav">
 
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
 
-          
-            <a href="index.html" class="icon icon-home"> FLEDGE
-          
-
-          
-          </a>
-
-          
-            
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">FLEDGE  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">FLEDGE  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-tree">
+  <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Software architecture</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#preliminaries">Preliminaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#problem-statement">Problem statement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#functional-requirements">Functional requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#non-functional-requirements">Non-functional requirements</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#general-architecture">General architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#solution-engine-architecture">Solution engine architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#use-case-optimal-operation-problem">Use case: Optimal operation problem</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Software architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 
-            
-          
-        </div>
-        
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">FLEDGE</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>Software architecture</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-          
-            <a href="_sources/architecture.md.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
-  <section id="software-architecture">
+    <div class="sidebar-tree">
+        <ul>
+            <li class="toctree-l1 has-children" data-children-count="1">
+                <a style="font-size: var(--sidebar-caption-font-size); font-weight: 700; text-transform: uppercase;color: var(--color-sidebar-caption-text); pointer-events: none" class="reference">Versions</a>
+                <input class="toctree-checkbox" id="toctree-checkbox-tags" name="toctree-checkbox-tags" type="checkbox"><label for="toctree-checkbox-tags"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label>
+                <ul style="font-size: var(--font-size--small--2);">
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../v0.3.0/architecture.html">v0.3.0</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../v0.4.0/index.html">v0.4.0</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../v0.4.1/index.html">v0.4.1</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../general_improvements/index.html">feature/general_improvements</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../develop/index.html">develop</a></li>
+                        
+                        
+                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="architecture.html">feature/biogas_model</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../dlmp_analysis/index.html">feature/dlmp_analysis</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../dro/index.html">feature/dro</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../market_clearing_engine/architecture.html">feature/market_clearing_engine</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../sitem/index.html">feature/sitem</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../test_cases/architecture.html">feature/test_cases</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../trust_region/index.html">feature/trust_region</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../updated_plots/index.html">feature/updated_plots</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../validity_checks/index.html">feature/validity_checks</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../weather_dependent/index.html">feature/weather_dependent</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../master/index.html">master</a></li>
+                        
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="software-architecture">
 <h1>Software architecture<a class="headerlink" href="#software-architecture" title="Permalink to this headline">¶</a></h1>
 <p>The software requirements and proposed software architecture for FLEDGE are discussed here to provide an overview for interested users and developers.</p>
 <p>For the original publication on this topic, please refer to:</p>
 <ul class="simple">
-<li>Troitzsch, S., Hanif, S., Zhang, K., Trpovski, A., &amp; Hamacher, T., <strong>Flexible Distribution Grid Demonstrator (FLEDGE): Requirements and Software Architecture</strong>, in IEEE PES General Meeting, Atlanta, GA, USA, 2019. <a class="reference external" href="https://doi.org/10.1109/PESGM40551.2019.8973567"><code class="docutils literal notranslate"><span class="pre">doi:</span> <span class="pre">10.1109/PESGM40551.2019.8973567</span></code></a>.</li>
+<li><p>Troitzsch, S., Hanif, S., Zhang, K., Trpovski, A., &amp; Hamacher, T., <strong>Flexible Distribution Grid Demonstrator (FLEDGE): Requirements and Software Architecture</strong>, in IEEE PES General Meeting, Atlanta, GA, USA, 2019. <a class="reference external" href="https://doi.org/10.1109/PESGM40551.2019.8973567"><code class="docutils literal notranslate"><span class="pre">doi:</span> <span class="pre">10.1109/PESGM40551.2019.8973567</span></code></a>.</p></li>
 </ul>
-<section id="preliminaries">
+<div class="section" id="preliminaries">
 <h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h2>
-<p><img alt="_images/architecture_0.png" src="_images/architecture_0.png" /></p>
+<p><img alt="" src="_images/architecture_0.png"/></p>
 <p>Expert users and non-expert users are distinguished as stakeholders. Expert users are assumed to be trained with the software such that they are able to define test cases and scenarios, whereas non-expert users may be interested in the result of a scenario analysis without comprehending each asset of the distribution grid.</p>
 <p>Optimization problems are distinguished into planning and operation problems. Optimal planning problems aim to determine the design, sizing or expansion plan for the distribution grid, whereas optimal operation problems focus on deriving the operation schedules, control signals or set points for flexible</p>
-</section>
-<section id="problem-statement">
+</div>
+<div class="section" id="problem-statement">
 <h2>Problem statement<a class="headerlink" href="#problem-statement" title="Permalink to this headline">¶</a></h2>
 <p>In the advent of DERs, the distribution system operator (DSO) seeks to study the deployment of flexible resources in the distribution grid and the the benefit of cost-optimal planning and operation methodologies to manage its assets. Based on this analysis, the DSO may plan its future investments and day-to-day operations.</p>
-</section>
-<section id="requirements">
+</div>
+<div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>To make FLEDGE practically and scientifically relevant, the key requirements were identified through 1) interaction with government agencies, companies and research entities in the distribution grid sector in Singapore 2) and conducting an in-depth domain analysis, i.e., evaluating existing software and identifying relevant gaps required for operating active distribution grid. Furthermore, the requirements were also tuned by 3) prototyping, i.e., a working example was set up to identify key challenges. The requirements are grouped into functional and non-functional, i.e, qualitative, requirements.</p>
-<section id="functional-requirements">
+<div class="section" id="functional-requirements">
 <h3>Functional requirements<a class="headerlink" href="#functional-requirements" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>The software computes planning and operation problems for the distribution grid in the presence of DERs.</li>
-<li>The software comprises a framework to represent and compare different (numerical optimization) problem formulations for both planning an operation. This includes the ability to specify different objective functions, mathematical component models and constraints.</li>
-<li>The software can interface numerical optimization solvers as a tool for computing the planning and operation problems.</li>
-<li>The software comprises mathematical component models for the distribution grid, fixed loads, flexible loads, BESSs, EV charging and renewable generation.</li>
-<li>The software allows adding more mathematical component models at a later stage.</li>
-<li>The software allows computation of results on a scenario basis. A scenario defines the test case, problem type, problem formulation and solution parameters. The test case defines the distribution grid along with its connected DERs. The problem type is either planning or operation. The problem formulation describes which objective function, mathematical component models and constraints are being considered. Solution parameters define which solution algorithm is applied.</li>
-<li>The expert user is provided with an interface for a tabular input format to define scenarios along with the required test case and component model parameters.</li>
-<li>The expert user is provided with programmable interface for instructing the software to compute results for the scenarios from within a high-level programming language.</li>
-<li>The expert user is provided with results for each scenario in a tabular output format comprising the time series data of all state variables of all components.</li>
-<li>The non-expert user is provided with the ability select and view results for scenarios which have been defined by expert users.</li>
-<li>The non-expert user is provided with results for each scenario in a graphical user interface through visual representation of the distribution grid and its operational performance, i.e. nodal voltage, line loading, line losses and dispatched load and generation.</li>
+<li><p>The software computes planning and operation problems for the distribution grid in the presence of DERs.</p></li>
+<li><p>The software comprises a framework to represent and compare different (numerical optimization) problem formulations for both planning an operation. This includes the ability to specify different objective functions, mathematical component models and constraints.</p></li>
+<li><p>The software can interface numerical optimization solvers as a tool for computing the planning and operation problems.</p></li>
+<li><p>The software comprises mathematical component models for the distribution grid, fixed loads, flexible loads, BESSs, EV charging and renewable generation.</p></li>
+<li><p>The software allows adding more mathematical component models at a later stage.</p></li>
+<li><p>The software allows computation of results on a scenario basis. A scenario defines the test case, problem type, problem formulation and solution parameters. The test case defines the distribution grid along with its connected DERs. The problem type is either planning or operation. The problem formulation describes which objective function, mathematical component models and constraints are being considered. Solution parameters define which solution algorithm is applied.</p></li>
+<li><p>The expert user is provided with an interface for a tabular input format to define scenarios along with the required test case and component model parameters.</p></li>
+<li><p>The expert user is provided with programmable interface for instructing the software to compute results for the scenarios from within a high-level programming language.</p></li>
+<li><p>The expert user is provided with results for each scenario in a tabular output format comprising the time series data of all state variables of all components.</p></li>
+<li><p>The non-expert user is provided with the ability select and view results for scenarios which have been defined by expert users.</p></li>
+<li><p>The non-expert user is provided with results for each scenario in a graphical user interface through visual representation of the distribution grid and its operational performance, i.e. nodal voltage, line loading, line losses and dispatched load and generation.</p></li>
 </ul>
-</section>
-<section id="non-functional-requirements">
+</div>
+<div class="section" id="non-functional-requirements">
 <h3>Non-functional requirements<a class="headerlink" href="#non-functional-requirements" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>The solution mechanism is highly scalable, i.e., distributed optimization techniques are utilized to improve the computational performance for large-scale test cases.</li>
-<li>The solution mechanism accounts for multiphase unbalanced loading conditions in the distribution grid.</li>
-<li>The framework specifies a tabular input definition format for test case data, i.e., distribution grid layout, grid component parameters, DER connection points and DER parameters.</li>
-<li>The definition of the test case is separated from the mathematical definition of component model such that the test case is easily replaceable.</li>
-<li>The software makes it easy to reconfigure and re-run scenarios. Hence, the performance of the solution procedure is a major concern.</li>
-<li>The software should not depend on third-party software that would incur additional license fees.</li>
-<li>The software documentation enables expert users to comprehend the mathematical foundation of models and algorithms.</li>
-<li>The software documentation enables non-expert users to operate the software independently given a set of predefined scenarios.</li>
+<li><p>The solution mechanism is highly scalable, i.e., distributed optimization techniques are utilized to improve the computational performance for large-scale test cases.</p></li>
+<li><p>The solution mechanism accounts for multiphase unbalanced loading conditions in the distribution grid.</p></li>
+<li><p>The framework specifies a tabular input definition format for test case data, i.e., distribution grid layout, grid component parameters, DER connection points and DER parameters.</p></li>
+<li><p>The definition of the test case is separated from the mathematical definition of component model such that the test case is easily replaceable.</p></li>
+<li><p>The software makes it easy to reconfigure and re-run scenarios. Hence, the performance of the solution procedure is a major concern.</p></li>
+<li><p>The software should not depend on third-party software that would incur additional license fees.</p></li>
+<li><p>The software documentation enables expert users to comprehend the mathematical foundation of models and algorithms.</p></li>
+<li><p>The software documentation enables non-expert users to operate the software independently given a set of predefined scenarios.</p></li>
 </ul>
-</section>
-</section>
-<section id="general-architecture">
+</div>
+</div>
+<div class="section" id="general-architecture">
 <h2>General architecture<a class="headerlink" href="#general-architecture" title="Permalink to this headline">¶</a></h2>
-<p><img alt="_images/architecture_1.png" src="_images/architecture_1.png" /></p>
+<p><img alt="" src="_images/architecture_1.png"/></p>
 <p>The fundamental subsystems of FLEDGE are defined based on the identified requirements. The input file is the interface for expert users to define test cases and scenarios. The dashboard is the graphical user interface for non-expert users to view the scenario results. The application programming interface (API) is the interface which enables the expert user to interact with FLEDGE. The test cases, scenarios and results are stored in a relational database management system (RDBMS) which is integrated through the database interface. The solution functionality is bundled into the solution engine, which comprises all mathematical models and solution algorithms.</p>
 <p>The API provide methods for reading and updating the test case, scenario and result data as well as methods for invoking the solution engine. It provides a layer of abstraction to ensure that changes in one subsystem don’t incur changes in others, e.g., the database interface can be changed without having to change the solution engine. Consequently, the API must be relatively stable throughout the software development to maintain compatibility.</p>
 <p>The input file is imported to the database through the input file processor which interfaces with the API to import the test case and scenario data. The input file format may be changed by amending this processor, independent from the internal database structure. The dashboard is is the graphical user interface to present the non-expert user with scenario results. This subsystem also relies on API functions to load the results data. With this architecture, additional user interfaces can easily be deployed at a later point by interfacing the API. For example, a graphical editor may be provided which interacts with the API to manipulate the test case and scenario definition in the database.</p>
 <p>A RDBMS is chosen as the internal storage solution, because it enables more efficient reading, writing, updating interactions then a file system. A persistent storage solution is preferred over in-memory storage to enable reviewing the results at a later time without repeatedly invoking the computationally intensive solution engine. Furthermore, the database can easily be centralized to allow concurrent access across multiple machines, e.g. to allow collaborative work on the test cases and scenarios.</p>
-</section>
-<section id="solution-engine-architecture">
+</div>
+<div class="section" id="solution-engine-architecture">
 <h2>Solution engine architecture<a class="headerlink" href="#solution-engine-architecture" title="Permalink to this headline">¶</a></h2>
-<p><img alt="_images/architecture_2.png" src="_images/architecture_2.png" /></p>
+<p><img alt="" src="_images/architecture_2.png"/></p>
 <p>The solution engine is the core subsystem of FLEDGE and is concerned with implementing the mathematical routines for solving planning and operation problems as above. At the top level, the classes for planning and operation problems are distinguished, as both problem types yield a different organization of the optimization problem. These classes construct the respective problem based on subordinate classes for the electric grid model and DER models as well as optimization solvers and simulation solvers. The operation problem class further considers a class for aggregators to adequately model the separated concerns between the DSO and aggregators.</p>
 <p>The electric grid model classes implement the methods for deriving the power flow approximations for the optimization problem. Similarly, DER model classes provide methods for deriving the mathematical models for renewable generation, EV charging, flexible loads, fixed loads and BESSs. DER models take the form of 1) time series models for non-controllable assets and 2) state space models in the case of flexible resources. In the operation problem, DER model instances are not created in the central problem, but rather within the aggregator subproblem.</p>
 <p>Optimization solver classes either 1) directly implement the optimization algorithm or 2) provide the interface to an existing solver, e.g., CPLEX or Gurobi.</p>
 <p>Power flow solver classes implement solvers for the exact equations of the distribution grid power flow. The exact power flow solution is desired as a benchmark for the optimal power flow solution which was obtained with an approximate model. These classes may interface existing power flow solvers, e.g., OpenDSS.</p>
-</section>
-<section id="use-case-optimal-operation-problem">
+</div>
+<div class="section" id="use-case-optimal-operation-problem">
 <h2>Use case: Optimal operation problem<a class="headerlink" href="#use-case-optimal-operation-problem" title="Permalink to this headline">¶</a></h2>
-<p><img alt="_images/operation.png" src="_images/operation.png" /></p>
+<p><img alt="" src="_images/operation.png"/></p>
 <p>Above figure describes the process flow for an exemplary operation problem in FLEDGE. The input files for defining the test case and scenario have already been imported to FLEDGE and the program is invoked by a call to the API seeking the solution of the scenario. First, the test case and scenario data is loaded through the database interface and an object of the operation problem class is instantiated. The test case and scenario data is passed to the operation problem during creation. Within the operation problem, the electric grid model, aggregator and DER model objects are instantiated, where each DER model object is associated with one aggregator. Once all models have been derived, the optimization problem is constructed and passed to the optimization solver. Lastly, the solution of the optimization problem is used to calculate the exact power flow. All results are stored in the database.</p>
-</section>
-</section>
-
-
-           </div>
-           
-          </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api.html" class="btn btn-neutral float-right" title="API reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="intro.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &#169; Copyright 2018-2021, TUMCREATE.
-
-    </p>
-  </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-  
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    <span class="fa fa-book"> Other Versions</span>
-    v: feature/biogas_model
-    <span class="fa fa-caret-down"></span>
-  </span>
-    <div class="rst-other-versions">
-        <dl>
-            <dt>Tags</dt>
-            <dd><a href="../../v0.3.0/architecture.html">v0.3.0</a></dd>
-            <dd><a href="../../v0.4.0/index.html">v0.4.0</a></dd>
-            <dd><a href="../../v0.4.1/index.html">v0.4.1</a></dd>
-        </dl>
-        <dl>
-            <dt>Branches</dt>
-            <dd><a href="../dro/index.html">feature/dro</a></dd>
-            <dd><a href="../../develop/index.html">develop</a></dd>
-            <dd><a href="architecture.html">feature/biogas_model</a></dd>
-            <dd><a href="../dlmp_analysis/index.html">feature/dlmp_analysis</a></dd>
-            <dd><a href="../general_improvements/index.html">feature/general_improvements</a></dd>
-            <dd><a href="../market_clearing_engine/architecture.html">feature/market_clearing_engine</a></dd>
-            <dd><a href="../pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></dd>
-            <dd><a href="../sitem/index.html">feature/sitem</a></dd>
-            <dd><a href="../test_cases/architecture.html">feature/test_cases</a></dd>
-            <dd><a href="../trust_region/index.html">feature/trust_region</a></dd>
-            <dd><a href="../updated_plots/index.html">feature/updated_plots</a></dd>
-            <dd><a href="../validity_checks/index.html">feature/validity_checks</a></dd>
-            <dd><a href="../weather_dependent/index.html">feature/weather_dependent</a></dd>
-            <dd><a href="../../master/index.html">master</a></dd>
-        </dl>
-    </div>
+</div>
 </div>
 
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="api.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">API reference</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="intro.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Getting Started</div>
+                
+              </div>
+            </a>
+        </div>
 
-  
-  
-    
-   
+        <div class="related-information">
+              Copyright &#169; 2018-2021, TUMCREATE
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="_sources/architecture.md.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Software architecture</a><ul>
+<li><a class="reference internal" href="#preliminaries">Preliminaries</a></li>
+<li><a class="reference internal" href="#problem-statement">Problem statement</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li><a class="reference internal" href="#functional-requirements">Functional requirements</a></li>
+<li><a class="reference internal" href="#non-functional-requirements">Non-functional requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#general-architecture">General architecture</a></li>
+<li><a class="reference internal" href="#solution-engine-architecture">Solution engine architecture</a></li>
+<li><a class="reference internal" href="#use-case-optimal-operation-problem">Use case: Optimal operation problem</a></li>
+</ul>
+</li>
+</ul>
 
-</body>
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
 </html>
