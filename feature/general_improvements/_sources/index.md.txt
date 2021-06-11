@@ -1,4 +1,4 @@
-## FLEDGE - Flexible Distribution Grid Demonstrator
+# FLEDGE - Flexible Distribution Grid Demonstrator
 
 [![](https://zenodo.org/badge/201130660.svg)](https://zenodo.org/badge/latestdoi/201130660)
 
@@ -30,17 +30,17 @@ Please note that the repository is under active development and the interface ma
 
 ## Contents
 
-``` toctree::
-    :maxdepth: 2
+```{toctree}
+:maxdepth: 2
 
-    getting_started
-    data_reference
-    api_reference
-    software_architecture
-    contributing
-    change_log
-    publications
-    GitHub repository 🡕 <https://github.com/TUMCREATE-ESTL/fledge>
+getting_started
+data_reference
+api_reference
+software_architecture
+contributing
+change_log
+publications
+GitHub repository <https://github.com/TUMCREATE-ESTL/fledge>
 ```
 
 ## Acknowledgements

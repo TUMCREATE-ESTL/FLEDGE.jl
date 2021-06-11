@@ -1,184 +1,195 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
-
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Getting Started &mdash; FLEDGE  documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
+    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>Getting Started - FLEDGE documentation</title>
+      <link rel="stylesheet" href="_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css">
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" href="_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b"></head>
+  <body dir="">
     
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
 
-    
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Software Architecture" href="architecture.html" />
-    <link rel="prev" title="FLEDGE - Flexible Distribution Grid Demonstrator" href="index.html" /> 
-</head>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
 
-<body class="wy-body-for-nav">
 
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
 
-          
-            <a href="index.html" class="icon icon-home"> FLEDGE
-          
-
-          
-          </a>
-
-          
-            
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#quick-installation">Quick installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#recommended-installation">Recommended installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#alternative-installation">Alternative installation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#papers">Papers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Software Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data.html">Database Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-</ul>
-
-            
-          
-        </div>
-        
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">FLEDGE  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
       
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">FLEDGE</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>Getting Started</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-          
-            <a href="_sources/intro.md.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand" href="index.html">
   
-  <hr/>
+  
+  <span class="sidebar-brand-text">FLEDGE  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-tree">
+  
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
-  <section id="getting-started">
+    <div class="sidebar-tree">
+        <ul>
+            <li class="toctree-l1 has-children" data-children-count="1">
+                <a style="font-size: var(--sidebar-caption-font-size); font-weight: 700; text-transform: uppercase;color: var(--color-sidebar-caption-text); pointer-events: none" class="reference">Versions</a>
+                <input class="toctree-checkbox" id="toctree-checkbox-tags" name="toctree-checkbox-tags" type="checkbox"><label for="toctree-checkbox-tags"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label>
+                <ul style="font-size: var(--font-size--small--2);">
+                        
+                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="intro.html">v0.3.0</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../v0.4.0/index.html">v0.4.0</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../v0.4.1/index.html">v0.4.1</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/general_improvements/index.html">feature/general_improvements</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../develop/index.html">develop</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/backup_verena/index.html">feature/backup_verena</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/biogas_model/intro.html">feature/biogas_model</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/dlmp_analysis/index.html">feature/dlmp_analysis</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/dro/index.html">feature/dro</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/market_clearing_engine/intro.html">feature/market_clearing_engine</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/sitem/index.html">feature/sitem</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/test_cases/intro.html">feature/test_cases</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/trust_region/index.html">feature/trust_region</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/updated_plots/index.html">feature/updated_plots</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/validity_checks/index.html">feature/validity_checks</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/weather_dependent/index.html">feature/weather_dependent</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../master/index.html">master</a></li>
+                        
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<section id="installation">
+<div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<section id="quick-installation">
+<div class="section" id="quick-installation">
 <h3>Quick installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li>Check requirements:
@@ -195,8 +206,8 @@
 </ol>
 </li>
 </ol>
-</section>
-<section id="recommended-installation">
+</div>
+<div class="section" id="recommended-installation">
 <h3>Recommended installation<a class="headerlink" href="#recommended-installation" title="Permalink to this headline">¶</a></h3>
 <p>The following installation procedure contains additional steps and requirements which can improve the numerical performance when running FLEDGE.</p>
 <ol class="simple">
@@ -218,8 +229,8 @@
 </li>
 <li>In <code class="docutils literal notranslate"><span class="pre">fledge/config.py</span></code>, change <code class="docutils literal notranslate"><span class="pre">solver_name</span></code> to <code class="docutils literal notranslate"><span class="pre">'gurobi'</span></code> or <code class="docutils literal notranslate"><span class="pre">'cplex'</span></code>.</li>
 </ol>
-</section>
-<section id="alternative-installation">
+</div>
+<div class="section" id="alternative-installation">
 <h3>Alternative installation<a class="headerlink" href="#alternative-installation" title="Permalink to this headline">¶</a></h3>
 <p>If you are running into errors when installing or running FLEDGE, this may be due to incompatibility with new versions of package dependencies, which have yet to be discovered and fixed. As a workaround, try installing FLEDGE in an tested Anaconda environment via the the provided <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, which represents the latest Anaconda Python environment in which FLEDGE was tested and is expected to work.</p>
 <ol class="simple">
@@ -240,17 +251,16 @@
 </ol>
 </li>
 </ol>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Please also create an issue on Github if you run into problems with the normal installation procedure.</p>
+<div class="highlight-important:: notranslate"><div class="highlight"><pre><span></span>    Please also create an issue on Github if you run into problems with the normal installation procedure.
+</pre></div>
 </div>
-</section>
-</section>
-<section id="examples">
+</div>
+</div>
+<div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory contains run scripts which demonstrate possible usages of FLEDGE. You may also check the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory for a better understanding of the API.</p>
-</section>
-<section id="papers">
+</div>
+<div class="section" id="papers">
 <h2>Papers<a class="headerlink" href="#papers" title="Permalink to this headline">¶</a></h2>
 <p>The following papers have been prepared in relation to FLEDGE:</p>
 <ul class="simple">
@@ -277,92 +287,74 @@
 <li>K. Zhang, S. Hanif, C. M. Hackl, and T. Hamacher, <strong>A Framework for Multi-Regional Real-Time Pricing in Distribution Grids</strong>, IEEE Transactions Smart Grid, vol. 10, no. 6, pp. 6826–6838, 2019. <a class="reference external" href="https://doi.org/10.1109/TSG.2019.2911996"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/TSG.2019.2911996</span></code></a>.</li>
 <li>A. Trpovski, D. Recalde, and T. Hamacher, <strong>Synthetic Distribution Grid Generation Using Power System Planning: Case Study of Singapore</strong>, in UPEC International Universities Power Engineering Conference, 2018. <a class="reference external" href="https://doi.org/10.1109/UPEC.2018.8542054"><code class="docutils literal notranslate"><span class="pre">doi:10.1109/UPEC.2018.8542054</span></code></a>.</li>
 </ul>
-</section>
-<section id="contributing">
+</div>
+<div class="section" id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
 <p>If you are keen to contribute to this project, please see <a class="reference internal" href="contributing.html"><span class="doc">Contributing</span></a>.</p>
-</section>
-</section>
-
-
-           </div>
-           
-          </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="architecture.html" class="btn btn-neutral float-right" title="Software Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="FLEDGE - Flexible Distribution Grid Demonstrator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &#169; Copyright 2018-2021, TUMCREATE.
-
-    </p>
-  </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-  
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    <span class="fa fa-book"> Other Versions</span>
-    v: v0.3.0
-    <span class="fa fa-caret-down"></span>
-  </span>
-    <div class="rst-other-versions">
-        <dl>
-            <dt>Tags</dt>
-            <dd><a href="intro.html">v0.3.0</a></dd>
-            <dd><a href="../v0.4.0/index.html">v0.4.0</a></dd>
-            <dd><a href="../v0.4.1/index.html">v0.4.1</a></dd>
-        </dl>
-        <dl>
-            <dt>Branches</dt>
-            <dd><a href="../feature/weather_dependent/index.html">feature/weather_dependent</a></dd>
-            <dd><a href="../develop/index.html">develop</a></dd>
-            <dd><a href="../feature/backup_verena/index.html">feature/backup_verena</a></dd>
-            <dd><a href="../feature/biogas_model/intro.html">feature/biogas_model</a></dd>
-            <dd><a href="../feature/dlmp_analysis/index.html">feature/dlmp_analysis</a></dd>
-            <dd><a href="../feature/dro/index.html">feature/dro</a></dd>
-            <dd><a href="../feature/general_improvements/index.html">feature/general_improvements</a></dd>
-            <dd><a href="../feature/market_clearing_engine/intro.html">feature/market_clearing_engine</a></dd>
-            <dd><a href="../feature/pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></dd>
-            <dd><a href="../feature/sitem/index.html">feature/sitem</a></dd>
-            <dd><a href="../feature/test_cases/intro.html">feature/test_cases</a></dd>
-            <dd><a href="../feature/trust_region/index.html">feature/trust_region</a></dd>
-            <dd><a href="../feature/updated_plots/index.html">feature/updated_plots</a></dd>
-            <dd><a href="../feature/validity_checks/index.html">feature/validity_checks</a></dd>
-            <dd><a href="../master/index.html">master</a></dd>
-        </dl>
-    </div>
+</div>
 </div>
 
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
 
-  
-  
-    
-   
+        <div class="related-information">
+              Copyright &#169; 2018-2021, TUMCREATE
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="_sources/intro.md.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#quick-installation">Quick installation</a></li>
+<li><a class="reference internal" href="#recommended-installation">Recommended installation</a></li>
+<li><a class="reference internal" href="#alternative-installation">Alternative installation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#papers">Papers</a></li>
+<li><a class="reference internal" href="#contributing">Contributing</a></li>
+</ul>
+</li>
+</ul>
 
-</body>
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
 </html>

@@ -1,229 +1,202 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
-
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Data reference &mdash; FLEDGE  documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
+    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>Data reference - FLEDGE documentation</title>
+      <link rel="stylesheet" href="_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css">
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" href="_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b"></head>
+  <body dir="">
     
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
 
-    
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contributing" href="contributing.html" />
-    <link rel="prev" title="API reference" href="api.html" /> 
-</head>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
 
-<body class="wy-body-for-nav">
 
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
 
-          
-            <a href="index.html" class="icon icon-home"> FLEDGE
-          
-
-          
-          </a>
-
-          
-            
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Software architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Data reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#scenario-data">Scenario data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#scenarios"><code class="docutils literal notranslate"><span class="pre">scenarios</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#parameters"><code class="docutils literal notranslate"><span class="pre">parameters</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#price-timeseries"><code class="docutils literal notranslate"><span class="pre">price_timeseries</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#electric-grid-data">Electric grid data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#electric-grids"><code class="docutils literal notranslate"><span class="pre">electric_grids</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electric-grid-ders"><code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types-matrices"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electric-grid-lines"><code class="docutils literal notranslate"><span class="pre">electric_grid_lines</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electric-grid-nodes"><code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electric-grid-operation-limit-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_types</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electric-grid-transformer-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_transformer_types</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electric-grid-transformers"><code class="docutils literal notranslate"><span class="pre">electric_grid_transformers</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#thermal-grid-data">Thermal grid data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#thermal-grids"><code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-ders"><code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-line-types"><code class="docutils literal notranslate"><span class="pre">thermal_grid_line_types</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-lines"><code class="docutils literal notranslate"><span class="pre">thermal_grid_lines</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-nodes"><code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-operation-limit-types"><code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_types</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#distributed-energy-resource-der-data">Distributed energy resource (DER) data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cooling-plants"><code class="docutils literal notranslate"><span class="pre">cooling_plants</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ev-chargers"><code class="docutils literal notranslate"><span class="pre">ev_chargers</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ev-charger-schedules"><code class="docutils literal notranslate"><span class="pre">ev_charger_schedules</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ev-charger-timeseries"><code class="docutils literal notranslate"><span class="pre">ev_charger_timeseries</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fixed-loads"><code class="docutils literal notranslate"><span class="pre">fixed_loads</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fixed-load-schedules"><code class="docutils literal notranslate"><span class="pre">fixed_load_schedules</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fixed-load-timeseries"><code class="docutils literal notranslate"><span class="pre">fixed_load_timeseries</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fixed-generators"><code class="docutils literal notranslate"><span class="pre">fixed_generators</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fixed-generator-schedules"><code class="docutils literal notranslate"><span class="pre">fixed_generator_schedules</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fixed-generator-timeseries"><code class="docutils literal notranslate"><span class="pre">fixed_generator_timeseries</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flexible-loads"><code class="docutils literal notranslate"><span class="pre">flexible_loads</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flexible-load-schedules"><code class="docutils literal notranslate"><span class="pre">flexible_load_schedules</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flexible-load-timeseries"><code class="docutils literal notranslate"><span class="pre">flexible_load_timeseries</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flexible-generators"><code class="docutils literal notranslate"><span class="pre">flexible_generators</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flexible-generator-schedules"><code class="docutils literal notranslate"><span class="pre">flexible_generator_schedules</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flexible-generator-timeseries"><code class="docutils literal notranslate"><span class="pre">flexible_generator_timeseries</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-</ul>
-
-            
-          
-        </div>
-        
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">FLEDGE  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
       
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">FLEDGE</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>Data reference</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-          
-            <a href="_sources/data.md.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand" href="index.html">
   
-  <hr/>
+  
+  <span class="sidebar-brand-text">FLEDGE  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-tree">
+  
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
-  <section id="data-reference">
+    <div class="sidebar-tree">
+        <ul>
+            <li class="toctree-l1 has-children" data-children-count="1">
+                <a style="font-size: var(--sidebar-caption-font-size); font-weight: 700; text-transform: uppercase;color: var(--color-sidebar-caption-text); pointer-events: none" class="reference">Versions</a>
+                <input class="toctree-checkbox" id="toctree-checkbox-tags" name="toctree-checkbox-tags" type="checkbox"><label for="toctree-checkbox-tags"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label>
+                <ul style="font-size: var(--font-size--small--2);">
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../v0.3.0/data.html">v0.3.0</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../v0.4.0/index.html">v0.4.0</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../v0.4.1/index.html">v0.4.1</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../general_improvements/index.html">feature/general_improvements</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../develop/index.html">develop</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../backup_verena/index.html">feature/backup_verena</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../biogas_model/data.html">feature/biogas_model</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../dlmp_analysis/index.html">feature/dlmp_analysis</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../dro/index.html">feature/dro</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../market_clearing_engine/data.html">feature/market_clearing_engine</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../sitem/index.html">feature/sitem</a></li>
+                        
+                        
+                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="data.html">feature/test_cases</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../trust_region/index.html">feature/trust_region</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../updated_plots/index.html">feature/updated_plots</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../validity_checks/index.html">feature/validity_checks</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../weather_dependent/index.html">feature/weather_dependent</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../../master/index.html">master</a></li>
+                        
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="data-reference">
 <h1>Data reference<a class="headerlink" href="#data-reference" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This reference is work in progress.</p>
+<div class="highlight-warning:: notranslate"><div class="highlight"><pre><span></span>    This reference is work in progress.
+</pre></div>
 </div>
 <p>FLEDGE scenarios are defined through CSV files, where each CSV file represents a table as defined below (the file name is interpreted as the table name). Internally, FLEDGE loads all CSV files into a local SQLITE database for more convenient processing. The default location for FLEDGE scenario definitions is in the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory in the repository and all CSV files in the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory are automatically loaded into the database. The CSV files may be structured into sub-directories, but all files are eventually combined into the same database. Hence, all type / element identifiers must be unique across all scenario definitions.</p>
-<section id="scenario-data">
+<div class="section" id="scenario-data">
 <h2>Scenario data<a class="headerlink" href="#scenario-data" title="Permalink to this headline">¶</a></h2>
-<section id="scenarios">
+<div class="section" id="scenarios">
 <h3><code class="docutils literal notranslate"><span class="pre">scenarios</span></code><a class="headerlink" href="#scenarios" title="Permalink to this headline">¶</a></h3>
 <p>Scenario definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -283,11 +256,11 @@
 <td>Time interval in format <code>HH:MM:SS</code></td>
 </tr>
 </tbody>
-</table></section>
-<section id="parameters">
+</table></div></div>
+<div class="section" id="parameters">
 <h3><code class="docutils literal notranslate"><span class="pre">parameters</span></code><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
 <p>In all tables, a <code class="docutils literal notranslate"><span class="pre">parameter_name</span></code> string can be used to define numerical parameters in place of numerical values (identifiers or string values cannot be replaced with parameters). During model setup, those strings will be parsed from the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> table to obtain the corresponding numerical values.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -312,11 +285,11 @@
 <td>Parameter value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="price-timeseries">
+</table></div></div>
+<div class="section" id="price-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">price_timeseries</span></code><a class="headerlink" href="#price-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Price timeseries.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -341,14 +314,14 @@
 <td>Price value. <em>Currently, prices / costs are assumed to be in SGD.</em></td>
 </tr>
 </tbody>
-</table></section>
-</section>
-<section id="electric-grid-data">
+</table></div></div>
+</div>
+<div class="section" id="electric-grid-data">
 <h2>Electric grid data<a class="headerlink" href="#electric-grid-data" title="Permalink to this headline">¶</a></h2>
-<section id="electric-grids">
+<div class="section" id="electric-grids">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grids</span></code><a class="headerlink" href="#electric-grids" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -373,11 +346,11 @@
 <td>Nominal grid frequency.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="electric-grid-ders">
+</table></div></div>
+<div class="section" id="electric-grid-ders">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code><a class="headerlink" href="#electric-grid-ders" title="Permalink to this headline">¶</a></h3>
 <p>Distributed energy resources (DERs) in the electric grid. Can define both loads (negative power) and generations (positive power). The selection of DER types will be extended in the future.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -447,11 +420,11 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="electric-grid-line-types">
+</table></div></div>
+<div class="section" id="electric-grid-line-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code><a class="headerlink" href="#electric-grid-line-types" title="Permalink to this headline">¶</a></h3>
 <p>Electric line type definitions are split into <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code> for the general type definition and <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code> for the definition of electric characteristics.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -476,11 +449,11 @@
 <td>Maximum permissible current (thermal line limit).</td>
 </tr>
 </tbody>
-</table></section>
-<section id="electric-grid-line-types-matrices">
+</table></div></div>
+<div class="section" id="electric-grid-line-types-matrices">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code><a class="headerlink" href="#electric-grid-line-types-matrices" title="Permalink to this headline">¶</a></h3>
 <p>Electric line characteristics are defined in terms of element property matrices. Note that the matrices are expected to be symmetric and therefore only the lower triangular matrix should be defined. The matrices are defined element-wise (indexed by row / column pairs), to allow definition of single-phase line types alongside multi-phase line types.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -520,11 +493,11 @@
 <td>Shunt capacitance matrix entry.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="electric-grid-lines">
+</table></div></div>
+<div class="section" id="electric-grid-lines">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_lines</span></code><a class="headerlink" href="#electric-grid-lines" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid lines.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -584,11 +557,11 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="electric-grid-nodes">
+</table></div></div>
+<div class="section" id="electric-grid-nodes">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code><a class="headerlink" href="#electric-grid-nodes" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid nodes.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -643,11 +616,11 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="electric-grid-operation-limit-types">
+</table></div></div>
+<div class="section" id="electric-grid-operation-limit-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_types</span></code><a class="headerlink" href="#electric-grid-operation-limit-types" title="Permalink to this headline">¶</a></h3>
 <p>Operation limit type definition for the electric grid. This information is utilized for the definition of the operational constraints in an optimal operation problem. The per unit definition is currently based on the nominal power flow, but may be changed in future.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -677,11 +650,11 @@
 <td>Maximum branch flow in per unit of the branch flow at nominal loading conditions.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="electric-grid-transformer-types">
+</table></div></div>
+<div class="section" id="electric-grid-transformer-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_transformer_types</span></code><a class="headerlink" href="#electric-grid-transformer-types" title="Permalink to this headline">¶</a></h3>
 <p>Transformer type characteristics.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -716,11 +689,11 @@
 <td>Minimum secondary side tap position. (Currently not used.)</td>
 </tr>
 </tbody>
-</table></section>
-<section id="electric-grid-transformers">
+</table></div></div>
+<div class="section" id="electric-grid-transformers">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_transformers</span></code><a class="headerlink" href="#electric-grid-transformers" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid transformers, which are limited to transformers with two windings, where the same number of phases is connected at each winding.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -785,14 +758,14 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></section>
-</section>
-<section id="thermal-grid-data">
+</table></div></div>
+</div>
+<div class="section" id="thermal-grid-data">
 <h2>Thermal grid data<a class="headerlink" href="#thermal-grid-data" title="Permalink to this headline">¶</a></h2>
-<section id="thermal-grids">
+<div class="section" id="thermal-grids">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code><a class="headerlink" href="#thermal-grids" title="Permalink to this headline">¶</a></h3>
 <p>Thermal grid definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -847,11 +820,11 @@
 <td>Plant model identifier. If plant type <code>cooling_plant</code>, as defined in <code>cooling_plants</code>.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="thermal-grid-ders">
+</table></div></div>
+<div class="section" id="thermal-grid-ders">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code><a class="headerlink" href="#thermal-grid-ders" title="Permalink to this headline">¶</a></h3>
 <p>Distributed energy resources (DERs) in the thermal grid. Can define both loads (negative power) and generations (positive power). The selection of DER types will be extended in the future.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -896,11 +869,11 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="thermal-grid-line-types">
+</table></div></div>
+<div class="section" id="thermal-grid-line-types">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_line_types</span></code><a class="headerlink" href="#thermal-grid-line-types" title="Permalink to this headline">¶</a></h3>
 <p>Thermal line types for defining pipe characteristics.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -930,11 +903,11 @@
 <td>Nominal maximum pipe velocity.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="thermal-grid-lines">
+</table></div></div>
+<div class="section" id="thermal-grid-lines">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_lines</span></code><a class="headerlink" href="#thermal-grid-lines" title="Permalink to this headline">¶</a></h3>
 <p>Thermal grid line (pipe) definitions. The definition only includes the supply side piping, as the return side is assumed be symmetric.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -979,11 +952,11 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="thermal-grid-nodes">
+</table></div></div>
+<div class="section" id="thermal-grid-nodes">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code><a class="headerlink" href="#thermal-grid-nodes" title="Permalink to this headline">¶</a></h3>
 <p>Thermal grid nodes.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1018,11 +991,11 @@
 <td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="thermal-grid-operation-limit-types">
+</table></div></div>
+<div class="section" id="thermal-grid-operation-limit-types">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_types</span></code><a class="headerlink" href="#thermal-grid-operation-limit-types" title="Permalink to this headline">¶</a></h3>
 <p>Thermal line limits are currently defined in per unit of the nominal thermal power solution, i.e., the thermal power flow solution for nominal loading conditions as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1047,16 +1020,16 @@
 <td>Maximum pipe / branch flow, in per unit of the nominal thermal power solution.</td>
 </tr>
 </tbody>
-</table></section>
-</section>
-<section id="distributed-energy-resource-der-data">
+</table></div></div>
+</div>
+<div class="section" id="distributed-energy-resource-der-data">
 <h2>Distributed energy resource (DER) data<a class="headerlink" href="#distributed-energy-resource-der-data" title="Permalink to this headline">¶</a></h2>
 <p>For each DER type which requires the definition of timeseries values, these can be defined either directly as timeseries or through as a schedule. When defining by schedule, the timeseries is constructed by obtaining the appropriate values based on the <code class="docutils literal notranslate"><span class="pre">time_period</span></code> in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. Each value is kept constant at the given value for any daytime greater than or equal to <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> and any weekday greater than or equal to <code class="docutils literal notranslate"><span class="pre">dd</span></code> until the next defined <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code>. Note that the daily schedule is repeated for any weekday greater than or equal to <code class="docutils literal notranslate"><span class="pre">dd</span></code> until the next defined <code class="docutils literal notranslate"><span class="pre">dd</span></code>. The initial value for each <code class="docutils literal notranslate"><span class="pre">zone_constraint_profile</span></code> must start at <code class="docutils literal notranslate"><span class="pre">time_period</span> <span class="pre">=</span> <span class="pre">01T00:00</span></code>.</p>
 <p>Furthermore, the active / reactive / thermal power values can be defined as absolute values or in per unit values. Per unit values are assumed to be in per unit of the nominal active / reactive power as defined <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code>. Note that the sign of the active / reactive / thermal power values in the timeseries / schedule definition are ignored and superseded by the sign of the nominal active / reactive / thermal power value as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> and <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>, where positive values are interpreted as generation and negative values as consumption.</p>
-<section id="cooling-plants">
+<div class="section" id="cooling-plants">
 <h3><code class="docutils literal notranslate"><span class="pre">cooling_plants</span></code><a class="headerlink" href="#cooling-plants" title="Permalink to this headline">¶</a></h3>
 <p>Cooling plants for modelling distributed generation facilities / heat pumps in the thermal grid. Cooling plants are connected to both electric and thermal grid, therefore must be defined both in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> and <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1141,11 +1114,11 @@
 <td>Cooling tower set ventilation factor, used to model the ventilation requirements depending on the condenser water flow.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="ev-chargers">
+</table></div></div>
+<div class="section" id="ev-chargers">
 <h3><code class="docutils literal notranslate"><span class="pre">ev_chargers</span></code><a class="headerlink" href="#ev-chargers" title="Permalink to this headline">¶</a></h3>
 <p>EV charger model definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1165,11 +1138,11 @@
 <td>DER definition type selector. Choices: <code>timeseries</code> (Defined as timeseries.) <code>schedule</code> (Defined as schedule.), <code>timeseries_per_unit</code> (Defined as timeseries in per unit values.), <code>schedule_per_unit</code> (Defined as schedule in per unit values.)</td>
 </tr>
 </tbody>
-</table></section>
-<section id="ev-charger-schedules">
+</table></div></div>
+<div class="section" id="ev-charger-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">ev_charger_schedules</span></code><a class="headerlink" href="#ev-charger-schedules" title="Permalink to this headline">¶</a></h3>
 <p>EV charger schedules definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1199,11 +1172,11 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="ev-charger-timeseries">
+</table></div></div>
+<div class="section" id="ev-charger-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">ev_charger_timeseries</span></code><a class="headerlink" href="#ev-charger-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>EV charger timeseries definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1233,11 +1206,11 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="fixed-loads">
+</table></div></div>
+<div class="section" id="fixed-loads">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_loads</span></code><a class="headerlink" href="#fixed-loads" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load model definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1257,11 +1230,11 @@
 <td>DER definition type selector. Choices: <code>timeseries</code> (Defined as timeseries.) <code>schedule</code> (Defined as schedule.), <code>timeseries_per_unit</code> (Defined as timeseries in per unit values.), <code>schedule_per_unit</code> (Defined as schedule in per unit values.)</td>
 </tr>
 </tbody>
-</table></section>
-<section id="fixed-load-schedules">
+</table></div></div>
+<div class="section" id="fixed-load-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_load_schedules</span></code><a class="headerlink" href="#fixed-load-schedules" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load schedules definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1291,11 +1264,11 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="fixed-load-timeseries">
+</table></div></div>
+<div class="section" id="fixed-load-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_load_timeseries</span></code><a class="headerlink" href="#fixed-load-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load timeseries definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1325,11 +1298,11 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="fixed-generators">
+</table></div></div>
+<div class="section" id="fixed-generators">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_generators</span></code><a class="headerlink" href="#fixed-generators" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load model definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1354,11 +1327,11 @@
 <td>Leveled cost of energy. <em>Currently, prices / costs are assumed to be in SGD.</em></td>
 </tr>
 </tbody>
-</table></section>
-<section id="fixed-generator-schedules">
+</table></div></div>
+<div class="section" id="fixed-generator-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_generator_schedules</span></code><a class="headerlink" href="#fixed-generator-schedules" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load schedules definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1388,11 +1361,11 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="fixed-generator-timeseries">
+</table></div></div>
+<div class="section" id="fixed-generator-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_generator_timeseries</span></code><a class="headerlink" href="#fixed-generator-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load timeseries definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1422,11 +1395,11 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="flexible-loads">
+</table></div></div>
+<div class="section" id="flexible-loads">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_loads</span></code><a class="headerlink" href="#flexible-loads" title="Permalink to this headline">¶</a></h3>
 <p>Flexible load model definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1461,11 +1434,11 @@
 <td>Number timesteps for which energy consumption can be deferred or advanced. <em>To be revised</em></td>
 </tr>
 </tbody>
-</table></section>
-<section id="flexible-load-schedules">
+</table></div></div>
+<div class="section" id="flexible-load-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_load_schedules</span></code><a class="headerlink" href="#flexible-load-schedules" title="Permalink to this headline">¶</a></h3>
 <p>Flexible load schedules definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1495,11 +1468,11 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="flexible-load-timeseries">
+</table></div></div>
+<div class="section" id="flexible-load-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_load_timeseries</span></code><a class="headerlink" href="#flexible-load-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Flexible load timeseries definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1529,11 +1502,11 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="flexible-generators">
+</table></div></div>
+<div class="section" id="flexible-generators">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_generators</span></code><a class="headerlink" href="#flexible-generators" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load model definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1558,11 +1531,11 @@
 <td>Leveled cost of energy. <em>Currently, prices / costs are assumed to be in SGD.</em></td>
 </tr>
 </tbody>
-</table></section>
-<section id="flexible-generator-schedules">
+</table></div></div>
+<div class="section" id="flexible-generator-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_generator_schedules</span></code><a class="headerlink" href="#flexible-generator-schedules" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load schedules definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1592,11 +1565,11 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-<section id="flexible-generator-timeseries">
+</table></div></div>
+<div class="section" id="flexible-generator-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_generator_timeseries</span></code><a class="headerlink" href="#flexible-generator-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load timeseries definition.</p>
-<table border="1" class="docutils">
+<div class="table-wrapper"><table border="1" class="docutils">
 <thead>
 <tr>
 <th>Column</th>
@@ -1626,89 +1599,108 @@
 <td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></section>
-</section>
-</section>
-
-
-           </div>
-           
-          </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="api.html" class="btn btn-neutral float-left" title="API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &#169; Copyright 2018-2021, TUMCREATE.
-
-    </p>
-  </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-  
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    <span class="fa fa-book"> Other Versions</span>
-    v: feature/test_cases
-    <span class="fa fa-caret-down"></span>
-  </span>
-    <div class="rst-other-versions">
-        <dl>
-            <dt>Tags</dt>
-            <dd><a href="../../v0.3.0/data.html">v0.3.0</a></dd>
-            <dd><a href="../../v0.4.0/index.html">v0.4.0</a></dd>
-            <dd><a href="../../v0.4.1/index.html">v0.4.1</a></dd>
-        </dl>
-        <dl>
-            <dt>Branches</dt>
-            <dd><a href="../weather_dependent/index.html">feature/weather_dependent</a></dd>
-            <dd><a href="../../develop/index.html">develop</a></dd>
-            <dd><a href="../backup_verena/index.html">feature/backup_verena</a></dd>
-            <dd><a href="../biogas_model/data.html">feature/biogas_model</a></dd>
-            <dd><a href="../dlmp_analysis/index.html">feature/dlmp_analysis</a></dd>
-            <dd><a href="../dro/index.html">feature/dro</a></dd>
-            <dd><a href="../general_improvements/index.html">feature/general_improvements</a></dd>
-            <dd><a href="../market_clearing_engine/data.html">feature/market_clearing_engine</a></dd>
-            <dd><a href="../pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></dd>
-            <dd><a href="../sitem/index.html">feature/sitem</a></dd>
-            <dd><a href="data.html">feature/test_cases</a></dd>
-            <dd><a href="../trust_region/index.html">feature/trust_region</a></dd>
-            <dd><a href="../updated_plots/index.html">feature/updated_plots</a></dd>
-            <dd><a href="../validity_checks/index.html">feature/validity_checks</a></dd>
-            <dd><a href="../../master/index.html">master</a></dd>
-        </dl>
-    </div>
+</table></div></div>
+</div>
 </div>
 
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
 
-  
-  
-    
-   
+        <div class="related-information">
+              Copyright &#169; 2018-2021, TUMCREATE
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="_sources/data.md.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Data reference</a><ul>
+<li><a class="reference internal" href="#scenario-data">Scenario data</a><ul>
+<li><a class="reference internal" href="#scenarios"><code class="docutils literal notranslate"><span class="pre">scenarios</span></code></a></li>
+<li><a class="reference internal" href="#parameters"><code class="docutils literal notranslate"><span class="pre">parameters</span></code></a></li>
+<li><a class="reference internal" href="#price-timeseries"><code class="docutils literal notranslate"><span class="pre">price_timeseries</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#electric-grid-data">Electric grid data</a><ul>
+<li><a class="reference internal" href="#electric-grids"><code class="docutils literal notranslate"><span class="pre">electric_grids</span></code></a></li>
+<li><a class="reference internal" href="#electric-grid-ders"><code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code></a></li>
+<li><a class="reference internal" href="#electric-grid-line-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code></a></li>
+<li><a class="reference internal" href="#electric-grid-line-types-matrices"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code></a></li>
+<li><a class="reference internal" href="#electric-grid-lines"><code class="docutils literal notranslate"><span class="pre">electric_grid_lines</span></code></a></li>
+<li><a class="reference internal" href="#electric-grid-nodes"><code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></a></li>
+<li><a class="reference internal" href="#electric-grid-operation-limit-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_types</span></code></a></li>
+<li><a class="reference internal" href="#electric-grid-transformer-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_transformer_types</span></code></a></li>
+<li><a class="reference internal" href="#electric-grid-transformers"><code class="docutils literal notranslate"><span class="pre">electric_grid_transformers</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#thermal-grid-data">Thermal grid data</a><ul>
+<li><a class="reference internal" href="#thermal-grids"><code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code></a></li>
+<li><a class="reference internal" href="#thermal-grid-ders"><code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code></a></li>
+<li><a class="reference internal" href="#thermal-grid-line-types"><code class="docutils literal notranslate"><span class="pre">thermal_grid_line_types</span></code></a></li>
+<li><a class="reference internal" href="#thermal-grid-lines"><code class="docutils literal notranslate"><span class="pre">thermal_grid_lines</span></code></a></li>
+<li><a class="reference internal" href="#thermal-grid-nodes"><code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code></a></li>
+<li><a class="reference internal" href="#thermal-grid-operation-limit-types"><code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#distributed-energy-resource-der-data">Distributed energy resource (DER) data</a><ul>
+<li><a class="reference internal" href="#cooling-plants"><code class="docutils literal notranslate"><span class="pre">cooling_plants</span></code></a></li>
+<li><a class="reference internal" href="#ev-chargers"><code class="docutils literal notranslate"><span class="pre">ev_chargers</span></code></a></li>
+<li><a class="reference internal" href="#ev-charger-schedules"><code class="docutils literal notranslate"><span class="pre">ev_charger_schedules</span></code></a></li>
+<li><a class="reference internal" href="#ev-charger-timeseries"><code class="docutils literal notranslate"><span class="pre">ev_charger_timeseries</span></code></a></li>
+<li><a class="reference internal" href="#fixed-loads"><code class="docutils literal notranslate"><span class="pre">fixed_loads</span></code></a></li>
+<li><a class="reference internal" href="#fixed-load-schedules"><code class="docutils literal notranslate"><span class="pre">fixed_load_schedules</span></code></a></li>
+<li><a class="reference internal" href="#fixed-load-timeseries"><code class="docutils literal notranslate"><span class="pre">fixed_load_timeseries</span></code></a></li>
+<li><a class="reference internal" href="#fixed-generators"><code class="docutils literal notranslate"><span class="pre">fixed_generators</span></code></a></li>
+<li><a class="reference internal" href="#fixed-generator-schedules"><code class="docutils literal notranslate"><span class="pre">fixed_generator_schedules</span></code></a></li>
+<li><a class="reference internal" href="#fixed-generator-timeseries"><code class="docutils literal notranslate"><span class="pre">fixed_generator_timeseries</span></code></a></li>
+<li><a class="reference internal" href="#flexible-loads"><code class="docutils literal notranslate"><span class="pre">flexible_loads</span></code></a></li>
+<li><a class="reference internal" href="#flexible-load-schedules"><code class="docutils literal notranslate"><span class="pre">flexible_load_schedules</span></code></a></li>
+<li><a class="reference internal" href="#flexible-load-timeseries"><code class="docutils literal notranslate"><span class="pre">flexible_load_timeseries</span></code></a></li>
+<li><a class="reference internal" href="#flexible-generators"><code class="docutils literal notranslate"><span class="pre">flexible_generators</span></code></a></li>
+<li><a class="reference internal" href="#flexible-generator-schedules"><code class="docutils literal notranslate"><span class="pre">flexible_generator_schedules</span></code></a></li>
+<li><a class="reference internal" href="#flexible-generator-timeseries"><code class="docutils literal notranslate"><span class="pre">flexible_generator_timeseries</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-</body>
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
 </html>
