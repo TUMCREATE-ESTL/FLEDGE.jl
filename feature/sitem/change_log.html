@@ -1,391 +1,375 @@
-<!doctype html>
-<html class="no-js">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Publications" href="publications.html" /><link rel="prev" title="Contributing" href="contributing.html" />
 
-    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
-        <title>Change log - FLEDGE</title>
-      <link rel="stylesheet" href="_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
-    <link rel="stylesheet" href="_static/pygments.css">
-    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css">
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Change log &mdash; FLEDGE  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-
-
-<style>
-  :root {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
-    }
-  }
-
-  /* For allowing end-user-specific overrides */
-  .override-light {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  
-  }
-  .override-dark {
-    --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
-  }
-</style><link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
-    <link rel="stylesheet" href="_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b"></head>
-  <body dir="">
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="svg-toc" viewBox="0 0 24 24">
-    <title>Contents</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z"/>
-      <line x1="4" y1="6" x2="20" y2="6" />
-      <line x1="10" y1="12" x2="20" y2="12" />
-      <line x1="6" y1="18" x2="20" y2="18" />
-    </svg>
-  </symbol>
-  <symbol id="svg-menu" viewBox="0 0 24 24">
-    <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-      class="feather feather-menu">
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-  </symbol>
-  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
-    <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-      class="feather feather-chevron-right">
-      <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-  </symbol>
-</svg>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation"></label>
-<label class="overlay toc-overlay" for="__toc"></label>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Publications" href="publications.html" />
+    <link rel="prev" title="Contributing" href="contributing.html" /> 
+</head>
 
+<body class="wy-body-for-nav">
 
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
 
-<div class="page">
-  <header class="mobile-header">
-    <div class="header-left">
-      <label class="nav-overlay-icon" for="__navigation">
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
-      </label>
-    </div>
-    <div class="header-center">
-      <a href="index.html"><div class="brand">FLEDGE</div></a>
-    </div>
-    <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-      </label>
-    </div>
-  </header>
-  <aside class="sidebar-drawer">
-    <div class="sidebar-container">
-      
-      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand" href="index.html">
-  
-  
-  <span class="sidebar-brand-text">FLEDGE</span>
-  
-</a><form class="sidebar-search-container" method="get" action="search.html">
-  <input class="sidebar-search" placeholder=Search name="q">
-  <input type="hidden" name="check_keywords" value="yes">
-  <input type="hidden" name="area" value="default">
-</form><div class="sidebar-tree">
-  <ul class="current">
+          
+            <a href="index.html" class="icon icon-home"> FLEDGE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_reference.html">Data reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_reference.html">API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software_architecture.html">Software architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Change log</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Change log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-5-0">v0.5.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#new-features">New features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-4-1">v0.4.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fixes">Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-4-0">v0.4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">New features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-3-0">v0.3.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">New features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-0">v0.2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#auxiliary-release">Auxiliary Release</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-1-0">v0.1.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#initial-release">Initial release</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge">GitHub repository 🡕</a></li>
 </ul>
 
-</div>
-    <div class="sidebar-tree">
-        <ul>
-            <li class="toctree-l1 has-children" data-children-count="1">
-                <a style="font-size: var(--sidebar-caption-font-size); font-weight: 700; text-transform: uppercase;color: var(--color-sidebar-caption-text); pointer-events: none" class="reference">Versions</a>
-                <input class="toctree-checkbox" id="toctree-checkbox-tags" name="toctree-checkbox-tags" type="checkbox"><label for="toctree-checkbox-tags"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label>
-                <ul style="font-size: var(--font-size--small--2);">
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../v0.3.0/index.html">v0.3.0</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../v0.4.0/change_log.html">v0.4.0</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../v0.4.1/change_log.html">v0.4.1</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../general_improvements/change_log.html">feature/general_improvements</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../develop/change_log.html">develop</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../biogas_model/index.html">feature/biogas_model</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../dlmp_analysis/change_log.html">feature/dlmp_analysis</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../dro/change_log.html">feature/dro</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../pnnl_tumcreate_colab/change_log.html">feature/pnnl_tumcreate_colab</a></li>
-                        
-                        
-                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="change_log.html">feature/sitem</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../test_cases/index.html">feature/test_cases</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../trust_region/change_log.html">feature/trust_region</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../updated_plots/change_log.html">feature/updated_plots</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../validity_checks/change_log.html">feature/validity_checks</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../weather_dependent/change_log.html">feature/weather_dependent</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../master/change_log.html">master</a></li>
-                        
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
+            
+          
+        </div>
+        
       </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
       
-    </div>
-  </aside>
-  <main class="main">
-    <div class="content">
-      <article role="main">
-        <label class="toc-overlay-icon toc-content-icon" for="__toc">
-          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-        </label>
-        <div class="section" id="change-log">
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FLEDGE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Change log</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/change_log.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="change-log">
 <h1>Change log<a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h1>
 <p>Note that version numbering follows the <a class="reference external" href="https://semver.org/">Semantic Versioning principle</a>.</p>
-<div class="section" id="v0-5-0">
+<section id="v0-5-0">
 <h2><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.5.0">v0.5.0</a><a class="headerlink" href="#v0-5-0" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="new-features">
+<section id="new-features">
 <h3>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Overhead line types can now be defined in terms of conductor data and geometric arrangement (Arif Ahmed).</p></li>
-<li><p>Added standard form object for generating the standard form of linear optimization problems.</p></li>
-<li><p>Added local-approximation variant for linear electric grid model.</p></li>
-<li><p>Added linear model set for electric grid model, which enables defining separate linear models for each time step.</p></li>
-<li><p>Added power flow solution set, to obtain power flow solutions more conveniently for multiple time steps.</p></li>
-<li><p>Added pre-solve method for DER model set, to obtain baseline nominal power time series for flexible DERs.</p></li>
+<li>Overhead line types can now be defined in terms of conductor data and geometric arrangement (Arif Ahmed).</li>
+<li>Added standard form object for generating the standard form of linear optimization problems.</li>
+<li>Added local-approximation variant for linear electric grid model.</li>
+<li>Added linear model set for electric grid model, which enables defining separate linear models for each time step.</li>
+<li>Added power flow solution set, to obtain power flow solutions more conveniently for multiple time steps.</li>
+<li>Added pre-solve method for DER model set, to obtain baseline nominal power time series for flexible DERs.</li>
 </ul>
-</div>
-<div class="section" id="changes">
+</section>
+<section id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Improved / simplified <code class="docutils literal notranslate"><span class="pre">define_optimization...()</span></code> methods for most use cases.</p></li>
-<li><p>Switched from <code class="docutils literal notranslate"><span class="pre">multiprocess</span></code> to <code class="docutils literal notranslate"><span class="pre">ray</span></code> for parallel processing for performance reasons.</p></li>
+<li>Improved / simplified <code class="docutils literal notranslate"><span class="pre">define_optimization...()</span></code> methods for most use cases.</li>
+<li>Switched from <code class="docutils literal notranslate"><span class="pre">multiprocess</span></code> to <code class="docutils literal notranslate"><span class="pre">ray</span></code> for parallel processing for performance reasons.</li>
 </ul>
-</div>
-</div>
-<div class="section" id="v0-4-1">
+</section>
+</section>
+<section id="v0-4-1">
 <h2><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.1">v0.4.1</a><a class="headerlink" href="#v0-4-1" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="fixes">
+<section id="fixes">
 <h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Updated <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</p></li>
-<li><p>Updated version indicators.</p></li>
+<li>Updated <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</li>
+<li>Updated version indicators.</li>
 </ul>
-</div>
-</div>
-<div class="section" id="v0-4-0">
+</section>
+</section>
+<section id="v0-4-0">
 <h2><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.0">v0.4.0</a><a class="headerlink" href="#v0-4-0" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
+<section id="id1">
 <h3>New features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Added problems module with definitions for nominal operation problem (simulation) and optimal operation problem (optimization).</p></li>
-<li><p>Added high-level API for executing optimal &amp; nominal operation problems.</p></li>
-<li><p>Added various DER models.</p></li>
-<li><p>Enabled most DERs for thermal grids (Verena Kleinschmidt).</p></li>
-<li><p>Added ability to define electric grid model as single-phase-approximate.</p></li>
-<li><p>Added Z-Bus power flow solution method (Arif Ahmed).</p></li>
-<li><p>Added plots module (work-in-progress).</p></li>
-<li><p>Added ability to set local configuration with <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>.</p></li>
-<li><p>Added ability to set base units for apparent power, voltage and thermal power for in scenario definition.</p></li>
+<li>Added problems module with definitions for nominal operation problem (simulation) and optimal operation problem (optimization).</li>
+<li>Added high-level API for executing optimal &amp; nominal operation problems.</li>
+<li>Added various DER models.</li>
+<li>Enabled most DERs for thermal grids (Verena Kleinschmidt).</li>
+<li>Added ability to define electric grid model as single-phase-approximate.</li>
+<li>Added Z-Bus power flow solution method (Arif Ahmed).</li>
+<li>Added plots module (work-in-progress).</li>
+<li>Added ability to set local configuration with <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>.</li>
+<li>Added ability to set base units for apparent power, voltage and thermal power for in scenario definition.</li>
 </ul>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h3>Changes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Moved implementation of optimization problems from Pyomo to CVXPY for performance improvements.</p></li>
-<li><p>Reformulated optimization constraints to use normalized values for improved numerical performance.</p></li>
-<li><p>Improved FLEDGE definition data format documentation.</p></li>
-<li><p>Refactored DER model data definition format.</p></li>
-<li><p>Refactored price data object.</p></li>
-<li><p>Various fixes in linear electric grid model model and DLMP calculations.</p></li>
-<li><p>Introduced various error messages for common issues.</p></li>
+<li>Moved implementation of optimization problems from Pyomo to CVXPY for performance improvements.</li>
+<li>Reformulated optimization constraints to use normalized values for improved numerical performance.</li>
+<li>Improved FLEDGE definition data format documentation.</li>
+<li>Refactored DER model data definition format.</li>
+<li>Refactored price data object.</li>
+<li>Various fixes in linear electric grid model model and DLMP calculations.</li>
+<li>Introduced various error messages for common issues.</li>
 </ul>
-</div>
-</div>
-<div class="section" id="v0-3-0">
+</section>
+</section>
+<section id="v0-3-0">
 <h2><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.3.0">v0.3.0</a><a class="headerlink" href="#v0-3-0" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
+<section id="id3">
 <h3>New features<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Moved to Python as main implementation language.</p></li>
-<li><p>Extended linear electric models with methods for defining optimization variables / constraints.</p></li>
-<li><p>Added thermal grid model.</p></li>
-<li><p>Added linear thermal grid model with methods for defining optimization variables / constraints.</p></li>
-<li><p>Added DER models and integrated CoBMo for flexible building models.</p></li>
-<li><p>Added methods for defining operation limits and obtaining DLMPs for electric and thermal grids.</p></li>
-<li><p>Provided various example scripts for running optimal operation problems for DERs / electric grids / thermal grids / multi-energy grids.</p></li>
+<li>Moved to Python as main implementation language.</li>
+<li>Extended linear electric models with methods for defining optimization variables / constraints.</li>
+<li>Added thermal grid model.</li>
+<li>Added linear thermal grid model with methods for defining optimization variables / constraints.</li>
+<li>Added DER models and integrated CoBMo for flexible building models.</li>
+<li>Added methods for defining operation limits and obtaining DLMPs for electric and thermal grids.</li>
+<li>Provided various example scripts for running optimal operation problems for DERs / electric grids / thermal grids / multi-energy grids.</li>
 </ul>
-</div>
-</div>
-<div class="section" id="v0-2-0">
+</section>
+</section>
+<section id="v0-2-0">
 <h2><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.2.0">v0.2.0</a><a class="headerlink" href="#v0-2-0" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="auxiliary-release">
+<section id="auxiliary-release">
 <h3>Auxiliary Release<a class="headerlink" href="#auxiliary-release" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Snapshot before moving to Python as main implementation language.</p></li>
+<li>Snapshot before moving to Python as main implementation language.</li>
 </ul>
-</div>
-</div>
-<div class="section" id="v0-1-0">
+</section>
+</section>
+<section id="v0-1-0">
 <h2><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.1.0">v0.1.0</a><a class="headerlink" href="#v0-1-0" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="initial-release">
+<section id="initial-release">
 <h3>Initial release<a class="headerlink" href="#initial-release" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Initial set of modules with Julia as main implementation language.</p></li>
+<li>Initial set of modules with Julia as main implementation language.</li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
-      </article>
-      <footer>
-        
-        <div class="related-pages">
-          <a class="next-page" href="publications.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Publications</div>
-              </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="contributing.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Contributing</div>
-                
-              </div>
-            </a>
-        </div>
 
-        <div class="related-information">
-              Copyright &#169; 2018-2021, TUMCREATE
-            |
-            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
-              and
-              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-            |
-            <a class="muted-link" href="_sources/change_log.md.txt"
-               rel="nofollow">
-              Show Source
-            </a>
-        </div>
-        
-      </footer>
-    </div>
-    <aside class="toc-drawer">
-      
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Change log</a><ul>
-<li><a class="reference internal" href="#v0-5-0">v0.5.0</a><ul>
-<li><a class="reference internal" href="#new-features">New features</a></li>
-<li><a class="reference internal" href="#changes">Changes</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-4-1">v0.4.1</a><ul>
-<li><a class="reference internal" href="#fixes">Fixes</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-4-0">v0.4.0</a><ul>
-<li><a class="reference internal" href="#id1">New features</a></li>
-<li><a class="reference internal" href="#id2">Changes</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-3-0">v0.3.0</a><ul>
-<li><a class="reference internal" href="#id3">New features</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-2-0">v0.2.0</a><ul>
-<li><a class="reference internal" href="#auxiliary-release">Auxiliary Release</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#v0-1-0">v0.1.0</a><ul>
-<li><a class="reference internal" href="#initial-release">Initial release</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+           </div>
+           
           </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="publications.html" class="btn btn-neutral float-right" title="Publications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2018-2021, TUMCREATE.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
         </div>
       </div>
-      
-      
-    </aside>
-  </main>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: feature/sitem
+    <span class="fa fa-caret-down"></span>
+  </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Tags</dt>
+            <dd><a href="../../v0.3.0/index.html">v0.3.0</a></dd>
+            <dd><a href="../../v0.4.0/change_log.html">v0.4.0</a></dd>
+            <dd><a href="../../v0.4.1/change_log.html">v0.4.1</a></dd>
+        </dl>
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../dro/change_log.html">feature/dro</a></dd>
+            <dd><a href="../../develop/change_log.html">develop</a></dd>
+            <dd><a href="../biogas_model/index.html">feature/biogas_model</a></dd>
+            <dd><a href="../dlmp_analysis/change_log.html">feature/dlmp_analysis</a></dd>
+            <dd><a href="../general_improvements/change_log.html">feature/general_improvements</a></dd>
+            <dd><a href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></dd>
+            <dd><a href="../pnnl_tumcreate_colab/change_log.html">feature/pnnl_tumcreate_colab</a></dd>
+            <dd><a href="change_log.html">feature/sitem</a></dd>
+            <dd><a href="../test_cases/index.html">feature/test_cases</a></dd>
+            <dd><a href="../trust_region/change_log.html">feature/trust_region</a></dd>
+            <dd><a href="../updated_plots/change_log.html">feature/updated_plots</a></dd>
+            <dd><a href="../validity_checks/change_log.html">feature/validity_checks</a></dd>
+            <dd><a href="../weather_dependent/change_log.html">feature/weather_dependent</a></dd>
+            <dd><a href="../../master/change_log.html">master</a></dd>
+        </dl>
+    </div>
 </div>
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

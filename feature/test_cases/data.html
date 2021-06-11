@@ -1,1545 +1,1713 @@
-<!doctype html>
-<html class="no-js">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Contributing" href="contributing.html" /><link rel="prev" title="API reference" href="api.html" />
 
-    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
-        <title>Data reference - FLEDGE</title>
-      <link rel="stylesheet" href="_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
-    <link rel="stylesheet" href="_static/pygments.css">
-    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css">
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Data reference &mdash; FLEDGE  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-
-
-<style>
-  :root {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
-    }
-  }
-
-  /* For allowing end-user-specific overrides */
-  .override-light {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  
-  }
-  .override-dark {
-    --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
-  }
-</style><link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
-    <link rel="stylesheet" href="_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b"></head>
-  <body dir="">
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="svg-toc" viewBox="0 0 24 24">
-    <title>Contents</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z"/>
-      <line x1="4" y1="6" x2="20" y2="6" />
-      <line x1="10" y1="12" x2="20" y2="12" />
-      <line x1="6" y1="18" x2="20" y2="18" />
-    </svg>
-  </symbol>
-  <symbol id="svg-menu" viewBox="0 0 24 24">
-    <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-      class="feather feather-menu">
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-  </symbol>
-  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
-    <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-      class="feather feather-chevron-right">
-      <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-  </symbol>
-</svg>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation"></label>
-<label class="overlay toc-overlay" for="__toc"></label>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="API reference" href="api.html" /> 
+</head>
 
+<body class="wy-body-for-nav">
 
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
 
-<div class="page">
-  <header class="mobile-header">
-    <div class="header-left">
-      <label class="nav-overlay-icon" for="__navigation">
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
-      </label>
-    </div>
-    <div class="header-center">
-      <a href="index.html"><div class="brand">FLEDGE</div></a>
-    </div>
-    <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-      </label>
-    </div>
-  </header>
-  <aside class="sidebar-drawer">
-    <div class="sidebar-container">
-      
-      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand" href="index.html">
-  
-  
-  <span class="sidebar-brand-text">FLEDGE</span>
-  
-</a><form class="sidebar-search-container" method="get" action="search.html">
-  <input class="sidebar-search" placeholder=Search name="q">
-  <input type="hidden" name="check_keywords" value="yes">
-  <input type="hidden" name="area" value="default">
-</form><div class="sidebar-tree">
-  <ul class="current">
+          
+            <a href="index.html" class="icon icon-home"> FLEDGE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Software architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Data reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scenario-data">Scenario data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scenarios"><code class="docutils literal notranslate"><span class="pre">scenarios</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters"><code class="docutils literal notranslate"><span class="pre">parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#price-timeseries"><code class="docutils literal notranslate"><span class="pre">price_timeseries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#electric-grid-data">Electric grid data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grids"><code class="docutils literal notranslate"><span class="pre">electric_grids</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-ders"><code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-line-types-matrices"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-lines"><code class="docutils literal notranslate"><span class="pre">electric_grid_lines</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-nodes"><code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-operation-limit-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-transformer-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_transformer_types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electric-grid-transformers"><code class="docutils literal notranslate"><span class="pre">electric_grid_transformers</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#thermal-grid-data">Thermal grid data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#thermal-grids"><code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-ders"><code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-line-types"><code class="docutils literal notranslate"><span class="pre">thermal_grid_line_types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-lines"><code class="docutils literal notranslate"><span class="pre">thermal_grid_lines</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-nodes"><code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thermal-grid-operation-limit-types"><code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_types</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#distributed-energy-resource-der-data">Distributed energy resource (DER) data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cooling-plants"><code class="docutils literal notranslate"><span class="pre">cooling_plants</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ev-chargers"><code class="docutils literal notranslate"><span class="pre">ev_chargers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ev-charger-schedules"><code class="docutils literal notranslate"><span class="pre">ev_charger_schedules</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ev-charger-timeseries"><code class="docutils literal notranslate"><span class="pre">ev_charger_timeseries</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-loads"><code class="docutils literal notranslate"><span class="pre">fixed_loads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-load-schedules"><code class="docutils literal notranslate"><span class="pre">fixed_load_schedules</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-load-timeseries"><code class="docutils literal notranslate"><span class="pre">fixed_load_timeseries</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-generators"><code class="docutils literal notranslate"><span class="pre">fixed_generators</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-generator-schedules"><code class="docutils literal notranslate"><span class="pre">fixed_generator_schedules</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-generator-timeseries"><code class="docutils literal notranslate"><span class="pre">fixed_generator_timeseries</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flexible-loads"><code class="docutils literal notranslate"><span class="pre">flexible_loads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flexible-load-schedules"><code class="docutils literal notranslate"><span class="pre">flexible_load_schedules</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flexible-load-timeseries"><code class="docutils literal notranslate"><span class="pre">flexible_load_timeseries</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flexible-generators"><code class="docutils literal notranslate"><span class="pre">flexible_generators</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flexible-generator-schedules"><code class="docutils literal notranslate"><span class="pre">flexible_generator_schedules</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flexible-generator-timeseries"><code class="docutils literal notranslate"><span class="pre">flexible_generator_timeseries</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 
-</div>
-    <div class="sidebar-tree">
-        <ul>
-            <li class="toctree-l1 has-children" data-children-count="1">
-                <a style="font-size: var(--sidebar-caption-font-size); font-weight: 700; text-transform: uppercase;color: var(--color-sidebar-caption-text); pointer-events: none" class="reference">Versions</a>
-                <input class="toctree-checkbox" id="toctree-checkbox-tags" name="toctree-checkbox-tags" type="checkbox"><label for="toctree-checkbox-tags"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label>
-                <ul style="font-size: var(--font-size--small--2);">
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../v0.3.0/data.html">v0.3.0</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../v0.4.0/index.html">v0.4.0</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../v0.4.1/index.html">v0.4.1</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../general_improvements/index.html">feature/general_improvements</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../develop/index.html">develop</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../biogas_model/data.html">feature/biogas_model</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../dlmp_analysis/index.html">feature/dlmp_analysis</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../dro/index.html">feature/dro</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../market_clearing_engine/data.html">feature/market_clearing_engine</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../sitem/index.html">feature/sitem</a></li>
-                        
-                        
-                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="data.html">feature/test_cases</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../trust_region/index.html">feature/trust_region</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../updated_plots/index.html">feature/updated_plots</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../validity_checks/index.html">feature/validity_checks</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../weather_dependent/index.html">feature/weather_dependent</a></li>
-                        
-                        
-                            <li class="toctree-l1"><a class="reference internal" href="../../master/index.html">master</a></li>
-                        
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
+            
+          
+        </div>
+        
       </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
       
-    </div>
-  </aside>
-  <main class="main">
-    <div class="content">
-      <article role="main">
-        <label class="toc-overlay-icon toc-content-icon" for="__toc">
-          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-        </label>
-        <div class="section" id="data-reference">
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FLEDGE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Data reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/data.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="data-reference">
 <h1>Data reference<a class="headerlink" href="#data-reference" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This reference is work in progress.</p>
 </div>
 <p>FLEDGE scenarios are defined through CSV files, where each CSV file represents a table as defined below (the file name is interpreted as the table name). Internally, FLEDGE loads all CSV files into a local SQLITE database for more convenient processing. The default location for FLEDGE scenario definitions is in the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory in the repository and all CSV files in the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory are automatically loaded into the database. The CSV files may be structured into sub-directories, but all files are eventually combined into the same database. Hence, all type / element identifiers must be unique across all scenario definitions.</p>
-<div class="section" id="scenario-data">
+<section id="scenario-data">
 <h2>Scenario data<a class="headerlink" href="#scenario-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="scenarios">
+<section id="scenarios">
 <h3><code class="docutils literal notranslate"><span class="pre">scenarios</span></code><a class="headerlink" href="#scenarios" title="Permalink to this headline">¶</a></h3>
 <p>Scenario definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">scenario_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique scenario identifier.</p></td>
+<tr>
+<td><code>scenario_name</code></td>
+<td align="center"></td>
+<td>Unique scenario identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">electric_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Electric grid identifier as defined <code class="docutils literal notranslate"><span class="pre">electric</span> <span class="pre">grids</span></code></p></td>
+<tr>
+<td><code>electric_grid_name</code></td>
+<td align="center"></td>
+<td>Electric grid identifier as defined <code>electric grids</code></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Thermal grid identifier as defined <code class="docutils literal notranslate"><span class="pre">thermal</span> <span class="pre">grids</span></code></p></td>
+<tr>
+<td><code>thermal_grid_name</code></td>
+<td align="center"></td>
+<td>Thermal grid identifier as defined <code>thermal grids</code></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">parameter_set</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Parameter set identifier as defined in <code class="docutils literal notranslate"><span class="pre">parameters</span></code></p></td>
+<tr>
+<td><code>parameter_set</code></td>
+<td align="center"></td>
+<td>Parameter set identifier as defined in <code>parameters</code></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">price_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Type identifier as defined in <code class="docutils literal notranslate"><span class="pre">price_timeseries</span></code></p></td>
+<tr>
+<td><code>price_type</code></td>
+<td align="center"></td>
+<td>Type identifier as defined in <code>price_timeseries</code></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Operation limit type as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_types</span></code></p></td>
+<tr>
+<td><code>electric_grid_operation_limit_type</code></td>
+<td align="center"></td>
+<td>Operation limit type as defined in <code>electric_grid_operation_limit_types</code></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Type identifier as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_types</span></code></p></td>
+<tr>
+<td><code>thermal_grid_operation_limit_type</code></td>
+<td align="center"></td>
+<td>Type identifier as defined in <code>thermal_grid_operation_limit_types</code></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">timestep_start</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Start timestep in format <code class="docutils literal notranslate"><span class="pre">yyyy-mm-ddTHH:MM:SS</span></code> (according to ISO 8601).</p></td>
+<tr>
+<td><code>timestep_start</code></td>
+<td align="center"></td>
+<td>Start timestep in format <code>yyyy-mm-ddTHH:MM:SS</code> (according to ISO 8601).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timestep_end</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>End timestep in format <code class="docutils literal notranslate"><span class="pre">yyyy-mm-ddTHH:MM:SS</span></code> (according to ISO 8601).</p></td>
+<tr>
+<td><code>timestep_end</code></td>
+<td align="center"></td>
+<td>End timestep in format <code>yyyy-mm-ddTHH:MM:SS</code> (according to ISO 8601).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">timestep_interval</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Time interval in format <code class="docutils literal notranslate"><span class="pre">HH:MM:SS</span></code></p></td>
+<tr>
+<td><code>timestep_interval</code></td>
+<td align="center"></td>
+<td>Time interval in format <code>HH:MM:SS</code></td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="parameters">
+</table></section>
+<section id="parameters">
 <h3><code class="docutils literal notranslate"><span class="pre">parameters</span></code><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
 <p>In all tables, a <code class="docutils literal notranslate"><span class="pre">parameter_name</span></code> string can be used to define numerical parameters in place of numerical values (identifiers or string values cannot be replaced with parameters). During model setup, those strings will be parsed from the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> table to obtain the corresponding numerical values.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">parameter_set</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Parameter set identifier.</p></td>
+<tr>
+<td><code>parameter_set</code></td>
+<td align="center"></td>
+<td>Parameter set identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">parameter_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique parameter identifier (must only be unique within the associated parameter set).</p></td>
+<tr>
+<td><code>parameter_name</code></td>
+<td align="center"></td>
+<td>Unique parameter identifier (must only be unique within the associated parameter set).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">parameter_value</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Parameter value.</p></td>
+<tr>
+<td><code>parameter_value</code></td>
+<td align="center">-</td>
+<td>Parameter value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="price-timeseries">
+</table></section>
+<section id="price-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">price_timeseries</span></code><a class="headerlink" href="#price-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Price timeseries.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">price_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique type identifier.</p></td>
+<tr>
+<td><code>price_type</code></td>
+<td align="center"></td>
+<td>Unique type identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Timestamp according to ISO 8601.</p></td>
+<tr>
+<td><code>time</code></td>
+<td align="center"></td>
+<td>Timestamp according to ISO 8601.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">price_value</span></code></p></td>
-<td class="text-align:center"><p>$/kWh</p></td>
-<td><p>Price value. <em>Currently, prices / costs are assumed to be in SGD.</em></p></td>
+<tr>
+<td><code>price_value</code></td>
+<td align="center">$/kWh</td>
+<td>Price value. <em>Currently, prices / costs are assumed to be in SGD.</em></td>
 </tr>
 </tbody>
-</table></div>
-</div>
-</div>
-<div class="section" id="electric-grid-data">
+</table></section>
+</section>
+<section id="electric-grid-data">
 <h2>Electric grid data<a class="headerlink" href="#electric-grid-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="electric-grids">
+<section id="electric-grids">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grids</span></code><a class="headerlink" href="#electric-grids" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">electric_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique electric grid identifier.</p></td>
+<tr>
+<td><code>electric_grid_name</code></td>
+<td align="center"></td>
+<td>Unique electric grid identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">source_node_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Source node name as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></p></td>
+<tr>
+<td><code>source_node_name</code></td>
+<td align="center"></td>
+<td>Source node name as defined in <code>electric_grid_nodes</code></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">base_frequency</span></code></p></td>
-<td class="text-align:center"><p>Hz</p></td>
-<td><p>Nominal grid frequency.</p></td>
+<tr>
+<td><code>base_frequency</code></td>
+<td align="center">Hz</td>
+<td>Nominal grid frequency.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="electric-grid-ders">
+</table></section>
+<section id="electric-grid-ders">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code><a class="headerlink" href="#electric-grid-ders" title="Permalink to this headline">¶</a></h3>
 <p>Distributed energy resources (DERs) in the electric grid. Can define both loads (negative power) and generations (positive power). The selection of DER types will be extended in the future.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">electric_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Electric grid identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grids</span></code>.</p></td>
+<tr>
+<td><code>electric_grid_name</code></td>
+<td align="center"></td>
+<td>Electric grid identifier as defined in <code>electric_grids</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">der_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique DER identifier (must only be unique within the associated electric grid).</p></td>
+<tr>
+<td><code>der_name</code></td>
+<td align="center"></td>
+<td>Unique DER identifier (must only be unique within the associated electric grid).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">der_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER type, which determines the type of DER model to be used. Choices: <code class="docutils literal notranslate"><span class="pre">fixed_load</span></code>, <code class="docutils literal notranslate"><span class="pre">flexible_load</span></code>, <code class="docutils literal notranslate"><span class="pre">ev_charger</span></code>, <code class="docutils literal notranslate"><span class="pre">flexible_building</span></code>, <code class="docutils literal notranslate"><span class="pre">fixed_generator</span></code>, <code class="docutils literal notranslate"><span class="pre">flexible_generator</span></code>, <code class="docutils literal notranslate"><span class="pre">cooling_plant</span></code>.</p></td>
+<tr>
+<td><code>der_type</code></td>
+<td align="center"></td>
+<td>DER type, which determines the type of DER model to be used. Choices: <code>fixed_load</code>, <code>flexible_load</code>, <code>ev_charger</code>, <code>flexible_building</code>, <code>fixed_generator</code>, <code>flexible_generator</code>, <code>cooling_plant</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier depending on the DER type, defined in <code class="docutils literal notranslate"><span class="pre">fixed_loads</span></code>, <code class="docutils literal notranslate"><span class="pre">flexible_loads</span></code>, <code class="docutils literal notranslate"><span class="pre">ev_chargers</span></code>, <code class="docutils literal notranslate"><span class="pre">fixed_generators</span></code>, <code class="docutils literal notranslate"><span class="pre">flexible_generators</span></code> or in CoBMo, for flexible buildings.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier depending on the DER type, defined in <code>fixed_loads</code>, <code>flexible_loads</code>, <code>ev_chargers</code>, <code>fixed_generators</code>, <code>flexible_generators</code> or in CoBMo, for flexible buildings.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Node identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code>.</p></td>
+<tr>
+<td><code>node_name</code></td>
+<td align="center"></td>
+<td>Node identifier as defined in <code>electric_grid_nodes</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_1_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 1. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_1_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 1. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_2_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 2. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_2_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 2. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_3_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 3. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_3_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 3. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">connection</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for Wye / Delta connection. Choices: <code class="docutils literal notranslate"><span class="pre">wye</span></code>, <code class="docutils literal notranslate"><span class="pre">delta</span></code>.</p></td>
+<tr>
+<td><code>connection</code></td>
+<td align="center"></td>
+<td>Selector for Wye / Delta connection. Choices: <code>wye</code>, <code>delta</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">active_power_nominal</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Nominal active power, where loads are negative and generations are positive.</p></td>
+<tr>
+<td><code>active_power_nominal</code></td>
+<td align="center">W</td>
+<td>Nominal active power, where loads are negative and generations are positive.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power_nominal</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Nominal reactive power, where loads are negative and generations are positive.</p></td>
+<tr>
+<td><code>reactive_power_nominal</code></td>
+<td align="center">VAr</td>
+<td>Nominal reactive power, where loads are negative and generations are positive.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">in_service</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code class="docutils literal notranslate"><span class="pre">1</span></code> (in service) or <code class="docutils literal notranslate"><span class="pre">0</span></code> (not in service). Optional column, which defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code> if not explicitly defined.</p></td>
+<tr>
+<td><code>in_service</code></td>
+<td align="center"></td>
+<td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="electric-grid-line-types">
+</table></section>
+<section id="electric-grid-line-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code><a class="headerlink" href="#electric-grid-line-types" title="Permalink to this headline">¶</a></h3>
 <p>Electric line type definitions are split into <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code> for the general type definition and <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code> for the definition of electric characteristics.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">line_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique type identifier.</p></td>
+<tr>
+<td><code>line_type</code></td>
+<td align="center"></td>
+<td>Unique type identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">n_phases</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Number of phases.</p></td>
+<tr>
+<td><code>n_phases</code></td>
+<td align="center">-</td>
+<td>Number of phases.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">maximum_current</span></code></p></td>
-<td class="text-align:center"><p>A</p></td>
-<td><p>Maximum permissible current (thermal line limit).</p></td>
+<tr>
+<td><code>maximum_current</code></td>
+<td align="center">A</td>
+<td>Maximum permissible current (thermal line limit).</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="electric-grid-line-types-matrices">
+</table></section>
+<section id="electric-grid-line-types-matrices">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code><a class="headerlink" href="#electric-grid-line-types-matrices" title="Permalink to this headline">¶</a></h3>
 <p>Electric line characteristics are defined in terms of element property matrices. Note that the matrices are expected to be symmetric and therefore only the lower triangular matrix should be defined. The matrices are defined element-wise (indexed by row / column pairs), to allow definition of single-phase line types alongside multi-phase line types.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">line_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Line type identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code>.</p></td>
+<tr>
+<td><code>line_type</code></td>
+<td align="center"></td>
+<td>Line type identifier as defined in <code>electric_grid_line_types</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">row</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Element matrix row number (first row is <code class="docutils literal notranslate"><span class="pre">1</span></code>).</p></td>
+<tr>
+<td><code>row</code></td>
+<td align="center"></td>
+<td>Element matrix row number (first row is <code>1</code>).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">col</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Element matrix column number (first column is <code class="docutils literal notranslate"><span class="pre">1</span></code>).</p></td>
+<tr>
+<td><code>col</code></td>
+<td align="center"></td>
+<td>Element matrix column number (first column is <code>1</code>).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resistance</span></code></p></td>
-<td class="text-align:center"><p>Ω/km</p></td>
-<td><p>Series resistance matrix entry.</p></td>
+<tr>
+<td><code>resistance</code></td>
+<td align="center">Ω/km</td>
+<td>Series resistance matrix entry.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reactance</span></code></p></td>
-<td class="text-align:center"><p>Ω/km</p></td>
-<td><p>Series reactance matrix entry.</p></td>
+<tr>
+<td><code>reactance</code></td>
+<td align="center">Ω/km</td>
+<td>Series reactance matrix entry.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">capacitance</span></code></p></td>
-<td class="text-align:center"><p>nF/km</p></td>
-<td><p>Shunt capacitance matrix entry.</p></td>
+<tr>
+<td><code>capacitance</code></td>
+<td align="center">nF/km</td>
+<td>Shunt capacitance matrix entry.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="electric-grid-lines">
+</table></section>
+<section id="electric-grid-lines">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_lines</span></code><a class="headerlink" href="#electric-grid-lines" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid lines.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">electric_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Electric grid identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grids</span></code></p></td>
+<tr>
+<td><code>electric_grid_name</code></td>
+<td align="center"></td>
+<td>Electric grid identifier as defined in <code>electric_grids</code></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">line_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique line identifier (must only be unique within the associated electric grid).</p></td>
+<tr>
+<td><code>line_name</code></td>
+<td align="center"></td>
+<td>Unique line identifier (must only be unique within the associated electric grid).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">line_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Line type identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code>.</p></td>
+<tr>
+<td><code>line_type</code></td>
+<td align="center"></td>
+<td>Line type identifier as defined in <code>electric_grid_line_types</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">node_1_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Start node identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></p></td>
+<tr>
+<td><code>node_1_name</code></td>
+<td align="center"></td>
+<td>Start node identifier as defined in <code>electric_grid_nodes</code></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node_2_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>End node identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></p></td>
+<tr>
+<td><code>node_2_name</code></td>
+<td align="center"></td>
+<td>End node identifier as defined in <code>electric_grid_nodes</code></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_1_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 1. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_1_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 1. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_2_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 2. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_2_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 2. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_3_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 3. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_3_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 3. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">length</span></code></p></td>
-<td class="text-align:center"><p>km</p></td>
-<td><p>Line length.</p></td>
+<tr>
+<td><code>length</code></td>
+<td align="center">km</td>
+<td>Line length.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">in_service</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code class="docutils literal notranslate"><span class="pre">1</span></code> (in service) or <code class="docutils literal notranslate"><span class="pre">0</span></code> (not in service). Optional column, which defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code> if not explicitly defined.</p></td>
+<tr>
+<td><code>in_service</code></td>
+<td align="center"></td>
+<td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="electric-grid-nodes">
+</table></section>
+<section id="electric-grid-nodes">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code><a class="headerlink" href="#electric-grid-nodes" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid nodes.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">electric_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Electric grid identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grids</span></code></p></td>
+<tr>
+<td><code>electric_grid_name</code></td>
+<td align="center"></td>
+<td>Electric grid identifier as defined in <code>electric_grids</code></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">node_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique node identifier (must only be unique within the associated electric grid).</p></td>
+<tr>
+<td><code>node_name</code></td>
+<td align="center"></td>
+<td>Unique node identifier (must only be unique within the associated electric grid).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_1_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 1. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_1_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 1. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_2_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 2. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_2_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 2. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_3_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 3. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_3_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 3. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">voltage</span></code></p></td>
-<td class="text-align:center"><p>V</p></td>
-<td><p>Nominal voltage.</p></td>
+<tr>
+<td><code>voltage</code></td>
+<td align="center">V</td>
+<td>Nominal voltage.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">latitude</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Latitude.</p></td>
+<tr>
+<td><code>latitude</code></td>
+<td align="center"></td>
+<td>Latitude.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">longitude</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Longitude.</p></td>
+<tr>
+<td><code>longitude</code></td>
+<td align="center"></td>
+<td>Longitude.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">in_service</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code class="docutils literal notranslate"><span class="pre">1</span></code> (in service) or <code class="docutils literal notranslate"><span class="pre">0</span></code> (not in service). Optional column, which defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code> if not explicitly defined.</p></td>
+<tr>
+<td><code>in_service</code></td>
+<td align="center"></td>
+<td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="electric-grid-operation-limit-types">
+</table></section>
+<section id="electric-grid-operation-limit-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_types</span></code><a class="headerlink" href="#electric-grid-operation-limit-types" title="Permalink to this headline">¶</a></h3>
 <p>Operation limit type definition for the electric grid. This information is utilized for the definition of the operational constraints in an optimal operation problem. The per unit definition is currently based on the nominal power flow, but may be changed in future.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique type identifier.</p></td>
+<tr>
+<td><code>electric_grid_operation_limit_type</code></td>
+<td align="center"></td>
+<td>Unique type identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">voltage_per_unit_minimum</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Minimum voltage in per unit of the nominal voltage.</p></td>
+<tr>
+<td><code>voltage_per_unit_minimum</code></td>
+<td align="center">-</td>
+<td>Minimum voltage in per unit of the nominal voltage.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">voltage_per_unit_maximum</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Maximum voltage in per unit of the nominal voltage.</p></td>
+<tr>
+<td><code>voltage_per_unit_maximum</code></td>
+<td align="center">-</td>
+<td>Maximum voltage in per unit of the nominal voltage.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">branch_flow_per_unit_maximum</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Maximum branch flow in per unit of the branch flow at nominal loading conditions.</p></td>
+<tr>
+<td><code>branch_flow_per_unit_maximum</code></td>
+<td align="center">-</td>
+<td>Maximum branch flow in per unit of the branch flow at nominal loading conditions.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="electric-grid-transformer-types">
+</table></section>
+<section id="electric-grid-transformer-types">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_transformer_types</span></code><a class="headerlink" href="#electric-grid-transformer-types" title="Permalink to this headline">¶</a></h3>
 <p>Transformer type characteristics.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transformer_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique type identifier.</p></td>
+<tr>
+<td><code>transformer_type</code></td>
+<td align="center"></td>
+<td>Unique type identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resistance_percentage</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Resistance percentage.</p></td>
+<tr>
+<td><code>resistance_percentage</code></td>
+<td align="center">-</td>
+<td>Resistance percentage.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reactance_percentage</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Reactance percentage.</p></td>
+<tr>
+<td><code>reactance_percentage</code></td>
+<td align="center">-</td>
+<td>Reactance percentage.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tap_maximum_voltage_per_unit</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Maximum secondary side tap position. (Currently not used.)</p></td>
+<tr>
+<td><code>tap_maximum_voltage_per_unit</code></td>
+<td align="center">-</td>
+<td>Maximum secondary side tap position. (Currently not used.)</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tap_minimum_voltage_per_unit</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Minimum secondary side tap position. (Currently not used.)</p></td>
+<tr>
+<td><code>tap_minimum_voltage_per_unit</code></td>
+<td align="center">-</td>
+<td>Minimum secondary side tap position. (Currently not used.)</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="electric-grid-transformers">
+</table></section>
+<section id="electric-grid-transformers">
 <h3><code class="docutils literal notranslate"><span class="pre">electric_grid_transformers</span></code><a class="headerlink" href="#electric-grid-transformers" title="Permalink to this headline">¶</a></h3>
 <p>Electric grid transformers, which are limited to transformers with two windings, where the same number of phases is connected at each winding.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">electric_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Electric grid identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grids</span></code></p></td>
+<tr>
+<td><code>electric_grid_name</code></td>
+<td align="center"></td>
+<td>Electric grid identifier as defined in <code>electric_grids</code></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transformer_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique transformer identifier (must only be unique within the associated electric grid).</p></td>
+<tr>
+<td><code>transformer_name</code></td>
+<td align="center"></td>
+<td>Unique transformer identifier (must only be unique within the associated electric grid).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transformer_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Transformer type identifier as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_transformer_types</span></code></p></td>
+<tr>
+<td><code>transformer_type</code></td>
+<td align="center"></td>
+<td>Transformer type identifier as defined in <code>electric_grid_transformer_types</code></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">node_1_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Primary side node name as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></p></td>
+<tr>
+<td><code>node_1_name</code></td>
+<td align="center"></td>
+<td>Primary side node name as defined in <code>electric_grid_nodes</code></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node_2_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Secondary side node name as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></p></td>
+<tr>
+<td><code>node_2_name</code></td>
+<td align="center"></td>
+<td>Secondary side node name as defined in <code>electric_grid_nodes</code></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_1_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 1. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_1_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 1. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_2_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 2. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_2_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 2. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">is_phase_3_connected</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for connection at phase 3. Choices: <code class="docutils literal notranslate"><span class="pre">0</span></code> (connected), <code class="docutils literal notranslate"><span class="pre">1</span></code> (not connected).</p></td>
+<tr>
+<td><code>is_phase_3_connected</code></td>
+<td align="center"></td>
+<td>Selector for connection at phase 3. Choices: <code>0</code> (connected), <code>1</code> (not connected).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">connection</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Selector for Wye / Delta connection. Choices: <code class="docutils literal notranslate"><span class="pre">wye</span></code>, <code class="docutils literal notranslate"><span class="pre">delta</span></code>. Note that Wye-connected windings are assumed to be grounded.</p></td>
+<tr>
+<td><code>connection</code></td>
+<td align="center"></td>
+<td>Selector for Wye / Delta connection. Choices: <code>wye</code>, <code>delta</code>. Note that Wye-connected windings are assumed to be grounded.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">apparent_power</span></code></p></td>
-<td class="text-align:center"><p>VA</p></td>
-<td><p>Nominal apparent power loading.</p></td>
+<tr>
+<td><code>apparent_power</code></td>
+<td align="center">VA</td>
+<td>Nominal apparent power loading.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">in_service</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code class="docutils literal notranslate"><span class="pre">1</span></code> (in service) or <code class="docutils literal notranslate"><span class="pre">0</span></code> (not in service). Optional column, which defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code> if not explicitly defined.</p></td>
+<tr>
+<td><code>in_service</code></td>
+<td align="center"></td>
+<td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-</div>
-<div class="section" id="thermal-grid-data">
+</table></section>
+</section>
+<section id="thermal-grid-data">
 <h2>Thermal grid data<a class="headerlink" href="#thermal-grid-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="thermal-grids">
+<section id="thermal-grids">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code><a class="headerlink" href="#thermal-grids" title="Permalink to this headline">¶</a></h3>
 <p>Thermal grid definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique thermal grid identifier.</p></td>
+<tr>
+<td><code>thermal_grid_name</code></td>
+<td align="center"></td>
+<td>Unique thermal grid identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">source_node_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Source node name as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code>.</p></td>
+<tr>
+<td><code>source_node_name</code></td>
+<td align="center"></td>
+<td>Source node name as defined in <code>thermal_grid_nodes</code>.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">distribution_pump_efficiency</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Pump efficiency (pump power / electric power) of the secondary side pumps, i.e. the pumps in the distribution system / thermal grid.</p></td>
+<tr>
+<td><code>distribution_pump_efficiency</code></td>
+<td align="center">-</td>
+<td>Pump efficiency (pump power / electric power) of the secondary side pumps, i.e. the pumps in the distribution system / thermal grid.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">energy_transfer_station_head_loss</span></code></p></td>
-<td class="text-align:center"><p>m</p></td>
-<td><p>Pump pressure head loss in the energy transfer station at each DER.</p></td>
+<tr>
+<td><code>energy_transfer_station_head_loss</code></td>
+<td align="center">m</td>
+<td>Pump pressure head loss in the energy transfer station at each DER.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enthalpy_difference_distribution_water</span></code></p></td>
-<td class="text-align:center"><p>J/kg</p></td>
-<td><p>Enthalpy difference between supply and return side of the distribution water, i.e. the water flowing to the thermal grid.</p></td>
+<tr>
+<td><code>enthalpy_difference_distribution_water</code></td>
+<td align="center">J/kg</td>
+<td>Enthalpy difference between supply and return side of the distribution water, i.e. the water flowing to the thermal grid.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">water_density</span></code></p></td>
-<td class="text-align:center"><p>kg/m³</p></td>
-<td><p>Density of the distribution water.</p></td>
+<tr>
+<td><code>water_density</code></td>
+<td align="center">kg/m³</td>
+<td>Density of the distribution water.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">water_kinematic_viscosity</span></code></p></td>
-<td class="text-align:center"><p>m²/s</p></td>
-<td><p>Kinematic viscosity of the distribution water.</p></td>
+<tr>
+<td><code>water_kinematic_viscosity</code></td>
+<td align="center">m²/s</td>
+<td>Kinematic viscosity of the distribution water.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">plant_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Thermal supply plant type. Currently only <code class="docutils literal notranslate"><span class="pre">cooling_plant</span></code> is supported.</p></td>
+<tr>
+<td><code>plant_type</code></td>
+<td align="center"></td>
+<td>Thermal supply plant type. Currently only <code>cooling_plant</code> is supported.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">plant_model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Plant model identifier. If plant type <code class="docutils literal notranslate"><span class="pre">cooling_plant</span></code>, as defined in <code class="docutils literal notranslate"><span class="pre">cooling_plants</span></code>.</p></td>
+<tr>
+<td><code>plant_model_name</code></td>
+<td align="center"></td>
+<td>Plant model identifier. If plant type <code>cooling_plant</code>, as defined in <code>cooling_plants</code>.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="thermal-grid-ders">
+</table></section>
+<section id="thermal-grid-ders">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code><a class="headerlink" href="#thermal-grid-ders" title="Permalink to this headline">¶</a></h3>
 <p>Distributed energy resources (DERs) in the thermal grid. Can define both loads (negative power) and generations (positive power). The selection of DER types will be extended in the future.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Thermal grid identifier as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code>.</p></td>
+<tr>
+<td><code>thermal_grid_name</code></td>
+<td align="center"></td>
+<td>Thermal grid identifier as defined in <code>thermal_grids</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">der_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique DER identifier (must only be unique within the associated thermal grid).</p></td>
+<tr>
+<td><code>der_name</code></td>
+<td align="center"></td>
+<td>Unique DER identifier (must only be unique within the associated thermal grid).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Node identifier as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code>.</p></td>
+<tr>
+<td><code>node_name</code></td>
+<td align="center"></td>
+<td>Node identifier as defined in <code>thermal_grid_nodes</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">der_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER type, which determines the type of DER model to be used. Choices: <code class="docutils literal notranslate"><span class="pre">flexible_building</span></code>, <code class="docutils literal notranslate"><span class="pre">fixed_generator</span></code>, <code class="docutils literal notranslate"><span class="pre">flexible_generator</span></code>, <code class="docutils literal notranslate"><span class="pre">cooling_plant</span></code>.</p></td>
+<tr>
+<td><code>der_type</code></td>
+<td align="center"></td>
+<td>DER type, which determines the type of DER model to be used. Choices: <code>flexible_building</code>, <code>fixed_generator</code>, <code>flexible_generator</code>, <code>cooling_plant</code>.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier depending on the DER type, defined in <code class="docutils literal notranslate"><span class="pre">fixed_generators</span></code>, <code class="docutils literal notranslate"><span class="pre">flexible_generators</span></code> or CoBMo for flexible buildings.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier depending on the DER type, defined in <code>fixed_generators</code>, <code>flexible_generators</code> or CoBMo for flexible buildings.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">thermal_power_nominal</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Nominal thermal power, where loads are negative and generations are positive.</p></td>
+<tr>
+<td><code>thermal_power_nominal</code></td>
+<td align="center">W</td>
+<td>Nominal thermal power, where loads are negative and generations are positive.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">in_service</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code class="docutils literal notranslate"><span class="pre">1</span></code> (in service) or <code class="docutils literal notranslate"><span class="pre">0</span></code> (not in service). Optional column, which defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code> if not explicitly defined.</p></td>
+<tr>
+<td><code>in_service</code></td>
+<td align="center"></td>
+<td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="thermal-grid-line-types">
+</table></section>
+<section id="thermal-grid-line-types">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_line_types</span></code><a class="headerlink" href="#thermal-grid-line-types" title="Permalink to this headline">¶</a></h3>
 <p>Thermal line types for defining pipe characteristics.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">line_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique type identifier.</p></td>
+<tr>
+<td><code>line_type</code></td>
+<td align="center"></td>
+<td>Unique type identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">diameter</span></code></p></td>
-<td class="text-align:center"><p>m</p></td>
-<td><p>Pipe diameter.</p></td>
+<tr>
+<td><code>diameter</code></td>
+<td align="center">m</td>
+<td>Pipe diameter.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">absolute_roughness</span></code></p></td>
-<td class="text-align:center"><p>mm</p></td>
-<td><p>Absolute roughness of the pipe.</p></td>
+<tr>
+<td><code>absolute_roughness</code></td>
+<td align="center">mm</td>
+<td>Absolute roughness of the pipe.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">maximum_velocity</span></code></p></td>
-<td class="text-align:center"><p>m/s</p></td>
-<td><p>Nominal maximum pipe velocity.</p></td>
+<tr>
+<td><code>maximum_velocity</code></td>
+<td align="center">m/s</td>
+<td>Nominal maximum pipe velocity.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="thermal-grid-lines">
+</table></section>
+<section id="thermal-grid-lines">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_lines</span></code><a class="headerlink" href="#thermal-grid-lines" title="Permalink to this headline">¶</a></h3>
 <p>Thermal grid line (pipe) definitions. The definition only includes the supply side piping, as the return side is assumed be symmetric.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Thermal grid identifier as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code>.</p></td>
+<tr>
+<td><code>thermal_grid_name</code></td>
+<td align="center"></td>
+<td>Thermal grid identifier as defined in <code>thermal_grids</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">line_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique line identifier (must only be unique within the associated thermal grid).</p></td>
+<tr>
+<td><code>line_name</code></td>
+<td align="center"></td>
+<td>Unique line identifier (must only be unique within the associated thermal grid).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">line_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Line type identifier as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grid_line_types</span></code>.</p></td>
+<tr>
+<td><code>line_type</code></td>
+<td align="center"></td>
+<td>Line type identifier as defined in <code>thermal_grid_line_types</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">node_1_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Start node identifier as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code></p></td>
+<tr>
+<td><code>node_1_name</code></td>
+<td align="center"></td>
+<td>Start node identifier as defined in <code>thermal_grid_nodes</code></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node_2_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>End node identifier as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code>.</p></td>
+<tr>
+<td><code>node_2_name</code></td>
+<td align="center"></td>
+<td>End node identifier as defined in <code>thermal_grid_nodes</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">length</span></code></p></td>
-<td class="text-align:center"><p>km</p></td>
-<td><p>Line length.</p></td>
+<tr>
+<td><code>length</code></td>
+<td align="center">km</td>
+<td>Line length.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">in_service</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code class="docutils literal notranslate"><span class="pre">1</span></code> (in service) or <code class="docutils literal notranslate"><span class="pre">0</span></code> (not in service). Optional column, which defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code> if not explicitly defined.</p></td>
+<tr>
+<td><code>in_service</code></td>
+<td align="center"></td>
+<td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="thermal-grid-nodes">
+</table></section>
+<section id="thermal-grid-nodes">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code><a class="headerlink" href="#thermal-grid-nodes" title="Permalink to this headline">¶</a></h3>
 <p>Thermal grid nodes.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal_grid_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Thermal grid identifier as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code>.</p></td>
+<tr>
+<td><code>thermal_grid_name</code></td>
+<td align="center"></td>
+<td>Thermal grid identifier as defined in <code>thermal_grids</code>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">node_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique node identifier (must only be unique within the associated thermal grid).</p></td>
+<tr>
+<td><code>node_name</code></td>
+<td align="center"></td>
+<td>Unique node identifier (must only be unique within the associated thermal grid).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">latitude</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Latitude.</p></td>
+<tr>
+<td><code>latitude</code></td>
+<td align="center"></td>
+<td>Latitude.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">longitude</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Longitude.</p></td>
+<tr>
+<td><code>longitude</code></td>
+<td align="center"></td>
+<td>Longitude.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">in_service</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code class="docutils literal notranslate"><span class="pre">1</span></code> (in service) or <code class="docutils literal notranslate"><span class="pre">0</span></code> (not in service). Optional column, which defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code> if not explicitly defined.</p></td>
+<tr>
+<td><code>in_service</code></td>
+<td align="center"></td>
+<td>In-service selector. Not-in-service grid elements are ignored and not loaded into the model. Choices: <code>1</code> (in service) or <code>0</code> (not in service). Optional column, which defaults to <code>1</code> if not explicitly defined.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="thermal-grid-operation-limit-types">
+</table></section>
+<section id="thermal-grid-operation-limit-types">
 <h3><code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_types</span></code><a class="headerlink" href="#thermal-grid-operation-limit-types" title="Permalink to this headline">¶</a></h3>
 <p>Thermal line limits are currently defined in per unit of the nominal thermal power solution, i.e., the thermal power flow solution for nominal loading conditions as defined in <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Unique type identifier.</p></td>
+<tr>
+<td><code>thermal_grid_operation_limit_type</code></td>
+<td align="center"></td>
+<td>Unique type identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">node_head_per_unit_maximum</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Maximum node head, in per unit of the nominal thermal power solution.</p></td>
+<tr>
+<td><code>node_head_per_unit_maximum</code></td>
+<td align="center">-</td>
+<td>Maximum node head, in per unit of the nominal thermal power solution.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pipe_flow_per_unit_maximum</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Maximum pipe / branch flow, in per unit of the nominal thermal power solution.</p></td>
+<tr>
+<td><code>pipe_flow_per_unit_maximum</code></td>
+<td align="center">-</td>
+<td>Maximum pipe / branch flow, in per unit of the nominal thermal power solution.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-</div>
-<div class="section" id="distributed-energy-resource-der-data">
+</table></section>
+</section>
+<section id="distributed-energy-resource-der-data">
 <h2>Distributed energy resource (DER) data<a class="headerlink" href="#distributed-energy-resource-der-data" title="Permalink to this headline">¶</a></h2>
 <p>For each DER type which requires the definition of timeseries values, these can be defined either directly as timeseries or through as a schedule. When defining by schedule, the timeseries is constructed by obtaining the appropriate values based on the <code class="docutils literal notranslate"><span class="pre">time_period</span></code> in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. Each value is kept constant at the given value for any daytime greater than or equal to <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> and any weekday greater than or equal to <code class="docutils literal notranslate"><span class="pre">dd</span></code> until the next defined <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code>. Note that the daily schedule is repeated for any weekday greater than or equal to <code class="docutils literal notranslate"><span class="pre">dd</span></code> until the next defined <code class="docutils literal notranslate"><span class="pre">dd</span></code>. The initial value for each <code class="docutils literal notranslate"><span class="pre">zone_constraint_profile</span></code> must start at <code class="docutils literal notranslate"><span class="pre">time_period</span> <span class="pre">=</span> <span class="pre">01T00:00</span></code>.</p>
 <p>Furthermore, the active / reactive / thermal power values can be defined as absolute values or in per unit values. Per unit values are assumed to be in per unit of the nominal active / reactive power as defined <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code>. Note that the sign of the active / reactive / thermal power values in the timeseries / schedule definition are ignored and superseded by the sign of the nominal active / reactive / thermal power value as defined in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> and <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>, where positive values are interpreted as generation and negative values as consumption.</p>
-<div class="section" id="cooling-plants">
+<section id="cooling-plants">
 <h3><code class="docutils literal notranslate"><span class="pre">cooling_plants</span></code><a class="headerlink" href="#cooling-plants" title="Permalink to this headline">¶</a></h3>
 <p>Cooling plants for modelling distributed generation facilities / heat pumps in the thermal grid. Cooling plants are connected to both electric and thermal grid, therefore must be defined both in <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> and <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier (corresponding to <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code> / <code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code>).</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier (corresponding to <code>electric_grid_ders</code> / <code>thermal_grid_ders</code>).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cooling_efficiency</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Coefficient of performance (COP).</p></td>
+<tr>
+<td><code>cooling_efficiency</code></td>
+<td align="center"></td>
+<td>Coefficient of performance (COP).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">plant_pump_efficiency</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Pump efficiency (pump power / electric power) of the primary side pumps, i.e. the pumps within the district cooling plant.</p></td>
+<tr>
+<td><code>plant_pump_efficiency</code></td>
+<td align="center">-</td>
+<td>Pump efficiency (pump power / electric power) of the primary side pumps, i.e. the pumps within the district cooling plant.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">condenser_pump_head</span></code></p></td>
-<td class="text-align:center"><p>m</p></td>
-<td><p>Pump pressure head across the condenser.</p></td>
+<tr>
+<td><code>condenser_pump_head</code></td>
+<td align="center">m</td>
+<td>Pump pressure head across the condenser.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">evaporator_pump_head</span></code></p></td>
-<td class="text-align:center"><p>m</p></td>
-<td><p>Pump pressure head across the evaporator.</p></td>
+<tr>
+<td><code>evaporator_pump_head</code></td>
+<td align="center">m</td>
+<td>Pump pressure head across the evaporator.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">chiller_set_beta</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Chiller set model beta factor, used to model the chiller efficiency.</p></td>
+<tr>
+<td><code>chiller_set_beta</code></td>
+<td align="center">-</td>
+<td>Chiller set model beta factor, used to model the chiller efficiency.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chiller_set_condenser_minimum_temperature_difference</span></code></p></td>
-<td class="text-align:center"><p>K</p></td>
-<td><p>Chiller set minimum temperature difference at the condenser, i.e. between the condenser water cycle and chiller refrigerant cycle.</p></td>
+<tr>
+<td><code>chiller_set_condenser_minimum_temperature_difference</code></td>
+<td align="center">K</td>
+<td>Chiller set minimum temperature difference at the condenser, i.e. between the condenser water cycle and chiller refrigerant cycle.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">chiller_set_evaporation_temperature</span></code></p></td>
-<td class="text-align:center"><p>K</p></td>
-<td><p>Chiller set evaporation temperature.</p></td>
+<tr>
+<td><code>chiller_set_evaporation_temperature</code></td>
+<td align="center">K</td>
+<td>Chiller set evaporation temperature.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chiller_set_cooling_capacity</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Chiller nominal maximum cooling capacity.</p></td>
+<tr>
+<td><code>chiller_set_cooling_capacity</code></td>
+<td align="center">W</td>
+<td>Chiller nominal maximum cooling capacity.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">condenser_water_temperature_difference</span></code></p></td>
-<td class="text-align:center"><p>K</p></td>
-<td><p>Condenser water temperature difference.</p></td>
+<tr>
+<td><code>condenser_water_temperature_difference</code></td>
+<td align="center">K</td>
+<td>Condenser water temperature difference.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">condenser_water_enthalpy_difference</span></code></p></td>
-<td class="text-align:center"><p>J/kg</p></td>
-<td><p>Condenser water enthalpy difference.</p></td>
+<tr>
+<td><code>condenser_water_enthalpy_difference</code></td>
+<td align="center">J/kg</td>
+<td>Condenser water enthalpy difference.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cooling_tower_set_reference_temperature_condenser_water</span></code></p></td>
-<td class="text-align:center"><p>°C</p></td>
-<td><p>Cooling tower set reference temperature for the condenser water, i.e. the temperature at which condenser water leaves the cooling tower.</p></td>
+<tr>
+<td><code>cooling_tower_set_reference_temperature_condenser_water</code></td>
+<td align="center">°C</td>
+<td>Cooling tower set reference temperature for the condenser water, i.e. the temperature at which condenser water leaves the cooling tower.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cooling_tower_set_reference_temperature_wet_bulb</span></code></p></td>
-<td class="text-align:center"><p>°C</p></td>
-<td><p>Cooling tower set reference temperature for the wet bulb ambient air temperature.</p></td>
+<tr>
+<td><code>cooling_tower_set_reference_temperature_wet_bulb</code></td>
+<td align="center">°C</td>
+<td>Cooling tower set reference temperature for the wet bulb ambient air temperature.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cooling_tower_set_reference_temperature_slope</span></code></p></td>
-<td class="text-align:center"><p>°C</p></td>
-<td><p>Cooling tower reference temperature slope, used to model the cooling tower efficiency.</p></td>
+<tr>
+<td><code>cooling_tower_set_reference_temperature_slope</code></td>
+<td align="center">°C</td>
+<td>Cooling tower reference temperature slope, used to model the cooling tower efficiency.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cooling_tower_set_ventilation_factor</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Cooling tower set ventilation factor, used to model the ventilation requirements depending on the condenser water flow.</p></td>
+<tr>
+<td><code>cooling_tower_set_ventilation_factor</code></td>
+<td align="center">-</td>
+<td>Cooling tower set ventilation factor, used to model the ventilation requirements depending on the condenser water flow.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="ev-chargers">
+</table></section>
+<section id="ev-chargers">
 <h3><code class="docutils literal notranslate"><span class="pre">ev_chargers</span></code><a class="headerlink" href="#ev-chargers" title="Permalink to this headline">¶</a></h3>
 <p>EV charger model definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier (corresponding to <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code>).</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier (corresponding to <code>electric_grid_ders</code>).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">definition_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER definition type selector. Choices: <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> (Defined as timeseries.) <code class="docutils literal notranslate"><span class="pre">schedule</span></code> (Defined as schedule.), <code class="docutils literal notranslate"><span class="pre">timeseries_per_unit</span></code> (Defined as timeseries in per unit values.), <code class="docutils literal notranslate"><span class="pre">schedule_per_unit</span></code> (Defined as schedule in per unit values.)</p></td>
+<tr>
+<td><code>definition_type</code></td>
+<td align="center"></td>
+<td>DER definition type selector. Choices: <code>timeseries</code> (Defined as timeseries.) <code>schedule</code> (Defined as schedule.), <code>timeseries_per_unit</code> (Defined as timeseries in per unit values.), <code>schedule_per_unit</code> (Defined as schedule in per unit values.)</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="ev-charger-schedules">
+</table></section>
+<section id="ev-charger-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">ev_charger_schedules</span></code><a class="headerlink" href="#ev-charger-schedules" title="Permalink to this headline">¶</a></h3>
 <p>EV charger schedules definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time_period</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Time period in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. <code class="docutils literal notranslate"><span class="pre">dd</span></code> is the weekday (<code class="docutils literal notranslate"><span class="pre">01</span></code> - Monday … <code class="docutils literal notranslate"><span class="pre">07</span></code> - Sunday). <code class="docutils literal notranslate"><span class="pre">T</span></code> is the divider for date and time information according to ISO 8601. <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> is the daytime.</p></td>
+<tr>
+<td><code>time_period</code></td>
+<td align="center"></td>
+<td>Time period in <code>ddTHH:MM</code> format. <code>dd</code> is the weekday (<code>01</code> - Monday ... <code>07</code> - Sunday). <code>T</code> is the divider for date and time information according to ISO 8601. <code>HH:MM</code> is the daytime.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="ev-charger-timeseries">
+</table></section>
+<section id="ev-charger-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">ev_charger_timeseries</span></code><a class="headerlink" href="#ev-charger-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>EV charger timeseries definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Timestep in format <code class="docutils literal notranslate"><span class="pre">yyyy-mm-ddTHH:MM:SS</span></code> (according to ISO 8601).</p></td>
+<tr>
+<td><code>time</code></td>
+<td align="center"></td>
+<td>Timestep in format <code>yyyy-mm-ddTHH:MM:SS</code> (according to ISO 8601).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="fixed-loads">
+</table></section>
+<section id="fixed-loads">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_loads</span></code><a class="headerlink" href="#fixed-loads" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load model definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier (corresponding to <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code>).</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier (corresponding to <code>electric_grid_ders</code>).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">definition_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER definition type selector. Choices: <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> (Defined as timeseries.) <code class="docutils literal notranslate"><span class="pre">schedule</span></code> (Defined as schedule.), <code class="docutils literal notranslate"><span class="pre">timeseries_per_unit</span></code> (Defined as timeseries in per unit values.), <code class="docutils literal notranslate"><span class="pre">schedule_per_unit</span></code> (Defined as schedule in per unit values.)</p></td>
+<tr>
+<td><code>definition_type</code></td>
+<td align="center"></td>
+<td>DER definition type selector. Choices: <code>timeseries</code> (Defined as timeseries.) <code>schedule</code> (Defined as schedule.), <code>timeseries_per_unit</code> (Defined as timeseries in per unit values.), <code>schedule_per_unit</code> (Defined as schedule in per unit values.)</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="fixed-load-schedules">
+</table></section>
+<section id="fixed-load-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_load_schedules</span></code><a class="headerlink" href="#fixed-load-schedules" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load schedules definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time_period</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Time period in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. <code class="docutils literal notranslate"><span class="pre">dd</span></code> is the weekday (<code class="docutils literal notranslate"><span class="pre">01</span></code> - Monday … <code class="docutils literal notranslate"><span class="pre">07</span></code> - Sunday). <code class="docutils literal notranslate"><span class="pre">T</span></code> is the divider for date and time information according to ISO 8601. <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> is the daytime.</p></td>
+<tr>
+<td><code>time_period</code></td>
+<td align="center"></td>
+<td>Time period in <code>ddTHH:MM</code> format. <code>dd</code> is the weekday (<code>01</code> - Monday ... <code>07</code> - Sunday). <code>T</code> is the divider for date and time information according to ISO 8601. <code>HH:MM</code> is the daytime.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="fixed-load-timeseries">
+</table></section>
+<section id="fixed-load-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_load_timeseries</span></code><a class="headerlink" href="#fixed-load-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load timeseries definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Timestep in format <code class="docutils literal notranslate"><span class="pre">yyyy-mm-ddTHH:MM:SS</span></code> (according to ISO 8601).</p></td>
+<tr>
+<td><code>time</code></td>
+<td align="center"></td>
+<td>Timestep in format <code>yyyy-mm-ddTHH:MM:SS</code> (according to ISO 8601).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="fixed-generators">
+</table></section>
+<section id="fixed-generators">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_generators</span></code><a class="headerlink" href="#fixed-generators" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load model definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier (corresponding to <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code>).</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier (corresponding to <code>electric_grid_ders</code>).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">definition_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER definition type selector. Choices: <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> (Defined as timeseries.) <code class="docutils literal notranslate"><span class="pre">schedule</span></code> (Defined as schedule.), <code class="docutils literal notranslate"><span class="pre">timeseries_per_unit</span></code> (Defined as timeseries in per unit values.), <code class="docutils literal notranslate"><span class="pre">schedule_per_unit</span></code> (Defined as schedule in per unit values.)</p></td>
+<tr>
+<td><code>definition_type</code></td>
+<td align="center"></td>
+<td>DER definition type selector. Choices: <code>timeseries</code> (Defined as timeseries.) <code>schedule</code> (Defined as schedule.), <code>timeseries_per_unit</code> (Defined as timeseries in per unit values.), <code>schedule_per_unit</code> (Defined as schedule in per unit values.)</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">levelized_cost_of_energy</span></code></p></td>
-<td class="text-align:center"><p>$/kWh</p></td>
-<td><p>Leveled cost of energy. <em>Currently, prices / costs are assumed to be in SGD.</em></p></td>
+<tr>
+<td><code>levelized_cost_of_energy</code></td>
+<td align="center">$/kWh</td>
+<td>Leveled cost of energy. <em>Currently, prices / costs are assumed to be in SGD.</em></td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="fixed-generator-schedules">
+</table></section>
+<section id="fixed-generator-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_generator_schedules</span></code><a class="headerlink" href="#fixed-generator-schedules" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load schedules definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time_period</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Time period in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. <code class="docutils literal notranslate"><span class="pre">dd</span></code> is the weekday (<code class="docutils literal notranslate"><span class="pre">01</span></code> - Monday … <code class="docutils literal notranslate"><span class="pre">07</span></code> - Sunday). <code class="docutils literal notranslate"><span class="pre">T</span></code> is the divider for date and time information according to ISO 8601. <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> is the daytime.</p></td>
+<tr>
+<td><code>time_period</code></td>
+<td align="center"></td>
+<td>Time period in <code>ddTHH:MM</code> format. <code>dd</code> is the weekday (<code>01</code> - Monday ... <code>07</code> - Sunday). <code>T</code> is the divider for date and time information according to ISO 8601. <code>HH:MM</code> is the daytime.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="fixed-generator-timeseries">
+</table></section>
+<section id="fixed-generator-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">fixed_generator_timeseries</span></code><a class="headerlink" href="#fixed-generator-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load timeseries definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Timestep in format <code class="docutils literal notranslate"><span class="pre">yyyy-mm-ddTHH:MM:SS</span></code> (according to ISO 8601).</p></td>
+<tr>
+<td><code>time</code></td>
+<td align="center"></td>
+<td>Timestep in format <code>yyyy-mm-ddTHH:MM:SS</code> (according to ISO 8601).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="flexible-loads">
+</table></section>
+<section id="flexible-loads">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_loads</span></code><a class="headerlink" href="#flexible-loads" title="Permalink to this headline">¶</a></h3>
 <p>Flexible load model definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier (corresponding to <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code>).</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier (corresponding to <code>electric_grid_ders</code>).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">definition_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER definition type selector. Choices: <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> (Defined as timeseries.) <code class="docutils literal notranslate"><span class="pre">schedule</span></code> (Defined as schedule.), <code class="docutils literal notranslate"><span class="pre">timeseries_per_unit</span></code> (Defined as timeseries in per unit values.), <code class="docutils literal notranslate"><span class="pre">schedule_per_unit</span></code> (Defined as schedule in per unit values.)</p></td>
+<tr>
+<td><code>definition_type</code></td>
+<td align="center"></td>
+<td>DER definition type selector. Choices: <code>timeseries</code> (Defined as timeseries.) <code>schedule</code> (Defined as schedule.), <code>timeseries_per_unit</code> (Defined as timeseries in per unit values.), <code>schedule_per_unit</code> (Defined as schedule in per unit values.)</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">power_increase_percentage_maximum</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Maximum permitted per unit power increase in each timestep. <em>To be revised</em></p></td>
+<tr>
+<td><code>power_increase_percentage_maximum</code></td>
+<td align="center">-</td>
+<td>Maximum permitted per unit power increase in each timestep. <em>To be revised</em></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">power_decrease_percentage_maximum</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Maximum permitted per unit power decrease in each timestep. <em>To be revised</em></p></td>
+<tr>
+<td><code>power_decrease_percentage_maximum</code></td>
+<td align="center">-</td>
+<td>Maximum permitted per unit power decrease in each timestep. <em>To be revised</em></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time_period_power_shift_maximum</span></code></p></td>
-<td class="text-align:center"><p>-</p></td>
-<td><p>Number timesteps for which energy consumption can be deferred or advanced. <em>To be revised</em></p></td>
+<tr>
+<td><code>time_period_power_shift_maximum</code></td>
+<td align="center">-</td>
+<td>Number timesteps for which energy consumption can be deferred or advanced. <em>To be revised</em></td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="flexible-load-schedules">
+</table></section>
+<section id="flexible-load-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_load_schedules</span></code><a class="headerlink" href="#flexible-load-schedules" title="Permalink to this headline">¶</a></h3>
 <p>Flexible load schedules definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time_period</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Time period in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. <code class="docutils literal notranslate"><span class="pre">dd</span></code> is the weekday (<code class="docutils literal notranslate"><span class="pre">01</span></code> - Monday … <code class="docutils literal notranslate"><span class="pre">07</span></code> - Sunday). <code class="docutils literal notranslate"><span class="pre">T</span></code> is the divider for date and time information according to ISO 8601. <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> is the daytime.</p></td>
+<tr>
+<td><code>time_period</code></td>
+<td align="center"></td>
+<td>Time period in <code>ddTHH:MM</code> format. <code>dd</code> is the weekday (<code>01</code> - Monday ... <code>07</code> - Sunday). <code>T</code> is the divider for date and time information according to ISO 8601. <code>HH:MM</code> is the daytime.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="flexible-load-timeseries">
+</table></section>
+<section id="flexible-load-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_load_timeseries</span></code><a class="headerlink" href="#flexible-load-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Flexible load timeseries definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Timestep in format <code class="docutils literal notranslate"><span class="pre">yyyy-mm-ddTHH:MM:SS</span></code> (according to ISO 8601).</p></td>
+<tr>
+<td><code>time</code></td>
+<td align="center"></td>
+<td>Timestep in format <code>yyyy-mm-ddTHH:MM:SS</code> (according to ISO 8601).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="flexible-generators">
+</table></section>
+<section id="flexible-generators">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_generators</span></code><a class="headerlink" href="#flexible-generators" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load model definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier (corresponding to <code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code>).</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier (corresponding to <code>electric_grid_ders</code>).</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">definition_type</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER definition type selector. Choices: <code class="docutils literal notranslate"><span class="pre">timeseries</span></code> (Defined as timeseries.) <code class="docutils literal notranslate"><span class="pre">schedule</span></code> (Defined as schedule.), <code class="docutils literal notranslate"><span class="pre">timeseries_per_unit</span></code> (Defined as timeseries in per unit values.), <code class="docutils literal notranslate"><span class="pre">schedule_per_unit</span></code> (Defined as schedule in per unit values.)</p></td>
+<tr>
+<td><code>definition_type</code></td>
+<td align="center"></td>
+<td>DER definition type selector. Choices: <code>timeseries</code> (Defined as timeseries.) <code>schedule</code> (Defined as schedule.), <code>timeseries_per_unit</code> (Defined as timeseries in per unit values.), <code>schedule_per_unit</code> (Defined as schedule in per unit values.)</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">levelized_cost_of_energy</span></code></p></td>
-<td class="text-align:center"><p>$/kWh</p></td>
-<td><p>Leveled cost of energy. <em>Currently, prices / costs are assumed to be in SGD.</em></p></td>
+<tr>
+<td><code>levelized_cost_of_energy</code></td>
+<td align="center">$/kWh</td>
+<td>Leveled cost of energy. <em>Currently, prices / costs are assumed to be in SGD.</em></td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="flexible-generator-schedules">
+</table></section>
+<section id="flexible-generator-schedules">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_generator_schedules</span></code><a class="headerlink" href="#flexible-generator-schedules" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load schedules definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time_period</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Time period in <code class="docutils literal notranslate"><span class="pre">ddTHH:MM</span></code> format. <code class="docutils literal notranslate"><span class="pre">dd</span></code> is the weekday (<code class="docutils literal notranslate"><span class="pre">01</span></code> - Monday … <code class="docutils literal notranslate"><span class="pre">07</span></code> - Sunday). <code class="docutils literal notranslate"><span class="pre">T</span></code> is the divider for date and time information according to ISO 8601. <code class="docutils literal notranslate"><span class="pre">HH:MM</span></code> is the daytime.</p></td>
+<tr>
+<td><code>time_period</code></td>
+<td align="center"></td>
+<td>Time period in <code>ddTHH:MM</code> format. <code>dd</code> is the weekday (<code>01</code> - Monday ... <code>07</code> - Sunday). <code>T</code> is the divider for date and time information according to ISO 8601. <code>HH:MM</code> is the daytime.</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="flexible-generator-timeseries">
+</table></section>
+<section id="flexible-generator-timeseries">
 <h3><code class="docutils literal notranslate"><span class="pre">flexible_generator_timeseries</span></code><a class="headerlink" href="#flexible-generator-timeseries" title="Permalink to this headline">¶</a></h3>
 <p>Fixed load timeseries definition.</p>
-<div class="table-wrapper"><table class="colwidths-auto docutils align-default">
+<table border="1" class="docutils">
 <thead>
-<tr class="row-odd"><th class="head"><p>Column</p></th>
-<th class="text-align:center head"><p>Unit</p></th>
-<th class="head"><p>Description</p></th>
+<tr>
+<th>Column</th>
+<th align="center">Unit</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>DER model identifier.</p></td>
+<tr>
+<td><code>model_name</code></td>
+<td align="center"></td>
+<td>DER model identifier.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
-<td class="text-align:center"><p></p></td>
-<td><p>Timestep in format <code class="docutils literal notranslate"><span class="pre">yyyy-mm-ddTHH:MM:SS</span></code> (according to ISO 8601).</p></td>
+<tr>
+<td><code>time</code></td>
+<td align="center"></td>
+<td>Timestep in format <code>yyyy-mm-ddTHH:MM:SS</code> (according to ISO 8601).</td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">active_power</span></code></p></td>
-<td class="text-align:center"><p>W</p></td>
-<td><p>Active power value.</p></td>
+<tr>
+<td><code>active_power</code></td>
+<td align="center">W</td>
+<td>Active power value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reactive_power</span></code></p></td>
-<td class="text-align:center"><p>VAr</p></td>
-<td><p>Reactive power value.</p></td>
+<tr>
+<td><code>reactive_power</code></td>
+<td align="center">VAr</td>
+<td>Reactive power value.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-</div>
-</div>
+</table></section>
+</section>
+</section>
 
-      </article>
-      <footer>
-        
-        <div class="related-pages">
-          <a class="next-page" href="contributing.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Contributing</div>
-              </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="api.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">API reference</div>
-                
-              </div>
-            </a>
-        </div>
 
-        <div class="related-information">
-              Copyright &#169; 2018-2021, TUMCREATE
-            |
-            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
-              and
-              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-            |
-            <a class="muted-link" href="_sources/data.md.txt"
-               rel="nofollow">
-              Show Source
-            </a>
-        </div>
-        
-      </footer>
-    </div>
-    <aside class="toc-drawer">
-      
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Data reference</a><ul>
-<li><a class="reference internal" href="#scenario-data">Scenario data</a><ul>
-<li><a class="reference internal" href="#scenarios"><code class="docutils literal notranslate"><span class="pre">scenarios</span></code></a></li>
-<li><a class="reference internal" href="#parameters"><code class="docutils literal notranslate"><span class="pre">parameters</span></code></a></li>
-<li><a class="reference internal" href="#price-timeseries"><code class="docutils literal notranslate"><span class="pre">price_timeseries</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#electric-grid-data">Electric grid data</a><ul>
-<li><a class="reference internal" href="#electric-grids"><code class="docutils literal notranslate"><span class="pre">electric_grids</span></code></a></li>
-<li><a class="reference internal" href="#electric-grid-ders"><code class="docutils literal notranslate"><span class="pre">electric_grid_ders</span></code></a></li>
-<li><a class="reference internal" href="#electric-grid-line-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types</span></code></a></li>
-<li><a class="reference internal" href="#electric-grid-line-types-matrices"><code class="docutils literal notranslate"><span class="pre">electric_grid_line_types_matrices</span></code></a></li>
-<li><a class="reference internal" href="#electric-grid-lines"><code class="docutils literal notranslate"><span class="pre">electric_grid_lines</span></code></a></li>
-<li><a class="reference internal" href="#electric-grid-nodes"><code class="docutils literal notranslate"><span class="pre">electric_grid_nodes</span></code></a></li>
-<li><a class="reference internal" href="#electric-grid-operation-limit-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_operation_limit_types</span></code></a></li>
-<li><a class="reference internal" href="#electric-grid-transformer-types"><code class="docutils literal notranslate"><span class="pre">electric_grid_transformer_types</span></code></a></li>
-<li><a class="reference internal" href="#electric-grid-transformers"><code class="docutils literal notranslate"><span class="pre">electric_grid_transformers</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#thermal-grid-data">Thermal grid data</a><ul>
-<li><a class="reference internal" href="#thermal-grids"><code class="docutils literal notranslate"><span class="pre">thermal_grids</span></code></a></li>
-<li><a class="reference internal" href="#thermal-grid-ders"><code class="docutils literal notranslate"><span class="pre">thermal_grid_ders</span></code></a></li>
-<li><a class="reference internal" href="#thermal-grid-line-types"><code class="docutils literal notranslate"><span class="pre">thermal_grid_line_types</span></code></a></li>
-<li><a class="reference internal" href="#thermal-grid-lines"><code class="docutils literal notranslate"><span class="pre">thermal_grid_lines</span></code></a></li>
-<li><a class="reference internal" href="#thermal-grid-nodes"><code class="docutils literal notranslate"><span class="pre">thermal_grid_nodes</span></code></a></li>
-<li><a class="reference internal" href="#thermal-grid-operation-limit-types"><code class="docutils literal notranslate"><span class="pre">thermal_grid_operation_limit_types</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#distributed-energy-resource-der-data">Distributed energy resource (DER) data</a><ul>
-<li><a class="reference internal" href="#cooling-plants"><code class="docutils literal notranslate"><span class="pre">cooling_plants</span></code></a></li>
-<li><a class="reference internal" href="#ev-chargers"><code class="docutils literal notranslate"><span class="pre">ev_chargers</span></code></a></li>
-<li><a class="reference internal" href="#ev-charger-schedules"><code class="docutils literal notranslate"><span class="pre">ev_charger_schedules</span></code></a></li>
-<li><a class="reference internal" href="#ev-charger-timeseries"><code class="docutils literal notranslate"><span class="pre">ev_charger_timeseries</span></code></a></li>
-<li><a class="reference internal" href="#fixed-loads"><code class="docutils literal notranslate"><span class="pre">fixed_loads</span></code></a></li>
-<li><a class="reference internal" href="#fixed-load-schedules"><code class="docutils literal notranslate"><span class="pre">fixed_load_schedules</span></code></a></li>
-<li><a class="reference internal" href="#fixed-load-timeseries"><code class="docutils literal notranslate"><span class="pre">fixed_load_timeseries</span></code></a></li>
-<li><a class="reference internal" href="#fixed-generators"><code class="docutils literal notranslate"><span class="pre">fixed_generators</span></code></a></li>
-<li><a class="reference internal" href="#fixed-generator-schedules"><code class="docutils literal notranslate"><span class="pre">fixed_generator_schedules</span></code></a></li>
-<li><a class="reference internal" href="#fixed-generator-timeseries"><code class="docutils literal notranslate"><span class="pre">fixed_generator_timeseries</span></code></a></li>
-<li><a class="reference internal" href="#flexible-loads"><code class="docutils literal notranslate"><span class="pre">flexible_loads</span></code></a></li>
-<li><a class="reference internal" href="#flexible-load-schedules"><code class="docutils literal notranslate"><span class="pre">flexible_load_schedules</span></code></a></li>
-<li><a class="reference internal" href="#flexible-load-timeseries"><code class="docutils literal notranslate"><span class="pre">flexible_load_timeseries</span></code></a></li>
-<li><a class="reference internal" href="#flexible-generators"><code class="docutils literal notranslate"><span class="pre">flexible_generators</span></code></a></li>
-<li><a class="reference internal" href="#flexible-generator-schedules"><code class="docutils literal notranslate"><span class="pre">flexible_generator_schedules</span></code></a></li>
-<li><a class="reference internal" href="#flexible-generator-timeseries"><code class="docutils literal notranslate"><span class="pre">flexible_generator_timeseries</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+           </div>
+           
           </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api.html" class="btn btn-neutral float-left" title="API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2018-2021, TUMCREATE.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
         </div>
       </div>
-      
-      
-    </aside>
-  </main>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: feature/test_cases
+    <span class="fa fa-caret-down"></span>
+  </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Tags</dt>
+            <dd><a href="../../v0.3.0/data.html">v0.3.0</a></dd>
+            <dd><a href="../../v0.4.0/index.html">v0.4.0</a></dd>
+            <dd><a href="../../v0.4.1/index.html">v0.4.1</a></dd>
+        </dl>
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../dro/index.html">feature/dro</a></dd>
+            <dd><a href="../../develop/index.html">develop</a></dd>
+            <dd><a href="../biogas_model/data.html">feature/biogas_model</a></dd>
+            <dd><a href="../dlmp_analysis/index.html">feature/dlmp_analysis</a></dd>
+            <dd><a href="../general_improvements/index.html">feature/general_improvements</a></dd>
+            <dd><a href="../market_clearing_engine/data.html">feature/market_clearing_engine</a></dd>
+            <dd><a href="../pnnl_tumcreate_colab/index.html">feature/pnnl_tumcreate_colab</a></dd>
+            <dd><a href="../sitem/index.html">feature/sitem</a></dd>
+            <dd><a href="data.html">feature/test_cases</a></dd>
+            <dd><a href="../trust_region/index.html">feature/trust_region</a></dd>
+            <dd><a href="../updated_plots/index.html">feature/updated_plots</a></dd>
+            <dd><a href="../validity_checks/index.html">feature/validity_checks</a></dd>
+            <dd><a href="../weather_dependent/index.html">feature/weather_dependent</a></dd>
+            <dd><a href="../../master/index.html">master</a></dd>
+        </dl>
+    </div>
 </div>
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>
