@@ -139,9 +139,6 @@
                             <li class="toctree-l1"><a class="reference internal" href="../v0.4.1/api_reference.html">v0.4.1</a></li>
                         
                         
-                            <li class="toctree-l1"><a class="reference internal" href="../feature/thermal_grid_extensions/api_reference.html">feature/thermal_grid_extensions</a></li>
-                        
-                        
                             <li class="toctree-l1 current current-page"><a class="current reference internal" href="api_reference.html">develop</a></li>
                         
                         
@@ -167,6 +164,9 @@
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../feature/test_cases/index.html">feature/test_cases</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../feature/thermal_grid_extensions/api_reference.html">feature/thermal_grid_extensions</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../feature/trust_region/api_reference.html">feature/trust_region</a></li>
@@ -1113,7 +1113,7 @@ reactive loss by DER reactive power vector.</p></li>
 <p>Distributed energy resource (DER) models.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.DERModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">DERModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.DERModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">DERModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.DERModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>DER model object.</p>
 <dl class="field-list simple">
@@ -1121,6 +1121,7 @@ reactive loss by DER reactive power vector.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
 <li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>is_standalone</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1132,7 +1133,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FixedDERModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FixedDERModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FixedDERModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FixedDERModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FixedDERModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.DERModel" title="fledge.der_models.DERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.DERModel</span></code></a></p>
 <p>Fixed DER model object.</p>
 <dl class="field-list simple">
@@ -1140,13 +1141,14 @@ reactive loss by DER reactive power vector.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
 <li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>is_standalone</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FixedLoadModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FixedLoadModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FixedLoadModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FixedLoadModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FixedLoadModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FixedDERModel" title="fledge.der_models.FixedDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FixedDERModel</span></code></a></p>
 <p>Fixed load model object.</p>
 <dl class="field-list simple">
@@ -1160,7 +1162,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FixedEVChargerModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FixedEVChargerModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FixedEVChargerModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FixedEVChargerModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FixedEVChargerModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FixedDERModel" title="fledge.der_models.FixedDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FixedDERModel</span></code></a></p>
 <p>EV charger model object.</p>
 <dl class="field-list simple">
@@ -1174,7 +1176,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FixedGeneratorModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FixedGeneratorModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FixedGeneratorModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FixedGeneratorModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FixedGeneratorModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FixedDERModel" title="fledge.der_models.FixedDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FixedDERModel</span></code></a></p>
 <p>Fixed generator model object, representing a generic generator with fixed nominal output.</p>
 <dl class="field-list simple">
@@ -1188,7 +1190,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FlexibleDERModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleDERModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleDERModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleDERModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleDERModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.DERModel" title="fledge.der_models.DERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.DERModel</span></code></a></p>
 <p>Flexible DER model, e.g., flexible load, object.</p>
 <dl class="field-list simple">
@@ -1196,13 +1198,14 @@ reactive loss by DER reactive power vector.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>der_data</strong> (<a class="reference internal" href="#fledge.data_interface.DERData" title="fledge.data_interface.DERData"><em>fledge.data_interface.DERData</em></a>) – </p></li>
 <li><p><strong>der_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>is_standalone</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FlexibleLoadModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleLoadModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleLoadModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleLoadModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleLoadModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
 <p>Flexible load model object.</p>
 <dl class="field-list simple">
@@ -1216,7 +1219,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FlexibleEVChargerModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleEVChargerModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleEVChargerModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleEVChargerModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleEVChargerModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
 <p>Flexible EV charger model object.</p>
 <dl class="field-list simple">
@@ -1230,7 +1233,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FlexibleGeneratorModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleGeneratorModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleGeneratorModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleGeneratorModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleGeneratorModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
 <p>Fixed generator model object, representing a generic generator with fixed nominal output.</p>
 <dl class="field-list simple">
@@ -1244,7 +1247,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.StorageModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">StorageModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.StorageModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">StorageModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.StorageModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
 <p>Energy storage model object.</p>
 <dl class="field-list simple">
@@ -1258,7 +1261,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FlexibleBuildingModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleBuildingModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleBuildingModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleBuildingModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleBuildingModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
 <p>Flexible load model object.</p>
 <dl class="field-list simple">
@@ -1272,7 +1275,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.CoolingPlantModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">CoolingPlantModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.CoolingPlantModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">CoolingPlantModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.CoolingPlantModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
 <p>Cooling plant model object.</p>
 <dl class="field-list simple">
@@ -1286,7 +1289,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.HeatPumpModel">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">HeatPumpModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.HeatPumpModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">HeatPumpModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.HeatPumpModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
 <p>Heat pump model object.</p>
 <dl class="field-list simple">
@@ -1300,7 +1303,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.der_models.FlexibleCHP">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleCHP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleCHP" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">FlexibleCHP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.FlexibleCHP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fledge.der_models.FlexibleDERModel" title="fledge.der_models.FlexibleDERModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">fledge.der_models.FlexibleDERModel</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1324,7 +1327,7 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="fledge.der_models.make_der_model">
-<span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">make_der_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.make_der_model" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fledge.der_models.</span></span><span class="sig-name descname"><span class="pre">make_der_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">der_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_standalone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.der_models.make_der_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method for DER models, makes appropriate DER model type for given <cite>der_name</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1410,6 +1413,12 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 </dd></dl>
 <dl class="py class">
+<dt class="sig sig-object py" id="fledge.data_interface.DERData">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></span><span class="sig-name descname"><span class="pre">DERData</span></span><a class="headerlink" href="#fledge.data_interface.DERData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DER data object.</p>
+</dd></dl>
+<dl class="py class">
 <dt class="sig sig-object py" id="fledge.data_interface.ElectricGridData">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></span><span class="sig-name descname"><span class="pre">ElectricGridData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_connection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ElectricGridData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -1430,12 +1439,6 @@ reactive loss by DER reactive power vector.</p></li>
 <dd class="field-odd"><p><strong>scenario_name</strong> (<em>str</em>) – </p>
 </dd>
 </dl>
-</dd></dl>
-<dl class="py class">
-<dt class="sig sig-object py" id="fledge.data_interface.DERData">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></span><span class="sig-name descname"><span class="pre">DERData</span></span><a class="headerlink" href="#fledge.data_interface.DERData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>DER data object.</p>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.data_interface.PriceData">
@@ -1762,7 +1765,7 @@ automatically based on given <cite>file_format</cite>.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ray.util.multiprocessing.Pool</p>
+<dd class="field-odd"><p>multiprocessing.context.BaseContext.Pool</p>
 </dd>
 </dl>
 </dd></dl>

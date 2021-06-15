@@ -231,8 +231,8 @@ Thermal grid definition.
 | `enthalpy_difference_distribution_water` | J/kg | Enthalpy difference between supply and return side of the distribution water, i.e. the water flowing to the thermal grid. |
 | `water_density` | kg/m³ | Density of the distribution water. |
 | `water_kinematic_viscosity` | m²/s | Kinematic viscosity of the distribution water. |
-| `plant_type` | | Thermal supply plant type. Currently only `cooling_plant` is supported. |
-| `plant_model_name` | | Plant model identifier. If plant type `cooling_plant`, as defined in `der_cooling_plants`. |
+| `source_der_type` | | Thermal supply plant type. Currently only `cooling_plant` is supported. |
+| `source_der_model_name` | | Plant model identifier. If plant type `cooling_plant`, as defined in `der_cooling_plants`. |
 
 ### `thermal_grid_ders`
 
