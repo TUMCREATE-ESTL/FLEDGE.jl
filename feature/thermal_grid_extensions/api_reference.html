@@ -139,7 +139,7 @@
                             <li class="toctree-l1"><a class="reference internal" href="../../v0.4.1/api_reference.html">v0.4.1</a></li>
                         
                         
-                            <li class="toctree-l1"><a class="reference internal" href="../dro/api_reference.html">feature/dro</a></li>
+                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="api_reference.html">feature/thermal_grid_extensions</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../../develop/api_reference.html">develop</a></li>
@@ -149,6 +149,9 @@
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></li>
+                        
+                        
+                            <li class="toctree-l1"><a class="reference internal" href="../dro/api_reference.html">feature/dro</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../general_improvements/api_reference.html">feature/general_improvements</a></li>
@@ -164,9 +167,6 @@
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../test_cases/index.html">feature/test_cases</a></li>
-                        
-                        
-                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="api_reference.html">feature/thermal_grid_extensions</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../trust_region/api_reference.html">feature/trust_region</a></li>
@@ -1410,6 +1410,12 @@ reactive loss by DER reactive power vector.</p></li>
 </dd></dl>
 </dd></dl>
 <dl class="py class">
+<dt class="sig sig-object py" id="fledge.data_interface.DERData">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></span><span class="sig-name descname"><span class="pre">DERData</span></span><a class="headerlink" href="#fledge.data_interface.DERData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DER data object.</p>
+</dd></dl>
+<dl class="py class">
 <dt class="sig sig-object py" id="fledge.data_interface.ElectricGridData">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></span><span class="sig-name descname"><span class="pre">ElectricGridData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_connection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fledge.data_interface.ElectricGridData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -1430,12 +1436,6 @@ reactive loss by DER reactive power vector.</p></li>
 <dd class="field-odd"><p><strong>scenario_name</strong> (<em>str</em>) – </p>
 </dd>
 </dl>
-</dd></dl>
-<dl class="py class">
-<dt class="sig sig-object py" id="fledge.data_interface.DERData">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fledge.data_interface.</span></span><span class="sig-name descname"><span class="pre">DERData</span></span><a class="headerlink" href="#fledge.data_interface.DERData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>DER data object.</p>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="fledge.data_interface.PriceData">
@@ -1762,7 +1762,7 @@ automatically based on given <cite>file_format</cite>.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ray.util.multiprocessing.Pool</p>
+<dd class="field-odd"><p>multiprocessing.context.BaseContext.Pool</p>
 </dd>
 </dl>
 </dd></dl>
