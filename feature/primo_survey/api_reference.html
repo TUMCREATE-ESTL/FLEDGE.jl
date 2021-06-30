@@ -137,7 +137,7 @@
                             <li class="toctree-l1"><a class="reference internal" href="../../v0.4.1/api_reference.html">v0.4.1</a></li>
                         
                         
-                            <li class="toctree-l1"><a class="reference internal" href="../dro/api_reference.html">feature/dro</a></li>
+                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="api_reference.html">feature/primo_survey</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../../develop/api_reference.html">develop</a></li>
@@ -149,6 +149,9 @@
                             <li class="toctree-l1"><a class="reference internal" href="../dlmp_analysis/api_reference.html">feature/dlmp_analysis</a></li>
                         
                         
+                            <li class="toctree-l1"><a class="reference internal" href="../dro/api_reference.html">feature/dro</a></li>
+                        
+                        
                             <li class="toctree-l1"><a class="reference internal" href="../general_improvements/api_reference.html">feature/general_improvements</a></li>
                         
                         
@@ -156,9 +159,6 @@
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../pnnl_tumcreate_colab/api_reference.html">feature/pnnl_tumcreate_colab</a></li>
-                        
-                        
-                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="api_reference.html">feature/primo_survey</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../sitem/api_reference.html">feature/sitem</a></li>
@@ -1461,8 +1461,8 @@ reactive loss by DER reactive power vector.</p></li>
 <p>FLEDGE object base class, which extends the Python object base class.</p>
 <ul class="simple">
 <li><p>Requires all attributes, i.e. parameters or object variables, to be defined with type declaration at the
-beginning of the class definition. Setting a value to an attribute which has not been defined will raise an error.
-This is to ensure consistent definition structure of FLEDGE classes.</p></li>
+beginning of the class definition. Setting a value to an attribute which has not been defined will raise
+a warning. This is to ensure consistent definition structure of FLEDGE classes.</p></li>
 <li><p>String representation of the object is the concatenation of the string representation of all its attributes.
 Thus, printing the object will print all its attributes.</p></li>
 </ul>
