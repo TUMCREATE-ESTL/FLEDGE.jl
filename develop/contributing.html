@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Change log" href="change_log.html" /><link rel="prev" title="Software architecture" href="software_architecture.html" />
 
     <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-4.0.2, furo 2021.08.11.beta42"/>
-        <title>Contributing - FLEDGE</title>
+        <title>Contributing - MESMO</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=197f00461d56902ea7ca048ec6e6ba026f62c97b" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=93475b62d1c3bc01323a0eefdc14a62d77b12690" />
@@ -122,7 +122,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">FLEDGE</div></a>
+      <a href="index.html"><div class="brand">MESMO</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -145,7 +145,7 @@
       <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">FLEDGE</span>
+  <span class="sidebar-brand-text">MESMO</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -161,7 +161,7 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="change_log.html">Change log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/mesmo-dev/mesmo">GitHub repository</a></li>
 </ul>
 
 </div>
@@ -321,7 +321,7 @@
 <li><p>Results / output files:</p>
 <ul>
 <li><p>Store results / output files only in the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory.</p></li>
-<li><p>The results path should be obtained with <code class="docutils literal notranslate"><span class="pre">fledge.utils.get_results_path()</span></code></p></li>
+<li><p>The results path should be obtained with <code class="docutils literal notranslate"><span class="pre">mesmo.utils.get_results_path()</span></code></p></li>
 <li><p>The content of the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory should remain local, i.e., it should be ignored by Git and should not appear in any commits to the repository.</p></li>
 </ul>
 </li>
@@ -343,10 +343,10 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">LICENSE</span></code></p></li>
 </ul>
 </li>
-<li><p>After pushing a new commit / release, create a tag and publish a new release on Github: <a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge/releases">https://github.com/TUMCREATE-ESTL/fledge/releases</a></p></li>
+<li><p>After pushing a new commit / release, create a tag and publish a new release on Github: <a class="reference external" href="https://github.com/mesmo-dev/mesmo/releases">https://github.com/mesmo-dev/mesmo/releases</a></p></li>
 <li><p>After publishing a new release, edit the latest Zenodo entry: <a class="reference external" href="https://doi.org/10.5281/zenodo.3562875">https://doi.org/10.5281/zenodo.3562875</a></p>
 <ul class="simple">
-<li><p>Set title to “FLEDGE - Flexible Distribution Grid Demonstrator”.</p></li>
+<li><p>Set title to “MESMO - Multi-Energy System Modeling and Optimization”.</p></li>
 <li><p>Set correct author names.</p></li>
 <li><p>Set license needs to “MIT License”.</p></li>
 </ul>
@@ -357,12 +357,12 @@
 <h2>Updating <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code><a class="headerlink" href="#updating-environment-yml" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file in the repository base directory provides a snapshot of an Anaconda environment with specific package versions which has been tested and is confirmed to work. The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file should be updated before releases, i.e. commits to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. To update <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, follow these steps:</p>
 <ol class="simple">
-<li><p>Uninstall FLEDGE / delete the existing <code class="docutils literal notranslate"><span class="pre">fledge</span></code> Anaconda environment: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">remove</span> <span class="pre">-n</span> <span class="pre">fledge</span></code></p></li>
-<li><p>Reinstall FLEDGE / recreate the <code class="docutils literal notranslate"><span class="pre">fledge</span></code> Anaconda environment based on the recommended installation steps in <a class="reference internal" href="getting_started.html"><span class="doc std std-doc">Getting started</span></a>.</p></li>
+<li><p>Uninstall MESMO / delete the existing <code class="docutils literal notranslate"><span class="pre">mesmo</span></code> Anaconda environment: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">remove</span> <span class="pre">-n</span> <span class="pre">mesmo</span></code></p></li>
+<li><p>Reinstall MESMO / recreate the <code class="docutils literal notranslate"><span class="pre">mesmo</span></code> Anaconda environment based on the recommended installation steps in <a class="reference internal" href="getting_started.html"><span class="doc std std-doc">Getting started</span></a>.</p></li>
 <li><p>Run <strong>all test</strong> and <strong>all examples scripts</strong> and fix any incompatibilities / bugs.</p></li>
-<li><p>Update <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">export</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">&gt;</span> <span class="pre">path_to_repository/environment.yml</span></code></p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">export</span> <span class="pre">-n</span> <span class="pre">mesmo</span> <span class="pre">&gt;</span> <span class="pre">path_to_repository/environment.yml</span></code></p></li>
 <li><p>Remove <code class="docutils literal notranslate"><span class="pre">prefix:</span> <span class="pre">...</span></code> line from <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</p></li>
-<li><p>Add line at the top of file: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Last</span> <span class="pre">updated:</span> <span class="pre">DD</span> <span class="pre">Month</span> <span class="pre">YYYY</span> <span class="pre">(FLEDGE</span> <span class="pre">vX.X.X)</span></code></p></li>
+<li><p>Add line at the top of file: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Last</span> <span class="pre">updated:</span> <span class="pre">DD</span> <span class="pre">Month</span> <span class="pre">YYYY</span> <span class="pre">(MESMO</span> <span class="pre">vX.X.X)</span></code></p></li>
 </ol>
 </section>
 </section>
