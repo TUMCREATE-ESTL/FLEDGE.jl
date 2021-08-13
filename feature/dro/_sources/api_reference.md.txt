@@ -4,50 +4,50 @@
 This reference is work in progress.
 ```
 
-## `fledge.api`
+## `mesmo.api`
 
 ```{eval-rst}
-.. automodule:: fledge.api
+.. automodule:: mesmo.api
 ```
 
-## `fledge.problems`
+## `mesmo.problems`
 
 ```{eval-rst}
-.. automodule:: fledge.problems
+.. automodule:: mesmo.problems
 ```
 
-## `fledge.electric_grid_models`
+## `mesmo.electric_grid_models`
 
 ```{eval-rst}
-.. automodule:: fledge.electric_grid_models
+.. automodule:: mesmo.electric_grid_models
 ```
 
-## `fledge.thermal_grid_models`
+## `mesmo.thermal_grid_models`
 
 ```{eval-rst}
-.. automodule:: fledge.thermal_grid_models
+.. automodule:: mesmo.thermal_grid_models
 ```
 
-## `fledge.der_models`
+## `mesmo.der_models`
 
 ```{eval-rst}
-.. automodule:: fledge.der_models
+.. automodule:: mesmo.der_models
 ```
 
-## `fledge.data_interface`
+## `mesmo.data_interface`
 
 ```{eval-rst}
-.. automodule:: fledge.data_interface
+.. automodule:: mesmo.data_interface
 ```
 
-## `fledge.utils`
+## `mesmo.utils`
 
 ```{eval-rst}
-.. automodule:: fledge.utils
+.. automodule:: mesmo.utils
 ```
 
-## `fledge.config`
+## `mesmo.config`
 
 ```{eval-rst}
-.. automodule:: fledge.config
+.. automodule:: mesmo.config
 ```

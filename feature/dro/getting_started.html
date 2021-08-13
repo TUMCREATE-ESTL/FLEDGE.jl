@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Data reference" href="data_reference.html" /><link rel="prev" title="FLEDGE - Flexible Distribution Grid Demonstrator" href="index.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Data reference" href="data_reference.html" /><link rel="prev" title="MESMO - Multi-Energy System Modeling and Optimization" href="index.html" />
 
     <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-4.0.2, furo 2021.08.11.beta42"/>
         <title>Getting Started - MESMO</title>
@@ -161,7 +161,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="change_log.html">Change log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/TUMCREATE-ESTL/fledge">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/mesmo-dev/mesmo">GitHub repository</a></li>
 </ul>
 
 </div>
@@ -181,6 +181,9 @@
                             <li class="toctree-l1"><a class="reference internal" href="../../v0.4.1/getting_started.html">v0.4.1</a></li>
                         
                         
+                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="getting_started.html">feature/dro</a></li>
+                        
+                        
                             <li class="toctree-l1"><a class="reference internal" href="../../develop/getting_started.html">develop</a></li>
                         
                         
@@ -188,9 +191,6 @@
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../dlmp_analysis/getting_started.html">feature/dlmp_analysis</a></li>
-                        
-                        
-                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="getting_started.html">feature/dro</a></li>
                         
                         
                             <li class="toctree-l1"><a class="reference internal" href="../market_clearing_engine/index.html">feature/market_clearing_engine</a></li>
@@ -262,8 +262,8 @@
 <li><p>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</p></li>
 <li><p>In Anaconda Prompt, run:</p>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">fledge</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">python=3.8</span> <span class="pre">contextily</span> <span class="pre">cvxpy</span> <span class="pre">numpy</span> <span class="pre">pandas</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">mesmo</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">python=3.8</span> <span class="pre">contextily</span> <span class="pre">cvxpy</span> <span class="pre">numpy</span> <span class="pre">pandas</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mesmo</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code></p></li>
 </ol>
 </li>
@@ -291,11 +291,11 @@
 </ol>
 </li>
 </ol>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">fledge.plots</span></code> module optionally allows adding contextual basemaps to grid plots for orientation. This requires installation of <code class="docutils literal notranslate"><span class="pre">contextily</span></code>, which is an optional dependency, because it needs to be installed through <code class="docutils literal notranslate"><span class="pre">conda</span></code> on Windows. If you need it, please follow the reccomended installation procedure above.</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">mesmo.plots</span></code> module optionally allows adding contextual basemaps to grid plots for orientation. This requires installation of <code class="docutils literal notranslate"><span class="pre">contextily</span></code>, which is an optional dependency, because it needs to be installed through <code class="docutils literal notranslate"><span class="pre">conda</span></code> on Windows. If you need it, please follow the reccomended installation procedure above.</p>
 </section>
 <section id="alternative-installation">
 <h3>Alternative installation<a class="headerlink" href="#alternative-installation" title="Permalink to this headline">¶</a></h3>
-<p>If you are running into errors when installing or running FLEDGE, this may be due to incompatibility with new versions of package dependencies, which have yet to be discovered and fixed. As a workaround, try installing FLEDGE in an tested Anaconda environment via the the provided <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, which represents the latest Anaconda Python environment in which FLEDGE was tested and is expected to work.</p>
+<p>If you are running into errors when installing or running MESMO, this may be due to incompatibility with new versions of package dependencies, which have yet to be discovered and fixed. As a workaround, try installing MESMO in an tested Anaconda environment via the the provided <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, which represents the latest Anaconda Python environment in which MESMO was tested and is expected to work.</p>
 <ol class="simple">
 <li><p>Check requirements:</p>
 <ul class="simple">
@@ -307,8 +307,8 @@
 <li><p>Clone or download repository. Ensure that the <code class="docutils literal notranslate"><span class="pre">cobmo</span></code> submodule directory is loaded as well.</p></li>
 <li><p>In Anaconda Prompt, run:</p>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">path_to_fledge_repository/environment.yml</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">fledge</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">path_to_mesmo_repository/environment.yml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mesmo</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-v</span> <span class="pre">-e</span> <span class="pre">path_to_repository</span></code>.</p></li>
 </ol>
 </li>
@@ -321,7 +321,7 @@
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory contains run scripts which demonstrate the usage of FLEDGE.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory contains run scripts which demonstrate the usage of MESMO.</p>
 <section id="api-examples">
 <h3>API examples<a class="headerlink" href="#api-examples" title="Permalink to this headline">¶</a></h3>
 <p>These examples demonstrate the usage of the high-level API to execute predefined problem types.</p>
@@ -332,7 +332,7 @@
 </section>
 <section id="advanced-examples">
 <h3>Advanced examples<a class="headerlink" href="#advanced-examples" title="Permalink to this headline">¶</a></h3>
-<p>For advanced usage of FLEDGE, the following examples demonstrate in a step-by-step manner how energy system models and optimization problems can be defined and solved with FLEDGE. These example scripts serve as a reference for setting up custom work flows.</p>
+<p>For advanced usage of MESMO, the following examples demonstrate in a step-by-step manner how energy system models and optimization problems can be defined and solved with MESMO. These example scripts serve as a reference for setting up custom work flows.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">run_electric_grid_optimal_operation.py</span></code>: Example script for setting up and solving an electric grid optimal operation problem.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">run_thermal_grid_optimal_operation.py</span></code>: Example script for setting up and solving a thermal grid optimal operation problem.</p></li>
@@ -343,7 +343,7 @@
 </section>
 <section id="validation-scripts">
 <h3>Validation scripts<a class="headerlink" href="#validation-scripts" title="Permalink to this headline">¶</a></h3>
-<p>Since the model implementations in FLEDGE are not infallible, these validation scripts are provided for model testing.</p>
+<p>Since the model implementations in MESMO are not infallible, these validation scripts are provided for model testing.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">validation_electric_grid_power_flow.py</span></code>: Example script for testing / validating the electric grid power flow solution.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">validation_linear_electric_grid_model.py</span></code>: Example script for testing / validating the linear electric grid model.</p></li>
@@ -353,20 +353,20 @@
 <section id="other-scripts">
 <h3>Other scripts<a class="headerlink" href="#other-scripts" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>The directory <code class="docutils literal notranslate"><span class="pre">examples/development</span></code> contains example scripts which are under development and scripts related to the development of new features for FLEDGE.</p></li>
-<li><p>The directory <code class="docutils literal notranslate"><span class="pre">examples/publications</span></code> contains scripts related to publications which based on FLEDGE.</p></li>
+<li><p>The directory <code class="docutils literal notranslate"><span class="pre">examples/development</span></code> contains example scripts which are under development and scripts related to the development of new features for MESMO.</p></li>
+<li><p>The directory <code class="docutils literal notranslate"><span class="pre">examples/publications</span></code> contains scripts related to publications which based on MESMO.</p></li>
 </ul>
 </section>
 </section>
 <section id="configuration-with-config-yml">
 <h2>Configuration with <code class="docutils literal notranslate"><span class="pre">config.yml</span></code><a class="headerlink" href="#configuration-with-config-yml" title="Permalink to this headline">¶</a></h2>
-<p>FLEDGE configuration parameters (e.g. the output format of plots) can be set in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. As an initial user, you most likely will not need to modify the configuration.</p>
-<p>If you want to change the configuration, you can create or modify <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> in the FLEDGE repository main directory. FLEDGE will automatically create <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> if it does not exist. Initially, <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> will be empty. You can copy configuration parameters from <code class="docutils literal notranslate"><span class="pre">fledge/config_default.yml</span></code> to <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> and modify their value to define your local configuration. To define nested configuration parameters, you need to replicate the nested structure in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. For example, to define CPLEX as the optimization solver, use:</p>
+<p>MESMO configuration parameters (e.g. the output format of plots) can be set in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. As an initial user, you most likely will not need to modify the configuration.</p>
+<p>If you want to change the configuration, you can create or modify <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> in the MESMO repository main directory. MESMO will automatically create <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> if it does not exist. Initially, <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> will be empty. You can copy configuration parameters from <code class="docutils literal notranslate"><span class="pre">mesmo/config_default.yml</span></code> to <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> and modify their value to define your local configuration. To define nested configuration parameters, you need to replicate the nested structure in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. For example, to define CPLEX as the optimization solver, use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optimization</span><span class="p">:</span>
   <span class="n">solver_name</span><span class="p">:</span> <span class="n">cplex</span>
 </pre></div>
 </div>
-<p>The configuration parameters which are defined in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> will take precedence over those defined in <code class="docutils literal notranslate"><span class="pre">fledge/config_default.yml</span></code>. If you would like to revert a parameter to its default value, just delete the parameter from <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. Please do not modify <code class="docutils literal notranslate"><span class="pre">fledge/config_default.yml</span></code> directly.</p>
+<p>The configuration parameters which are defined in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> will take precedence over those defined in <code class="docutils literal notranslate"><span class="pre">mesmo/config_default.yml</span></code>. If you would like to revert a parameter to its default value, just delete the parameter from <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. Please do not modify <code class="docutils literal notranslate"><span class="pre">mesmo/config_default.yml</span></code> directly.</p>
 </section>
 <section id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
