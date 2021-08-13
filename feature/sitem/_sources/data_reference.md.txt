@@ -1,10 +1,10 @@
 # Data reference
 
-``` warning::
-    This reference is work in progress.
+```{warning}
+This reference is work in progress.
 ```
 
-FLEDGE scenarios are defined through CSV files, where each CSV file represents a table as defined below (the file name is interpreted as the table name). Internally, FLEDGE loads all CSV files into a local SQLITE database for more convenient processing. The default location for FLEDGE scenario definitions is in the `data` directory in the repository and all CSV files in the `data` directory are automatically loaded into the database. The CSV files may be structured into sub-directories, but all files are eventually combined into the same database. Hence, all type / element identifiers must be unique across all scenario definitions.
+MESMO scenarios are defined through CSV files, where each CSV file represents a table as defined below (the file name is interpreted as the table name). Internally, MESMO loads all CSV files into a local SQLITE database for more convenient processing. The default location for MESMO scenario definitions is in the `data` directory in the repository and all CSV files in the `data` directory are automatically loaded into the database. The CSV files may be structured into sub-directories, but all files are eventually combined into the same database. Hence, all type / element identifiers must be unique across all scenario definitions.
 
 ## Scenario data
 
@@ -231,8 +231,8 @@ Thermal grid definition.
 | `enthalpy_difference_distribution_water` | J/kg | Enthalpy difference between supply and return side of the distribution water, i.e. the water flowing to the thermal grid. |
 | `water_density` | kg/m³ | Density of the distribution water. |
 | `water_kinematic_viscosity` | m²/s | Kinematic viscosity of the distribution water. |
-| `plant_type` | | Thermal supply plant type. Currently only `cooling_plant` is supported. |
-| `plant_model_name` | | Plant model identifier. If plant type `cooling_plant`, as defined in `der_cooling_plants`. |
+| `source_der_type` | | Thermal supply plant type. Currently only `cooling_plant` is supported. |
+| `source_der_model_name` | | Plant model identifier. If plant type `cooling_plant`, as defined in `der_cooling_plants`. |
 
 ### `thermal_grid_ders`
 

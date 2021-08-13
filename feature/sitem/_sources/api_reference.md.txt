@@ -1,45 +1,53 @@
 # API reference
 
-``` warning::
-    This reference is work in progress.
+```{warning}
+This reference is work in progress.
 ```
 
-## `fledge.api`
+## `mesmo.api`
 
-``` automodule:: fledge.api
+```{eval-rst}
+.. automodule:: mesmo.api
 ```
 
-## `fledge.problems`
+## `mesmo.problems`
 
-``` automodule:: fledge.problems
+```{eval-rst}
+.. automodule:: mesmo.problems
 ```
 
-## `fledge.electric_grid_models`
+## `mesmo.electric_grid_models`
 
-``` automodule:: fledge.electric_grid_models
+```{eval-rst}
+.. automodule:: mesmo.electric_grid_models
 ```
 
-## `fledge.thermal_grid_models`
+## `mesmo.thermal_grid_models`
 
-``` automodule:: fledge.thermal_grid_models
+```{eval-rst}
+.. automodule:: mesmo.thermal_grid_models
 ```
 
-## `fledge.der_models`
+## `mesmo.der_models`
 
-``` automodule:: fledge.der_models
+```{eval-rst}
+.. automodule:: mesmo.der_models
 ```
 
-## `fledge.data_interface`
+## `mesmo.data_interface`
 
-``` automodule:: fledge.data_interface
+```{eval-rst}
+.. automodule:: mesmo.data_interface
 ```
 
-## `fledge.utils`
+## `mesmo.utils`
 
-``` automodule:: fledge.utils
+```{eval-rst}
+.. automodule:: mesmo.utils
 ```
 
-## `fledge.config`
+## `mesmo.config`
 
-``` automodule:: fledge.config
+```{eval-rst}
+.. automodule:: mesmo.config
 ```
