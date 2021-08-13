@@ -1,0 +1,3 @@
+der_type,der_model_name,definition_type,definition_name,power_per_unit_minimum,power_per_unit_maximum,power_factor_minimum,power_factor_maximum,energy_storage_capacity_per_unit,charging_efficiency,self_discharge_rate,marginal_cost,heat_pump_efficiency,thermal_efficiency,electric_efficiency
+flexible_ev_charger,primo_survey_ev_charger_night,flexible_ev_charger,primo_survey_ev_charger_night,,,,,,1.0,,,,,
+flexible_ev_charger,primo_survey_ev_charger_day,flexible_ev_charger,primo_survey_ev_charger_day,,,,,,1.0,,,,,

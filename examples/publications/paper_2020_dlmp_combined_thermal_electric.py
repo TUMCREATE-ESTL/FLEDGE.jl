@@ -8,46 +8,48 @@ import numpy as np
 import os
 import pandas as pd
 
-import fledge
+import mesmo
 
 
 def main():
 
+    # TODO: To be updated for new optimization problem interface.
+
     # Settings.
     scenario_name = 'paper_2020_troitzsch_dlmp'
     scenario = 1  # Choices: 1 (unconstrained operation), 2 (constrained branch flow), 3 (constrained pressure head).
-    results_path = fledge.utils.get_results_path(__file__, f'scenario{scenario}_{scenario_name}')
+    results_path = mesmo.utils.get_results_path(__file__, f'scenario{scenario}_{scenario_name}')
 
     # Recreate / overwrite database, to incorporate changes in the CSV files.
-    fledge.data_interface.recreate_database()
+    mesmo.data_interface.recreate_database()
 
     # Obtain data.
-    scenario_data = fledge.data_interface.ScenarioData(scenario_name)
-    price_data = fledge.data_interface.PriceData(scenario_name)
+    scenario_data = mesmo.data_interface.ScenarioData(scenario_name)
+    price_data = mesmo.data_interface.PriceData(scenario_name)
 
     # Obtain models.
-    electric_grid_model = fledge.electric_grid_models.ElectricGridModelDefault(scenario_name)
-    power_flow_solution = fledge.electric_grid_models.PowerFlowSolutionFixedPoint(electric_grid_model)
+    electric_grid_model = mesmo.electric_grid_models.ElectricGridModelDefault(scenario_name)
+    power_flow_solution = mesmo.electric_grid_models.PowerFlowSolutionFixedPoint(electric_grid_model)
     linear_electric_grid_model = (
-        fledge.electric_grid_models.LinearElectricGridModelGlobal(
+        mesmo.electric_grid_models.LinearElectricGridModelGlobal(
             electric_grid_model,
             power_flow_solution
         )
     )
-    thermal_grid_model = fledge.thermal_grid_models.ThermalGridModel(scenario_name)
+    thermal_grid_model = mesmo.thermal_grid_models.ThermalGridModel(scenario_name)
     thermal_grid_model.energy_transfer_station_head_loss = 0.0  # Modification for Thermal Electric DLMP paper
-    thermal_grid_model.cooling_plant_efficiency = 10.0  # Modification for Thermal Electric DLMP paper.
-    thermal_power_flow_solution = fledge.thermal_grid_models.ThermalPowerFlowSolution(thermal_grid_model)
+    thermal_grid_model.plant_efficiency = 10.0  # Modification for Thermal Electric DLMP paper.
+    thermal_power_flow_solution = mesmo.thermal_grid_models.ThermalPowerFlowSolution(thermal_grid_model)
     linear_thermal_grid_model = (
-        fledge.thermal_grid_models.LinearThermalGridModel(
+        mesmo.thermal_grid_models.LinearThermalGridModel(
             thermal_grid_model,
             thermal_power_flow_solution
         )
     )
-    der_model_set = fledge.der_models.DERModelSet(scenario_name)
+    der_model_set = mesmo.der_models.DERModelSet(scenario_name)
 
     # Instantiate optimization problem.
-    optimization_problem = fledge.utils.OptimizationProblem()
+    optimization_problem = mesmo.utils.OptimizationProblem()
 
     # Define linear electric grid model variables.
     linear_electric_grid_model.define_optimization_variables(optimization_problem)
@@ -105,7 +107,7 @@ def main():
 
     # Obtain results.
     in_per_unit = False
-    results = fledge.problems.Results()
+    results = mesmo.problems.Results()
     results.update(linear_electric_grid_model.get_optimization_results(optimization_problem))
     results.update(linear_thermal_grid_model.get_optimization_results(optimization_problem))
     results.update(der_model_set.get_optimization_results(optimization_problem))
@@ -117,7 +119,7 @@ def main():
     results.save(results_path)
 
     # Obtain DLMPs.
-    dlmps = fledge.problems.Results()
+    dlmps = mesmo.problems.Results()
     dlmps.update(
         linear_electric_grid_model.get_optimization_dlmps(
             optimization_problem,
@@ -205,7 +207,7 @@ def main():
         plt.close()
 
     # Print results path.
-    fledge.utils.launch(results_path)
+    mesmo.utils.launch(results_path)
     print(f"Results are stored in: {results_path}")
 
 

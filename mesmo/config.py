@@ -4,24 +4,24 @@ import diskcache
 import logging
 import matplotlib
 import matplotlib.pyplot as plt
+import multiprocessing
 import os
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
-import ray.util.multiprocessing
 import yaml
 
 
 def get_config() -> dict:
     """Load the configuration dictionary.
 
-    - Default configuration is obtained from `./fledge/config_default.yml`.
+    - Default configuration is obtained from `./mesmo/config_default.yml`.
     - Custom configuration is obtained from `./config.yml` and overwrites the respective default configuration.
     - `./` denotes the repository base directory.
     """
 
     # Load default configuration values.
-    with open(os.path.join(base_path, 'fledge', 'config_default.yml'), 'r') as file:
+    with open(os.path.join(base_path, 'mesmo', 'config_default.yml'), 'r') as file:
         default_config = yaml.safe_load(file)
 
     # Create local `config.yml` for custom configuration in base directory, if not existing.
@@ -30,8 +30,8 @@ def get_config() -> dict:
         with open(os.path.join(base_path, 'config.yml'), 'w') as file:
             file.write(
                 "# Local configuration parameters.\n"
-                "# - Configuration parameters and their defaults are defined in `fledge/config_default.yml`\n"
-                "# - Copy from `fledge/config_default.yml` and modify parameters here to set the local configuration.\n"
+                "# - Configuration parameters and their defaults are defined in `mesmo/config_default.yml`\n"
+                "# - Copy from `mesmo/config_default.yml` and modify parameters here to set the local configuration.\n"
                 "paths:\n"
                 "  additional_data: []\n"
             )
@@ -104,13 +104,14 @@ def get_logger(
     return logger
 
 
-def get_parallel_pool() -> ray.util.multiprocessing.Pool:
+def get_parallel_pool() -> multiprocessing.Pool:
     """Create multiprocessing / parallel computing pool.
 
     - Number of parallel processes / workers defaults to number of CPU threads as returned by `os.cpu_count()`.
     """
 
     # Obtain multiprocessing pool.
+    import ray.util.multiprocessing
     return ray.util.multiprocessing.Pool()
 
 
@@ -118,6 +119,8 @@ def memoize(name):
     """Wrapper for memoize decorator of cache. Invokes memoize with `expiry_time` from config,
     but only if caching is enabled for given `name` in config.
     """
+
+    # TODO: Move memoize to utils.
 
     if config['caching']['enable'] and config['caching'][name]:
         return cache.memoize(expire=config['caching']['expiry_time'])
@@ -138,7 +141,7 @@ water_kinematic_viscosity = 1.3504e-6  # [m^2/s]
 gravitational_acceleration = 9.81  # [m^2/s]
 
 # Instantiate multiprocessing / parallel computing pool.
-# - Pool is instantiated as None and only created on first use in `fledge.utils.starmap`.
+# - Pool is instantiated as None and only created on first use in `mesmo.utils.starmap`.
 parallel_pool = None
 
 # Instantiate / reload cache.
@@ -184,6 +187,8 @@ pio.kaleido.scope.default_width = pio.orca.config.default_width = config['plots'
 pio.kaleido.scope.default_height = pio.orca.config.default_height = config['plots']['plotly_figure_height']
 
 # Modify optimization solver settings.
+if config['optimization']['solver_interface'] is None:
+    config['optimization']['solver_interface'] = 'direct'
 if config['optimization']['solver_name'] == 'cplex':
     solver_parameters = dict(cplex_params=dict())
     if config['optimization']['time_limit'] is not None:

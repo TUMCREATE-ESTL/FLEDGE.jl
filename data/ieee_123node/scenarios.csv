@@ -1,0 +1,2 @@
+scenario_name,electric_grid_name,thermal_grid_name,parameter_set,price_type,electric_grid_operation_limit_type,thermal_grid_operation_limit_type,timestep_start,timestep_end,timestep_interval
+ieee_123node,ieee_123node,,,,,,2017-01-01T00:00:00,2017-01-02T00:00:00,01:00:00

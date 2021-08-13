@@ -259,7 +259,7 @@ CREATE TABLE thermal_grids (
     enthalpy_difference_distribution_water TEXT,
     water_density TEXT,
     water_kinematic_viscosity TEXT,
-    plant_type TEXT,
-    plant_model_name TEXT,
+    source_der_type TEXT,
+    source_der_model_name TEXT,
     PRIMARY KEY(thermal_grid_name)
 );

@@ -1,4 +1,5 @@
 der_type,der_model_name,definition_type,definition_name,power_per_unit_minimum,power_per_unit_maximum,power_factor_minimum,power_factor_maximum,energy_storage_capacity_per_unit,charging_efficiency,self_discharge_rate,marginal_cost,heat_pump_efficiency,thermal_efficiency,electric_efficiency
+fixed_load,singapore_base_load,schedule_per_unit,singapore_base_load,,,,,,,,,,,
 fixed_load,mixed_commercial_residential,schedule_per_unit,mixed_commercial_residential,,,,,,,,,,,
 fixed_load,residential_landed,schedule_per_unit,residential_landed,,,,,,,,,,,
 flexible_load,mixed_commercial_residential,schedule_per_unit,mixed_commercial_residential,0.6,1.4,,,6,,,,,,

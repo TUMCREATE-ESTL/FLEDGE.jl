@@ -1,0 +1,19 @@
+{% if versions %}
+    <div class="sidebar-tree">
+        <ul>
+            <li class="toctree-l1 has-children" data-children-count="1">
+                <a style="font-size: var(--sidebar-caption-font-size); font-weight: 700; text-transform: uppercase;color: var(--color-sidebar-caption-text); pointer-events: none" class="reference">Versions</a>
+                <input class="toctree-checkbox" id="toctree-checkbox-tags" name="toctree-checkbox-tags" type="checkbox"><label for="toctree-checkbox-tags"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label>
+                <ul style="font-size: var(--font-size--small--2);">
+                    {%- for item in versions %}
+                        {% if item.name == current_version.name %}
+                            <li class="toctree-l1 current current-page"><a class="current reference internal" href="{{ item.url }}">{{ item.name }}</a></li>
+                        {% else %}
+                            <li class="toctree-l1"><a class="reference internal" href="{{ item.url }}">{{ item.name }}</a></li>
+                        {% endif %}
+                    {%- endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+{% endif %}

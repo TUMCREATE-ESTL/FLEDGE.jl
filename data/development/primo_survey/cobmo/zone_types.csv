@@ -1,0 +1,2 @@
+zone_type,heat_capacity,infiltration_rate,internal_gain_type,hvac_generic_type,hvac_radiator_type,hvac_ahu_type,hvac_tu_type,hvac_vent_type,constraint_type,fresh_air_flow_control_type,humidity_control_type
+primo_survey_zone,12110.25,0.2,primo_survey_internal_gains,primo_survey_generic_hvac,,,,,primo_survey_constraints,,

@@ -1,0 +1,3 @@
+scenario_name,building_name,parameter_set,linearization_type,initial_state_type,price_type,timestep_start,timestep_end,timestep_interval
+primo_survey_1zone_no_mass,primo_survey_1zone_no_mass,,primo_survey_linearization,primo_survey_initial_state,,2017-01-01T00:30:00,2017-02-01T00:00:00,0:30:00
+primo_survey_1zone,primo_survey_1zone,,primo_survey_linearization,primo_survey_initial_state,,2017-01-01T00:30:00,2017-02-01T00:00:00,0:30:00

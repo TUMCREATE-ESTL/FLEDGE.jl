@@ -1,5 +1,5 @@
-# Last updated: 2 June 2021 (FLEDGE v0.4.1)
-name: fledge
+# Last updated: 2 June 2021 (MESMO v0.4.1)
+name: mesmo
 channels:
   - conda-forge
   - defaults

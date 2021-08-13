@@ -6,294 +6,261 @@ import os
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import scipy.sparse as sp
 
-import fledge
+import mesmo
 
 
 def main():
 
     # Settings.
-    scenario_name = 'singapore_6node'
-    der_name = '4_2'  # Must be valid flexible DER from given scenario.
-    results_path = fledge.utils.get_results_path(__file__, f'{scenario_name}_der_{der_name}')
+    scenario_name = 'singapore_tanjongpagar'
+    results_path = mesmo.utils.get_results_path(__file__, scenario_name)
+    os.mkdir(os.path.join(results_path, 'standard_form'))
+    os.mkdir(os.path.join(results_path, 'traditional_form'))
 
     # Recreate / overwrite database, to incorporate changes in the CSV files.
-    fledge.data_interface.recreate_database()
+    # mesmo.data_interface.recreate_database()
 
     # Obtain data.
-    der_data = fledge.data_interface.DERData(scenario_name)
-    price_data = fledge.data_interface.PriceData(scenario_name)
+    der_data = mesmo.data_interface.DERData(scenario_name)
+    price_data = mesmo.data_interface.PriceData(scenario_name, der_data)
+    scenario_data = mesmo.data_interface.ScenarioData(scenario_name)
+    has_thermal_grid = pd.notnull(scenario_data.scenario.at['thermal_grid_name'])
 
     # Obtain model.
-    der_model: fledge.der_models.FlexibleDERModel = fledge.der_models.make_der_model(der_name, der_data)
-
-    # Obtain standard form.
-    standard_form = fledge.utils.StandardForm()
-
-    # Define variables.
-    standard_form.define_variable('state_vector', timestep=der_model.timesteps, state=der_model.states)
-    standard_form.define_variable('control_vector', timestep=der_model.timesteps, control=der_model.controls)
-    standard_form.define_variable('output_vector', timestep=der_model.timesteps, output=der_model.outputs)
-
-    # Define constraints.
-
-    # Initial state.
-    # - For states which represent storage state of charge, initial state of charge is final state of charge.
-    if any(~der_model.states.isin(der_model.storage_states)):
-        standard_form.define_constraint(
-            ('constant', der_model.state_vector_initial.values[~der_model.states.isin(der_model.storage_states)]),
-            '==',
-            ('variable', 1.0, dict(
-                name='state_vector', timestep=der_model.timesteps[0],
-                state=der_model.states[~der_model.states.isin(der_model.storage_states)]
-            ))
-        )
-    # - For other states, set initial state according to the initial state vector.
-    if any(der_model.states.isin(der_model.storage_states)):
-        standard_form.define_constraint(
-            ('variable', 1.0, dict(
-                name='state_vector', timestep=der_model.timesteps[0],
-                state=der_model.states[der_model.states.isin(der_model.storage_states)]
-            )),
-            '==',
-            ('variable', 1.0, dict(
-                name='state_vector', timestep=der_model.timesteps[-1],
-                state=der_model.states[der_model.states.isin(der_model.storage_states)]
-            ))
-        )
-
-    # State equation.
-    for timestep, timestep_previous in zip(der_model.timesteps[1:], der_model.timesteps[:-1]):
-        standard_form.define_constraint(
-            ('variable', 1.0, dict(name='state_vector', timestep=timestep)),
-            '==',
-            ('variable', der_model.state_matrix.values, dict(name='state_vector', timestep=timestep_previous)),
-            ('variable', der_model.control_matrix.values, dict(name='control_vector', timestep=timestep_previous)),
-            ('constant', der_model.disturbance_matrix.values @ der_model.disturbance_timeseries.loc[timestep_previous, :].values)
-        )
-
-    # Output equation.
-    for timestep in der_model.timesteps:
-        standard_form.define_constraint(
-            ('variable', 1.0, dict(name='output_vector', timestep=timestep)),
-            '==',
-            ('variable', der_model.state_output_matrix.values, dict(name='state_vector', timestep=timestep)),
-            ('variable', der_model.control_output_matrix.values, dict(name='control_vector', timestep=timestep)),
-            ('constant', der_model.disturbance_output_matrix.values @ der_model.disturbance_timeseries.loc[timestep, :].values)
-        )
-
-    # Output limits.
-    for timestep in der_model.timesteps:
-        standard_form.define_constraint(
-            ('variable', 1.0, dict(name='output_vector', timestep=timestep)),
-            '>=',
-            ('constant', der_model.output_minimum_timeseries.loc[timestep, :].values),
-        )
-        standard_form.define_constraint(
-            ('variable', 1.0, dict(name='output_vector', timestep=timestep)),
-            '<=',
-            ('constant', der_model.output_maximum_timeseries.loc[timestep, :].values),
-        )
-
-    a_matrix = standard_form.get_a_matrix()
-    b_vector = standard_form.get_b_vector()
-
-    # Instantiate optimization problem.
-    optimization_problem_1 = fledge.utils.OptimizationProblem()
-    optimization_problem_1.x_vector = cp.Variable((len(standard_form.variables), 1))
-    optimization_problem_1.constraints.append(
-        a_matrix.toarray() @ optimization_problem_1.x_vector <= b_vector
-    )
-
-    # Obtain timestep interval in hours, for conversion of power to energy.
-    timestep_interval_hours = (der_model.timesteps[1] - der_model.timesteps[0]) / pd.Timedelta('1h')
-
-    # Define objective.
-    # Active power cost / revenue.
-    # - Cost for load / demand, revenue for generation / supply.
-    for timestep in der_model.timesteps:
-        x_index = fledge.utils.get_index(standard_form.variables, name='output_vector', timestep=timestep)
-        optimization_problem_1.objective += (
-            (
-                price_data.price_timeseries.loc[timestep, ('active_power', slice(None), der_model.der_name)].values
-                * -1.0 * timestep_interval_hours  # In Wh.
-                @ (
-                    der_model.mapping_active_power_by_output.values
-                    @ optimization_problem_1.x_vector[x_index, :]
-                )
-            )
-            + ((
-                price_data.price_sensitivity_coefficient
-                * timestep_interval_hours  # In Wh.
-                * cp.sum((
-                    der_model.mapping_active_power_by_output.values
-                    @ optimization_problem_1.x_vector[x_index, :]
-                ) ** 2)
-            ) if price_data.price_sensitivity_coefficient != 0.0 else 0.0)
-        )
-
-    # Solve optimization problem.
-    optimization_problem_1.solve()
-
-    # Obtain results.
-    results_1 = standard_form.get_results(optimization_problem_1.x_vector)
-
-    # Instantiate optimization problem.
-    optimization_problem_2 = fledge.utils.OptimizationProblem()
-
-    # Define variables.
-    optimization_problem_2.state_vector = {der_model.der_name: cp.Variable((len(der_model.timesteps), len(der_model.states)))}
-    optimization_problem_2.control_vector = {der_model.der_name: cp.Variable((len(der_model.timesteps), len(der_model.controls)))}
-    optimization_problem_2.output_vector = {der_model.der_name: cp.Variable((len(der_model.timesteps), len(der_model.outputs)))}
-
-    # Define constraints.
-    # Initial state.
-    # - For states which represent storage state of charge, initial state of charge is final state of charge.
-    if any(der_model.states.isin(der_model.storage_states)):
-        optimization_problem_2.constraints.append(
-            optimization_problem_2.state_vector[der_model.der_name][0, der_model.states.isin(der_model.storage_states)]
-            ==
-            optimization_problem_2.state_vector[der_model.der_name][-1, der_model.states.isin(der_model.storage_states)]
-        )
-    # - For other states, set initial state according to the initial state vector.
-    if any(~der_model.states.isin(der_model.storage_states)):
-        optimization_problem_2.constraints.append(
-            optimization_problem_2.state_vector[der_model.der_name][0, ~der_model.states.isin(der_model.storage_states)]
-            ==
-            der_model.state_vector_initial.loc[~der_model.states.isin(der_model.storage_states)].values
-        )
-
-    # State equation.
-    optimization_problem_2.constraints.append(
-        optimization_problem_2.state_vector[der_model.der_name][1:, :]
-        ==
-        cp.transpose(
-            der_model.state_matrix.values
-            @ cp.transpose(optimization_problem_2.state_vector[der_model.der_name][:-1, :])
-            + der_model.control_matrix.values
-            @ cp.transpose(optimization_problem_2.control_vector[der_model.der_name][:-1, :])
-            + der_model.disturbance_matrix.values
-            @ np.transpose(der_model.disturbance_timeseries.iloc[:-1, :].values)
+    der_model_set = mesmo.der_models.DERModelSet(der_data)
+    electric_grid_model = mesmo.electric_grid_models.ElectricGridModelDefault(scenario_name)
+    power_flow_solution = mesmo.electric_grid_models.PowerFlowSolutionFixedPoint(electric_grid_model)
+    linear_electric_grid_model = (
+        mesmo.electric_grid_models.LinearElectricGridModelGlobal(
+            electric_grid_model,
+            power_flow_solution
         )
     )
-
-    # Output equation.
-    optimization_problem_2.constraints.append(
-        optimization_problem_2.output_vector[der_model.der_name]
-        ==
-        cp.transpose(
-            der_model.state_output_matrix.values
-            @ cp.transpose(optimization_problem_2.state_vector[der_model.der_name])
-            + der_model.control_output_matrix.values
-            @ cp.transpose(optimization_problem_2.control_vector[der_model.der_name])
-            + der_model.disturbance_output_matrix.values
-            @ np.transpose(der_model.disturbance_timeseries.values)
+    linear_electric_grid_model_set = (
+        mesmo.electric_grid_models.LinearElectricGridModelSet(
+            electric_grid_model,
+            power_flow_solution,
+            linear_electric_grid_model_method=mesmo.electric_grid_models.LinearElectricGridModelGlobal
         )
     )
-
-    # Output limits.
-    outputs_minimum_infinite = (
-        (der_model.output_minimum_timeseries == -np.inf).all()
-    )
-    optimization_problem_2.constraints.append(
-        optimization_problem_2.output_vector[der_model.der_name][:, ~outputs_minimum_infinite]
-        >=
-        der_model.output_minimum_timeseries.loc[:, ~outputs_minimum_infinite].values
-    )
-    outputs_maximum_infinite = (
-        (der_model.output_maximum_timeseries == np.inf).all()
-    )
-    optimization_problem_2.constraints.append(
-        optimization_problem_2.output_vector[der_model.der_name][:, ~outputs_maximum_infinite]
-        <=
-        der_model.output_maximum_timeseries.loc[:, ~outputs_maximum_infinite].values
-    )
-
-    # Obtain timestep interval in hours, for conversion of power to energy.
-    timestep_interval_hours = (der_model.timesteps[1] - der_model.timesteps[0]) / pd.Timedelta('1h')
-
-    # Define objective.
-    # Active power cost / revenue.
-    # - Cost for load / demand, revenue for generation / supply.
-    optimization_problem_2.objective += (
-        (
-            price_data.price_timeseries.loc[:, ('active_power', slice(None), der_model.der_name)].values.T
-            * -1.0 * timestep_interval_hours  # In Wh.
-            @ cp.transpose(
-                der_model.mapping_active_power_by_output.values
-                @ cp.transpose(optimization_problem_2.output_vector[der_model.der_name])
+    if has_thermal_grid:
+        thermal_grid_model = mesmo.thermal_grid_models.ThermalGridModel(scenario_name)
+        thermal_power_flow_solution = mesmo.thermal_grid_models.ThermalPowerFlowSolution(thermal_grid_model)
+        linear_thermal_grid_model = (
+            mesmo.thermal_grid_models.LinearThermalGridModelGlobal(
+                thermal_grid_model,
+                thermal_power_flow_solution
             )
         )
-        + ((
-            price_data.price_sensitivity_coefficient
-            * timestep_interval_hours  # In Wh.
-            * cp.sum((
-                der_model.mapping_active_power_by_output.values
-                @ cp.transpose(optimization_problem_2.output_vector[der_model.der_name])
-            ) ** 2)
-        ) if price_data.price_sensitivity_coefficient != 0.0 else 0.0)
+        linear_thermal_grid_model_set = (
+            mesmo.thermal_grid_models.LinearThermalGridModelSet(
+                thermal_grid_model,
+                thermal_power_flow_solution,
+                linear_thermal_grid_model_method=mesmo.thermal_grid_models.LinearThermalGridModelGlobal
+            )
+        )
+
+    # Define grid limits.
+    node_voltage_magnitude_vector_minimum = 0.5 * np.abs(electric_grid_model.node_voltage_vector_reference)
+    node_voltage_magnitude_vector_maximum = 1.5 * np.abs(electric_grid_model.node_voltage_vector_reference)
+    branch_power_magnitude_vector_maximum = 10.0 * electric_grid_model.branch_power_vector_magnitude_reference
+
+    # Instantiate optimization problem.
+    mesmo.utils.log_time('standard-form interface')
+    mesmo.utils.log_time('standard-form problem')
+    optimization_problem = mesmo.utils.OptimizationProblem()
+
+    # Define linear electric grid model set problem.
+    linear_electric_grid_model_set.define_optimization_variables(optimization_problem)
+    linear_electric_grid_model_set.define_optimization_parameters(
+        optimization_problem,
+        price_data,
+        node_voltage_magnitude_vector_minimum=node_voltage_magnitude_vector_minimum,
+        node_voltage_magnitude_vector_maximum=node_voltage_magnitude_vector_maximum,
+        branch_power_magnitude_vector_maximum=branch_power_magnitude_vector_maximum
     )
+    linear_electric_grid_model_set.define_optimization_constraints(optimization_problem)
+    linear_electric_grid_model_set.define_optimization_objective(optimization_problem)
+
+    # Define linear thermal grid model set problem.
+    if has_thermal_grid:
+        linear_thermal_grid_model_set.define_optimization_variables(optimization_problem)
+        linear_thermal_grid_model_set.define_optimization_parameters(
+            optimization_problem,
+            price_data
+        )
+        linear_thermal_grid_model_set.define_optimization_constraints(optimization_problem)
+        linear_thermal_grid_model_set.define_optimization_objective(optimization_problem)
+
+    # Define DER model set problem.
+    der_model_set.define_optimization_variables(optimization_problem)
+    der_model_set.define_optimization_parameters(optimization_problem, price_data)
+    der_model_set.define_optimization_constraints(optimization_problem)
+    optimization_problem.flags['has_thermal_grid_objective'] = True
+    der_model_set.define_optimization_objective(optimization_problem)
+    mesmo.utils.log_time('standard-form problem')
 
     # Solve optimization problem.
-    optimization_problem_2.solve()
+    optimization_problem.solve()
 
     # Obtain results.
-    results_2 = der_model.get_optimization_results(optimization_problem_2)
+    results_1 = mesmo.problems.Results()
+    objective_1 = optimization_problem.evaluate_objective(optimization_problem.x_vector)
+    results_1.update(linear_electric_grid_model_set.get_optimization_results(optimization_problem))
+    results_1.update(linear_electric_grid_model_set.get_optimization_dlmps(optimization_problem, price_data))
+    objective_1_electric_grid = linear_electric_grid_model_set.evaluate_optimization_objective(results_1, price_data)
+    if has_thermal_grid:
+        results_1.update(linear_thermal_grid_model_set.get_optimization_results(optimization_problem))
+        results_1.update(linear_thermal_grid_model_set.get_optimization_dlmps(optimization_problem, price_data))
+        objective_1_thermal_grid = linear_thermal_grid_model_set.evaluate_optimization_objective(results_1, price_data)
+    results_1.update(der_model_set.get_optimization_results(optimization_problem))
+    objective_1_der = der_model_set.evaluate_optimization_objective(results_1, price_data, has_electric_grid_objective=True)
+    results_1.save(os.path.join(results_path, 'standard_form'))
+    mesmo.utils.log_time('standard-form interface')
+    der_model_set.pre_solve(price_data)
 
-    # Store results to CSV.
-    results_2.save(results_path)
+    # Instantiate optimization problem.
+    mesmo.utils.log_time('cvxpy interface')
+    mesmo.utils.log_time('cvxpy problem')
+    optimization_problem_cvxpy = OptimizationProblemCVXPY()
+
+    # Define electric grid problem.
+    linear_electric_grid_model.define_optimization_variables(optimization_problem_cvxpy)
+    linear_electric_grid_model.define_optimization_constraints(optimization_problem_cvxpy)
+    linear_electric_grid_model.define_optimization_objective(optimization_problem_cvxpy, price_data)
+
+    # Define thermal grid problem.
+    if has_thermal_grid:
+        linear_thermal_grid_model.define_optimization_variables(optimization_problem_cvxpy)
+        linear_thermal_grid_model.define_optimization_constraints(optimization_problem_cvxpy)
+        linear_thermal_grid_model.define_optimization_objective(optimization_problem_cvxpy, price_data)
+
+    # Define flexible DER state space variables.
+    optimization_problem_cvxpy.state_vector = dict.fromkeys(der_model_set.flexible_der_names)
+    optimization_problem_cvxpy.control_vector = dict.fromkeys(der_model_set.flexible_der_names)
+    optimization_problem_cvxpy.output_vector = dict.fromkeys(der_model_set.flexible_der_names)
+    for der_name in der_model_set.flexible_der_names:
+        optimization_problem_cvxpy.state_vector[der_name] = (
+            cp.Variable((
+                len(der_model_set.flexible_der_models[der_name].timesteps),
+                len(der_model_set.flexible_der_models[der_name].states)
+            ))
+        )
+        optimization_problem_cvxpy.control_vector[der_name] = (
+            cp.Variable((
+                len(der_model_set.flexible_der_models[der_name].timesteps),
+                len(der_model_set.flexible_der_models[der_name].controls)
+            ))
+        )
+        optimization_problem_cvxpy.output_vector[der_name] = (
+            cp.Variable((
+                len(der_model_set.flexible_der_models[der_name].timesteps),
+                len(der_model_set.flexible_der_models[der_name].outputs)
+            ))
+        )
+
+    # Define DER constraints for each DER.
+    for der_name in der_model_set.der_names:
+        der_model_set.der_models[der_name].define_optimization_constraints(optimization_problem_cvxpy)
+
+    # Define objective for each DER.
+    for der_name in der_model_set.der_names:
+        der_model_set.der_models[der_name].define_optimization_objective(optimization_problem_cvxpy, price_data)
+
+    mesmo.utils.log_time('cvxpy problem')
+
+    # Solve optimization problem.
+    mesmo.utils.log_time('cvxpy solve')
+    optimization_problem_cvxpy.solve()
+    mesmo.utils.log_time('cvxpy solve')
+
+    # Obtain results.
+    mesmo.utils.log_time('cvxpy get results')
+    # Instantiate results variables.
+    state_vector = pd.DataFrame(0.0, index=der_model_set.timesteps, columns=der_model_set.states)
+    control_vector = pd.DataFrame(0.0, index=der_model_set.timesteps, columns=der_model_set.controls)
+    output_vector = pd.DataFrame(0.0, index=der_model_set.timesteps, columns=der_model_set.outputs)
+    # Obtain results.
+    for der_name in der_model_set.flexible_der_names:
+        state_vector.loc[:, (der_name, slice(None))] = (
+            optimization_problem_cvxpy.state_vector[der_name].value
+        )
+        control_vector.loc[:, (der_name, slice(None))] = (
+            optimization_problem_cvxpy.control_vector[der_name].value
+        )
+        output_vector.loc[:, (der_name, slice(None))] = (
+            optimization_problem_cvxpy.output_vector[der_name].value
+        )
+    results_2 = mesmo.problems.Results(
+        state_vector=state_vector,
+        control_vector=control_vector,
+        output_vector=output_vector,
+    )
+    results_2.update(linear_electric_grid_model.get_optimization_results(optimization_problem_cvxpy))
+    results_2.update(linear_electric_grid_model.get_optimization_dlmps(optimization_problem_cvxpy, price_data))
+    if has_thermal_grid:
+        results_2.update(linear_thermal_grid_model.get_optimization_results(optimization_problem_cvxpy))
+        results_2.update(linear_thermal_grid_model.get_optimization_dlmps(optimization_problem_cvxpy, price_data))
+    objective_2 = float(optimization_problem_cvxpy.objective.value)
+    results_2.save(os.path.join(results_path, 'traditional_form'))
+    mesmo.utils.log_time('cvxpy get results')
+    mesmo.utils.log_time('cvxpy interface')
 
     # Plot results.
-    for output in der_model.outputs:
+    for der_name, der_model in der_model_set.flexible_der_models.items():
+        for output in der_model.outputs:
 
-        figure = go.Figure()
-        figure.add_trace(go.Scatter(
-            x=der_model.output_maximum_timeseries.index,
-            y=der_model.output_maximum_timeseries.loc[:, output].values,
-            name='Maximum',
-            line=go.scatter.Line(shape='hv')
-        ))
-        figure.add_trace(go.Scatter(
-            x=der_model.output_minimum_timeseries.index,
-            y=der_model.output_minimum_timeseries.loc[:, output].values,
-            name='Minimum',
-            line=go.scatter.Line(shape='hv')
-        ))
-        figure.add_trace(go.Scatter(
-            x=results_1['output_vector'].index,
-            y=results_1['output_vector'].loc[:, output].values.ravel(),
-            name='Optimal (standard form)',
-            line=go.scatter.Line(shape='hv', width=4)
-        ))
-        figure.add_trace(go.Scatter(
-            x=results_2['output_vector'].index,
-            y=results_2['output_vector'].loc[:, output].values,
-            name='Optimal (traditional form)',
-            line=go.scatter.Line(shape='hv', width=2)
-        ))
-        figure.update_layout(
-            title=f'Output: {output}',
-            xaxis=go.layout.XAxis(tickformat='%H:%M'),
-            legend=go.layout.Legend(x=0.99, xanchor='auto', y=0.99, yanchor='auto')
-        )
-        # figure.show()
-        fledge.utils.write_figure_plotly(figure, os.path.join(results_path, f'output_{output}'))
+            figure = go.Figure()
+            figure.add_trace(go.Scatter(
+                x=der_model.output_maximum_timeseries.index,
+                y=der_model.output_maximum_timeseries.loc[:, output].values,
+                name='Maximum',
+                line=go.scatter.Line(shape='hv')
+            ))
+            figure.add_trace(go.Scatter(
+                x=der_model.output_minimum_timeseries.index,
+                y=der_model.output_minimum_timeseries.loc[:, output].values,
+                name='Minimum',
+                line=go.scatter.Line(shape='hv')
+            ))
+            figure.add_trace(go.Scatter(
+                x=results_1['output_vector'].index,
+                y=results_1['output_vector'].loc[:, (der_name, output)].values,
+                name='Optimal (standard form)',
+                line=go.scatter.Line(shape='hv', width=4)
+            ))
+            figure.add_trace(go.Scatter(
+                x=results_2['output_vector'].index,
+                y=results_2['output_vector'].loc[:, (der_name, output)].values,
+                name='Optimal (traditional form)',
+                line=go.scatter.Line(shape='hv', width=2)
+            ))
+            figure.update_layout(
+                title=f'DER: {der_name} / Output: {output}',
+                xaxis=go.layout.XAxis(tickformat='%H:%M'),
+                legend=go.layout.Legend(x=0.99, xanchor='auto', y=0.99, yanchor='auto')
+            )
+            # figure.show()
+            mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, f'output_{der_name}_{output}'))
 
-    for disturbance in der_model.disturbances:
+    for der_name, der_model in der_model_set.flexible_der_models.items():
+        for disturbance in der_model.disturbances:
 
-        figure = go.Figure()
-        figure.add_trace(go.Scatter(
-            x=der_model.disturbance_timeseries.index,
-            y=der_model.disturbance_timeseries.loc[:, disturbance].values,
-            line=go.scatter.Line(shape='hv')
-        ))
-        figure.update_layout(
-            title=f'Disturbance: {disturbance}',
-            xaxis=go.layout.XAxis(tickformat='%H:%M'),
-            showlegend=False
-        )
-        # figure.show()
-        fledge.utils.write_figure_plotly(figure, os.path.join(results_path, f'disturbance_{disturbance}'))
+            figure = go.Figure()
+            figure.add_trace(go.Scatter(
+                x=der_model.disturbance_timeseries.index,
+                y=der_model.disturbance_timeseries.loc[:, disturbance].values,
+                line=go.scatter.Line(shape='hv')
+            ))
+            figure.update_layout(
+                title=f'DER: {der_name} / Disturbance: {disturbance}',
+                xaxis=go.layout.XAxis(tickformat='%H:%M'),
+                showlegend=False
+            )
+            # figure.show()
+            mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, f'disturbance_{der_name}_{disturbance}'))
 
     for commodity_type in ['active_power', 'reactive_power', 'thermal_power']:
 
@@ -309,11 +276,55 @@ def main():
                 xaxis=go.layout.XAxis(tickformat='%H:%M')
             )
             # figure.show()
-            fledge.utils.write_figure_plotly(figure, os.path.join(results_path, f'price_{commodity_type}'))
+            mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, f'price_{commodity_type}'))
 
     # Print results path.
-    fledge.utils.launch(results_path)
+    mesmo.utils.launch(results_path)
     print(f"Results are stored in: {results_path}")
+
+
+class OptimizationProblemCVXPY(object):
+    """Optimization problem object for use with CVXPY."""
+
+    constraints: list
+    objective: cp.Expression
+    has_der_objective: bool = False
+    has_electric_grid_objective: bool = False
+    has_thermal_grid_objective: bool = False
+    cvxpy_problem: cp.Problem
+
+    def __init__(self):
+
+        self.constraints = []
+        self.objective = cp.Constant(value=0.0)
+
+    def solve(
+            self,
+            keep_problem=False,
+            **kwargs
+    ):
+
+        # Instantiate CVXPY problem object.
+        if hasattr(self, 'cvxpy_problem') and keep_problem:
+            pass
+        else:
+            self.cvxpy_problem = cp.Problem(cp.Minimize(self.objective), self.constraints)
+
+        # Solve optimization problem.
+        self.cvxpy_problem.solve(
+            solver=(
+                mesmo.config.config['optimization']['solver_name'].upper()
+                if mesmo.config.config['optimization']['solver_name'] is not None
+                else None
+            ),
+            verbose=mesmo.config.config['optimization']['show_solver_output'],
+            **kwargs,
+            **mesmo.config.solver_parameters
+        )
+
+        # Assert that solver exited with an optimal solution. If not, raise an error.
+        if not (self.cvxpy_problem.status == cp.OPTIMAL):
+            raise cp.SolverError(f"Solver termination status: {self.cvxpy_problem.status}")
 
 
 if __name__ == '__main__':

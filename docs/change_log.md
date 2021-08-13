@@ -2,7 +2,7 @@
 
 Note that version numbering follows the [Semantic Versioning principle](https://semver.org/).
 
-## [v0.5.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.5.0)
+## [v0.5.0](https://github.com/mesmo-dev/mesmo/releases/tag/v0.5.0)
 
 ### New features
 
@@ -18,14 +18,14 @@ Note that version numbering follows the [Semantic Versioning principle](https://
 - Improved / simplified `define_optimization...()` methods for most use cases.
 - Switched from `multiprocess` to `ray` for parallel processing for performance reasons.
 
-## [v0.4.1](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.1)
+## [v0.4.1](https://github.com/mesmo-dev/mesmo/releases/tag/v0.4.1)
 
 ### Fixes
 
 - Updated `environment.yml`.
 - Updated version indicators.
 
-## [v0.4.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.4.0)
+## [v0.4.0](https://github.com/mesmo-dev/mesmo/releases/tag/v0.4.0)
 
 ### New features
 
@@ -43,13 +43,13 @@ Note that version numbering follows the [Semantic Versioning principle](https://
 
 - Moved implementation of optimization problems from Pyomo to CVXPY for performance improvements.
 - Reformulated optimization constraints to use normalized values for improved numerical performance.
-- Improved FLEDGE definition data format documentation.
+- Improved MESMO definition data format documentation.
 - Refactored DER model data definition format.
 - Refactored price data object.
 - Various fixes in linear electric grid model model and DLMP calculations.
 - Introduced various error messages for common issues.
 
-## [v0.3.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.3.0)
+## [v0.3.0](https://github.com/mesmo-dev/mesmo/releases/tag/v0.3.0)
 
 ### New features
 
@@ -61,13 +61,13 @@ Note that version numbering follows the [Semantic Versioning principle](https://
 - Added methods for defining operation limits and obtaining DLMPs for electric and thermal grids.
 - Provided various example scripts for running optimal operation problems for DERs / electric grids / thermal grids / multi-energy grids.
 
-## [v0.2.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.2.0)
+## [v0.2.0](https://github.com/mesmo-dev/mesmo/releases/tag/v0.2.0)
 
 ### Auxiliary Release
 
 - Snapshot before moving to Python as main implementation language.
 
-## [v0.1.0](https://github.com/TUMCREATE-ESTL/fledge/releases/tag/v0.1.0)
+## [v0.1.0](https://github.com/mesmo-dev/mesmo/releases/tag/v0.1.0)
 
 ### Initial release
 

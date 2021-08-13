@@ -1,0 +1,2 @@
+electric_grid_name,transformer_name,transformer_type,node_1_name,node_2_name,is_phase_1_connected,is_phase_2_connected,is_phase_3_connected,connection,apparent_power
+ieee_123node,1,ieee_123node_transformer_type1,0,1,1,1,1,wye-wye,5000000

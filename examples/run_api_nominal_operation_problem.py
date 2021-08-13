@@ -5,7 +5,7 @@
   subject to the nominal operation schedule of all DERs.
 """
 
-import fledge
+import mesmo
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
     scenario_name = 'singapore_tanjongpagar'
 
     # High-level API call.
-    fledge.api.run_nominal_operation_problem(scenario_name)
+    mesmo.api.run_nominal_operation_problem(scenario_name)
 
 
 if __name__ == '__main__':

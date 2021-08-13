@@ -1,0 +1,3 @@
+electric_grid_name,node_name,is_phase_1_connected,is_phase_2_connected,is_phase_3_connected,voltage,latitude,longitude
+primo_survey,1,1,1,1,22000.0,1.30862,103.772371
+primo_survey,2,1,1,1,22000.0,1.303762,103.773654

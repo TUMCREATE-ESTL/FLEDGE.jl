@@ -1,0 +1,6 @@
+surface_type,heat_capacity,heat_transfer_coefficient_conduction_surface,absorptivity_surface,emissivity_surface,window_type,window_wall_ratio,sky_view_factor
+primo_survey_wall_no_mass,0,0.8,0.85,0.94,primo_survey_exterior_window,0.1,0.5
+primo_survey_roof_no_mass,0,0.8,0.85,0.94,,0,1
+primo_survey_wall,1360000,0.8,0.85,0.94,primo_survey_exterior_window,0.1,0.5
+primo_survey_roof,13600000,8.0,0.85,0.94,,0,1
+primo_survey_floor,13600000,8.0,0.85,0.94,,0,

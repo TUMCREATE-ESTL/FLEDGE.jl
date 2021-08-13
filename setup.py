@@ -25,7 +25,7 @@ for submodule in submodules:
 subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-i', 'https://pypi.gurobi.com', 'gurobipy'])
 
 setuptools.setup(
-    name='fledge',
+    name='mesmo',
     version='0.4.1',
     py_modules=setuptools.find_packages(),
     install_requires=[
@@ -45,7 +45,7 @@ setuptools.setup(
         'parameterized',  # For tests.
         'plotly',
         'pyyaml',
-        'ray',
+        'ray[default]',
         'scipy',
     ]
 )

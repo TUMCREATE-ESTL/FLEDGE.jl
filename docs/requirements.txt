@@ -1,6 +1,5 @@
-pyyaml
-recommonmark
+furo
+myst-parser
+recommonmark  # Deprecated, but kept here for backwards compatibility with docs.
 sphinx
-sphinx_markdown_tables
 sphinx-multiversion
-sphinx-rtd-theme

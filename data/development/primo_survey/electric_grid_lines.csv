@@ -1,0 +1,2 @@
+electric_grid_name,line_name,line_type,node_1_name,node_2_name,is_phase_1_connected,is_phase_2_connected,is_phase_3_connected,length
+primo_survey,1,singapore_cable_22_copper_300,1,2,1,1,1,0.5

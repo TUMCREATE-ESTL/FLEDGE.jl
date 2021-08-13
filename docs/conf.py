@@ -2,7 +2,7 @@
 # - Documentation: <http://www.sphinx-doc.org/en/master/config>
 
 # Project information.
-project = 'FLEDGE'
+project = 'MESMO'
 copyright = '2018-2021, TUMCREATE'
 author = 'TUMCREATE'
 
@@ -11,10 +11,8 @@ author = 'TUMCREATE'
 #   extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 #   ones.
 extensions = [
+    'myst_parser',  # Markdown parser.
     'sphinx.ext.napoleon',
-    'sphinx_markdown_tables',
-    'sphinx.ext.mathjax',
-    'recommonmark',
     'sphinx_multiversion'
 ]
 
@@ -33,7 +31,7 @@ autodoc_mock_imports = [
     'cobmo',
     'cv2',
     'diskcache',
-    'dill',
+    'dill',  # Deprecated.
     'kaleido',
     'matplotlib',
     'multimethod',
@@ -44,6 +42,7 @@ autodoc_mock_imports = [
     'opendssdirect',
     'pandas',
     'plotly',
+    'pyyaml',
     'pyomo',  # Deprecated.
     'ray',
     'scipy',
@@ -66,18 +65,50 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.md']
 # HTML theme settings.
 # - The theme to use for HTML and HTML Help pages.  See the documentation for
 #   a list of builtin themes.
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
+html_title = 'MESMO'
 html_favicon = 'assets/favicon.ico'
 templates_path = ['templates']
+html_sidebars = {
+    '**': [
+        "sidebar/scroll-start.html",
+        "sidebar/brand.html",
+        "sidebar/search.html",
+        "sidebar/navigation.html",
+        "sidebar/versions.html",
+        "sidebar/scroll-end.html",
+    ]
+}
+html_static_path = ['static']
+html_css_files = ['css/custom.css']
+pygments_style = 'default'  # Color scheme for code blocks in light mode.
+pygments_dark_style = 'native'  # Color scheme for code blocks in dark mode.
 
 # Sphinx multiversion settings.
+# <https://holzhaus.github.io/sphinx-multiversion/master/configuration.html>
 # - Explicitly include all branches, tags from all remotes.
 smv_tag_whitelist = r'^.*$'
 smv_branch_whitelist = r'^.*$'
 smv_remote_whitelist = r'^.*$'
 
+# MyST markdown parser settings.
+# <https://myst-parser.readthedocs.io/en/latest/using/intro.html#sphinx-configuration-options>
+myst_enable_extensions = [
+    # 'amsmath',
+    # 'colon_fence',
+    # 'deflist',
+    # 'dollarmath',
+    # 'html_admonition',
+    # 'html_image',
+    # 'linkify',
+    # 'replacements',
+    # 'smartquotes',
+    # 'substitution',
+    # 'tasklist',
+]
+
 # Recommonmark settings.
-# - Documentation: <https://recommonmark.readthedocs.io/en/latest/auto_structify.html>
+# - Deprecated, but kept here for backwards compatibility with docs.
 from recommonmark.transform import AutoStructify
 def setup(app):
     app.add_transform(AutoStructify)

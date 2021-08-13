@@ -1,0 +1,11 @@
+building_name,zone_name,surface_name,surface_type,surface_area,surface_comment
+primo_survey_1zone_no_mass,zone_1,surface_floor,primo_survey_floor,25,5*5
+primo_survey_1zone_no_mass,zone_1,surface_roof,primo_survey_roof_no_mass,25,5*5
+primo_survey_1zone_no_mass,zone_1,surface_exterior_2,primo_survey_wall_no_mass,20,5*4
+primo_survey_1zone_no_mass,zone_1,surface_exterior_3,primo_survey_wall_no_mass,20,5*4
+primo_survey_1zone_no_mass,zone_1,surface_exterior_4,primo_survey_wall_no_mass,20,5*4
+primo_survey_1zone,zone_1,surface_floor,primo_survey_floor,25,5*5
+primo_survey_1zone,zone_1,surface_roof,primo_survey_roof,25,5*5
+primo_survey_1zone,zone_1,surface_exterior_2,primo_survey_wall,20,5*4
+primo_survey_1zone,zone_1,surface_exterior_3,primo_survey_wall,20,5*4
+primo_survey_1zone,zone_1,surface_exterior_4,primo_survey_wall,20,5*4

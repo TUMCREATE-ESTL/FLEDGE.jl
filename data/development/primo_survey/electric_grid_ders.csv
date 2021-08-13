@@ -1,0 +1,3 @@
+electric_grid_name,der_name,der_type,der_model_name,node_name,is_phase_1_connected,is_phase_2_connected,is_phase_3_connected,connection,active_power_nominal,reactive_power_nominal
+primo_survey,flexible_building,flexible_building,primo_survey_1zone,2,1,1,1,wye,-400000.0,-200000.0
+primo_survey,flexible_ev_charger,flexible_ev_charger,primo_survey_ev_charger_day,2,1,1,1,wye,-400000.0,-200000.0

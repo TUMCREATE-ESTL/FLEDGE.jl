@@ -25,7 +25,6 @@ jobs:
       run: |
         sphinx-multiversion docs docs/_build/html
         cp docs/assets/gh-pages_index.html docs/_build/html/index.html
-        find docs/_build/html -type f -name "*.html" -exec sed -i 's/<li><p>\(.*\)<\/p>\(.*\)/<li>\1\2/g' {} +
     - name: Deploy documentation HTML to Github Pages
       uses: peaceiris/actions-gh-pages@v3
       with:

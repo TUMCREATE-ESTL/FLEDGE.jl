@@ -5,7 +5,7 @@
   subject to the model constraints of all DERs and grids.
 """
 
-import fledge
+import mesmo
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
     scenario_name = 'singapore_tanjongpagar'
 
     # High-level API call.
-    fledge.api.run_optimal_operation_problem(scenario_name)
+    mesmo.api.run_optimal_operation_problem(scenario_name)
 
 
 if __name__ == '__main__':

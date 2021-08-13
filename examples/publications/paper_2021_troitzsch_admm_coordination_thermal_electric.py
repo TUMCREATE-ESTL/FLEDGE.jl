@@ -10,13 +10,15 @@ import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
 
-import fledge
+import mesmo
 
 
 def main(
         scenario_number=None,
         admm_rho=None
 ):
+
+    # TODO: To be updated for new optimization problem interface.
 
     # Settings.
     admm_iteration_limit = 1000
@@ -34,36 +36,36 @@ def main(
 
     # Obtain results path.
     results_path = (
-        fledge.utils.get_results_path(__file__, f'scenario{scenario_number}_rho{admm_rho:.0e}_{scenario_name}')
+        mesmo.utils.get_results_path(__file__, f'scenario{scenario_number}_rho{admm_rho:.0e}_{scenario_name}')
     )
 
     # Obtain data.
-    scenario_data = fledge.data_interface.ScenarioData(scenario_name)
-    price_data = fledge.data_interface.PriceData(scenario_name)
+    scenario_data = mesmo.data_interface.ScenarioData(scenario_name)
+    price_data = mesmo.data_interface.PriceData(scenario_name)
 
     # Obtain models.
-    fledge.utils.log_time(f"model setup")
-    electric_grid_model = fledge.electric_grid_models.ElectricGridModelDefault(scenario_name)
+    mesmo.utils.log_time(f"model setup")
+    electric_grid_model = mesmo.electric_grid_models.ElectricGridModelDefault(scenario_name)
     # Use base scenario power flow for consistent linear model behavior and per unit values.
-    power_flow_solution = fledge.electric_grid_models.PowerFlowSolutionFixedPoint('paper_2021_troitzsch_admm_dlmp')
+    power_flow_solution = mesmo.electric_grid_models.PowerFlowSolutionFixedPoint('paper_2021_troitzsch_admm_dlmp')
     linear_electric_grid_model = (
-        fledge.electric_grid_models.LinearElectricGridModelGlobal(
+        mesmo.electric_grid_models.LinearElectricGridModelGlobal(
             electric_grid_model,
             power_flow_solution
         )
     )
-    thermal_grid_model = fledge.thermal_grid_models.ThermalGridModel(scenario_name)
-    thermal_grid_model.cooling_plant_efficiency = 10.0  # Change model parameter to incentivize use of thermal grid.
+    thermal_grid_model = mesmo.thermal_grid_models.ThermalGridModel(scenario_name)
+    thermal_grid_model.plant_efficiency = 10.0  # Change model parameter to incentivize use of thermal grid.
     # Use base scenario power flow for consistent linear model behavior and per unit values.
-    thermal_power_flow_solution = fledge.thermal_grid_models.ThermalPowerFlowSolution('paper_2021_troitzsch_admm_dlmp')
+    thermal_power_flow_solution = mesmo.thermal_grid_models.ThermalPowerFlowSolution('paper_2021_troitzsch_admm_dlmp')
     linear_thermal_grid_model = (
-        fledge.thermal_grid_models.LinearThermalGridModel(
+        mesmo.thermal_grid_models.LinearThermalGridModel(
             thermal_grid_model,
             thermal_power_flow_solution
         )
     )
-    der_model_set = fledge.der_models.DERModelSet(scenario_name)
-    fledge.utils.log_time(f"model setup")
+    der_model_set = mesmo.der_models.DERModelSet(scenario_name)
+    mesmo.utils.log_time(f"model setup")
 
     # Define thermal grid limits.
     node_head_vector_minimum = 100.0 * thermal_power_flow_solution.node_head_vector
@@ -71,11 +73,11 @@ def main(
     # Modify limits for scenarios.
     if scenario_number in [2]:
         branch_flow_vector_maximum[
-            fledge.utils.get_index(thermal_grid_model.branches, branch_name='4')
+            mesmo.utils.get_index(thermal_grid_model.branches, branch_name='4')
         ] *= 0.2 / 100.0
     elif scenario_number in [3]:
         node_head_vector_minimum[
-            fledge.utils.get_index(thermal_grid_model.nodes, node_name='15')
+            mesmo.utils.get_index(thermal_grid_model.nodes, node_name='15')
         ] *= 0.2 / 100.0
     else:
         pass
@@ -87,11 +89,11 @@ def main(
     # Modify limits for scenarios.
     if scenario_number in [4]:
         branch_power_magnitude_vector_maximum[
-            fledge.utils.get_index(electric_grid_model.branches, branch_name='4')
+            mesmo.utils.get_index(electric_grid_model.branches, branch_name='4')
         ] *= 8.5 / 100.0
     elif scenario_number in [5]:
         node_voltage_magnitude_vector_minimum[
-            fledge.utils.get_index(electric_grid_model.nodes, node_name='15')
+            mesmo.utils.get_index(electric_grid_model.nodes, node_name='15')
         ] *= 0.9985 / 0.5
     else:
         pass
@@ -160,15 +162,15 @@ def main(
 
     # Instantiate optimization problems.
     # TODO: Consider timestep_interval_hours in ADMM objective.
-    optimization_problem_baseline = fledge.utils.OptimizationProblem()
-    optimization_problem_electric = fledge.utils.OptimizationProblem()
-    optimization_problem_thermal = fledge.utils.OptimizationProblem()
-    optimization_problem_aggregator = fledge.utils.OptimizationProblem()
+    optimization_problem_baseline = mesmo.utils.OptimizationProblem()
+    optimization_problem_electric = mesmo.utils.OptimizationProblem()
+    optimization_problem_thermal = mesmo.utils.OptimizationProblem()
+    optimization_problem_aggregator = mesmo.utils.OptimizationProblem()
 
     # ADMM: Centralized / baseline problem.
 
     # Log progress.
-    fledge.utils.log_time(f"baseline problem setup")
+    mesmo.utils.log_time(f"baseline problem setup")
 
     # Define linear electric grid model variables.
     linear_electric_grid_model.define_optimization_variables(optimization_problem_baseline)
@@ -216,15 +218,15 @@ def main(
     )
 
     # Log progress.
-    fledge.utils.log_time(f"baseline problem setup")
+    mesmo.utils.log_time(f"baseline problem setup")
 
     # Solve baseline problem.
-    fledge.utils.log_time(f"baseline problem solution")
+    mesmo.utils.log_time(f"baseline problem solution")
     optimization_problem_baseline.solve()
-    fledge.utils.log_time(f"baseline problem solution")
+    mesmo.utils.log_time(f"baseline problem solution")
 
     # Get baseline results.
-    results_baseline = fledge.problems.Results()
+    results_baseline = mesmo.problems.Results()
     results_baseline.update(linear_electric_grid_model.get_optimization_results(optimization_problem_baseline))
     results_baseline.update(
         linear_electric_grid_model.get_optimization_dlmps(
@@ -244,7 +246,7 @@ def main(
     # ADMM: Electric sub-problem.
 
     # Log progress.
-    fledge.utils.log_time(f"electric sub-problem setup")
+    mesmo.utils.log_time(f"electric sub-problem setup")
 
     # Define linear electric grid model variables.
     linear_electric_grid_model.define_optimization_variables(optimization_problem_electric)
@@ -306,12 +308,12 @@ def main(
     )
 
     # Log progress.
-    fledge.utils.log_time(f"electric sub-problem setup")
+    mesmo.utils.log_time(f"electric sub-problem setup")
 
     # ADMM: Thermal sub-problem.
 
     # Log progress.
-    fledge.utils.log_time(f"thermal sub-problem setup")
+    mesmo.utils.log_time(f"thermal sub-problem setup")
 
     # Define thermal grid model variables.
     linear_thermal_grid_model.define_optimization_variables(optimization_problem_thermal)
@@ -354,12 +356,12 @@ def main(
     )
 
     # Log progress.
-    fledge.utils.log_time(f"thermal sub-problem setup")
+    mesmo.utils.log_time(f"thermal sub-problem setup")
 
     # ADMM: Aggregator sub-problem.
 
     # Log progress.
-    fledge.utils.log_time(f"aggregator sub-problem setup")
+    mesmo.utils.log_time(f"aggregator sub-problem setup")
 
     # Define DER variables.
     der_model_set.define_optimization_variables(
@@ -438,7 +440,7 @@ def main(
     )
 
     # Log progress.
-    fledge.utils.log_time(f"aggregator sub-problem setup")
+    mesmo.utils.log_time(f"aggregator sub-problem setup")
 
     try:
         while admm_continue:
@@ -447,11 +449,11 @@ def main(
             admm_iteration += 1
 
             # Solve ADMM sub-problems.
-            fledge.utils.log_time(f"ADMM sub-problem solution #{admm_iteration}")
+            mesmo.utils.log_time(f"ADMM sub-problem solution #{admm_iteration}")
             optimization_problem_electric.solve(keep_problem=True)
             optimization_problem_thermal.solve(keep_problem=True)
             optimization_problem_aggregator.solve(keep_problem=True)
-            fledge.utils.log_time(f"ADMM sub-problem solution #{admm_iteration}")
+            mesmo.utils.log_time(f"ADMM sub-problem solution #{admm_iteration}")
 
             # Print objective values.
             print(f"optimization_problem_electric.objective = {optimization_problem_electric.objective.value}")
@@ -461,7 +463,7 @@ def main(
             # ADMM intermediate steps.
 
             # Log progress.
-            fledge.utils.log_time(f"ADMM intermediate steps #{admm_iteration}")
+            mesmo.utils.log_time(f"ADMM intermediate steps #{admm_iteration}")
 
             # Get electric sub-problem results.
             results_electric = linear_electric_grid_model.get_optimization_results(optimization_problem_electric)
@@ -594,7 +596,7 @@ def main(
             print(f"admm_primal_residuals = \n{admm_primal_residuals.tail()}")
 
             # Log progress.
-            fledge.utils.log_time(f"ADMM intermediate steps #{admm_iteration}")
+            mesmo.utils.log_time(f"ADMM intermediate steps #{admm_iteration}")
 
             # ADMM termination condition.
             admm_continue = (
@@ -662,7 +664,7 @@ def main(
     # Modify plot defaults to align with paper style.
     pio.templates.default.layout.update(
         font=go.layout.Font(
-            family=fledge.config.config['plots']['plotly_font_family'],
+            family=mesmo.config.config['plots']['plotly_font_family'],
             size=20
         )
     )
@@ -680,7 +682,7 @@ def main(
         margin=go.layout.Margin(l=120, b=50, r=10, t=10)
     )
     # figure.show()
-    fledge.utils.write_figure_plotly(figure, os.path.join(results_path, 'admm_primal_residuals'))
+    mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, 'admm_primal_residuals'))
 
     # Dual residuals.
     figure = px.line(admm_dual_residuals)
@@ -693,7 +695,7 @@ def main(
         margin=go.layout.Margin(b=50, r=10, t=10)
     )
     # figure.show()
-    fledge.utils.write_figure_plotly(figure, os.path.join(results_path, 'admm_dual_residuals'))
+    mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, 'admm_dual_residuals'))
 
     # Thermal power.
     for der_name in der_model_set.der_names:
@@ -731,7 +733,7 @@ def main(
             margin=go.layout.Margin(b=30, r=30, t=10)
         )
         # figure.show()
-        fledge.utils.write_figure_plotly(figure, os.path.join(results_path, f'thermal_power_{der_name}'))
+        mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, f'thermal_power_{der_name}'))
 
     # Active power.
     for der_name in der_model_set.der_names:
@@ -769,7 +771,7 @@ def main(
             margin=go.layout.Margin(b=30, r=30, t=10)
         )
         # figure.show()
-        fledge.utils.write_figure_plotly(figure, os.path.join(results_path, f'active_power_{der_name}'))
+        mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, f'active_power_{der_name}'))
 
     # Reactive power.
     for der_name in der_model_set.der_names:
@@ -808,7 +810,7 @@ def main(
             margin=go.layout.Margin(b=30, r=30, t=10)
         )
         # figure.show()
-        fledge.utils.write_figure_plotly(figure, os.path.join(results_path, f'reactive_power_{der_name}'))
+        mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, f'reactive_power_{der_name}'))
 
     # Thermal power price.
     for der_name in der_model_set.der_names:
@@ -852,7 +854,7 @@ def main(
             margin=go.layout.Margin(b=30, r=30, t=10)
         )
         # figure.show()
-        fledge.utils.write_figure_plotly(figure, os.path.join(results_path, f'price_thermal_power_{der_name}'))
+        mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, f'price_thermal_power_{der_name}'))
 
     # Active power price.
     for der_name in der_model_set.der_names:
@@ -896,7 +898,7 @@ def main(
             margin=go.layout.Margin(b=30, r=30, t=10)
         )
         # figure.show()
-        fledge.utils.write_figure_plotly(figure, os.path.join(results_path, f'price_active_power_{der_name}'))
+        mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, f'price_active_power_{der_name}'))
 
     # Reactive power price.
     for der_name in der_model_set.der_names:
@@ -941,10 +943,10 @@ def main(
             margin=go.layout.Margin(b=30, r=30, t=10)
         )
         # figure.show()
-        fledge.utils.write_figure_plotly(figure, os.path.join(results_path, f'price_reactive_power_{der_name}'))
+        mesmo.utils.write_figure_plotly(figure, os.path.join(results_path, f'price_reactive_power_{der_name}'))
 
     # Print results path.
-    fledge.utils.launch(results_path)
+    mesmo.utils.launch(results_path)
     print(f"Results are stored in: {results_path}")
 
 
@@ -953,7 +955,7 @@ if __name__ == '__main__':
     run_all = False
 
     # Recreate / overwrite database, to incorporate changes in the CSV files.
-    fledge.data_interface.recreate_database()
+    mesmo.data_interface.recreate_database()
 
     if run_all:
         for scenario_number in [None]:
@@ -964,7 +966,7 @@ if __name__ == '__main__':
                 try:
 
                     # Reset timings.
-                    fledge.utils.log_times = dict()
+                    mesmo.utils.log_times = dict()
 
                     # Run ADMM solution.
                     main(

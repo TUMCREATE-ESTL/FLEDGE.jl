@@ -13,11 +13,11 @@ in North American Power Symposium 2010, Arlington, TX, USA, Sep. 2010, pp. 1–6
 import numpy as np
 from datetime import datetime
 
-import fledge
+import mesmo
 
 # Ignore division by zero or nan warnings (this can happen with e.g. DERs with zero reactive power output)
 np.seterr(divide='ignore', invalid='ignore')
-fledge.config.config['optimization']['show_solver_output'] = False
+mesmo.config.config['optimization']['show_solver_output'] = False
 
 
 def main():
@@ -34,11 +34,11 @@ def main():
         # '2': 0.8
     }
 
-    results_path = fledge.utils.get_results_path(__file__, scenario_name)
+    results_path = mesmo.utils.get_results_path(__file__, scenario_name)
 
     # Recreate / overwrite database, to incorporate changes in the CSV files.
     print('Loading data...', end='\r')
-    fledge.data_interface.recreate_database()
+    mesmo.data_interface.recreate_database()
 
     # Instantiate iteration variables.
     sigma = 0.0
@@ -58,14 +58,14 @@ def main():
 
     # Obtain models.
     electric_grid_model = (
-        fledge.electric_grid_models.ElectricGridModelDefault(scenario_name)
+        mesmo.electric_grid_models.ElectricGridModelDefault(scenario_name)
     )
     # Obtain price data
-    price_data = fledge.data_interface.PriceData(scenario_name)
+    price_data = mesmo.data_interface.PriceData(scenario_name)
 
     # ---------------------------------------------------------------------------------------------------------
     # Pre-solve optimal operation problem without underlying electric grid to get realistic initial values
-    der_model_set = fledge.der_models.DERModelSet(scenario_name)
+    der_model_set = mesmo.der_models.DERModelSet(scenario_name)
     # set_custom_der_constraints(
     #     der_model_set=der_model_set
     # )
@@ -75,7 +75,7 @@ def main():
     # Obtain the base case power flow, using the active_power_nominal values given as input as initial dispatch
     # quantities. This represents the initial solution candidate.
     power_flow_solution_set_candidate = (
-        fledge.electric_grid_models.PowerFlowSolutionSet(
+        mesmo.electric_grid_models.PowerFlowSolutionSet(
             electric_grid_model,
             pre_solve_der_results
         )
@@ -123,10 +123,10 @@ def main():
 
             # Get linear electric grid model for all timesteps
             linear_electric_grid_model_set = (
-                fledge.electric_grid_models.LinearElectricGridModelSet(
+                mesmo.electric_grid_models.LinearElectricGridModelSet(
                     electric_grid_model=electric_grid_model,
                     power_flow_solution_set=power_flow_solution_set,
-                    linear_electric_grid_model_method=fledge.electric_grid_models.LinearElectricGridModelLocal
+                    linear_electric_grid_model_method=mesmo.electric_grid_models.LinearElectricGridModelLocal
                 )
             )
 
@@ -143,7 +143,7 @@ def main():
         # ---------------------------------------------------------------------------------------------------------
         print('Formulating optimization problem...', end='\r')
         # Instantiate / reset optimization problem.
-        optimization_problem = fledge.utils.OptimizationProblem()
+        optimization_problem = mesmo.utils.OptimizationProblem()
 
         # Define linear electric grid model variables.
         # The variables of the linearized electric grid model are independent of the linearization,
@@ -165,7 +165,7 @@ def main():
         # Custom constraint on one specific line
         for branch_name in constrained_branches:
             branch_power_magnitude_vector_maximum[
-                fledge.utils.get_index(electric_grid_model.branches, branch_name=branch_name)
+                mesmo.utils.get_index(electric_grid_model.branches, branch_name=branch_name)
             ] *= constrained_branches[branch_name]
         # The linear electric grid model is different for every timestep
         linear_electric_grid_model_set.define_optimization_constraints(
@@ -270,7 +270,7 @@ def main():
         # TODO: catch infeasible problem and increase delta until delta_max to see if a feasible solution can be found
 
         # Obtain results.
-        optimization_results = fledge.problems.Results()
+        optimization_results = mesmo.problems.Results()
         optimization_results.update(
             linear_electric_grid_model_set.get_optimization_results(
                 optimization_problem
@@ -309,7 +309,7 @@ def main():
         if der_power_vector_change_per_unit_max > epsilon:
             # Get new power flow solution candidate
             power_flow_solution_set_candidate = (
-                fledge.electric_grid_models.PowerFlowSolutionSet(
+                mesmo.electric_grid_models.PowerFlowSolutionSet(
                     electric_grid_model,
                     optimization_results
                 )
@@ -377,7 +377,7 @@ def main():
     # Obtain results.
     # NOTE: which lin electric grid model and power flow solution is the correct one to pass to the results?
     # --> the result method of lin electric grid model is independent of the actual model, so it is irrelevant
-    results = fledge.problems.Results()
+    results = mesmo.problems.Results()
     results.update(
         linear_electric_grid_model_set.get_optimization_results(
             optimization_problem
@@ -410,14 +410,14 @@ def main():
     dlmps.save(results_path)
 
     # Print results path.
-    fledge.utils.launch(results_path)
+    mesmo.utils.launch(results_path)
     print(f"Results are stored in: {results_path}")
     print(f'Time elapsed for trust region: {(end_time - start_time)}')
     print(f'Trust region iterations: {trust_region_iteration_count}')
 
 
 def set_custom_der_constraints(
-        der_model_set: fledge.der_models.DERModelSet,
+        der_model_set: mesmo.der_models.DERModelSet,
         factor: float = 1.0
 ):
     """
@@ -431,7 +431,7 @@ def set_custom_der_constraints(
     # Additional constraint for flexible buildings
     for der_name in der_model_set.der_models.keys():
         der_model = der_model_set.der_models[der_name]
-        if type(der_model) is fledge.der_models.FlexibleBuildingModel:
+        if type(der_model) is mesmo.der_models.FlexibleBuildingModel:
             # Limit loads to their nominal power consumption
             der_model.output_maximum_timeseries['grid_electric_power'] = (
                     float(der_model.active_power_nominal

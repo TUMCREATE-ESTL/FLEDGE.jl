@@ -1,5 +1,5 @@
 """Run script for reproducing results of the Paper: 'Flexibility in distribution systems – Modelling a thermal-electric
-multi-energy system in FLEDGE'.
+multi-energy system in MESMO'.
 """
 
 import matplotlib.dates
@@ -11,12 +11,14 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-import fledge
+import mesmo
 
 
 def main(
         scenario_number=1
 ):
+
+    # TODO: To be updated for new optimization problem interface.
 
     # Settings.
     if scenario_number in [1]:
@@ -27,37 +29,37 @@ def main(
         raise ValueError(f"Unknown scenario number: {scenario_number}")
 
     # Obtain results path.
-    results_path = fledge.utils.get_results_path(__file__, scenario_name)
+    results_path = mesmo.utils.get_results_path(__file__, scenario_name)
 
     # Recreate / overwrite database, to incorporate changes in the CSV files.
-    fledge.data_interface.recreate_database()
+    mesmo.data_interface.recreate_database()
 
     # Obtain data.
-    scenario_data = fledge.data_interface.ScenarioData(scenario_name)
-    price_data = fledge.data_interface.PriceData(scenario_name)
+    scenario_data = mesmo.data_interface.ScenarioData(scenario_name)
+    price_data = mesmo.data_interface.PriceData(scenario_name)
 
     # Obtain models.
-    electric_grid_model = fledge.electric_grid_models.ElectricGridModelDefault(scenario_name)
-    power_flow_solution = fledge.electric_grid_models.PowerFlowSolutionFixedPoint(electric_grid_model)
+    electric_grid_model = mesmo.electric_grid_models.ElectricGridModelDefault(scenario_name)
+    power_flow_solution = mesmo.electric_grid_models.PowerFlowSolutionFixedPoint(electric_grid_model)
     linear_electric_grid_model = (
-        fledge.electric_grid_models.LinearElectricGridModelGlobal(
+        mesmo.electric_grid_models.LinearElectricGridModelGlobal(
             electric_grid_model,
             power_flow_solution
         )
     )
-    thermal_grid_model = fledge.thermal_grid_models.ThermalGridModel(scenario_name)
-    thermal_grid_model.cooling_plant_efficiency = 5
-    thermal_power_flow_solution = fledge.thermal_grid_models.ThermalPowerFlowSolution(thermal_grid_model)
+    thermal_grid_model = mesmo.thermal_grid_models.ThermalGridModel(scenario_name)
+    thermal_grid_model.plant_efficiency = 5
+    thermal_power_flow_solution = mesmo.thermal_grid_models.ThermalPowerFlowSolution(thermal_grid_model)
     linear_thermal_grid_model = (
-        fledge.thermal_grid_models.LinearThermalGridModel(
+        mesmo.thermal_grid_models.LinearThermalGridModel(
             thermal_grid_model,
             thermal_power_flow_solution
         )
     )
-    der_model_set = fledge.der_models.DERModelSet(scenario_name)
+    der_model_set = mesmo.der_models.DERModelSet(scenario_name)
 
     # Instantiate optimization problem.
-    optimization_problem = fledge.utils.OptimizationProblem()
+    optimization_problem = mesmo.utils.OptimizationProblem()
 
     # Define optimization variables.
     linear_electric_grid_model.define_optimization_variables(optimization_problem)
@@ -72,7 +74,7 @@ def main(
     branch_power_magnitude_vector_maximum = 10.0 * electric_grid_model.branch_power_vector_magnitude_reference
     if scenario_number in [2]:
         branch_power_magnitude_vector_maximum[
-            fledge.utils.get_index(electric_grid_model.branches, branch_name='10')
+            mesmo.utils.get_index(electric_grid_model.branches, branch_name='10')
         ] *= 1 / 10.0
     else:
         pass
@@ -89,7 +91,7 @@ def main(
     branch_flow_vector_maximum = 10.0 * thermal_power_flow_solution.branch_flow_vector
     if scenario_number in [2]:
         branch_flow_vector_maximum[
-            fledge.utils.get_index(thermal_grid_model.branches, branch_name='10')
+            mesmo.utils.get_index(thermal_grid_model.branches, branch_name='10')
         ] *= 1.14 / 10.0
     else:
         pass
@@ -120,7 +122,7 @@ def main(
     optimization_problem.solve()
 
     # Obtain results.
-    results = fledge.problems.Results()
+    results = mesmo.problems.Results()
     results.update(linear_electric_grid_model.get_optimization_results(optimization_problem))
     results.update(linear_thermal_grid_model.get_optimization_results(optimization_problem))
     results.update(der_model_set.get_optimization_results(optimization_problem))
@@ -132,7 +134,7 @@ def main(
     results.save(results_path)
 
     # Obtain DLMPs.
-    dlmps = fledge.problems.Results()
+    dlmps = mesmo.problems.Results()
     dlmps.update(
         linear_electric_grid_model.get_optimization_dlmps(
             optimization_problem,
@@ -329,8 +331,8 @@ def main(
         plt.close()
 
     # Obtain graphs.
-    electric_grid_graph = fledge.plots.ElectricGridGraph(scenario_name)
-    thermal_grid_graph = fledge.plots.ThermalGridGraph(scenario_name)
+    electric_grid_graph = mesmo.plots.ElectricGridGraph(scenario_name)
+    thermal_grid_graph = mesmo.plots.ThermalGridGraph(scenario_name)
 
     # Plot thermal grid DLMPs in grid.
     dlmp_types = [
@@ -354,7 +356,7 @@ def main(
                 pos=thermal_grid_graph.node_positions,
                 nodelist=(
                     thermal_grid_model.nodes[
-                        fledge.utils.get_index(thermal_grid_model.nodes, node_type='source')
+                        mesmo.utils.get_index(thermal_grid_model.nodes, node_type='source')
                     ].get_level_values('node_name')[:1].to_list()
                 ),
                 edgelist=[],
@@ -407,7 +409,7 @@ def main(
                 pos=electric_grid_graph.node_positions,
                 nodelist=(
                     electric_grid_model.nodes[
-                        fledge.utils.get_index(electric_grid_model.nodes, node_type='source')
+                        mesmo.utils.get_index(electric_grid_model.nodes, node_type='source')
                     ].get_level_values('node_name')[:1].to_list()
                 ),
                 edgelist=[],
@@ -439,7 +441,7 @@ def main(
             plt.close()
 
     # Print results path.
-    fledge.utils.launch(results_path)
+    mesmo.utils.launch(results_path)
     print(f"Results are stored in: {results_path}")
 
 

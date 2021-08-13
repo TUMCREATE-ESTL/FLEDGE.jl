@@ -8,33 +8,33 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-import fledge
+import mesmo
 
 
 def main():
 
     # Settings.
-    scenario_name = fledge.config.config['tests']['scenario_name']
-    results_path = fledge.utils.get_results_path(__file__, scenario_name)
+    scenario_name = mesmo.config.config['tests']['scenario_name']
+    results_path = mesmo.utils.get_results_path(__file__, scenario_name)
     power_multipliers = np.arange(-0.2, 1.8, 0.1)
 
     # Recreate / overwrite database, to incorporate changes in the CSV files.
-    fledge.data_interface.recreate_database()
+    mesmo.data_interface.recreate_database()
 
     # Obtain base scaling parameters.
-    scenario_data = fledge.data_interface.ScenarioData(scenario_name)
+    scenario_data = mesmo.data_interface.ScenarioData(scenario_name)
     base_power = scenario_data.scenario.at['base_apparent_power']
     base_voltage = scenario_data.scenario.at['base_voltage']
 
     # Obtain electric grid model.
-    electric_grid_model = fledge.electric_grid_models.ElectricGridModelDefault(scenario_name)
+    electric_grid_model = mesmo.electric_grid_models.ElectricGridModelDefault(scenario_name)
 
     # Obtain power flow solution for nominal power conditions.
-    power_flow_solution_initial = fledge.electric_grid_models.PowerFlowSolutionFixedPoint(electric_grid_model)
+    power_flow_solution_initial = mesmo.electric_grid_models.PowerFlowSolutionFixedPoint(electric_grid_model)
 
     # Obtain linear electric grid model for nominal power conditions.
     linear_electric_grid_model = (
-        fledge.electric_grid_models.LinearElectricGridModelLocal(
+        mesmo.electric_grid_models.LinearElectricGridModelGlobal(
             electric_grid_model,
             power_flow_solution_initial
         )
@@ -122,8 +122,8 @@ def main():
 
     # Obtain power flow solutions.
     power_flow_solutions = (
-        fledge.utils.starmap(
-            fledge.electric_grid_models.PowerFlowSolutionFixedPoint,
+        mesmo.utils.starmap(
+            mesmo.electric_grid_models.PowerFlowSolutionFixedPoint,
             [(electric_grid_model, row) for row in (der_power_vector_active + 1.0j * der_power_vector_reactive).values]
         )
     )
@@ -413,7 +413,7 @@ def main():
     plt.close()
 
     # Print results path.
-    fledge.utils.launch(results_path)
+    mesmo.utils.launch(results_path)
     print(f"Results are stored in: {results_path}")
 
 

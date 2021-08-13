@@ -3,6 +3,7 @@
 # - In the path settings, `./` denotes the repository base directory and is replaced upon loading.
 paths:
   additional_data: []
+  ignore_data_folders: []
   data: ./data
   database: ./data/database.sqlite
   results: ./results
@@ -11,11 +12,12 @@ multiprocessing:
   run_parallel: false  # Disabled by default to avoid unexpected issues.
 caching:
   enable: false  # If false, no cache is created. Disabled by default to avoid unexpected issues.
-  reset_cache: false  # If true, reset the cache on each restart of FLEDGE, to incorporate changes in the database.
+  reset_cache: false  # If true, reset the cache on each restart of MESMO, to incorporate changes in the database.
   expiry_time: 3600  # Expiry time of the cache, in seconds.
   get_building_model: true
 optimization:
-  solver_name: gurobi  # Must be valid solver name for CVXPY.
+  solver_interface:  # If 'cvxpy', will use CVXPY. If not defined, will use direct solver interfaces.
+  solver_name: gurobi  # Choices: 'gurobi' or any valid solver name for CVXPY.
   time_limit:  # Solver time limit in seconds. Infinite if not defined. Only for Gurobi / CPLEX.
   show_solver_output: true  # If True, activate verbose solver output.
 tests:

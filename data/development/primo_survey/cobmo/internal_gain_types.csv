@@ -1,0 +1,2 @@
+internal_gain_type,internal_gain_definition_type,occupancy_density,occupancy_heat_gain,occupancy_co2_gain,occupancy_humidity_gain,appliances_heat_gain,warm_water_demand_thermal_power
+primo_survey_internal_gains,schedule,1.0,2.0,,,7.0,

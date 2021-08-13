@@ -1,0 +1,2 @@
+scenario_name,electric_grid_name,price_type,price_sensitivity_coefficient,parameter_set,timestep_start,timestep_end,timestep_interval,base_apparent_power
+primo_survey,primo_survey,singapore_wholesale,1e-9,,2017-01-01T00:00:00,2018-01-01T00:00:00,00:30:00,1e3

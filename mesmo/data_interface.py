@@ -11,18 +11,18 @@ import sqlite3
 import typing
 
 import cobmo.data_interface
-import fledge.config
+import mesmo.config
 
-logger = fledge.config.get_logger(__name__)
+logger = mesmo.config.get_logger(__name__)
 
 
 def recreate_database(
-        additional_data_paths: typing.List[str] = fledge.config.config['paths']['additional_data']
+        additional_data_paths: typing.List[str] = mesmo.config.config['paths']['additional_data']
 ) -> None:
     """Recreate SQLITE database from SQL schema file and CSV files in the data path / additional data paths."""
 
     # Connect SQLITE database (creates file, if none).
-    database_connection = sqlite3.connect(fledge.config.config['paths']['database'])
+    database_connection = sqlite3.connect(mesmo.config.config['paths']['database'])
     cursor = database_connection.cursor()
 
     # Remove old data, if any.
@@ -36,16 +36,16 @@ def recreate_database(
     )
 
     # Recreate SQLITE database schema from SQL schema file.
-    with open(os.path.join(fledge.config.base_path, 'fledge', 'data_schema.sql'), 'r') as database_schema_file:
+    with open(os.path.join(mesmo.config.base_path, 'mesmo', 'data_schema.sql'), 'r') as database_schema_file:
         cursor.executescript(database_schema_file.read())
     database_connection.commit()
 
     # Import CSV files into SQLITE database.
     # - Import only from data path, if no additional data paths are specified.
     data_paths = (
-        [fledge.config.config['paths']['data']] + additional_data_paths
+        [mesmo.config.config['paths']['data']] + additional_data_paths
         if additional_data_paths is not None
-        else [fledge.config.config['paths']['data']]
+        else [mesmo.config.config['paths']['data']]
     )
     cobmo_data_paths = []
     valid_table_names = (
@@ -54,12 +54,23 @@ def recreate_database(
     for data_path in data_paths:
         for csv_file in glob.glob(os.path.join(data_path, '**', '*.csv'), recursive=True):
 
-            # Exclude CSV files from CoBMo folders, but add to CoBMo data path.
-            if (os.path.join('cobmo', '') in csv_file) or (os.path.join('cobmo_data', '') in csv_file):
+            # Ignore CSV files from CoBMo folders, but add to CoBMo data path.
+            if any(
+                    os.path.join('', folder, '') in csv_file
+                    for folder in ['cobmo', 'cobmo_data']
+            ):
 
                 # Add to CoBMo data path.
                 if os.path.dirname(csv_file) not in cobmo_data_paths:
                     cobmo_data_paths.append(os.path.dirname(csv_file))
+
+            # Ignore CSV files from folders defined in config parameter 'ignore_data_folders'.
+            elif any(
+                    os.path.join('', folder, '') in csv_file
+                    for folder in mesmo.config.config['paths']['ignore_data_folders']
+            ):
+
+                pass
 
             else:
 
@@ -89,12 +100,12 @@ def recreate_database(
     cursor.close()
     database_connection.close()
 
-    # Recreate CoBMo database to include FLEDGE's CoBMo definitions.
+    # Recreate CoBMo database to include MESMO's CoBMo definitions.
     # TODO: Modify CoBMo config instead.
     cobmo.data_interface.recreate_database(
         additional_data_paths=[
             *cobmo_data_paths,
-            *fledge.config.config['paths']['cobmo_additional_data']
+            *mesmo.config.config['paths']['cobmo_additional_data']
         ]
     )
 
@@ -103,12 +114,12 @@ def connect_database() -> sqlite3.Connection:
     """Connect to the database and return connection handle."""
 
     # Recreate database, if no database exists.
-    if not os.path.isfile(fledge.config.config['paths']['database']):
-        logger.debug(f"Database does not exist and is recreated at: {fledge.config.config['paths']['database']}")
+    if not os.path.isfile(mesmo.config.config['paths']['database']):
+        logger.debug(f"Database does not exist and is recreated at: {mesmo.config.config['paths']['database']}")
         recreate_database()
 
     # Obtain connection handle.
-    database_connection = sqlite3.connect(fledge.config.config['paths']['database'])
+    database_connection = sqlite3.connect(mesmo.config.config['paths']['database'])
     return database_connection
 
 
@@ -313,6 +324,540 @@ class ScenarioData(object):
         return dataframe
 
 
+class DERData(object):
+    """DER data object."""
+
+    scenario_data: ScenarioData
+    ders: pd.DataFrame
+    der_definitions: typing.Dict[str, pd.DataFrame]
+
+    @multimethod
+    def __init__(
+            self,
+            scenario_name: str,
+            database_connection=None
+    ):
+
+        # Obtain database connection.
+        if database_connection is None:
+            database_connection=connect_database()
+
+        # Obtain scenario data.
+        self.scenario_data = ScenarioData(scenario_name)
+
+        # Obtain DERs.
+        # - Obtain DERs for electric grid / thermal grid separately and perform full outer join via `pandas.merge()`,
+        #   due to SQLITE missing full outer join syntax.
+        ders = (
+            pd.merge(
+                self.scenario_data.parse_parameters_dataframe(pd.read_sql(
+                    """
+                    SELECT * FROM electric_grid_ders
+                    WHERE electric_grid_name = (
+                        SELECT electric_grid_name FROM scenarios
+                        WHERE scenario_name = ?
+                    )
+                    """,
+                    con=database_connection,
+                    params=[scenario_name]
+                )),
+                self.scenario_data.parse_parameters_dataframe(pd.read_sql(
+                    """
+                    SELECT * FROM thermal_grid_ders
+                    WHERE thermal_grid_name = (
+                        SELECT thermal_grid_name FROM scenarios
+                        WHERE scenario_name = ?
+                    )
+                    """,
+                    con=database_connection,
+                    params=[scenario_name]
+                )),
+                how='outer',
+                on=['der_name', 'der_type', 'der_model_name'],
+                suffixes=('_electric_grid', '_thermal_grid')
+            )
+        )
+        der_models = (
+            self.scenario_data.parse_parameters_dataframe(pd.read_sql(
+                """
+                SELECT * FROM der_models
+                WHERE (der_type, der_model_name) IN (
+                    SELECT der_type, der_model_name
+                    FROM electric_grid_ders
+                    WHERE electric_grid_name = (
+                        SELECT electric_grid_name FROM scenarios
+                        WHERE scenario_name = ?
+                    )
+                )
+                OR (der_type, der_model_name) IN (
+                    SELECT der_type, der_model_name
+                    FROM thermal_grid_ders
+                    WHERE thermal_grid_name = (
+                        SELECT thermal_grid_name FROM scenarios
+                        WHERE scenario_name = ?
+                    )
+                )
+                """,
+                con=database_connection,
+                params=[
+                    scenario_name,
+                    scenario_name
+                ]
+            ))
+        )
+
+        self.__init__(
+            scenario_name,
+            ders,
+            der_models,
+            database_connection
+        )
+
+    @multimethod
+    def __init__(
+            self,
+            scenario_name: str,
+            der_type: str,
+            der_model_name: str,
+            database_connection=None
+    ):
+
+        # Obtain database connection.
+        if database_connection is None:
+            database_connection=connect_database()
+
+        # Obtain scenario data.
+        self.scenario_data = ScenarioData(scenario_name)
+
+        # Obtain DERs.
+        ders = (
+            pd.DataFrame(
+                {
+                    'electric_grid_name': None,
+                    'thermal_grid_name': None,
+                    'der_name': der_model_name,
+                    'der_type': der_type,
+                    'der_model_name': der_model_name,
+                    'active_power_nominal': None,
+                    'reactive_power_nominal': None,
+                    'thermal_power_nominal': None
+                },
+                index=[0]
+            )
+        )
+        der_models = (
+            self.scenario_data.parse_parameters_dataframe(pd.read_sql(
+                """
+                SELECT * FROM der_models
+                WHERE der_type = ? 
+                AND der_model_name = ?
+                """,
+                con=database_connection,
+                params=[
+                    der_type,
+                    der_model_name
+                ]
+            ))
+        )
+
+        self.__init__(
+            scenario_name,
+            ders,
+            der_models,
+            database_connection
+        )
+
+    @multimethod
+    def __init__(
+            self,
+            scenario_name: str,
+            ders: pd.DataFrame,
+            der_models: pd.DataFrame,
+            database_connection=None
+    ):
+
+        # Obtain database connection.
+        if database_connection is None:
+            database_connection=connect_database()
+
+        # Obtain DERs.
+        self.ders = (
+            pd.merge(
+                ders,
+                der_models,
+                how='left',
+                on=['der_type', 'der_model_name'],
+            )
+        )
+        self.ders.index = self.ders['der_name']
+        self.ders = self.ders.reindex(index=natsort.natsorted(self.ders.index))
+
+        # Raise error, if any undefined DER models.
+        # - That is: `der_model_name` is in `electric_grid_ders` or `thermal_grid_ders`, but not in `der_models`.
+        # - Except for `flexible_building` models, which are defined through CoBMo.
+        # TODO: Output DER model names.
+        if (
+                ~ders.loc[:, 'der_model_name'].isin(der_models.loc[:, 'der_model_name'])
+                & ~ders.loc[:, 'der_type'].isin(['flexible_building'])  # CoBMo models
+        ).any():
+            raise ValueError(
+                "Some `der_model_name` in `electric_grid_ders` or `thermal_grid_ders` are not defined in `der_models`."
+            )
+
+        # Obtain unique `definition_type` / `definition_name`.
+        der_definitions_unique = self.ders.loc[:, ['definition_type', 'definition_name']].drop_duplicates()
+        der_definitions_unique = der_definitions_unique.dropna(subset=['definition_type'])
+
+        # Instantiate DER definitions dictionary.
+        self.der_definitions = dict.fromkeys(pd.MultiIndex.from_frame(der_definitions_unique))
+
+        # Append `definition_index` column to DERs, for more convenient indexing into DER definitions.
+        self.ders.loc[:, 'definition_index'] = (
+            pd.MultiIndex.from_frame(self.ders.loc[:, ['definition_type', 'definition_name']]).to_numpy()
+        )
+
+        # Instantiate dict for additional DER definitions, e.g. from `flexible_ev_charger`.
+        additional_der_definitions = dict()
+
+        # Load DER definitions, first for special definition types, e.g. `cooling_plant`, `flexible_ev_charger`.
+        for definition_index in self.der_definitions:
+
+            if definition_index[0] == 'cooling_plant':
+
+                self.der_definitions[definition_index] = (
+                    pd.concat([
+                        self.scenario_data.parse_parameters_dataframe(pd.read_sql(
+                            """
+                            SELECT * FROM thermal_grids
+                            WHERE thermal_grid_name = (
+                                SELECT thermal_grid_name FROM main.scenarios
+                                WHERE scenario_name = ?
+                            )
+                            """,
+                            con=database_connection,
+                            params=[scenario_name]
+                        )).iloc[0],
+                        self.scenario_data.parse_parameters_dataframe(pd.read_sql(
+                            """
+                            SELECT * FROM der_cooling_plants
+                            WHERE definition_name = ?
+                            """,
+                            con=database_connection,
+                            params=[definition_index[1]]
+                        )).iloc[0]
+                    ]).drop('thermal_grid_name')  # Remove `thermal_grid_name` to avoid duplicate index in `der_models`.
+                )
+
+            elif definition_index[0] == 'flexible_ev_charger':
+
+                self.der_definitions[definition_index] = (
+                    self.scenario_data.parse_parameters_dataframe(pd.read_sql(
+                        """
+                        SELECT * FROM der_ev_chargers
+                        WHERE definition_name = ?
+                        """,
+                        con=database_connection,
+                        params=[definition_index[1]]
+                    )).iloc[0]
+                )
+
+                # Append `definition_index`, for more convenient indexing into DER definitions.
+                # - Add `accumulative` flag to ensure correct interpolation / resampling behavior.
+                self.der_definitions[definition_index].at['nominal_charging_definition_index'] = (
+                    self.der_definitions[definition_index].at['nominal_charging_definition_type'],
+                    self.der_definitions[definition_index].at['nominal_charging_definition_name']
+                )
+                self.der_definitions[definition_index].at['maximum_charging_definition_index'] = (
+                    self.der_definitions[definition_index].at['maximum_charging_definition_type'],
+                    self.der_definitions[definition_index].at['maximum_charging_definition_name']
+                )
+                self.der_definitions[definition_index].at['maximum_discharging_definition_index'] = (
+                    self.der_definitions[definition_index].at['maximum_discharging_definition_type'],
+                    self.der_definitions[definition_index].at['maximum_discharging_definition_name']
+                )
+                self.der_definitions[definition_index].at['maximum_energy_definition_index'] = (
+                    self.der_definitions[definition_index].at['maximum_energy_definition_type'],
+                    self.der_definitions[definition_index].at['maximum_energy_definition_name']
+                )
+                self.der_definitions[definition_index].at['departing_energy_definition_index'] = (
+                    self.der_definitions[definition_index].at['departing_energy_definition_type'] + '_accumulative',
+                    self.der_definitions[definition_index].at['departing_energy_definition_name']
+                )
+
+                # Append arrival / occupancy timeseries / schedule to additional definitions.
+                additional_der_definitions.update({
+                    self.der_definitions[definition_index].at['nominal_charging_definition_index']: None,
+                    self.der_definitions[definition_index].at['maximum_charging_definition_index']: None,
+                    self.der_definitions[definition_index].at['maximum_discharging_definition_index']: None,
+                    self.der_definitions[definition_index].at['maximum_energy_definition_index']: None,
+                    self.der_definitions[definition_index].at['departing_energy_definition_index']: None
+                })
+
+        # Append additional DER definitions.
+        self.der_definitions.update(additional_der_definitions)
+
+        # Obtain required timestep frequency for schedule resampling / interpolation.
+        # - Higher frequency is only used when required. This aims to reduce computational burden.
+        if (
+                self.scenario_data.scenario.at['timestep_interval']
+                - self.scenario_data.scenario.at['timestep_interval'].floor('min')
+        ).seconds != 0:
+            timestep_frequency = 's'
+        elif (
+                self.scenario_data.scenario.at['timestep_interval']
+                - self.scenario_data.scenario.at['timestep_interval'].floor('h')
+        ).seconds != 0:
+            timestep_frequency = 'min'
+        else:
+            timestep_frequency = 'h'
+
+        # Load DER definitions, for timeseries / schedule definitions, for each `definition_name`.
+        if len(self.der_definitions) > 0:
+            mesmo.utils.log_time('load DER timeseries / schedule definitions')
+            der_definitions = (
+                mesmo.utils.starmap(
+                    self.load_der_timeseries_schedules,
+                    zip(
+                        mesmo.utils.chunk_dict(self.der_definitions)
+                    ),
+                    dict(
+                        timestep_frequency=timestep_frequency,
+                        timesteps=self.scenario_data.timesteps
+                    )
+                )
+            )
+            for chunk in der_definitions:
+                self.der_definitions.update(chunk)
+            mesmo.utils.log_time('load DER timeseries / schedule definitions')
+
+    @staticmethod
+    def load_der_timeseries_schedules(
+            der_definitions: dict,
+            timestep_frequency: str,
+            timesteps
+    ):
+
+        timestep_start = timesteps[0]
+        timestep_end = timesteps[-1]
+        timestep_interval = timesteps[1] - timesteps[0]
+
+        database_connection = connect_database()
+        der_timeseries_all = (
+            pd.read_sql(
+                f"""
+                SELECT * FROM der_timeseries
+                WHERE definition_name IN ({','.join(['?'] * len(der_definitions))})
+                AND time between ? AND ?
+                """,
+                con=database_connection,
+                params=[
+                    *pd.MultiIndex.from_tuples(der_definitions.keys()).get_level_values(1),
+                    timestep_start.strftime('%Y-%m-%dT%H:%M:%S'),
+                    timestep_end.strftime('%Y-%m-%dT%H:%M:%S')
+                ],
+                parse_dates=['time'],
+                index_col=['time']
+            )
+        )
+        der_schedules_all = (
+            pd.read_sql(
+                f"""
+                SELECT * FROM der_schedules
+                WHERE definition_name IN ({','.join(['?'] * len(der_definitions))})
+                """,
+                con=database_connection,
+                params=pd.MultiIndex.from_tuples(der_definitions.keys()).get_level_values(1),
+                index_col=['time_period']
+            )
+        )
+
+        for definition_index in der_definitions:
+
+            if 'timeseries' in definition_index[0]:
+
+                der_timeseries = (
+                    der_timeseries_all.loc[der_timeseries_all.loc[:, 'definition_name'] == definition_index[1], :]
+                )
+                if not (len(der_timeseries) > 0):
+                    raise ValueError(f"No DER time series definition found for definition name '{definition_index[1]}'.")
+
+                # Resample / interpolate / fill values.
+                if 'accumulative' in definition_index[0]:
+
+                    # Resample to scenario timestep interval, using sum to aggregate. Missing values are filled with 0.
+                    der_timeseries = (
+                        der_timeseries.resample(
+                            timestep_interval,
+                            origin=timestep_start
+                        ).sum()
+                    )
+                    der_timeseries = (
+                        der_timeseries.reindex(timesteps)
+                    )
+                    # TODO: This overwrites any missing values. No warning is raised.
+                    der_timeseries = der_timeseries.fillna(0.0)
+
+                else:
+
+                    # Resample to scenario timestep interval, using mean to aggregate. Missing values are interpolated.
+                    der_timeseries = (
+                        der_timeseries.resample(
+                            timestep_interval,
+                            origin=timestep_start
+                        ).mean()
+                    )
+                    der_timeseries = (
+                        der_timeseries.reindex(timesteps)
+                    )
+                    der_timeseries = der_timeseries.interpolate(method='linear')
+
+                    # Backward / forward fill up to 1h to handle edge definition gaps.
+                    der_timeseries = (
+                        der_timeseries.bfill(
+                            limit=int(pd.to_timedelta('1h') / timestep_interval)
+                        ).ffill(
+                            limit=int(pd.to_timedelta('1h') / timestep_interval)
+                        )
+                    )
+
+                # If any NaN values, display warning and fill missing values.
+                if der_timeseries.isnull().any().any():
+                    logger.warning(
+                        f"Missing values in DER timeseries definition for '{definition_index[1]}'."
+                        f" Please check if appropriate timestep_start/timestep_end are defined."
+                        f" Missing values are filled with 0."
+                    )
+                    # Fill with 0.
+                    der_timeseries = (
+                        der_timeseries.fillna(0.0)
+                    )
+
+                der_definitions[definition_index] = der_timeseries
+
+            elif 'schedule' in definition_index[0]:
+
+                der_schedule = der_schedules_all.loc[der_schedules_all.loc[:, 'definition_name'] == definition_index[1], :]
+                if not (len(der_schedule) > 0):
+                    raise ValueError(f"No DER schedule definition found for definition name '{definition_index[1]}'.")
+
+                # Show warning, if `time_period` does not start with '01T00:00'.
+                if der_schedule.index[0] != '01T00:00':
+                    logger.warning(
+                        f"First time period is '{der_schedule.index[0]}' in DER schedule with definition name "
+                        f"'{definition_index[1]}'. Schedules should start with time period '01T00:00'. "
+                        f"Please also check if using correct time period format: 'ddTHH:MM'"
+                    )
+
+                # Parse time period index.
+                # - '2001-01-...' is chosen as reference timestep, because '2001-01-01' falls on a Monday.
+                der_schedule.index = pd.to_datetime('2001-01-' + der_schedule.index)
+
+                # Obtain complete schedule for all weekdays.
+                der_schedule_complete = []
+                for day in range(1, 8):
+                    if day in der_schedule.index.day.unique():
+                        der_schedule_complete.append(
+                            der_schedule.loc[der_schedule.index.day == day, :]
+                        )
+                    else:
+                        der_schedule_previous = der_schedule_complete[-1].copy()
+                        der_schedule_previous.index += pd.Timedelta('1 day')
+                        der_schedule_complete.append(der_schedule_previous)
+                der_schedule_complete = pd.concat(der_schedule_complete)
+
+                # Resample / interpolate / fill values to obtain complete schedule.
+                if 'accumulative' in definition_index[0]:
+
+                    # Resample to scenario timestep interval, using sum to aggregate. Missing values are filled with 0.
+                    der_schedule_complete = (
+                        der_schedule_complete.resample(timestep_interval).sum()
+                    )
+                    der_schedule_complete = (
+                        der_schedule_complete.reindex(
+                            pd.date_range(
+                                start='2001-01-01T00:00',
+                                end='2001-01-07T23:59',
+                                freq=timestep_interval
+                            )
+                        )
+                    )
+                    der_schedule_complete = der_schedule_complete.fillna(0.0)
+
+                    # Resample to required timestep frequency, foward-filling intermediate values.
+                    # - Ensures that the correct value is used when reindexing to obtain the full timeseries,
+                    #   independent of any shift between timeseries and schedule timesteps.
+                    der_schedule_complete = (
+                        der_schedule_complete.resample(timestep_frequency).mean()
+                    )
+                    der_schedule_complete = (
+                        der_schedule_complete.reindex(
+                            pd.date_range(
+                                start='2001-01-01T00:00',
+                                end='2001-01-07T23:59',
+                                freq=timestep_frequency
+                            )
+                        )
+                    )
+                    der_schedule_complete = (
+                        der_schedule_complete.ffill()
+                    )
+
+                else:
+
+                    # Resample to required timestep frequency, using mean to aggregate. Missing values are interpolated.
+                    der_schedule_complete = (
+                        der_schedule_complete.resample(timestep_frequency).mean()
+                    )
+                    der_schedule_complete = (
+                        der_schedule_complete.reindex(
+                            pd.date_range(
+                                start='2001-01-01T00:00',
+                                end='2001-01-07T23:59',
+                                freq=timestep_frequency
+                            )
+                        )
+                    )
+                    der_schedule_complete = der_schedule_complete.interpolate(method='linear')
+
+                    # Forward fill to handle definition gap at the end of the schedule.
+                    der_schedule_complete = (
+                        der_schedule_complete.ffill()
+                    )
+
+                # Reindex / fill schedule for given timesteps.
+                der_schedule_complete.index = (
+                    pd.MultiIndex.from_arrays([
+                        der_schedule_complete.index.weekday,
+                        der_schedule_complete.index.hour
+                    ] + (
+                        [der_schedule_complete.index.minute] if timestep_frequency in ['s', 'min'] else []
+                    ) + (
+                        [der_schedule_complete.index.second] if timestep_frequency in ['s'] else []
+                    ))
+                )
+                der_schedule = (
+                    pd.DataFrame(
+                        index=pd.MultiIndex.from_arrays([
+                            timesteps.weekday,
+                            timesteps.hour
+                        ] + (
+                            [timesteps.minute] if timestep_frequency in ['s', 'min'] else []
+                        ) + (
+                            [timesteps.second] if timestep_frequency in ['s'] else []
+                        )),
+                        columns=['value']
+                    )
+                )
+                der_schedule = (
+                    der_schedule_complete.reindex(der_schedule.index)
+                )
+                der_schedule.index = timesteps
+
+                der_definitions[definition_index] = der_schedule
+
+        return der_definitions
+
+
 class ElectricGridData(object):
     """Electric grid data object."""
 
@@ -502,6 +1047,7 @@ class ThermalGridData(object):
     thermal_grid_nodes: pd.DataFrame
     thermal_grid_ders: pd.DataFrame
     thermal_grid_lines: pd.DataFrame
+    der_data: DERData
 
     def __init__(
             self,
@@ -520,7 +1066,6 @@ class ThermalGridData(object):
             self.scenario_data.parse_parameters_dataframe(pd.read_sql(
                 """
                 SELECT * FROM thermal_grids
-                JOIN der_cooling_plants ON der_cooling_plants.definition_name = thermal_grids.plant_model_name
                 WHERE thermal_grid_name = (
                     SELECT thermal_grid_name FROM scenarios
                     WHERE scenario_name = ?
@@ -583,462 +1128,15 @@ class ThermalGridData(object):
             self.thermal_grid_lines.reindex(index=natsort.natsorted(self.thermal_grid_lines.index))
         )
 
-
-class DERData(object):
-    """DER data object."""
-
-    scenario_data: ScenarioData
-    ders: pd.DataFrame
-    der_definitions: typing.Dict[str, pd.DataFrame]
-
-    @multimethod
-    def __init__(
-            self,
-            scenario_name: str,
-            database_connection=None
-    ):
-
-        # Obtain database connection.
-        if database_connection is None:
-            database_connection=connect_database()
-
-        # Obtain scenario data.
-        self.scenario_data = ScenarioData(scenario_name)
-
-        # Obtain DERs.
-        # - Obtain DERs for electric grid / thermal grid separately and perform full outer join via `pandas.merge()`,
-        #   due to SQLITE missing full outer join syntax.
-        ders = (
-            pd.merge(
-                self.scenario_data.parse_parameters_dataframe(pd.read_sql(
-                    """
-                    SELECT * FROM electric_grid_ders
-                    WHERE electric_grid_name = (
-                        SELECT electric_grid_name FROM scenarios
-                        WHERE scenario_name = ?
-                    )
-                    """,
-                    con=database_connection,
-                    params=[scenario_name]
-                )),
-                self.scenario_data.parse_parameters_dataframe(pd.read_sql(
-                    """
-                    SELECT * FROM thermal_grid_ders
-                    WHERE thermal_grid_name = (
-                        SELECT thermal_grid_name FROM scenarios
-                        WHERE scenario_name = ?
-                    )
-                    """,
-                    con=database_connection,
-                    params=[scenario_name]
-                )),
-                how='outer',
-                on=['der_name', 'der_type', 'der_model_name'],
-                suffixes=('_electric_grid', '_thermal_grid')
+        # Obtain DER data.
+        self.der_data = (
+            DERData(
+                scenario_name,
+                self.thermal_grid.at['source_der_type'],
+                self.thermal_grid.at['source_der_model_name'],
+                database_connection
             )
         )
-        der_models = (
-            self.scenario_data.parse_parameters_dataframe(pd.read_sql(
-                """
-                SELECT * FROM der_models
-                WHERE (der_type, der_model_name) IN (
-                    SELECT der_type, der_model_name
-                    FROM electric_grid_ders
-                    WHERE electric_grid_name = (
-                        SELECT electric_grid_name FROM scenarios
-                        WHERE scenario_name = ?
-                    )
-                )
-                OR (der_type, der_model_name) IN (
-                    SELECT der_type, der_model_name
-                    FROM thermal_grid_ders
-                    WHERE thermal_grid_name = (
-                        SELECT thermal_grid_name FROM scenarios
-                        WHERE scenario_name = ?
-                    )
-                )
-                """,
-                con=database_connection,
-                params=[
-                    scenario_name,
-                    scenario_name
-                ]
-            ))
-        )
-        self.ders = (
-            pd.merge(
-                ders,
-                der_models,
-                how='left',
-                on=['der_type', 'der_model_name'],
-            )
-        )
-        self.ders.index = self.ders['der_name']
-        self.ders = self.ders.reindex(index=natsort.natsorted(self.ders.index))
-
-        # Raise error, if any undefined DER models.
-        # - That is: `der_model_name` is in `electric_grid_ders` or `thermal_grid_ders`, but not in `der_models`.
-        # - Except for `flexible_building` models, which are defined through CoBMo.
-        if (
-                ~ders.loc[:, 'der_model_name'].isin(der_models.loc[:, 'der_model_name'])
-                & ~ders.loc[:, 'der_type'].isin(['flexible_building'])  # CoBMo models
-        ).any():
-            raise ValueError(
-                "Some `der_model_name` in `electric_grid_ders` or `thermal_grid_ders` are not defined in `der_models`."
-            )
-
-        # Obtain unique `definition_type` / `definition_name`.
-        der_definitions_unique = self.ders.loc[:, ['definition_type', 'definition_name']].drop_duplicates()
-        der_definitions_unique = der_definitions_unique.dropna(subset=['definition_type'])
-
-        # Instantiate DER definitions dictionary.
-        self.der_definitions = dict.fromkeys(pd.MultiIndex.from_frame(der_definitions_unique))
-
-        # Append `definition_index` column to DERs, for more convenient indexing into DER definitions.
-        self.ders.loc[:, 'definition_index'] = (
-            pd.MultiIndex.from_frame(self.ders.loc[:, ['definition_type', 'definition_name']])
-        )
-
-        # Instantiate dict for additional DER definitions, e.g. from `flexible_ev_charger`.
-        additional_der_definitions = dict()
-
-        # Load DER definitions, first for special definition types, e.g. `cooling_plant`, `flexible_ev_charger`.
-        for definition_index in self.der_definitions:
-
-            if definition_index[0] == 'cooling_plant':
-
-                self.der_definitions[definition_index] = (
-                    pd.concat([
-                        self.scenario_data.parse_parameters_dataframe(pd.read_sql(
-                            """
-                            SELECT * FROM thermal_grids
-                            WHERE thermal_grid_name = (
-                                SELECT thermal_grid_name FROM main.scenarios
-                                WHERE scenario_name = ?
-                            )
-                            """,
-                            con=database_connection,
-                            params=[scenario_name]
-                        )).iloc[0],
-                        self.scenario_data.parse_parameters_dataframe(pd.read_sql(
-                            """
-                            SELECT * FROM der_cooling_plants
-                            WHERE definition_name = ?
-                            """,
-                            con=database_connection,
-                            params=[definition_index[1]]
-                        )).iloc[0]
-                    ]).drop('thermal_grid_name')  # Remove `thermal_grid_name` to avoid duplicate index in `der_models`.
-                )
-
-            elif definition_index[0] == 'flexible_ev_charger':
-
-                self.der_definitions[definition_index] = (
-                    self.scenario_data.parse_parameters_dataframe(pd.read_sql(
-                        """
-                        SELECT * FROM der_ev_chargers
-                        WHERE definition_name = ?
-                        """,
-                        con=database_connection,
-                        params=[definition_index[1]]
-                    )).iloc[0]
-                )
-
-                # Append `definition_index`, for more convenient indexing into DER definitions.
-                # - Add `accumulative` flag to ensure correct interpolation / resampling behavior.
-                self.der_definitions[definition_index].at['nominal_charging_definition_index'] = (
-                    self.der_definitions[definition_index].at['nominal_charging_definition_type'],
-                    self.der_definitions[definition_index].at['nominal_charging_definition_name']
-                )
-                self.der_definitions[definition_index].at['maximum_charging_definition_index'] = (
-                    self.der_definitions[definition_index].at['maximum_charging_definition_type'],
-                    self.der_definitions[definition_index].at['maximum_charging_definition_name']
-                )
-                self.der_definitions[definition_index].at['maximum_discharging_definition_index'] = (
-                    self.der_definitions[definition_index].at['maximum_discharging_definition_type'],
-                    self.der_definitions[definition_index].at['maximum_discharging_definition_name']
-                )
-                self.der_definitions[definition_index].at['maximum_energy_definition_index'] = (
-                    self.der_definitions[definition_index].at['maximum_energy_definition_type'],
-                    self.der_definitions[definition_index].at['maximum_energy_definition_name']
-                )
-                self.der_definitions[definition_index].at['departing_energy_definition_index'] = (
-                    self.der_definitions[definition_index].at['departing_energy_definition_type'] + '_accumulative',
-                    self.der_definitions[definition_index].at['departing_energy_definition_name']
-                )
-
-                # Append arrival / occupancy timeseries / schedule to additional definitions.
-                additional_der_definitions.update({
-                    self.der_definitions[definition_index].at['nominal_charging_definition_index']: None,
-                    self.der_definitions[definition_index].at['maximum_charging_definition_index']: None,
-                    self.der_definitions[definition_index].at['maximum_discharging_definition_index']: None,
-                    self.der_definitions[definition_index].at['maximum_energy_definition_index']: None,
-                    self.der_definitions[definition_index].at['departing_energy_definition_index']: None
-                })
-
-        # Append additional DER definitions.
-        self.der_definitions.update(additional_der_definitions)
-
-        # Obtain required timestep frequency for schedule resampling / interpolation.
-        # - Higher frequency is only used when required. This aims to reduce computational burden.
-        if (
-                self.scenario_data.scenario.at['timestep_interval']
-                - self.scenario_data.scenario.at['timestep_interval'].floor('min')
-        ).seconds != 0:
-            timestep_frequency = 's'
-        elif (
-                self.scenario_data.scenario.at['timestep_interval']
-                - self.scenario_data.scenario.at['timestep_interval'].floor('h')
-        ).seconds != 0:
-            timestep_frequency = 'min'
-        else:
-            timestep_frequency = 'h'
-
-        # Load DER definitions, for timeseries / schedule definitions, for each `definition_name`.
-        fledge.utils.log_time('load DER timeseries / schedule definitions')
-        if len(self.der_definitions) > 0:
-            der_definitions = (
-                fledge.utils.starmap(
-                    load_der_timeseries_schedules,
-                    zip(
-                        fledge.utils.chunk_dict(self.der_definitions)
-                    ),
-                    dict(
-                        timestep_frequency=timestep_frequency,
-                        timesteps=self.scenario_data.timesteps
-                    )
-                )
-            )
-            for chunk in der_definitions:
-                self.der_definitions.update(chunk)
-            fledge.utils.log_time('load DER timeseries / schedule definitions')
-
-
-def load_der_timeseries_schedules(
-        der_definitions: dict,
-        timestep_frequency: str,
-        timesteps
-):
-
-    timestep_start = timesteps[0]
-    timestep_end = timesteps[-1]
-    timestep_interval = timesteps[1] - timesteps[0]
-
-    database_connection = connect_database()
-    der_timeseries_all = (
-        pd.read_sql(
-            f"""
-            SELECT * FROM der_timeseries
-            WHERE definition_name IN ({','.join(['?'] * len(der_definitions))})
-            AND time between ? AND ?
-            """,
-            con=database_connection,
-            params=[
-                *pd.MultiIndex.from_tuples(der_definitions.keys()).get_level_values(1),
-                timestep_start.strftime('%Y-%m-%dT%H:%M:%S'),
-                timestep_end.strftime('%Y-%m-%dT%H:%M:%S')
-            ],
-            parse_dates=['time'],
-            index_col=['time']
-        )
-    )
-    der_schedules_all = (
-        pd.read_sql(
-            f"""
-            SELECT * FROM der_schedules
-            WHERE definition_name IN ({','.join(['?'] * len(der_definitions))})
-            """,
-            con=database_connection,
-            params=pd.MultiIndex.from_tuples(der_definitions.keys()).get_level_values(1),
-            index_col=['time_period']
-        )
-    )
-
-    for definition_index in der_definitions:
-
-        if 'timeseries' in definition_index[0]:
-
-            der_timeseries = (
-                der_timeseries_all.loc[der_timeseries_all.loc[:, 'definition_name'] == definition_index[1], :]
-            )
-            if not (len(der_timeseries) > 0):
-                raise ValueError(f"No DER time series definition found for definition name '{definition_index[1]}'.")
-
-            # Resample / interpolate / fill values.
-            if 'accumulative' in definition_index[0]:
-
-                # Resample to scenario timestep interval, using sum to aggregate. Missing values are filled with 0.
-                der_timeseries = (
-                    der_timeseries.resample(
-                        timestep_interval,
-                        origin=timestep_start
-                    ).sum()
-                )
-                der_timeseries = (
-                    der_timeseries.reindex(timesteps)
-                )
-                # TODO: This overwrites any missing values. No warning is raised.
-                der_timeseries = der_timeseries.fillna(0.0)
-
-            else:
-
-                # Resample to scenario timestep interval, using mean to aggregate. Missing values are interpolated.
-                der_timeseries = (
-                    der_timeseries.resample(
-                        timestep_interval,
-                        origin=timestep_start
-                    ).mean()
-                )
-                der_timeseries = (
-                    der_timeseries.reindex(timesteps)
-                )
-                der_timeseries = der_timeseries.interpolate(method='linear')
-
-                # Backward / forward fill up to 1h to handle edge definition gaps.
-                der_timeseries = (
-                    der_timeseries.bfill(
-                        limit=int(pd.to_timedelta('1h') / timestep_interval)
-                    ).ffill(
-                        limit=int(pd.to_timedelta('1h') / timestep_interval)
-                    )
-                )
-
-            # If any NaN values, display warning and fill missing values.
-            if der_timeseries.isnull().any().any():
-                logger.warning(
-                    f"Missing values in DER timeseries definition for '{definition_index[1]}'."
-                    f" Please check if appropriate timestep_start/timestep_end are defined."
-                    f" Missing values are filled with 0."
-                )
-                # Fill with 0.
-                der_timeseries = (
-                    der_timeseries.fillna(0.0)
-                )
-
-            der_definitions[definition_index] = der_timeseries
-
-        elif 'schedule' in definition_index[0]:
-
-            der_schedule = der_schedules_all.loc[der_schedules_all.loc[:, 'definition_name'] == definition_index[1], :]
-            if not (len(der_schedule) > 0):
-                raise ValueError(f"No DER schedule definition found for definition name '{definition_index[1]}'.")
-
-            # Show warning, if `time_period` does not start with '01T00:00'.
-            if der_schedule.index[0] != '01T00:00':
-                logger.warning(
-                    f"First time period is '{der_schedule.index[0]}' in DER schedule with definition name "
-                    f"'{definition_index[1]}'. Schedules should start with time period '01T00:00'. "
-                    f"Please also check if using correct time period format: 'ddTHH:MM'"
-                )
-
-            # Parse time period index.
-            # - '2001-01-...' is chosen as reference timestep, because '2001-01-01' falls on a Monday.
-            der_schedule.index = pd.to_datetime('2001-01-' + der_schedule.index)
-
-            # Obtain complete schedule for all weekdays.
-            der_schedule_complete = []
-            for day in range(1, 8):
-                if day in der_schedule.index.day.unique():
-                    der_schedule_complete.append(
-                        der_schedule.loc[der_schedule.index.day == day, :]
-                    )
-                else:
-                    der_schedule_previous = der_schedule_complete[-1].copy()
-                    der_schedule_previous.index += pd.Timedelta('1 day')
-                    der_schedule_complete.append(der_schedule_previous)
-            der_schedule_complete = pd.concat(der_schedule_complete)
-
-            # Resample / interpolate / fill values to obtain complete schedule.
-            if 'accumulative' in definition_index[0]:
-
-                # Resample to scenario timestep interval, using sum to aggregate. Missing values are filled with 0.
-                der_schedule_complete = (
-                    der_schedule_complete.resample(timestep_interval).sum()
-                )
-                der_schedule_complete = (
-                    der_schedule_complete.reindex(
-                        pd.date_range(
-                            start='2001-01-01T00:00',
-                            end='2001-01-07T23:59',
-                            freq=timestep_interval
-                        )
-                    )
-                )
-                der_schedule_complete = der_schedule_complete.fillna(0.0)
-
-                # Resample to required timestep frequency, foward-filling intermediate values.
-                # - Ensures that the correct value is used when reindexing to obtain the full timeseries,
-                #   independent of any shift between timeseries and schedule timesteps.
-                der_schedule_complete = (
-                    der_schedule_complete.resample(timestep_frequency).mean()
-                )
-                der_schedule_complete = (
-                    der_schedule_complete.reindex(
-                        pd.date_range(
-                            start='2001-01-01T00:00',
-                            end='2001-01-07T23:59',
-                            freq=timestep_frequency
-                        )
-                    )
-                )
-                der_schedule_complete = (
-                    der_schedule_complete.ffill()
-                )
-
-            else:
-
-                # Resample to required timestep frequency, using mean to aggregate. Missing values are interpolated.
-                der_schedule_complete = (
-                    der_schedule_complete.resample(timestep_frequency).mean()
-                )
-                der_schedule_complete = (
-                    der_schedule_complete.reindex(
-                        pd.date_range(
-                            start='2001-01-01T00:00',
-                            end='2001-01-07T23:59',
-                            freq=timestep_frequency
-                        )
-                    )
-                )
-                der_schedule_complete = der_schedule_complete.interpolate(method='linear')
-
-                # Forward fill to handle definition gap at the end of the schedule.
-                der_schedule_complete = (
-                    der_schedule_complete.ffill()
-                )
-
-            # Reindex / fill schedule for given timesteps.
-            der_schedule_complete.index = (
-                pd.MultiIndex.from_arrays([
-                    der_schedule_complete.index.weekday,
-                    der_schedule_complete.index.hour
-                ] + (
-                    [der_schedule_complete.index.minute] if timestep_frequency in ['s', 'min'] else []
-                ) + (
-                    [der_schedule_complete.index.second] if timestep_frequency in ['s'] else []
-                ))
-            )
-            der_schedule = (
-                pd.DataFrame(
-                    index=pd.MultiIndex.from_arrays([
-                        timesteps.weekday,
-                        timesteps.hour
-                    ] + (
-                        [timesteps.minute] if timestep_frequency in ['s', 'min'] else []
-                    ) + (
-                        [timesteps.second] if timestep_frequency in ['s'] else []
-                    )),
-                    columns=['value']
-                )
-            )
-            der_schedule = (
-                der_schedule_complete.reindex(der_schedule.index)
-            )
-            der_schedule.index = timesteps
-
-            der_definitions[definition_index] = der_schedule
-
-    return der_definitions
 
 
 class PriceData(object):

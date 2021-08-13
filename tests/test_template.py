@@ -2,9 +2,9 @@
 
 import unittest
 
-import fledge
+import mesmo
 
-logger = fledge.config.get_logger(__name__)
+logger = mesmo.config.get_logger(__name__)
 
 
 class TestTemplate(unittest.TestCase):
@@ -14,9 +14,9 @@ class TestTemplate(unittest.TestCase):
         expected = 4
 
         # Get actual result.
-        fledge.utils.log_time("test_equal", log_level='info', logger_object=logger)
+        mesmo.utils.log_time("test_equal", log_level='info', logger_object=logger)
         actual = 2 + 2
-        fledge.utils.log_time("test_equal", log_level='info', logger_object=logger)
+        mesmo.utils.log_time("test_equal", log_level='info', logger_object=logger)
 
         # Compare expected and actual.
         self.assertEqual(actual, expected)
@@ -26,9 +26,9 @@ class TestTemplate(unittest.TestCase):
         expected = 4
 
         # Get actual result.
-        fledge.utils.log_time("test_not_equal", log_level='info', logger_object=logger)
+        mesmo.utils.log_time("test_not_equal", log_level='info', logger_object=logger)
         actual = 2 + 1
-        fledge.utils.log_time("test_not_equal", log_level='info', logger_object=logger)
+        mesmo.utils.log_time("test_not_equal", log_level='info', logger_object=logger)
 
         # Compare expected and actual.
         self.assertNotEqual(actual, expected)

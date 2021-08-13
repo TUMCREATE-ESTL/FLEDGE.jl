@@ -13,21 +13,21 @@ import plotly.express as px
 import plotly.graph_objects as go
 import rasterio.warp
 
-import fledge
+import mesmo
 
 
 def main():
 
     # Settings.
     scenario_name = 'singapore_all'
-    results_path = fledge.utils.get_results_path(__file__, scenario_name)
+    results_path = mesmo.utils.get_results_path(__file__, scenario_name)
 
     # Recreate / overwrite database, to incorporate changes in the CSV files.
-    fledge.data_interface.recreate_database()
+    mesmo.data_interface.recreate_database()
 
     # Obtain electric grid data / graph.
-    electric_grid_data = fledge.data_interface.ElectricGridData(scenario_name)
-    electric_grid_graph = fledge.plots.ElectricGridGraph(scenario_name)
+    electric_grid_data = mesmo.data_interface.ElectricGridData(scenario_name)
+    electric_grid_graph = mesmo.plots.ElectricGridGraph(scenario_name)
 
     # Obtain substation nodes.
     # - This identification is based on the assumption that all nodes with no DER connected are substation nodes,
@@ -143,7 +143,7 @@ def main():
         )
     ))
     figure.write_image(os.path.join(results_path, 'electric_grid.pdf'))
-    fledge.utils.launch(os.path.join(results_path, 'electric_grid.pdf'))
+    mesmo.utils.launch(os.path.join(results_path, 'electric_grid.pdf'))
 
     # Create interactive plot.
     figure = go.Figure()
@@ -179,10 +179,10 @@ def main():
         yaxis=dict(showgrid=False, zeroline=False, showticklabels=False, ticks='')
     ))
     figure.write_html(os.path.join(results_path, 'electric_grid.html'))
-    fledge.utils.launch(os.path.join(results_path, 'electric_grid.html'))
+    mesmo.utils.launch(os.path.join(results_path, 'electric_grid.html'))
 
     # Print results path.
-    fledge.utils.launch(results_path)
+    mesmo.utils.launch(results_path)
     print(f"Results are stored in: {results_path}")
 
 

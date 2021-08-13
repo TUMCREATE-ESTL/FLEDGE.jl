@@ -1,13 +1,13 @@
-"""Application programming interface (API) module for high-level interface functions to run FLEDGE."""
+"""Application programming interface (API) module for high-level interface functions to run MESMO."""
 
 import os
 
-import fledge.config
-import fledge.data_interface
-import fledge.problems
-import fledge.utils
+import mesmo.config
+import mesmo.data_interface
+import mesmo.problems
+import mesmo.utils
 
-logger = fledge.config.get_logger(__name__)
+logger = mesmo.config.get_logger(__name__)
 
 
 def run_nominal_operation_problem(
@@ -16,19 +16,19 @@ def run_nominal_operation_problem(
         print_results: bool = False,
         store_results: bool = True,
         results_path: str = None
-) -> fledge.problems.Results:
+) -> mesmo.problems.Results:
     """Set up and solve a nominal operation problem for the given scenario."""
 
     # Instantiate results directory.
     if store_results and (results_path is None):
-        results_path = fledge.utils.get_results_path('run_operation_problem', scenario_name)
+        results_path = mesmo.utils.get_results_path('run_operation_problem', scenario_name)
 
     # Recreate / overwrite database.
     if recreate_database:
-        fledge.data_interface.recreate_database()
+        mesmo.data_interface.recreate_database()
 
     # Obtain operation problem.
-    operation_problem = fledge.problems.NominalOperationProblem(scenario_name)
+    operation_problem = mesmo.problems.NominalOperationProblem(scenario_name)
 
     # Solve operation problem.
     operation_problem.solve()
@@ -54,19 +54,19 @@ def run_optimal_operation_problem(
         print_results: bool = False,
         store_results: bool = True,
         results_path: str = None
-) -> fledge.problems.Results:
+) -> mesmo.problems.Results:
     """Set up and solve an optimal operation problem for the given scenario."""
 
     # Instantiate results directory.
     if store_results and (results_path is None):
-        results_path = fledge.utils.get_results_path('run_optimal_operation_problem', scenario_name)
+        results_path = mesmo.utils.get_results_path('run_optimal_operation_problem', scenario_name)
 
     # Recreate / overwrite database.
     if recreate_database:
-        fledge.data_interface.recreate_database()
+        mesmo.data_interface.recreate_database()
 
     # Obtain operation problem.
-    operation_problem = fledge.problems.OptimalOperationProblem(scenario_name)
+    operation_problem = mesmo.problems.OptimalOperationProblem(scenario_name)
 
     # Solve operation problem.
     operation_problem.solve()
