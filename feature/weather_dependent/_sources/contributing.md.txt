@@ -49,7 +49,7 @@ Every time the `master` branch changes, a new version number is defined accordin
     - Use single quotes `'...'` for parameters, indexes, pathes and use double quotes `"..."` for content, messages and docstrings.
 - Results / output files:
     - Store results / output files only in the `results` directory.
-    - The results path should be obtained with `fledge.utils.get_results_path()`
+    - The results path should be obtained with `mesmo.utils.get_results_path()`
     - The content of the `results` directory should remain local, i.e., it should be ignored by Git and should not appear in any commits to the repository.
 
 ## Release checklist
@@ -65,9 +65,9 @@ Before pushing a new commit / release to the `master` branch, please go through 
     - `docs/publications.md` (at example citation)
     - `docs/conf.py` (at `copyright =`)
     - `LICENSE`
-5. After pushing a new commit / release, create a tag and publish a new release on Github: <https://github.com/TUMCREATE-ESTL/fledge/releases>
+5. After pushing a new commit / release, create a tag and publish a new release on Github: <https://github.com/mesmo-dev/mesmo/releases>
 6. After publishing a new release, edit the latest Zenodo entry: <https://doi.org/10.5281/zenodo.3562875>
-    - Set title to "FLEDGE - Flexible Distribution Grid Demonstrator".
+    - Set title to "MESMO - Multi-Energy System Modeling and Optimization".
     - Set correct author names.
     - Set license needs to "MIT License".
 
@@ -75,9 +75,9 @@ Before pushing a new commit / release to the `master` branch, please go through 
 
 The `environment.yml` file in the repository base directory provides a snapshot of an Anaconda environment with specific package versions which has been tested and is confirmed to work. The `environment.yml` file should be updated before releases, i.e. commits to the `master` branch. To update `environment.yml`, follow these steps:
 
-1. Uninstall FLEDGE / delete the existing `fledge` Anaconda environment: `conda env remove -n fledge`
-2. Reinstall FLEDGE / recreate the `fledge` Anaconda environment based on the recommended installation steps in [Getting started](getting_started.md).
+1. Uninstall MESMO / delete the existing `mesmo` Anaconda environment: `conda env remove -n mesmo`
+2. Reinstall MESMO / recreate the `mesmo` Anaconda environment based on the recommended installation steps in [Getting started](getting_started.md).
 3. Run **all test** and **all examples scripts** and fix any incompatibilities / bugs.
-4. Update `environment.yml`: `conda env export -n fledge > path_to_repository/environment.yml`
+4. Update `environment.yml`: `conda env export -n mesmo > path_to_repository/environment.yml`
 5. Remove `prefix: ...` line from `environment.yml`.
-6. Add line at the top of file: `# Last updated: DD Month YYYY (FLEDGE vX.X.X)`
+6. Add line at the top of file: `# Last updated: DD Month YYYY (MESMO vX.X.X)`
