@@ -59,15 +59,15 @@ jobs:
       run: |
         rm -f environment-*
     - name: Get cached environment-windows-latest.yml
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4.1.7
       with:
         name: environment-windows-latest.yml
     - name: Get cached environment-macos-latest.yml
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4.1.7
       with:
         name: environment-macos-latest.yml
     - name: Get cached environment-ubuntu-latest.yml
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4.1.7
       with:
         name: environment-ubuntu-latest.yml
     - name: Run automatic code formatting
